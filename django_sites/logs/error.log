@@ -1,0 +1,66 @@
+[Thu Feb 14 07:42:28.394232 2019] [ssl:warn] [pid 19398] AH01906: pegasus:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 07:42:28.394259 2019] [ssl:warn] [pid 19398] AH01909: pegasus:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 07:42:28.422739 2019] [ssl:warn] [pid 19412] AH01906: pegasus:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 07:42:28.422762 2019] [ssl:warn] [pid 19412] AH01909: pegasus:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 07:42:57.244863 2019] [authz_core:error] [pid 19444] [client 198.182.56.5:10421] AH01630: client denied by server configuration: /opt/django_sites/pegasus
+[Thu Feb 14 07:42:57.436154 2019] [authz_core:error] [pid 19445] [client 198.182.56.5:10422] AH01630: client denied by server configuration: /opt/django_sites/pegasus
+[Thu Feb 14 07:44:24.705656 2019] [ssl:warn] [pid 19473] AH01906: pegasus:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 07:44:24.705687 2019] [ssl:warn] [pid 19473] AH01909: pegasus:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 07:44:24.733421 2019] [ssl:warn] [pid 19477] AH01906: pegasus:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 07:44:24.733441 2019] [ssl:warn] [pid 19477] AH01909: pegasus:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 07:47:20.343997 2019] [ssl:warn] [pid 19563] AH01906: pegasus:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 07:47:20.344022 2019] [ssl:warn] [pid 19563] AH01909: pegasus:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 07:47:20.373832 2019] [ssl:warn] [pid 19576] AH01906: pegasus:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 07:47:20.373855 2019] [ssl:warn] [pid 19576] AH01909: pegasus:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 07:53:45.398371 2019] [ssl:warn] [pid 19651] AH01906: pegasus:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 07:53:45.398391 2019] [ssl:warn] [pid 19651] AH01909: pegasus:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 07:53:45.427832 2019] [ssl:warn] [pid 19655] AH01906: pegasus:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 07:53:45.427856 2019] [ssl:warn] [pid 19655] AH01909: pegasus:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 07:57:36.282369 2019] [ssl:warn] [pid 19707] AH01906: pegasus:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 07:57:36.282389 2019] [ssl:warn] [pid 19707] AH01909: pegasus:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 07:57:36.310282 2019] [ssl:warn] [pid 19711] AH01906: pegasus:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 07:57:36.310302 2019] [ssl:warn] [pid 19711] AH01909: pegasus:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 07:59:06.471755 2019] [ssl:warn] [pid 19749] AH01906: pegasus:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 07:59:06.471803 2019] [ssl:warn] [pid 19749] AH01909: pegasus:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 07:59:06.500729 2019] [ssl:warn] [pid 19751] AH01906: pegasus:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 07:59:06.501300 2019] [ssl:warn] [pid 19751] AH01909: pegasus:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 09:26:44.547651 2019] [ssl:warn] [pid 826] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 09:26:44.548153 2019] [ssl:warn] [pid 826] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 09:26:44.921898 2019] [ssl:warn] [pid 1007] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 09:26:44.921923 2019] [ssl:warn] [pid 1007] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 20:56:49.617415 2019] [ssl:warn] [pid 15985] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 20:56:49.617454 2019] [ssl:warn] [pid 15985] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 20:56:49.652341 2019] [ssl:warn] [pid 15988] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 20:56:49.652361 2019] [ssl:warn] [pid 15988] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 20:57:05.409307 2019] [wsgi:error] [pid 15993] [remote 130.212.92.99:31672] Invalid HTTP_HOST header: 'pegasus'. You may need to add 'pegasus' to ALLOWED_HOSTS.
+[Thu Feb 14 20:57:05.441407 2019] [wsgi:error] [pid 15993] [remote 130.212.92.99:31672] Bad Request: /web/
+[Thu Feb 14 20:58:25.509448 2019] [ssl:warn] [pid 16076] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 20:58:25.509522 2019] [ssl:warn] [pid 16076] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 20:58:25.538091 2019] [ssl:warn] [pid 16078] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 20:58:25.538116 2019] [ssl:warn] [pid 16078] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 20:58:31.192459 2019] [wsgi:error] [pid 16083] [remote 130.212.92.99:53826] Not Found: /web/
+[Thu Feb 14 20:59:52.321915 2019] [wsgi:error] [pid 16083] [remote 130.212.92.99:15534] Not Found: /web/
+[Thu Feb 14 21:01:49.293824 2019] [wsgi:error] [pid 16083] [remote 130.212.92.99:17577] Not Found: /web/
+[Thu Feb 14 23:20:34.557546 2019] [ssl:warn] [pid 19074] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 23:20:34.557588 2019] [ssl:warn] [pid 19074] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 23:20:34.585976 2019] [ssl:warn] [pid 19076] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 14 23:20:34.585997 2019] [ssl:warn] [pid 19076] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Feb 15 03:10:27.836483 2019] [wsgi:error] [pid 19081] [remote 76.102.91.96:61060] Not Found: /web/
+[Fri Feb 15 03:10:31.530863 2019] [wsgi:error] [pid 19081] [remote 76.102.91.96:61060] Not Found: /web/about
+[Fri Feb 15 03:11:15.131745 2019] [ssl:warn] [pid 24025] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Feb 15 03:11:15.131800 2019] [ssl:warn] [pid 24025] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Feb 15 03:11:15.159820 2019] [ssl:warn] [pid 24026] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Feb 15 03:11:15.159842 2019] [ssl:warn] [pid 24026] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 14 19:12:23.762267 2019] [wsgi:error] [pid 24031] [remote 76.102.91.96:61120] Not Found: /web/
+[Fri Feb 15 03:16:05.807706 2019] [ssl:warn] [pid 24432] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Feb 15 03:16:05.807757 2019] [ssl:warn] [pid 24432] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Feb 15 03:16:05.837394 2019] [ssl:warn] [pid 24433] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Feb 15 03:16:05.837418 2019] [ssl:warn] [pid 24433] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Feb 15 03:22:17.354808 2019] [ssl:warn] [pid 24620] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Feb 15 03:22:17.354857 2019] [ssl:warn] [pid 24620] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Feb 15 03:22:17.382959 2019] [ssl:warn] [pid 24622] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Feb 15 03:22:17.382982 2019] [ssl:warn] [pid 24622] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Feb 15 03:44:00.731006 2019] [ssl:warn] [pid 25491] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Feb 15 03:44:00.731054 2019] [ssl:warn] [pid 25491] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Feb 15 03:44:00.759810 2019] [ssl:warn] [pid 25494] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Feb 15 03:44:00.759834 2019] [ssl:warn] [pid 25494] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
