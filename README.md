@@ -1,4 +1,4 @@
-# csc648-sp19-TeamPegasus
+# csc648-sp19-Team104 - Project Pegasus
 
 # This base repo is for Dr. HyoJung Song's class.
 
