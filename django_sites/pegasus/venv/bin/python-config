@@ -1,4 +1,4 @@
-#!/opt/django_sites/pegasus/venv/bin/python
+#!/opt/project_pegasus/django_sites/pegasus/venv/bin/python
 
 import sys
 import getopt

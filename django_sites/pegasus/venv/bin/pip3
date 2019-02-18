@@ -1,4 +1,4 @@
-#!/opt/django_sites/pegasus/venv/bin/python3.6
+#!/opt/project_pegasus/django_sites/pegasus/venv/bin/python3.6
 
 # -*- coding: utf-8 -*-
 import re

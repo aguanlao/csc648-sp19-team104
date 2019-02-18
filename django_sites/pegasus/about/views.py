@@ -18,7 +18,7 @@ def wafi(request):
 
 
 def zachary(request):
-    return render(request, 'about/blank.html')
+    return render(request, 'about/zachary.html')
 
 
 def adan(request):

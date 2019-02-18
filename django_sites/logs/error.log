@@ -64,3 +64,21 @@
 [Fri Feb 15 03:44:00.731054 2019] [ssl:warn] [pid 25491] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
 [Fri Feb 15 03:44:00.759810 2019] [ssl:warn] [pid 25494] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
 [Fri Feb 15 03:44:00.759834 2019] [ssl:warn] [pid 25494] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Feb 15 06:25:02.652174 2019] [ssl:warn] [pid 25494] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Feb 15 06:25:02.652215 2019] [ssl:warn] [pid 25494] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Feb 16 06:25:02.762087 2019] [ssl:warn] [pid 25494] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Feb 16 06:25:02.762629 2019] [ssl:warn] [pid 25494] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Feb 16 22:20:31.004179 2019] [ssl:warn] [pid 7446] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Feb 16 22:20:31.004231 2019] [ssl:warn] [pid 7446] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Feb 16 22:20:31.066575 2019] [ssl:warn] [pid 7457] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Feb 16 22:20:31.066607 2019] [ssl:warn] [pid 7457] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Feb 16 22:24:47.559167 2019] [ssl:warn] [pid 7611] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Feb 16 22:24:47.559217 2019] [ssl:warn] [pid 7611] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Feb 16 22:24:47.588187 2019] [ssl:warn] [pid 7613] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Feb 16 22:24:47.588211 2019] [ssl:warn] [pid 7613] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sun Feb 17 06:25:02.710795 2019] [ssl:warn] [pid 7613] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Feb 17 06:25:02.712161 2019] [ssl:warn] [pid 7613] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Feb 18 00:28:10.949228 2019] [ssl:warn] [pid 5421] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Feb 18 00:28:10.949279 2019] [ssl:warn] [pid 5421] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Feb 18 00:28:11.003944 2019] [ssl:warn] [pid 5423] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Feb 18 00:28:11.003977 2019] [ssl:warn] [pid 5423] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name

@@ -13,7 +13,7 @@ body{
 
 p {
 	color: white;
-	font-size: 25px;
+	font-size: 18px;
 	font-family: Ubuntu, "Trebuchet MS", Helvetica, sans-serif;
 	text-align:center;
 }
@@ -51,4 +51,9 @@ p {
 
 footer{
 	display: none;
+}
+
+.center{
+      margin: auto;
+      width: 50%;
 }
