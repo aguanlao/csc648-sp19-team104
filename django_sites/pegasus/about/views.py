@@ -6,7 +6,7 @@ def index(request):
 
 
 def brenna(request):
-    return HttpResponse("Brenna's page.")
+	return render(request, 'about/brenna.html')
 
 
 def fatma(request):
