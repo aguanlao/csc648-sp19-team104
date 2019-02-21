@@ -22,7 +22,7 @@ def zachary(request):
 
 
 def adan(request):
-    return HttpResponse("Adan's page.")
+    return render(request, 'about/adan.html')
 
 
 def quan(request):
