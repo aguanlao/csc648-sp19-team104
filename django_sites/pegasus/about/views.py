@@ -26,7 +26,7 @@ def adan(request):
 
 
 def quan(request):
-    return HttpResponse("Quan's page.")
+    return HttpResponse("about/Quan.html")
 
 
 def omar(request):
