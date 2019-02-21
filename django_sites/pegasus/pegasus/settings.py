@@ -89,7 +89,7 @@ DATABASES = {
         'NAME': 'pegasus-dev',
         'USER': 'admin',
         'PASSWORD': 'justD0it!',
-        'HOST': 'localhost',
+        'HOST': '18.224.150.8',
         'PORT': '5432',
     }
 }

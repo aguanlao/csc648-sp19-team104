@@ -6,14 +6,15 @@ def index(request):
 
 
 def brenna(request):
-    return HttpResponse("Brenna's page.")
+    return render(request, 'about/brenna.html')
 
 
 def fatma(request):
-    return HttpResponse("Fatma's page.")
+    return render(request, 'about/fatma.html')
 
 
 def wafi(request):
+    return render(request, 'about/wafi.html')
     return HttpResponse("Wafi's page.")
 
 
@@ -22,12 +23,12 @@ def zachary(request):
 
 
 def adan(request):
-    return HttpResponse("Adan's page.")
+    return render(request, 'about/adan.html')
 
 
 def quan(request):
-    return HttpResponse("Quan's page.")
+    return render(request, 'about/quan.html')
 
 
 def omar(request):
-    return HttpResponse("Omar's page.")
+    return render(request, 'about/omar.html')
