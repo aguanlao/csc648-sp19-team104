@@ -84,3 +84,74 @@
 [Mon Feb 18 00:28:11.003977 2019] [ssl:warn] [pid 5423] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
 [Mon Feb 18 06:25:02.781289 2019] [ssl:warn] [pid 5423] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
 [Mon Feb 18 06:25:02.781325 2019] [ssl:warn] [pid 5423] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Tue Feb 19 06:25:03.298495 2019] [ssl:warn] [pid 5423] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Tue Feb 19 06:25:03.298527 2019] [ssl:warn] [pid 5423] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Feb 20 06:25:01.815915 2019] [ssl:warn] [pid 5423] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Feb 20 06:25:01.815945 2019] [ssl:warn] [pid 5423] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 21 02:58:32.935565 2019] [ssl:warn] [pid 4638] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 21 02:58:32.936563 2019] [ssl:warn] [pid 4638] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 21 02:58:32.965891 2019] [ssl:warn] [pid 4639] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 21 02:58:32.965916 2019] [ssl:warn] [pid 4639] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 21 02:59:34.249303 2019] [ssl:warn] [pid 4743] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 21 02:59:34.249361 2019] [ssl:warn] [pid 4743] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 21 02:59:34.278076 2019] [ssl:warn] [pid 4745] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 21 02:59:34.278099 2019] [ssl:warn] [pid 4745] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 21 03:01:35.712944 2019] [ssl:warn] [pid 4856] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 21 03:01:35.712992 2019] [ssl:warn] [pid 4856] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 21 03:01:35.741390 2019] [ssl:warn] [pid 4858] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 21 03:01:35.741412 2019] [ssl:warn] [pid 4858] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 21 03:19:20.226047 2019] [ssl:warn] [pid 6126] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 21 03:19:20.226543 2019] [ssl:warn] [pid 6126] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 21 03:19:20.286865 2019] [ssl:warn] [pid 6130] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 21 03:19:20.286900 2019] [ssl:warn] [pid 6130] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Feb 20 19:19:28.423468 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:36660] Not Found: /web/quan/images/img1.png
+[Wed Feb 20 19:20:31.732647 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503] Internal Server Error: /web/fatma/
+[Wed Feb 20 19:20:31.732675 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503] Traceback (most recent call last):
+[Wed Feb 20 19:20:31.732680 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 470, in parse
+[Wed Feb 20 19:20:31.732684 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]     compile_func = self.tags[command]
+[Wed Feb 20 19:20:31.732687 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503] KeyError: 'static'
+[Wed Feb 20 19:20:31.732690 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503] 
+[Wed Feb 20 19:20:31.732694 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503] During handling of the above exception, another exception occurred:
+[Wed Feb 20 19:20:31.732697 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503] 
+[Wed Feb 20 19:20:31.732701 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503] Traceback (most recent call last):
+[Wed Feb 20 19:20:31.732704 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+[Wed Feb 20 19:20:31.732708 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]     response = get_response(request)
+[Wed Feb 20 19:20:31.732711 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+[Wed Feb 20 19:20:31.732726 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]     response = self.process_exception_by_middleware(e, request)
+[Wed Feb 20 19:20:31.732730 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+[Wed Feb 20 19:20:31.732733 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]     response = wrapped_callback(request, *callback_args, **callback_kwargs)
+[Wed Feb 20 19:20:31.732736 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]   File "/opt/project_pegasus/django_sites/pegasus/about/views.py", line 13, in fatma
+[Wed Feb 20 19:20:31.732739 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]     return render(request, 'about/fatma.html')
+[Wed Feb 20 19:20:31.732742 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+[Wed Feb 20 19:20:31.732745 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]     content = loader.render_to_string(template_name, context, request, using=using)
+[Wed Feb 20 19:20:31.732748 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loader.py", line 61, in render_to_string
+[Wed Feb 20 19:20:31.732751 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]     template = get_template(template_name, using=using)
+[Wed Feb 20 19:20:31.732754 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loader.py", line 15, in get_template
+[Wed Feb 20 19:20:31.732757 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]     return engine.get_template(template_name)
+[Wed Feb 20 19:20:31.732760 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/backends/django.py", line 34, in get_template
+[Wed Feb 20 19:20:31.732763 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]     return Template(self.engine.get_template(template_name), self)
+[Wed Feb 20 19:20:31.732766 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/engine.py", line 144, in get_template
+[Wed Feb 20 19:20:31.732769 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]     template, origin = self.find_template(template_name)
+[Wed Feb 20 19:20:31.732772 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/engine.py", line 126, in find_template
+[Wed Feb 20 19:20:31.732775 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]     template = loader.get_template(name, skip=skip)
+[Wed Feb 20 19:20:31.732778 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loaders/base.py", line 30, in get_template
+[Wed Feb 20 19:20:31.732781 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]     contents, origin, origin.template_name, self.engine,
+[Wed Feb 20 19:20:31.732784 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 156, in __init__
+[Wed Feb 20 19:20:31.732787 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]     self.nodelist = self.compile_nodelist()
+[Wed Feb 20 19:20:31.732790 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 194, in compile_nodelist
+[Wed Feb 20 19:20:31.732796 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]     return parser.parse()
+[Wed Feb 20 19:20:31.732799 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 472, in parse
+[Wed Feb 20 19:20:31.732802 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]     self.invalid_block_tag(token, command, parse_until)
+[Wed Feb 20 19:20:31.732805 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 534, in invalid_block_tag
+[Wed Feb 20 19:20:31.732809 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503]     "or load this tag?" % (token.lineno, command)
+[Wed Feb 20 19:20:31.732813 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503] django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 14: 'static'. Did you forget to register or load this tag?
+[Wed Feb 20 19:20:31.732818 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:58503] 
+[Wed Feb 20 19:20:57.966155 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:52312] Not Found: /web/fatma/images/pet.jpg
+[Wed Feb 20 19:21:02.932943 2019] [wsgi:error] [pid 6133] [remote 130.212.94.231:52312] Not Found: /web/wafi/images/wafless.jpg
+[Thu Feb 21 03:24:11.458836 2019] [ssl:warn] [pid 6308] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 21 03:24:11.458883 2019] [ssl:warn] [pid 6308] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 21 03:24:11.487233 2019] [ssl:warn] [pid 6310] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 21 03:24:11.487258 2019] [ssl:warn] [pid 6310] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Feb 21 03:37:16.402097 2019] [php7:warn] [pid 6342] [client 130.212.94.231:51958] PHP Warning:  pg_connect(): Unable to connect to PostgreSQL server: FATAL:  password authentication failed for user &quot;admin&quot;\nFATAL:  password authentication failed for user &quot;admin&quot; in /usr/share/php/adodb/drivers/adodb-postgres64.inc.php on line 727, referer: https://pegasus/phppgadmin/redirect.php?subject=server&server=localhost%3A5432%3Aallow
+[Thu Feb 21 06:25:03.044854 2019] [ssl:warn] [pid 6310] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Feb 21 06:25:03.044892 2019] [ssl:warn] [pid 6310] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
