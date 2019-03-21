@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pegasus Search</title>
+</head>
+<body>
+<div id="pre_form">
+    <p>Team Pegasus</p>
+</div>
+<div id="form_area">
+    <form action="/demo/" method="post">
+        {% csrf_token %}
+        {{ results.form }}
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<div id="post_form">
+    {% if results.search_count %}
+    {% for entry in results.search_results %}
+    <p><strong>{{ entry.address }}, {{ entry.city }} </strong><br /><img src="{{ entry.photo.url }}" /></p><br />
+    {% endfor %}
+    {% else %}
+    <p>No search results.</p>
+    {% endif %}
+</div>
+</body>
+</html>

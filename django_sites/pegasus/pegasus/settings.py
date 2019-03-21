@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'about.apps.AboutConfig',
+    'demo.apps.DemoConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -86,9 +87,9 @@ WSGI_APPLICATION = 'pegasus.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pegasus-dev',
-        'USER': 'admin',
-        'PASSWORD': 'justD0it!',
+        'NAME': 'soar',
+        'USER': 'postgres',
+        'PASSWORD': 'Fire,98Breath!',
         'HOST': '18.224.150.8',
         'PORT': '5432',
     }
@@ -133,3 +134,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/opt/project_pegasus/django_sites/pegasus/static'
+MEDIA_ROOT = '/opt/project_pegasus/django_sites/pegasus/media'
+MEDIA_URL = '/media/'
