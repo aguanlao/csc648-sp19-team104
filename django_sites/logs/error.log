@@ -945,3 +945,19 @@ NameError: name 'hasattr' is not defined
 [Mon Mar 25 00:24:39.630565 2019] [wsgi:error] [pid 4249] [remote 127.0.0.1:46896] Result Count: 4
 [Mon Mar 25 00:24:39.630595 2019] [wsgi:error] [pid 4249] [remote 127.0.0.1:46896] Results: <QuerySet [<Domicile: 3579 Terrace Way Apt. #33, Lafayette, CA 94549>, <Domicile: 69 Michael Way, Santa Clara, CA 95051>, <Domicile: 135 Mendosa Ave, San Francisco, CA 94116>, <Domicile: 2134 Green St. Apt #6, San Francisco, CA 94123>]>
 [Mon Mar 25 00:24:39.630658 2019] [wsgi:error] [pid 4249] [remote 127.0.0.1:46896] 
+[Mon Mar 25 00:52:43.248482 2019] [wsgi:error] [pid 4249] [remote 127.0.0.1:47364] [DEBUG] Query: {}
+[Mon Mar 25 00:52:43.248554 2019] [wsgi:error] [pid 4249] [remote 127.0.0.1:47364] Result Count: 4
+[Mon Mar 25 00:52:43.248576 2019] [wsgi:error] [pid 4249] [remote 127.0.0.1:47364] Results: <QuerySet [<Domicile: 3579 Terrace Way Apt. #33, Lafayette, CA 94549>, <Domicile: 69 Michael Way, Santa Clara, CA 95051>, <Domicile: 135 Mendosa Ave, San Francisco, CA 94116>, <Domicile: 2134 Green St. Apt #6, San Francisco, CA 94123>]>
+[Mon Mar 25 00:52:43.248605 2019] [wsgi:error] [pid 4249] [remote 127.0.0.1:47364] 
+[Mon Mar 25 00:52:51.452625 2019] [wsgi:error] [pid 4249] [remote 127.0.0.1:47374] [DEBUG] Query: {'residence_type': 'apartment'}
+[Mon Mar 25 00:52:51.452690 2019] [wsgi:error] [pid 4249] [remote 127.0.0.1:47374] Result Count: 2
+[Mon Mar 25 00:52:51.452711 2019] [wsgi:error] [pid 4249] [remote 127.0.0.1:47374] Results: <QuerySet [<Domicile: 3579 Terrace Way Apt. #33, Lafayette, CA 94549>, <Domicile: 2134 Green St. Apt #6, San Francisco, CA 94123>]>
+[Mon Mar 25 00:52:51.452735 2019] [wsgi:error] [pid 4249] [remote 127.0.0.1:47374] 
+[Mon Mar 25 00:53:23.626429 2019] [wsgi:error] [pid 4249] [remote 127.0.0.1:47378] [DEBUG] Query: {'residence_type': 'apartment'}
+[Mon Mar 25 00:53:23.626493 2019] [wsgi:error] [pid 4249] [remote 127.0.0.1:47378] Result Count: 2
+[Mon Mar 25 00:53:23.626508 2019] [wsgi:error] [pid 4249] [remote 127.0.0.1:47378] Results: <QuerySet [<Domicile: 3579 Terrace Way Apt. #33, Lafayette, CA 94549>, <Domicile: 2134 Green St. Apt #6, San Francisco, CA 94123>]>
+[Mon Mar 25 00:53:23.626523 2019] [wsgi:error] [pid 4249] [remote 127.0.0.1:47378] 
+[Mon Mar 25 00:53:30.612320 2019] [wsgi:error] [pid 4249] [remote 127.0.0.1:47398] [DEBUG] Query: {'residence_type': 'apartment', 'pet_friendly': True}
+[Mon Mar 25 00:53:30.612393 2019] [wsgi:error] [pid 4249] [remote 127.0.0.1:47398] Result Count: 1
+[Mon Mar 25 00:53:30.612415 2019] [wsgi:error] [pid 4249] [remote 127.0.0.1:47398] Results: <QuerySet [<Domicile: 3579 Terrace Way Apt. #33, Lafayette, CA 94549>]>
+[Mon Mar 25 00:53:30.612441 2019] [wsgi:error] [pid 4249] [remote 127.0.0.1:47398] 
