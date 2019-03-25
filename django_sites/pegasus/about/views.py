@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 
 def index(request):
@@ -15,7 +14,6 @@ def fatma(request):
 
 def wafi(request):
     return render(request, 'about/wafi.html')
-    return HttpResponse("Wafi's page.")
 
 
 def zachary(request):
