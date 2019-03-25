@@ -155,3 +155,355 @@
 [Thu Feb 21 03:37:16.402097 2019] [php7:warn] [pid 6342] [client 130.212.94.231:51958] PHP Warning:  pg_connect(): Unable to connect to PostgreSQL server: FATAL:  password authentication failed for user &quot;admin&quot;\nFATAL:  password authentication failed for user &quot;admin&quot; in /usr/share/php/adodb/drivers/adodb-postgres64.inc.php on line 727, referer: https://pegasus/phppgadmin/redirect.php?subject=server&server=localhost%3A5432%3Aallow
 [Thu Feb 21 06:25:03.044854 2019] [ssl:warn] [pid 6310] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
 [Thu Feb 21 06:25:03.044892 2019] [ssl:warn] [pid 6310] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Mar 23 17:00:07.667685 2019] [ssl:warn] [pid 18015:tid 140650732661696] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Mar 23 17:00:07.667709 2019] [ssl:warn] [pid 18015:tid 140650732661696] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Mar 23 17:00:07.672804 2019] [ssl:warn] [pid 18016:tid 140650732661696] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Mar 23 17:00:07.672818 2019] [ssl:warn] [pid 18016:tid 140650732661696] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sun Mar 24 13:44:31.589571 2019] [ssl:warn] [pid 970:tid 140219765562304] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Mar 24 13:44:31.589984 2019] [ssl:warn] [pid 970:tid 140219765562304] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sun Mar 24 13:44:31.598659 2019] [ssl:warn] [pid 1050:tid 140219765562304] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Mar 24 13:44:31.598686 2019] [ssl:warn] [pid 1050:tid 140219765562304] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sun Mar 24 15:17:32.395778 2019] [wsgi:error] [pid 1051:tid 140219637286656] [remote 127.0.0.1:37024] Not Found: /web/demo/like_button.js
+[Sun Mar 24 15:17:32.659149 2019] [wsgi:error] [pid 1051:tid 140219536574208] [remote 127.0.0.1:37024] Not Found: /web/demo/like_button.js
+[Sun Mar 24 15:19:32.454201 2019] [wsgi:error] [pid 1051:tid 140219536574208] [remote 127.0.0.1:37042] Not Found: /web/demo/static/demo/like_button.js
+[Sun Mar 24 15:19:32.780754 2019] [wsgi:error] [pid 1051:tid 140219637286656] [remote 127.0.0.1:37042] Not Found: /web/demo/static/demo/like_button.js
+[Sun Mar 24 15:19:33.583721 2019] [wsgi:error] [pid 1051:tid 140219637286656] [remote 127.0.0.1:37042] Not Found: /web/demo/static/demo/like_button.js
+[Sun Mar 24 15:19:33.871335 2019] [wsgi:error] [pid 1051:tid 140219536574208] [remote 127.0.0.1:37042] Not Found: /web/demo/static/demo/like_button.js
+[Sun Mar 24 18:51:43.349432 2019] [ssl:warn] [pid 946:tid 140284486052800] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Mar 24 18:51:43.349460 2019] [ssl:warn] [pid 946:tid 140284486052800] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sun Mar 24 18:51:43.360824 2019] [ssl:warn] [pid 1024:tid 140284486052800] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Mar 24 18:51:43.360837 2019] [ssl:warn] [pid 1024:tid 140284486052800] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sun Mar 24 19:25:29.150622 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:38436] Not Found: /web/demo/demo/static 'demo/like_button.js'
+[Sun Mar 24 19:25:29.408465 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:38436] Not Found: /web/demo/demo/static 'demo/like_button.js'
+[Sun Mar 24 19:26:54.314993 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:38462] Not Found: /web/demo/static 'demo/like_button.js'
+[Sun Mar 24 19:26:54.658553 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:38462] Not Found: /web/demo/static 'demo/like_button.js'
+[Sun Mar 24 19:26:55.565439 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:38462] Not Found: /web/demo/static 'demo/like_button.js'
+[Sun Mar 24 19:26:55.938198 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:38462] Not Found: /web/demo/static 'demo/like_button.js'
+[Sun Mar 24 19:26:56.499285 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:38462] Not Found: /web/demo/static 'demo/like_button.js'
+[Sun Mar 24 19:26:56.807942 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:38462] Not Found: /web/demo/static 'demo/like_button.js'
+[Sun Mar 24 19:26:56.950748 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:38462] Not Found: /web/demo/static 'demo/like_button.js'
+[Sun Mar 24 19:26:56.981674 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:38460] Not Found: /web/demo/static 'demo/like_button.js'
+[Sun Mar 24 19:26:57.416609 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:38460] Not Found: /web/demo/static 'demo/like_button.js'
+[Sun Mar 24 19:26:57.448351 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:38466] Not Found: /web/demo/static 'demo/like_button.js'
+[Sun Mar 24 19:26:57.760261 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:38466] Not Found: /web/demo/static 'demo/like_button.js'
+[Sun Mar 24 19:28:34.757803 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:38550] Not Found: /web/demo/{ static 'demo/like_button.js'}
+[Sun Mar 24 19:28:35.056380 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:38550] Not Found: /web/demo/{ static 'demo/like_button.js'}
+[Sun Mar 24 19:28:36.088563 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:38550] Not Found: /web/demo/{ static 'demo/like_button.js'}
+[Sun Mar 24 19:28:36.473054 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:38550] Not Found: /web/demo/{ static 'demo/like_button.js'}
+[Sun Mar 24 19:28:36.652483 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:38550] Not Found: /web/demo/{ static 'demo/like_button.js'}
+[Sun Mar 24 19:28:36.952575 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:38550] Not Found: /web/demo/{ static 'demo/like_button.js'}
+[Sun Mar 24 19:28:37.029614 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:38550] Not Found: /web/demo/{ static 'demo/like_button.js'}
+[Sun Mar 24 19:28:37.432687 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:38550] Not Found: /web/demo/{ static 'demo/like_button.js'}
+[Sun Mar 24 19:29:05.015106 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:38560] Not Found: /web/demo/{ static 'demo/like_button.js'}
+[Sun Mar 24 19:29:05.327082 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:38560] Not Found: /web/demo/{ static 'demo/like_button.js'}
+[Sun Mar 24 19:29:43.384392 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:38566] Not Found: /web/demo/{ static 'demo/like_button.js'}
+[Sun Mar 24 19:29:43.708629 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:38566] Not Found: /web/demo/{ static 'demo/like_button.js'}
+[Sun Mar 24 19:36:11.273997 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:38614] Not Found: /web/demo/{ static 'like_button.js'}
+[Sun Mar 24 19:36:11.583372 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:38614] Not Found: /web/demo/{ static 'like_button.js'}
+[Sun Mar 24 19:41:19.704190 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:38862] Not Found: /web/demo/{ static 'like_button.js'}
+[Sun Mar 24 19:41:20.113495 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:38862] Not Found: /web/demo/{ static 'like_button.js'}
+[Sun Mar 24 19:41:24.850216 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:38862] Not Found: /web/demo/{ static 'like_button.js'}
+[Sun Mar 24 19:41:26.026367 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:38862] Not Found: /web/demo/{ static 'like_button.js'}
+[Sun Mar 24 19:57:24.115756 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276] Internal Server Error: /web/demo/
+[Sun Mar 24 19:57:24.115777 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276] Traceback (most recent call last):
+[Sun Mar 24 19:57:24.115780 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 470, in parse
+[Sun Mar 24 19:57:24.115783 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]     compile_func = self.tags[command]
+[Sun Mar 24 19:57:24.115785 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276] KeyError: 'static'
+[Sun Mar 24 19:57:24.115788 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276] 
+[Sun Mar 24 19:57:24.115790 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276] During handling of the above exception, another exception occurred:
+[Sun Mar 24 19:57:24.115797 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276] 
+[Sun Mar 24 19:57:24.115800 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276] Traceback (most recent call last):
+[Sun Mar 24 19:57:24.115802 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+[Sun Mar 24 19:57:24.115804 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]     response = get_response(request)
+[Sun Mar 24 19:57:24.115806 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+[Sun Mar 24 19:57:24.115808 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]     response = self.process_exception_by_middleware(e, request)
+[Sun Mar 24 19:57:24.115810 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+[Sun Mar 24 19:57:24.115813 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]     response = wrapped_callback(request, *callback_args, **callback_kwargs)
+[Sun Mar 24 19:57:24.115815 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]   File "/opt/project_pegasus/django_sites/pegasus/demo/views.py", line 40, in index
+[Sun Mar 24 19:57:24.115817 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]     return render(request, 'demo/name.html', {'results': context})
+[Sun Mar 24 19:57:24.115819 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+[Sun Mar 24 19:57:24.115821 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]     content = loader.render_to_string(template_name, context, request, using=using)
+[Sun Mar 24 19:57:24.115823 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loader.py", line 61, in render_to_string
+[Sun Mar 24 19:57:24.115826 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]     template = get_template(template_name, using=using)
+[Sun Mar 24 19:57:24.115828 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loader.py", line 15, in get_template
+[Sun Mar 24 19:57:24.115830 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]     return engine.get_template(template_name)
+[Sun Mar 24 19:57:24.115832 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/backends/django.py", line 34, in get_template
+[Sun Mar 24 19:57:24.115834 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]     return Template(self.engine.get_template(template_name), self)
+[Sun Mar 24 19:57:24.115836 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/engine.py", line 144, in get_template
+[Sun Mar 24 19:57:24.115838 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]     template, origin = self.find_template(template_name)
+[Sun Mar 24 19:57:24.115840 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/engine.py", line 126, in find_template
+[Sun Mar 24 19:57:24.115844 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]     template = loader.get_template(name, skip=skip)
+[Sun Mar 24 19:57:24.115847 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loaders/base.py", line 30, in get_template
+[Sun Mar 24 19:57:24.115849 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]     contents, origin, origin.template_name, self.engine,
+[Sun Mar 24 19:57:24.115851 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 156, in __init__
+[Sun Mar 24 19:57:24.115853 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]     self.nodelist = self.compile_nodelist()
+[Sun Mar 24 19:57:24.115855 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 194, in compile_nodelist
+[Sun Mar 24 19:57:24.115857 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]     return parser.parse()
+[Sun Mar 24 19:57:24.115859 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 472, in parse
+[Sun Mar 24 19:57:24.115861 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]     self.invalid_block_tag(token, command, parse_until)
+[Sun Mar 24 19:57:24.115863 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 534, in invalid_block_tag
+[Sun Mar 24 19:57:24.115866 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276]     "or load this tag?" % (token.lineno, command)
+[Sun Mar 24 19:57:24.115869 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276] django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 36: 'static'. Did you forget to register or load this tag?
+[Sun Mar 24 19:57:24.115873 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39276] 
+[Sun Mar 24 19:58:55.777670 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282] Internal Server Error: /web/demo/
+[Sun Mar 24 19:58:55.777691 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282] Traceback (most recent call last):
+[Sun Mar 24 19:58:55.777694 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 470, in parse
+[Sun Mar 24 19:58:55.777697 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]     compile_func = self.tags[command]
+[Sun Mar 24 19:58:55.777699 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282] KeyError: 'static'
+[Sun Mar 24 19:58:55.777702 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282] 
+[Sun Mar 24 19:58:55.777704 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282] During handling of the above exception, another exception occurred:
+[Sun Mar 24 19:58:55.777706 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282] 
+[Sun Mar 24 19:58:55.777709 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282] Traceback (most recent call last):
+[Sun Mar 24 19:58:55.777711 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+[Sun Mar 24 19:58:55.777714 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]     response = get_response(request)
+[Sun Mar 24 19:58:55.777722 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+[Sun Mar 24 19:58:55.777724 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]     response = self.process_exception_by_middleware(e, request)
+[Sun Mar 24 19:58:55.777726 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+[Sun Mar 24 19:58:55.777728 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]     response = wrapped_callback(request, *callback_args, **callback_kwargs)
+[Sun Mar 24 19:58:55.777731 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]   File "/opt/project_pegasus/django_sites/pegasus/demo/views.py", line 40, in index
+[Sun Mar 24 19:58:55.777733 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]     return render(request, 'demo/name.html', {'results': context})
+[Sun Mar 24 19:58:55.777735 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+[Sun Mar 24 19:58:55.777737 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]     content = loader.render_to_string(template_name, context, request, using=using)
+[Sun Mar 24 19:58:55.777739 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loader.py", line 61, in render_to_string
+[Sun Mar 24 19:58:55.777742 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]     template = get_template(template_name, using=using)
+[Sun Mar 24 19:58:55.777744 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loader.py", line 15, in get_template
+[Sun Mar 24 19:58:55.777746 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]     return engine.get_template(template_name)
+[Sun Mar 24 19:58:55.777748 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/backends/django.py", line 34, in get_template
+[Sun Mar 24 19:58:55.777750 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]     return Template(self.engine.get_template(template_name), self)
+[Sun Mar 24 19:58:55.777752 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/engine.py", line 144, in get_template
+[Sun Mar 24 19:58:55.777754 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]     template, origin = self.find_template(template_name)
+[Sun Mar 24 19:58:55.777756 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/engine.py", line 126, in find_template
+[Sun Mar 24 19:58:55.777759 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]     template = loader.get_template(name, skip=skip)
+[Sun Mar 24 19:58:55.777761 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loaders/base.py", line 30, in get_template
+[Sun Mar 24 19:58:55.777763 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]     contents, origin, origin.template_name, self.engine,
+[Sun Mar 24 19:58:55.777767 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 156, in __init__
+[Sun Mar 24 19:58:55.777769 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]     self.nodelist = self.compile_nodelist()
+[Sun Mar 24 19:58:55.777771 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 194, in compile_nodelist
+[Sun Mar 24 19:58:55.777773 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]     return parser.parse()
+[Sun Mar 24 19:58:55.777775 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 472, in parse
+[Sun Mar 24 19:58:55.777778 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]     self.invalid_block_tag(token, command, parse_until)
+[Sun Mar 24 19:58:55.777780 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 534, in invalid_block_tag
+[Sun Mar 24 19:58:55.777782 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282]     "or load this tag?" % (token.lineno, command)
+[Sun Mar 24 19:58:55.777785 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282] django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 36: 'static'. Did you forget to register or load this tag?
+[Sun Mar 24 19:58:55.777789 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39282] 
+[Sun Mar 24 20:03:04.473518 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316] Internal Server Error: /web/demo/
+[Sun Mar 24 20:03:04.473539 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316] Traceback (most recent call last):
+[Sun Mar 24 20:03:04.473542 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 470, in parse
+[Sun Mar 24 20:03:04.473545 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]     compile_func = self.tags[command]
+[Sun Mar 24 20:03:04.473547 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316] KeyError: 'static'
+[Sun Mar 24 20:03:04.473550 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316] 
+[Sun Mar 24 20:03:04.473552 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316] During handling of the above exception, another exception occurred:
+[Sun Mar 24 20:03:04.473554 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316] 
+[Sun Mar 24 20:03:04.473557 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316] Traceback (most recent call last):
+[Sun Mar 24 20:03:04.473559 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+[Sun Mar 24 20:03:04.473562 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]     response = get_response(request)
+[Sun Mar 24 20:03:04.473564 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+[Sun Mar 24 20:03:04.473566 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]     response = self.process_exception_by_middleware(e, request)
+[Sun Mar 24 20:03:04.473569 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+[Sun Mar 24 20:03:04.473577 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]     response = wrapped_callback(request, *callback_args, **callback_kwargs)
+[Sun Mar 24 20:03:04.473579 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]   File "/opt/project_pegasus/django_sites/pegasus/demo/views.py", line 40, in index
+[Sun Mar 24 20:03:04.473581 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]     return render(request, 'demo/name.html', {'results': context})
+[Sun Mar 24 20:03:04.473583 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+[Sun Mar 24 20:03:04.473586 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]     content = loader.render_to_string(template_name, context, request, using=using)
+[Sun Mar 24 20:03:04.473588 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loader.py", line 61, in render_to_string
+[Sun Mar 24 20:03:04.473590 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]     template = get_template(template_name, using=using)
+[Sun Mar 24 20:03:04.473592 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loader.py", line 15, in get_template
+[Sun Mar 24 20:03:04.473594 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]     return engine.get_template(template_name)
+[Sun Mar 24 20:03:04.473596 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/backends/django.py", line 34, in get_template
+[Sun Mar 24 20:03:04.473599 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]     return Template(self.engine.get_template(template_name), self)
+[Sun Mar 24 20:03:04.473601 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/engine.py", line 144, in get_template
+[Sun Mar 24 20:03:04.473603 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]     template, origin = self.find_template(template_name)
+[Sun Mar 24 20:03:04.473605 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/engine.py", line 126, in find_template
+[Sun Mar 24 20:03:04.473607 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]     template = loader.get_template(name, skip=skip)
+[Sun Mar 24 20:03:04.473609 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loaders/base.py", line 30, in get_template
+[Sun Mar 24 20:03:04.473611 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]     contents, origin, origin.template_name, self.engine,
+[Sun Mar 24 20:03:04.473614 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 156, in __init__
+[Sun Mar 24 20:03:04.473617 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]     self.nodelist = self.compile_nodelist()
+[Sun Mar 24 20:03:04.473620 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 194, in compile_nodelist
+[Sun Mar 24 20:03:04.473623 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]     return parser.parse()
+[Sun Mar 24 20:03:04.473629 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 472, in parse
+[Sun Mar 24 20:03:04.473632 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]     self.invalid_block_tag(token, command, parse_until)
+[Sun Mar 24 20:03:04.473634 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 534, in invalid_block_tag
+[Sun Mar 24 20:03:04.473637 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316]     "or load this tag?" % (token.lineno, command)
+[Sun Mar 24 20:03:04.473641 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316] django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 36: 'static'. Did you forget to register or load this tag?
+[Sun Mar 24 20:03:04.473647 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39316] 
+[Sun Mar 24 20:07:29.693086 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626] Internal Server Error: /web/demo/
+[Sun Mar 24 20:07:29.693139 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626] Traceback (most recent call last):
+[Sun Mar 24 20:07:29.693143 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 470, in parse
+[Sun Mar 24 20:07:29.693146 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]     compile_func = self.tags[command]
+[Sun Mar 24 20:07:29.693149 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626] KeyError: 'static'
+[Sun Mar 24 20:07:29.693151 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626] 
+[Sun Mar 24 20:07:29.693154 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626] During handling of the above exception, another exception occurred:
+[Sun Mar 24 20:07:29.693156 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626] 
+[Sun Mar 24 20:07:29.693158 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626] Traceback (most recent call last):
+[Sun Mar 24 20:07:29.693161 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+[Sun Mar 24 20:07:29.693164 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]     response = get_response(request)
+[Sun Mar 24 20:07:29.693166 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+[Sun Mar 24 20:07:29.693169 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]     response = self.process_exception_by_middleware(e, request)
+[Sun Mar 24 20:07:29.693172 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+[Sun Mar 24 20:07:29.693174 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]     response = wrapped_callback(request, *callback_args, **callback_kwargs)
+[Sun Mar 24 20:07:29.693177 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]   File "/opt/project_pegasus/django_sites/pegasus/demo/views.py", line 40, in index
+[Sun Mar 24 20:07:29.693196 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]     return render(request, 'demo/name.html', {'results': context})
+[Sun Mar 24 20:07:29.693206 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+[Sun Mar 24 20:07:29.693208 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]     content = loader.render_to_string(template_name, context, request, using=using)
+[Sun Mar 24 20:07:29.693210 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loader.py", line 61, in render_to_string
+[Sun Mar 24 20:07:29.693213 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]     template = get_template(template_name, using=using)
+[Sun Mar 24 20:07:29.693215 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loader.py", line 15, in get_template
+[Sun Mar 24 20:07:29.693217 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]     return engine.get_template(template_name)
+[Sun Mar 24 20:07:29.693219 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/backends/django.py", line 34, in get_template
+[Sun Mar 24 20:07:29.693221 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]     return Template(self.engine.get_template(template_name), self)
+[Sun Mar 24 20:07:29.693223 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/engine.py", line 144, in get_template
+[Sun Mar 24 20:07:29.693226 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]     template, origin = self.find_template(template_name)
+[Sun Mar 24 20:07:29.693228 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/engine.py", line 126, in find_template
+[Sun Mar 24 20:07:29.693230 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]     template = loader.get_template(name, skip=skip)
+[Sun Mar 24 20:07:29.693232 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loaders/base.py", line 30, in get_template
+[Sun Mar 24 20:07:29.693234 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]     contents, origin, origin.template_name, self.engine,
+[Sun Mar 24 20:07:29.693236 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 156, in __init__
+[Sun Mar 24 20:07:29.693238 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]     self.nodelist = self.compile_nodelist()
+[Sun Mar 24 20:07:29.693240 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 194, in compile_nodelist
+[Sun Mar 24 20:07:29.693243 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]     return parser.parse()
+[Sun Mar 24 20:07:29.693245 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 472, in parse
+[Sun Mar 24 20:07:29.693247 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]     self.invalid_block_tag(token, command, parse_until)
+[Sun Mar 24 20:07:29.693249 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 534, in invalid_block_tag
+[Sun Mar 24 20:07:29.693253 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626]     "or load this tag?" % (token.lineno, command)
+[Sun Mar 24 20:07:29.693256 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626] django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 36: 'static'. Did you forget to register or load this tag?
+[Sun Mar 24 20:07:29.693261 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39626] 
+[Sun Mar 24 20:07:31.649055 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632] Internal Server Error: /web/demo/
+[Sun Mar 24 20:07:31.649075 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632] Traceback (most recent call last):
+[Sun Mar 24 20:07:31.649078 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 470, in parse
+[Sun Mar 24 20:07:31.649081 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]     compile_func = self.tags[command]
+[Sun Mar 24 20:07:31.649083 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632] KeyError: 'static'
+[Sun Mar 24 20:07:31.649085 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632] 
+[Sun Mar 24 20:07:31.649087 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632] During handling of the above exception, another exception occurred:
+[Sun Mar 24 20:07:31.649089 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632] 
+[Sun Mar 24 20:07:31.649091 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632] Traceback (most recent call last):
+[Sun Mar 24 20:07:31.649093 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+[Sun Mar 24 20:07:31.649095 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]     response = get_response(request)
+[Sun Mar 24 20:07:31.649097 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+[Sun Mar 24 20:07:31.649099 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]     response = self.process_exception_by_middleware(e, request)
+[Sun Mar 24 20:07:31.649102 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+[Sun Mar 24 20:07:31.649104 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]     response = wrapped_callback(request, *callback_args, **callback_kwargs)
+[Sun Mar 24 20:07:31.649106 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]   File "/opt/project_pegasus/django_sites/pegasus/demo/views.py", line 40, in index
+[Sun Mar 24 20:07:31.649108 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]     return render(request, 'demo/name.html', {'results': context})
+[Sun Mar 24 20:07:31.649110 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+[Sun Mar 24 20:07:31.649113 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]     content = loader.render_to_string(template_name, context, request, using=using)
+[Sun Mar 24 20:07:31.649115 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loader.py", line 61, in render_to_string
+[Sun Mar 24 20:07:31.649124 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]     template = get_template(template_name, using=using)
+[Sun Mar 24 20:07:31.649126 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loader.py", line 15, in get_template
+[Sun Mar 24 20:07:31.649129 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]     return engine.get_template(template_name)
+[Sun Mar 24 20:07:31.649131 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/backends/django.py", line 34, in get_template
+[Sun Mar 24 20:07:31.649133 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]     return Template(self.engine.get_template(template_name), self)
+[Sun Mar 24 20:07:31.649135 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/engine.py", line 144, in get_template
+[Sun Mar 24 20:07:31.649137 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]     template, origin = self.find_template(template_name)
+[Sun Mar 24 20:07:31.649139 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/engine.py", line 126, in find_template
+[Sun Mar 24 20:07:31.649142 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]     template = loader.get_template(name, skip=skip)
+[Sun Mar 24 20:07:31.649144 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loaders/base.py", line 30, in get_template
+[Sun Mar 24 20:07:31.649146 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]     contents, origin, origin.template_name, self.engine,
+[Sun Mar 24 20:07:31.649148 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 156, in __init__
+[Sun Mar 24 20:07:31.649150 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]     self.nodelist = self.compile_nodelist()
+[Sun Mar 24 20:07:31.649152 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 194, in compile_nodelist
+[Sun Mar 24 20:07:31.649154 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]     return parser.parse()
+[Sun Mar 24 20:07:31.649157 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 472, in parse
+[Sun Mar 24 20:07:31.649159 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]     self.invalid_block_tag(token, command, parse_until)
+[Sun Mar 24 20:07:31.649161 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 534, in invalid_block_tag
+[Sun Mar 24 20:07:31.649163 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632]     "or load this tag?" % (token.lineno, command)
+[Sun Mar 24 20:07:31.649166 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632] django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 36: 'static'. Did you forget to register or load this tag?
+[Sun Mar 24 20:07:31.649170 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39632] 
+[Sun Mar 24 20:07:45.421350 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634] Internal Server Error: /web/demo/
+[Sun Mar 24 20:07:45.421375 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634] Traceback (most recent call last):
+[Sun Mar 24 20:07:45.421377 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 470, in parse
+[Sun Mar 24 20:07:45.421380 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]     compile_func = self.tags[command]
+[Sun Mar 24 20:07:45.421382 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634] KeyError: 'static'
+[Sun Mar 24 20:07:45.421384 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634] 
+[Sun Mar 24 20:07:45.421386 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634] During handling of the above exception, another exception occurred:
+[Sun Mar 24 20:07:45.421388 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634] 
+[Sun Mar 24 20:07:45.421390 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634] Traceback (most recent call last):
+[Sun Mar 24 20:07:45.421392 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+[Sun Mar 24 20:07:45.421395 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]     response = get_response(request)
+[Sun Mar 24 20:07:45.421397 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+[Sun Mar 24 20:07:45.421399 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]     response = self.process_exception_by_middleware(e, request)
+[Sun Mar 24 20:07:45.421401 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+[Sun Mar 24 20:07:45.421403 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]     response = wrapped_callback(request, *callback_args, **callback_kwargs)
+[Sun Mar 24 20:07:45.421405 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]   File "/opt/project_pegasus/django_sites/pegasus/demo/views.py", line 40, in index
+[Sun Mar 24 20:07:45.421408 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]     return render(request, 'demo/name.html', {'results': context})
+[Sun Mar 24 20:07:45.421410 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+[Sun Mar 24 20:07:45.421412 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]     content = loader.render_to_string(template_name, context, request, using=using)
+[Sun Mar 24 20:07:45.421414 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loader.py", line 61, in render_to_string
+[Sun Mar 24 20:07:45.421416 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]     template = get_template(template_name, using=using)
+[Sun Mar 24 20:07:45.421418 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loader.py", line 15, in get_template
+[Sun Mar 24 20:07:45.421421 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]     return engine.get_template(template_name)
+[Sun Mar 24 20:07:45.421423 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/backends/django.py", line 34, in get_template
+[Sun Mar 24 20:07:45.421427 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]     return Template(self.engine.get_template(template_name), self)
+[Sun Mar 24 20:07:45.421429 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/engine.py", line 144, in get_template
+[Sun Mar 24 20:07:45.421431 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]     template, origin = self.find_template(template_name)
+[Sun Mar 24 20:07:45.421433 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/engine.py", line 126, in find_template
+[Sun Mar 24 20:07:45.421435 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]     template = loader.get_template(name, skip=skip)
+[Sun Mar 24 20:07:45.421437 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loaders/base.py", line 30, in get_template
+[Sun Mar 24 20:07:45.421440 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]     contents, origin, origin.template_name, self.engine,
+[Sun Mar 24 20:07:45.421442 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 156, in __init__
+[Sun Mar 24 20:07:45.421444 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]     self.nodelist = self.compile_nodelist()
+[Sun Mar 24 20:07:45.421446 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 194, in compile_nodelist
+[Sun Mar 24 20:07:45.421448 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]     return parser.parse()
+[Sun Mar 24 20:07:45.421450 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 472, in parse
+[Sun Mar 24 20:07:45.421452 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]     self.invalid_block_tag(token, command, parse_until)
+[Sun Mar 24 20:07:45.421454 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 534, in invalid_block_tag
+[Sun Mar 24 20:07:45.421456 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634]     "or load this tag?" % (token.lineno, command)
+[Sun Mar 24 20:07:45.421460 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634] django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 36: 'static'. Did you forget to register or load this tag?
+[Sun Mar 24 20:07:45.421464 2019] [wsgi:error] [pid 1025:tid 140284357777152] [remote 127.0.0.1:39634] 
+[Sun Mar 24 20:07:49.516838 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636] Internal Server Error: /web/demo/
+[Sun Mar 24 20:07:49.516856 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636] Traceback (most recent call last):
+[Sun Mar 24 20:07:49.516859 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 470, in parse
+[Sun Mar 24 20:07:49.516861 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]     compile_func = self.tags[command]
+[Sun Mar 24 20:07:49.516863 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636] KeyError: 'static'
+[Sun Mar 24 20:07:49.516872 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636] 
+[Sun Mar 24 20:07:49.516874 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636] During handling of the above exception, another exception occurred:
+[Sun Mar 24 20:07:49.516876 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636] 
+[Sun Mar 24 20:07:49.516878 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636] Traceback (most recent call last):
+[Sun Mar 24 20:07:49.516880 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+[Sun Mar 24 20:07:49.516883 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]     response = get_response(request)
+[Sun Mar 24 20:07:49.516885 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+[Sun Mar 24 20:07:49.516887 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]     response = self.process_exception_by_middleware(e, request)
+[Sun Mar 24 20:07:49.516889 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+[Sun Mar 24 20:07:49.516891 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]     response = wrapped_callback(request, *callback_args, **callback_kwargs)
+[Sun Mar 24 20:07:49.516894 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]   File "/opt/project_pegasus/django_sites/pegasus/demo/views.py", line 40, in index
+[Sun Mar 24 20:07:49.516896 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]     return render(request, 'demo/name.html', {'results': context})
+[Sun Mar 24 20:07:49.516898 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+[Sun Mar 24 20:07:49.516900 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]     content = loader.render_to_string(template_name, context, request, using=using)
+[Sun Mar 24 20:07:49.516902 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loader.py", line 61, in render_to_string
+[Sun Mar 24 20:07:49.516904 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]     template = get_template(template_name, using=using)
+[Sun Mar 24 20:07:49.516907 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loader.py", line 15, in get_template
+[Sun Mar 24 20:07:49.516909 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]     return engine.get_template(template_name)
+[Sun Mar 24 20:07:49.516911 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/backends/django.py", line 34, in get_template
+[Sun Mar 24 20:07:49.516913 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]     return Template(self.engine.get_template(template_name), self)
+[Sun Mar 24 20:07:49.516915 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/engine.py", line 144, in get_template
+[Sun Mar 24 20:07:49.516917 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]     template, origin = self.find_template(template_name)
+[Sun Mar 24 20:07:49.516921 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/engine.py", line 126, in find_template
+[Sun Mar 24 20:07:49.516923 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]     template = loader.get_template(name, skip=skip)
+[Sun Mar 24 20:07:49.516926 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/loaders/base.py", line 30, in get_template
+[Sun Mar 24 20:07:49.516928 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]     contents, origin, origin.template_name, self.engine,
+[Sun Mar 24 20:07:49.516930 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 156, in __init__
+[Sun Mar 24 20:07:49.516932 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]     self.nodelist = self.compile_nodelist()
+[Sun Mar 24 20:07:49.516934 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 194, in compile_nodelist
+[Sun Mar 24 20:07:49.516936 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]     return parser.parse()
+[Sun Mar 24 20:07:49.516938 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 472, in parse
+[Sun Mar 24 20:07:49.516940 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]     self.invalid_block_tag(token, command, parse_until)
+[Sun Mar 24 20:07:49.516942 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]   File "/opt/project_pegasus/django_sites/pegasus/venv/lib/python3.6/site-packages/django/template/base.py", line 534, in invalid_block_tag
+[Sun Mar 24 20:07:49.516945 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636]     "or load this tag?" % (token.lineno, command)
+[Sun Mar 24 20:07:49.516948 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636] django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 36: 'static'. Did you forget to register or load this tag?
+[Sun Mar 24 20:07:49.516952 2019] [wsgi:error] [pid 1025:tid 140284240279296] [remote 127.0.0.1:39636] 
+[Sun Mar 24 20:38:30.673382 2019] [ssl:warn] [pid 956:tid 140120368049088] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Mar 24 20:38:30.675653 2019] [ssl:warn] [pid 956:tid 140120368049088] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sun Mar 24 20:38:30.687103 2019] [ssl:warn] [pid 1053:tid 140120368049088] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Mar 24 20:38:30.687117 2019] [ssl:warn] [pid 1053:tid 140120368049088] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sun Mar 24 21:16:36.531171 2019] [ssl:warn] [pid 965:tid 140412669074368] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Mar 24 21:16:36.541175 2019] [ssl:warn] [pid 965:tid 140412669074368] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sun Mar 24 21:16:36.558346 2019] [ssl:warn] [pid 1047:tid 140412669074368] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Mar 24 21:16:36.558365 2019] [ssl:warn] [pid 1047:tid 140412669074368] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sun Mar 24 21:36:35.408736 2019] [ssl:warn] [pid 973:tid 140260552518592] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Mar 24 21:36:35.411690 2019] [ssl:warn] [pid 973:tid 140260552518592] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sun Mar 24 21:36:35.423674 2019] [ssl:warn] [pid 1030:tid 140260552518592] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Mar 24 21:36:35.423686 2019] [ssl:warn] [pid 1030:tid 140260552518592] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sun Mar 24 21:38:47.574623 2019] [ssl:warn] [pid 987:tid 140192383306688] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Mar 24 21:38:47.577607 2019] [ssl:warn] [pid 987:tid 140192383306688] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sun Mar 24 21:38:47.589709 2019] [ssl:warn] [pid 1042:tid 140192383306688] AH01906: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sun Mar 24 21:38:47.589723 2019] [ssl:warn] [pid 1042:tid 140192383306688] AH01909: ec2-18-224-150-8.us-east-2.compute.amazonaws.com:443:0 server certificate does NOT include an ID which matches the server name

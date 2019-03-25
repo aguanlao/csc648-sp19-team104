@@ -1,0 +1,59 @@
+Looking for git in: git
+Using git 2.17.1 from git
+> git rev-parse --show-toplevel
+> git config --get commit.template
+Open repository: /opt/project_pegasus
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse zachary-prototype
+> git rev-parse --symbolic-full-name zachary-prototype@{u}
+> git rev-list --left-right zachary-prototype...refs/remotes/origin/zachary-prototype
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git show :django_sites/pegasus/demo/__init__.py
+> git check-ignore -z --stdin
+> git check-ignore -z --stdin
+> git check-ignore -z --stdin
+> git check-ignore -z --stdin
+> git show :django_sites/pegasus/about/static/about/wafi-style.css
+> git show :django_sites/pegasus/about/static/about/site.css
+> git show :django_sites/pegasus/about/static/about/fatma-style.css
+> git check-ignore -z --stdin
+> git show :django_sites/pegasus/about/apps.py
+> git show :django_sites/pegasus/about/models.py
+> git show :django_sites/pegasus/about/tests.py
+> git show :django_sites/pegasus/about/views.py
+> git show :django_sites/pegasus/about/urls.py
+> git show :django_sites/pegasus/about/views.py
+> git check-ignore -z --stdin
+> git check-ignore -z --stdin
+> git show :django_sites/pegasus/about/templates/about/wafi.html
+> git show :django_sites/pegasus/about/views.py
+> git show :django_sites/pegasus/demo/static/demo/like_button.js
+> git ls-files --stage -- django_sites/pegasus/demo/static/demo/
+> git check-ignore -z --stdin
+> git check-ignore -z --stdin
+> git check-ignore -z --stdin
+> git check-ignore -z --stdin
+> git check-ignore -z --stdin
+> git show :django_sites/pegasus/demo/templates/demo/name.html
+> git show :django_sites/pegasus/demo/static/demo/like_button.js
+> git ls-files --stage -- django_sites/pegasus/demo/static/demo/
+> git show :django_sites/pegasus/demo/urls.py
+> git show :django_sites/pegasus/demo/views.py
+> git show :django_sites/pegasus/about/templates/about/wafi.html
+> git show :django_sites/pegasus/about/static/about/jquery.js
+> git show :django_sites/pegasus/about/static/about/fatma-style.css
+> git show :django_sites/pegasus/about/static/about/wafi-style.css
+> git show :django_sites/pegasus/about/static/about/site.css
+> git show :django_sites/pegasus/about/templates/about/wafi.html
+> git check-ignore -z --stdin
+> git check-ignore -z --stdin
+> git check-ignore -z --stdin
+> git show :django_sites/pegasus/demo/static/demo/like_button.js
+> git ls-files --stage -- django_sites/pegasus/demo/static/demo/
+> git show :django_sites/pegasus/demo/templates/demo/name.html
+> git check-ignore -z --stdin
+> git show :django_sites/pegasus/demo/static/demo/like_button.js
+> git ls-files --stage -- django_sites/pegasus/demo/static/demo/
+> git show :django_sites/pegasus/demo/templates/demo/name.html

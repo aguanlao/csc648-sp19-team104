@@ -1,12 +1,14 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Pegasus Search</title>
 </head>
 <body>
 <div id="pre_form">
-    <p>Team Pegasus</p>
+    <p class="bg-info">Team Pegasus</p>
 </div>
 <div id="form_area">
     <form action="/demo/" method="post">
@@ -24,5 +26,14 @@
     <p>No search results.</p>
     {% endif %}
 </div>
+
+<div id="like_button_container"></div>
+
+<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+
+<!-- Don't use this in production: -->
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<script src="{% static 'demo/like_button.js' %}"></script>
 </body>
 </html>

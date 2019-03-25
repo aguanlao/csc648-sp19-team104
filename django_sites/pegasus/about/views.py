@@ -15,7 +15,6 @@ def fatma(request):
 
 def wafi(request):
     return render(request, 'about/wafi.html')
-    return HttpResponse("Wafi's page.")
 
 
 def zachary(request):
