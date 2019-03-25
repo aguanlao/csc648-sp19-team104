@@ -21,10 +21,10 @@ from . import settings
 urlpatterns = [
     path('', include('about.urls')),
     path('about/', include('about.urls')),
-    path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
     path('demo/', include('demo.urls'))
 ]
 
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static('demo/%s' % settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
