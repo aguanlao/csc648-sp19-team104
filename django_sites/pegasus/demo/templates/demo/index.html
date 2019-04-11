@@ -80,7 +80,7 @@ h1{
    <div class="row">
     {% if results.search_count %}
     {% for entry in results.search_results %}
-    <p class="col-xs-6 col-md-3 "><strong>{{ entry.address }}, {{ entry.city }} </strong><br /><img src="{{ entry.photo.url }}" /></p><br />
+    <p class="col-6 "><strong>{{ entry.address }}, {{ entry.city }} </strong><br /><img src="{{ entry.photo.url }}" /></p><br />
     {% endfor %}
     {% else %}
     <p>No search results.</p>
