@@ -11,8 +11,7 @@ class SearchForm(forms.Form):
     size_sq_ft = forms.FloatField(label="Square Footage", min_value=0.0, required=False)
     price = forms.FloatField(label="Price", min_value=0.0, required=False)
     city = forms.CharField(label="City", max_length=20, required=False)
-    # ZIP Codes limited to within CA
-    zip = forms.IntegerField(label="Zip Code", min_value=90001, max_value=96162, required=False)
+    zip_code = forms.IntegerField(label="Zip Code", required=False)
 
 
 class LoginForm(forms.Form):
@@ -41,7 +40,7 @@ class EditListingForm(forms.ModelForm):
         # model = ValidListing
         fields = (
             'title', 'residence_type', 'price', 'agent', 'available', 'size_sq_ft', 'bed_count',
-            'bath_count', 'description', 'address', 'city', 'state', 'zip', 'pet_friendly', 'pets_allowed',
+            'bath_count', 'description', 'address', 'city', 'state', 'zip_code', 'pet_friendly', 'pets_allowed',
             'amenities', 'utilities_included_in_rent', 'max_tenant_count', 'current_tenant_count', 'is_active'
         )
         widgets = {
@@ -53,7 +52,7 @@ class EditUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = (
-            'email', 'date_of_birth', 'physical_address', 'city', 'state', 'zip',
+            'email', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code',
             'phone_number', 'description'
         )
         widgets = {
@@ -62,6 +61,8 @@ class EditUserForm(forms.ModelForm):
 
 
 class CreateUserForm(forms.ModelForm):
+    confirm_password = forms.CharField(label="Confirm password", max_length=20, widget=forms.PasswordInput)
+
     class Meta:
         model = User
         fields = (
