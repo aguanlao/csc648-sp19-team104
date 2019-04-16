@@ -52,7 +52,7 @@ class EditUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = (
-            'email', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code',
+            'email', 'password', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code',
             'phone_number', 'description'
         )
         widgets = {
@@ -72,3 +72,7 @@ class CreateUserForm(forms.ModelForm):
         widgets = {
             'password': forms.PasswordInput
         }
+
+
+class ForgotPasswordForm(forms.Form):
+    email = forms.CharField(label="Email", max_length=20)
