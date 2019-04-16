@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Forms Test Page</title>
+   <style>
+   .jumbotron{
+    background-image: url('https://images.unsplash.com/photo-1489549132488-d00b7eee80f1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 200px;
+    
+}
+h1{
+  background: -webkit-linear-gradient(#999b9e, #ffffff);
+   background: linear-gradient(#999b9e, #ffffff);
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+}
+
+.text-size{
+    font-size: 25px;
+}
+.navbar-toggler:focus{
+ outline: 1px solid transparent;
+  outline-offset: -4px;
+}
+.navbar-brand{
+    text-transform: uppercase;
+}
+.navbar{
+    background: -webkit-linear-gradient(#6b8b91, #4a7b84);
+    background: linear-gradient(#6b8b91, #4a7b84);
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+ <script type="text/babel">
+    function Navbar(){
+        return(
+      <div>
+        <nav className="navbar navbar-expand-md  navbar-dark">
+        <a className="navbar-brand" href="#">Team Pegasus</a>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul className="navbar-nav ">
+            <li className="nav-item">
+                <a className="nav-link text-white" href="#">Sign In</a>
+            </li>
+            <li className="nav-item">
+                <a className="nav-link text-white" href="#">Sign Up</a>
+            </li>
+            </ul>
+        </div>  
+        </nav>
+     </div>
+        );
+    }
+     ReactDOM.render(
+            <Navbar/>,
+            document.getElementById("app")
+    );
+</script>
+<div id="form_area" class="jumbotron ">
+     <h1 class="text-center mb-5">Get Home With Pegasus</h1>
+    <form method="post" class="text-center text-white  text-size">
+        {% csrf_token %}
+        {{ context.login }}
+        <input type="submit" value="Submit" class="btn btn-primary btn-md">
+    </form>
+    <form method="post" class="text-center text-white  text-size">
+        {% csrf_token %}
+        {{ context.compatibility }}
+        <input type="submit" value="Submit" class="btn btn-primary btn-md">
+    </form>
+</div>
+<!--<div id="post_form" class="contianer" >-->
+<!--   <div class="row">-->
+<!--    {% if results.search_count %}-->
+<!--    {% for entry in results.search_results %}-->
+<!--    <p class="col-6 "><strong>{{ entry.address }}, {{ entry.city }} </strong><br /><img src="{{ entry.photo.url }}" /></p><br />-->
+<!--    {% endfor %}-->
+<!--    {% else %}-->
+<!--    <p>No search results.</p>-->
+<!--    {% endif %}-->
+<!-- </div>-->
+<!--</div>-->
+<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+<!-- Don't use this in production: -->
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

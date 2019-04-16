@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .forms import SearchForm
+from .forms import SearchForm, LoginForm, CompatibilityScoreForm
 from .models import *
 # import logging
 # from pprint import pprint
@@ -42,3 +42,20 @@ def index(request):
         'search_results': []
     }
     return render(request, 'demo/index.html', {'results': context})
+
+
+def forms_test(request):
+    if request.method == 'POST':
+        login_form = LoginForm(request.POST)
+        compatibility_form = CompatibilityScoreForm(request.POST)
+
+    else:
+        login_form = LoginForm()
+        compatibility_form = CompatibilityScoreForm()
+
+    context = {
+        'login': login_form,
+        'compatibility': compatibility_form
+    }
+
+    return render(request, 'demo/form_test.html', {'context': context})
