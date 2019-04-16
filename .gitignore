@@ -1,0 +1,5 @@
+*.log
+.DS*
+*vscode*
+*db_config*
+django_sites/.idea/*

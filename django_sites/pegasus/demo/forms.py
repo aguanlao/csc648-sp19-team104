@@ -53,8 +53,8 @@ class EditUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = (
-            'email', 'date_of_birth', 'physical_address', 'city', 'state', 'zip',
-            'phone_number', 'description'
+            'email', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code',
+            'phone_number', 'bio'
         )
         widgets = {
             'description': forms.Textarea
