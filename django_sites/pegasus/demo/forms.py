@@ -1,6 +1,7 @@
 from django import forms
 from .models import *
 
+
 class SearchForm(forms.Form):
     form_residence_options = [('all', 'All')] + Domicile.residence_options
     residence_type = forms.ChoiceField(label="Residence type", choices=form_residence_options, required=False)
@@ -10,7 +11,7 @@ class SearchForm(forms.Form):
     size_sq_ft = forms.FloatField(label="Square Footage", min_value=0.0, required=False)
     price = forms.FloatField(label="Price", min_value=0.0, required=False)
     city = forms.CharField(label="City", max_length=20, required=False)
-    #ZIP Codes limited to within CA
+    # ZIP Codes limited to within CA
     zip = forms.IntegerField(label="Zip Code", min_value=90001, max_value=96162, required=False)
 
 
@@ -40,7 +41,8 @@ class EditListingForm(forms.ModelForm):
         # model = ValidListing
         fields = (
             'title', 'residence_type', 'price', 'agent', 'available', 'size_sq_ft', 'bed_count',
-            'bath_count', 'description', 'address', 'city', 'state', 'zip'
+            'bath_count', 'description', 'address', 'city', 'state', 'zip', 'pet_friendly', 'pets_allowed',
+            'amenities', 'utilities_included_in_rent', 'max_tenant_count', 'current_tenant_count', 'is_active'
         )
         widgets = {
             'description': forms.Textarea
