@@ -90,9 +90,29 @@ class User(models.Model):
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     is_student = models.BooleanField()
 
+    # Compatibility scores
+    cleanliness = models.IntegerField()
+    socialness = models.IntegerField()
+    partiness = models.IntegerField()
 
     # Internal attributes
     permission_level = -1 # 0: Administrator, 1: Landlord, 2: Star Tenant, 3: Student, 4: Unverified user
+
+
+    def update(
+            self, email=None, username=None, dob=None, address=None, city=None, state=None, zip_code=None,
+            password=None, first_name=None, last_name=None, bio=None, phone_number=None
+    ):
+        if email != None:
+            self.email = email
+
+        if username != None:
+            self.username = username
+
+        if dob != None:
+            self.date_of_birth = dob
+
+        pass
 
     # Setters
     def update_email(self, email):

@@ -32,7 +32,7 @@ def index(request):
                 'search_results': results,
                 'search_count': len(results)
             }
-            return render(request, 'demo/index.html', {'results': context})
+            return render(request, 'demo/search.html', {'results': context})
 
     else:
         form = SearchForm()
@@ -41,7 +41,7 @@ def index(request):
         'form': form,
         'search_results': []
     }
-    return render(request, 'demo/index.html', {'results': context})
+    return render(request, 'demo/search.html', {'results': context})
 
 
 def forms_test(request):
