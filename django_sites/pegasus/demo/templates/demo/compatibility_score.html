@@ -1,6 +1,5 @@
 {% extends 'demo/base.html' %}
 {% block content %}
-<h2> COMPATIBILITY SCORE </h2>
 <div id="app"></div>
 <script type="text/babel">
     function Navbar(){
@@ -32,7 +31,7 @@
 </script>
 
 <div id="form_area" class="jumbotron ">
-     <h1 class="text-center mb-5">Welcome Back!</h1>
+     <h1 class="text-center mb-5">Roommate Compatibility Survey</h1>
     <form method="post" class="text-center text-white  text-size">
         {% csrf_token %}
         {{ context.compatibility_form }}

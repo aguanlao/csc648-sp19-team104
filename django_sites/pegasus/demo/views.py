@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from .forms import SearchForm, LoginForm, CompatibilityScoreForm
+from .forms import *
 from .models import *
 # import logging
 # from pprint import pprint
@@ -84,3 +84,21 @@ def login(request):
     }
 
     return render(request, 'demo/login.html', {'context': context})
+
+
+def delete_user(request):
+    if request.method == 'POST':
+        delete_user_form = DeleteUserForm(request.POST)
+        if delete_user_form.is_valid():
+            # TODO: Remove debug statements
+            print("[DEBUG] Received delete user form data!")
+            print("[DEBUG] Comment: %s" % delete_user_form.cleaned_data['comment'])
+    else:
+        delete_user_form = DeleteUserForm()
+
+    context = {
+        'delete_user_form': delete_user_form
+    }
+
+    return render(request, 'demo/delete_account.html', {'context': context})
+
