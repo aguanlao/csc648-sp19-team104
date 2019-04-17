@@ -102,3 +102,34 @@ def delete_user(request):
 
     return render(request, 'demo/delete_account.html', {'context': context})
 
+
+def edit_user(request):
+    if request.method == 'POST':
+        edit_user_form = EditUserForm(request.POST)
+        if edit_user_form.is_valid():
+            filtered_data = remove_empty_dict(**edit_user_form.cleaned_data)
+
+            # TODO: Remove debug statements
+            print("[DEBUG] Received edit user form data!")
+            for key, value in filtered_data.items():
+                print("[DEBUG] (%s , %s)" % (key, value))
+                
+    else:
+        edit_user_form = EditUserForm()
+
+    context = {
+        'edit_user_form': edit_user_form
+    }
+
+    return render(request, 'demo/modify_profile.html', {'context': context})
+
+
+def remove_empty_dict(**input_dict):
+    filtered_dict = {
+        key: value for key, value in input_dict.items()
+        if value is not '' and
+           value is not False and
+           value is not None
+    }
+
+    return filtered_dict
