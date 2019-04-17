@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import SearchForm, LoginForm, CompatibilityScoreForm
 from .models import *
 # import logging
@@ -7,6 +7,7 @@ from .models import *
 
 # # Get instance of default logger
 # logger = logging.getLogger(__name__)
+
 
 def index(request):
     if request.method == 'POST':
@@ -22,15 +23,18 @@ def index(request):
                    '%s'.lower() % value != 'all'
             }
 
-            results = Domicile.objects.all().filter(**filters)
+            # results = Domicile.objects.all().filter(**filters)
 
             # TODO: Remove DEBUG statements
-            print("[DEBUG] Query: %s\nResult Count: %s\nResults: %s" % (filters, len(results), results))
+            # print("[DEBUG] Query: %s\nResult Count: %s\nResults: %s" % (filters, len(results), results))
+            print("[DEBUG] Received form data!")
+            for key, value in filters.items():
+                print("[DEBUG] (%s , %s)" % (key, value))
 
             context = {
                 'form': form,
-                'search_results': results,
-                'search_count': len(results)
+                # 'search_results': results,
+                # 'search_count': len(results)
             }
             return render(request, 'demo/search.html', {'results': context})
 
@@ -46,16 +50,33 @@ def index(request):
 
 def forms_test(request):
     if request.method == 'POST':
-        login_form = LoginForm(request.POST)
         compatibility_form = CompatibilityScoreForm(request.POST)
 
     else:
-        login_form = LoginForm()
         compatibility_form = CompatibilityScoreForm()
 
     context = {
-        'login': login_form,
         'compatibility': compatibility_form
     }
 
     return render(request, 'demo/form_test.html', {'context': context})
+
+
+def login(request):
+    if request.method == 'POST':
+        login_form = LoginForm(request.POST)
+        if login_form.is_valid():
+            # TODO: Remove debug statements
+            print("[DEBUG] Received login form data!")
+            for key, value in login_form.cleaned_data.items():
+                print("[DEBUG] (%s , %s)" % (key, value))
+
+            return redirect(index)
+    else:
+        login_form = LoginForm()
+
+    context = {
+        'login_form': login_form,
+    }
+
+    return render(request, 'demo/login.html', {'context': context})
