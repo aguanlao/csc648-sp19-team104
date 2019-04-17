@@ -48,18 +48,22 @@ def index(request):
     return render(request, 'demo/search.html', {'results': context})
 
 
-def forms_test(request):
+def compatibility_score(request):
     if request.method == 'POST':
         compatibility_form = CompatibilityScoreForm(request.POST)
-
+        if compatibility_form.is_valid():
+            # TODO: Remove debug statements
+            print("[DEBUG] Received compatibility form data!")
+            for key, value in compatibility_form.cleaned_data.items():
+                print("[DEBUG] (%s , %s)" % (key, value))
     else:
         compatibility_form = CompatibilityScoreForm()
 
     context = {
-        'compatibility': compatibility_form
+        'compatibility_form': compatibility_form
     }
 
-    return render(request, 'demo/form_test.html', {'context': context})
+    return render(request, 'demo/compatibility_score.html', {'context': context})
 
 
 def login(request):
