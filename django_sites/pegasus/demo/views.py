@@ -18,10 +18,7 @@ def index(request):
             # Filter all null values from filter set
             filters = {
                 key: value for key, value in form.cleaned_data.items()
-                if value is not '' and
-                   value is not False and
-                   value is not None and
-                   '%s'.lower() % value != 'all'
+                if value is not '' and value is not False and value is not None and '%s'.lower() % value != 'all'
             }
 
             # results = Domicile.objects.all().filter(**filters)
@@ -252,4 +249,3 @@ def forgot_password(request):
     }
 
     return render(request, 'demo/forgot_password.html', {'context': context})
-

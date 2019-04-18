@@ -23,7 +23,8 @@ class Message(TextObject):
     )
 
     poster = models.OneToOneField(
-        'VerifiedUser', on_delete=models.CASCADE, primary_key=True, to_field='username', related_name='message_poster_id'
+        'VerifiedUser', on_delete=models.CASCADE, primary_key=True, to_field='username',
+        related_name='message_poster_id'
     )
 
     def get_poster(self):
@@ -101,65 +102,64 @@ class User(AbstractUser):
     partiness = models.IntegerField(blank=True, null=True)
 
     # Internal attributes
-    permission_level = -1 # 0: Administrator, 1: Landlord, 2: Star Tenant, 3: Student, 4: Unverified user
+    permission_level = -1  # 0: Administrator, 1: Landlord, 2: Star Tenant, 3: Student, 4: Unverified user
     last_login = models.DateTimeField(blank=True, null=True)
 
     def update(
-            self, email=None, username=None, date_of_birth=None, physical_address=None, city=None, state=None, zip_code=None,
-            password=None, first_name=None, last_name=None, bio=None, phone_number=None, is_student=None,
+            self, email=None, username=None, date_of_birth=None, physical_address=None, city=None, state=None,
+            zip_code=None, password=None, first_name=None, last_name=None, bio=None, phone_number=None, is_student=None,
             cleanliness=None, socialness=None, partiness=None, profile_picture=None
     ):
-        if email != None and email != self.email:
+        if email is not None:
             self.email = email
 
-        if username != None and username != self.username:
+        if username is not None:
             self.username = username
 
-        if date_of_birth != None and date_of_birth != self.date_of_birth:
+        if date_of_birth is not None:
             self.date_of_birth = date_of_birth
 
-        if physical_address != None and physical_address != self.physical_address:
+        if physical_address is not None:
             self.physical_address = physical_address
 
-        if city != None and city != self.city:
+        if city is not None:
             self.city = city
 
-        if state != None and state != self.state:
+        if state is not None:
             self.state = state
 
-        if zip_code != None and zip_code != self.zip_code:
+        if zip_code is not None:
             self.zip_code = zip_code
 
-        if password != None and password != self.password:
+        if password is not None:
             self.password = password
 
-        if first_name != None and first_name != self.first_name:
+        if first_name is not None:
             self.first_name = first_name
 
-        if last_name != None and last_name != self.last_name:
+        if last_name is not None:
             self.last_name = last_name
 
-        if bio != None and bio != self.bio:
+        if bio is not None:
             self.bio = bio
 
-        if phone_number != None and phone_number != self.phone_number:
+        if phone_number is not None:
             self.phone_number = phone_number
 
-        if is_student != None and is_student != self.is_student:
+        if is_student is not None:
             self.is_student = is_student
 
-        if cleanliness != None and cleanliness != self.cleanliness:
+        if cleanliness is not None:
             self.cleanliness = cleanliness
 
-        if socialness != None and socialness != self.socialness:
+        if socialness is not None:
             self.socialness = socialness
 
-        if partiness != None and partiness != self.partiness:
+        if partiness is not None:
             self.partiness = partiness
 
-        if profile_picture != None and profile_picture != self.profile_picture:
+        if profile_picture is not None:
             self.profile_picture = profile_picture
-
 
     def __str__(self):
         return self.email
@@ -282,24 +282,71 @@ class Domicile(models.Model):
         return "%s, %s, %s %s" % (self.address, self.city, self.state, self.zip_code)
 
 
-class ActiveListing(models.Model):
+class Listing(models.Model):
     class Meta:
+        abstract = True
         db_table = 'active_listings'
 
+    creation_time = models.DateField(default=now, editable=False)
     residence = models.OneToOneField(
         'Domicile', on_delete=models.CASCADE, primary_key=True, to_field='residence_id'
     )
-    tenants = models.CharField(max_length=100)
     owner = models.CharField(max_length=15)
     price = models.FloatField(max_length=10)
+
+
+class ExpiredListing(Listing):
+    expire_time = models.DateField(default=now, editable=False)
+
+
+class ValidListing(Listing):
+    tenants = models.CharField(max_length=100)
     pet_friendly = models.BooleanField()
     pets_allowed = models.CharField(max_length=100, blank=True, null=True)
     limit_tenant_count = models.IntegerField(blank=True, null=True)
     current_tenant_count = models.IntegerField(blank=True, null=True)
     amenities = models.CharField(max_length=100, blank=True, null=True)
     utilities_included_rent = models.BooleanField()
+    is_active = models.BooleanField()
     coordinates = models.CharField(max_length=20, blank=True, null=True)
     description = models.TextField()
 
     # TODO: update to actual path, add validation
     photo = models.ImageField(upload_to='demo/residence_pictures')
+
+    def update(
+            self, owner=None, price=None, tenants=None, pet_friendly=None, pets_allowed=None, limit_tenant_count=None,
+            current_tenant_count=None, amenities=None, utilities_included_rent=None, is_active=None, description=None
+    ):
+        if owner is not None:
+            self.owner = owner
+
+        if price is not None:
+            self.price = price
+
+        if tenants is not None:
+            self.tenants = tenants
+
+        if pet_friendly is not None:
+            self.pet_friendly = pet_friendly
+
+        if pets_allowed is not None:
+            self.pets_allowed = pets_allowed
+
+        if limit_tenant_count is not None:
+            self.limit_tenant_count = limit_tenant_count
+
+        if current_tenant_count is not None:
+            self.current_tenant_count = current_tenant_count
+
+        if amenities is not None:
+            self.amenities = amenities
+
+        if utilities_included_rent is not None:
+            self.utilities_included_rent = utilities_included_rent
+
+        if is_active is not None:
+            self.is_active = is_active
+
+        if description is not None:
+            self.description = description
