@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.timezone import now
 from django.contrib.auth.models import AbstractUser
+from django.contrib.postgres.fields import ArrayField
 
 
 class TextObject(models.Model):
@@ -350,3 +351,16 @@ class ValidListing(Listing):
 
         if description is not None:
             self.description = description
+
+class Page(models.Model):
+    owners = ArrayField(VerifiedUser)
+    members = ArrayField(VerifiedUser, blank=True, null=True)
+    posts = ArrayField(Post, blank=True, null=True)
+    location = models.CharField(max_length=500)
+    name = models.CharField(max_length=50, primary_key=True)
+
+    def add_member(self):
+        pass
+
+    def remove_member(self):
+        pass
