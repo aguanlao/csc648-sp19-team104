@@ -1,14 +1,9 @@
-from django.http import HttpResponseRedirect
+import hashlib
 from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
-# import logging
-# from pprint import pprint
 
-# # Get instance of default logger
-# logger = logging.getLogger(__name__)
-
-
+# LISTING PAGES #
 def index(request):
     if request.method == 'POST':
         form = SearchForm(request.POST)
@@ -48,6 +43,7 @@ def index(request):
     return render(request, 'demo/search.html', {'results': context})
 
 
+# USER PAGES #
 def compatibility_score(request):
     if request.method == 'POST':
         compatibility_form = CompatibilityScoreForm(request.POST)
@@ -66,24 +62,77 @@ def compatibility_score(request):
     return render(request, 'demo/compatibility_score.html', {'context': context})
 
 
-def login(request):
+# def login(request):
+#     if request.method == 'POST':
+#         login_form = LoginForm(request.POST)
+#         if login_form.is_valid():
+#             # TODO: Remove debug statements
+#             print("[DEBUG] Received login form data!")
+#             for key, value in login_form.cleaned_data.items():
+#                 print("[DEBUG] (%s , %s)" % (key, value))
+#
+#             return redirect(index)
+#     else:
+#         login_form = LoginForm()
+#
+#     context = {
+#         'login_form': login_form,
+#     }
+#
+#     return render(request, 'demo/login.html', {'context': context})
+
+
+def create_account(request):
     if request.method == 'POST':
-        login_form = LoginForm(request.POST)
-        if login_form.is_valid():
-            # TODO: Remove debug statements
-            print("[DEBUG] Received login form data!")
-            for key, value in login_form.cleaned_data.items():
-                print("[DEBUG] (%s , %s)" % (key, value))
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            user_attributes = {
+                key: value for key, value in form.cleaned_data.items()
+            }
 
-            return redirect(index)
+            # Encrypt password #
+            user_attributes.pop('confirm_password')
+            secret = '%s' % user_attributes.get('password', '')
+            hashlib.sha512(secret.encode('utf-8')).hexdigest()
+
+            try:
+                user = UnverifiedUser()
+                user.update(**user_attributes)
+                user.save()
+
+                context = {
+                    'form': form,
+                    'creation_success': True,
+                    'form_submitted': True,
+                    'error_message': ''
+                }
+
+            except Exception as error_message:
+                context = {
+                    'form': form,
+                    'creation_success': False,
+                    'form_submitted': True,
+                    'error_message': '%s' % error_message
+                }
+
+        else:
+            context = {
+                'form': form,
+                'creation_success': False,
+                'form_submitted': False,
+                'error_message': '%s.' % form.errors
+            }
+
     else:
-        login_form = LoginForm()
+        form = CreateUserForm()
+        context = {
+            'form': form,
+            'creation_success': False,
+            'form_submitted': False,
+            'error_message': ''
+        }
 
-    context = {
-        'login_form': login_form,
-    }
-
-    return render(request, 'demo/login.html', {'context': context})
+    return render(request, 'demo/create_account.html', {'results': context})
 
 
 def delete_user(request):

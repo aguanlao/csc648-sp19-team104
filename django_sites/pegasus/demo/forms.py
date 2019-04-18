@@ -64,11 +64,11 @@ class CreateUserForm(forms.ModelForm):
     confirm_password = forms.CharField(label="Confirm password", max_length=20, widget=forms.PasswordInput)
 
     class Meta:
-        model = User
-        fields = (
-            'username', 'first_name', 'last_name', 'password', 'date_of_birth',
-            'physical_address', 'email', 'is_student'
-        )
+        model = UnverifiedUser
+        exclude = ('cleanliness', 'socialness', 'partiness')
+        labels = {
+            'is_student': 'Are you a student? '
+        }
         widgets = {
             'password': forms.PasswordInput
         }

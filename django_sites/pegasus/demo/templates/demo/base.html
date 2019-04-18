@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title><!DOCTYPE html>
 {% load static %}
 <html lang="en">
 <head>
@@ -43,6 +39,8 @@ h1{
 </style>
 </head>
 <body>
+{% block header %}
+{% endblock %}
 {% block content %}
 {% endblock %}
 <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
@@ -52,11 +50,5 @@ h1{
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</body>
-</html>
-</title>
-</head>
-<body>
-
 </body>
 </html>

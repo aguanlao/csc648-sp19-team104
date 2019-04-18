@@ -74,34 +74,38 @@ class User(models.Model):
         abstract = True
 
     # Form attributes
-    username = models.CharField(max_length=15, primary_key=True)
     first_name = models.CharField(max_length=20, blank=True, null=True)
     last_name = models.CharField(max_length=20, blank=True, null=True)
-    password = models.CharField(max_length=50)
     date_of_birth = models.DateField(max_length=10)
     physical_address = models.CharField(max_length=100, blank=True, null=True)
     city = models.CharField(max_length=100, blank=True, null=True)
     state = models.CharField(max_length=100, blank=True, null=True)
     zip_code = models.CharField(max_length=100, blank=True, null=True)
-    email = models.EmailField(max_length=100)
-    profile_picture = models.ImageField(upload_to='demo/profile_pictures') # TODO: update to actual path, add validation
-    creation_time = models.DateField(default=now, editable=False)
-    bio = models.CharField(max_length=500, blank=True, null=True)
     phone_number = models.CharField(max_length=20, blank=True, null=True)
+    bio = models.CharField(max_length=500, blank=True, null=True)
+
+    # TODO: update to actual path, add validation
+    profile_picture = models.ImageField(upload_to='demo/profile_pictures', blank=True, null=True)
+    creation_time = models.DateField(default=now, editable=False)
+
+    # Account attributes
     is_student = models.BooleanField()
+    email = models.EmailField(max_length=100)
+    username = models.CharField(max_length=15, primary_key=True)
+    password = models.CharField(max_length=50)
 
     # Compatibility scores
-    cleanliness = models.IntegerField()
-    socialness = models.IntegerField()
-    partiness = models.IntegerField()
+    cleanliness = models.IntegerField(blank=True, null=True)
+    socialness = models.IntegerField(blank=True, null=True)
+    partiness = models.IntegerField(blank=True, null=True)
 
     # Internal attributes
     permission_level = -1 # 0: Administrator, 1: Landlord, 2: Star Tenant, 3: Student, 4: Unverified user
 
-
     def update(
-            self, email=None, username=None, dob=None, address=None, city=None, state=None, zip_code=None,
-            password=None, first_name=None, last_name=None, bio=None, phone_number=None
+            self, email=None, username=None, date_of_birth=None, physical_address=None, city=None, state=None, zip_code=None,
+            password=None, first_name=None, last_name=None, bio=None, phone_number=None, is_student=None,
+            cleanliness=None, socialness=None, partiness=None, profile_picture=None
     ):
         if email != None:
             self.email = email
@@ -109,23 +113,51 @@ class User(models.Model):
         if username != None:
             self.username = username
 
-        if dob != None:
-            self.date_of_birth = dob
+        if date_of_birth != None:
+            self.date_of_birth = date_of_birth
 
-        pass
+        if physical_address != None:
+            self.address = physical_address
 
-    # Setters
-    def update_email(self, email):
-        self.email = email
+        if city != None:
+            self.city = city
 
-    def update_username(self, username):
-        self.username = username # TODO: add check to verify that username is not already taken
+        if state != None:
+            self.state = state
 
-    def update_date_of_birth(self, date_of_birth):
-        self.date_of_birth = date_of_birth # TODO: add check to verify that DOB is valid
+        if zip_code != None:
+            self.zip_code = zip_code
 
-    def update_address(self, address):
-        self.physical_address = address
+        if password != None:
+            self.password = password
+
+        if first_name != None:
+            self.first_name = first_name
+
+        if last_name != None:
+            self.last_name = last_name
+
+        if bio != None:
+            self.bio = bio
+
+        if phone_number != None:
+            self.phone_number = phone_number
+
+        if is_student != None:
+            self.is_student = is_student
+
+        if cleanliness != None:
+            self.cleanliness = cleanliness
+
+        if socialness != None:
+            self.socialness = socialness
+
+        if partiness != None:
+            self.partiness = partiness
+
+        if profile_picture != None:
+            self.profile_picture = profile_picture
+
 
     def __str__(self):
         return self.email
@@ -242,11 +274,10 @@ class Domicile(models.Model):
     state = models.CharField(max_length=2)
     zip_code = models.IntegerField()
     size = models.IntegerField()
-
     creation_time = models.DateField(default=now, editable=False)
 
     def __str__(self):
-        return "%s, %s, %s %s" % (self.address, self.city, self.state, self.zip)
+        return "%s, %s, %s %s" % (self.address, self.city, self.state, self.zip_code)
 
 
 class ActiveListing(models.Model):
@@ -267,8 +298,6 @@ class ActiveListing(models.Model):
     utilities_included_rent = models.BooleanField()
     coordinates = models.CharField(max_length=20, blank=True, null=True)
     description = models.TextField()
-    photo = models.ImageField(upload_to='demo/residence_pictures') # TODO: update to actual path, add validation
 
-# TODO: Expired Listings, Direct Messages, Groups
-
-
+    # TODO: update to actual path, add validation
+    photo = models.ImageField(upload_to='demo/residence_pictures')
