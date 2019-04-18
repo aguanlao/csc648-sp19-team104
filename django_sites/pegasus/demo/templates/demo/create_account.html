@@ -5,15 +5,15 @@
 
     <div>
         <span style="color:white">
-            {% if results.form_submitted %}
-            {% if results.creation_success %}
+            {% if context.form_submitted %}
+            {% if context.creation_success %}
                 <p>USER CREATED</p>
             {% else %}
-                <p>{{ results.error_message }}</p>
+                <p>{{ context.error_message }}</p>
             {% endif %}
 
             {% else %}
-            <p>{{ results.error_message }}</p>
+            <p>{{ context.error_message }}</p>
             {% endif %}
         </span>
     </div>

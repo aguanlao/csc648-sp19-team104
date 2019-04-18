@@ -1,7 +1,13 @@
-import hashlib
 from django.shortcuts import render, redirect
+from django.contrib.auth import login, logout
+from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from . import utils
 from .forms import *
 from .models import *
+from pprint import pprint
+
 
 # LISTING PAGES #
 def index(request):
@@ -62,24 +68,63 @@ def compatibility_score(request):
     return render(request, 'demo/compatibility_score.html', {'context': context})
 
 
-# def login(request):
-#     if request.method == 'POST':
-#         login_form = LoginForm(request.POST)
-#         if login_form.is_valid():
-#             # TODO: Remove debug statements
-#             print("[DEBUG] Received login form data!")
-#             for key, value in login_form.cleaned_data.items():
-#                 print("[DEBUG] (%s , %s)" % (key, value))
-#
-#             return redirect(index)
-#     else:
-#         login_form = LoginForm()
-#
-#     context = {
-#         'login_form': login_form,
-#     }
-#
-#     return render(request, 'demo/login.html', {'context': context})
+def user_login(request):
+    if request.method == 'POST':
+        login_form = LoginForm(request.POST)
+        if login_form.is_valid():
+            form_data = {
+                key: value for key, value in login_form.cleaned_data.items()
+            }
+
+            username = form_data['username']
+            password = form_data['password']
+            auth_backend = utils.AuthBackend()
+            user = auth_backend.authenticate(username=username, password=password)
+
+            # Login success
+            if user is not None:
+                login(request, user)
+
+                pprint(request.POST)
+
+                # Check if user needs to redirect to another page other than index
+                next_url = request.POST.get('next', '')
+                if next_url:
+                    return redirect(next_url)
+                else:
+                    return HttpResponseRedirect(reverse('index'))
+
+            # Login failure
+            else:
+                context = {
+                    'login_form': login_form,
+                    'error_message': 'Username or password is incorrect.'
+                }
+
+        else:
+            context = {
+                'login_form': login_form,
+                'error_message': '%s' % login_form.errors
+            }
+
+    else:
+        login_form = LoginForm()
+        context = {
+            'login_form': login_form,
+            'error_message': ''
+        }
+    return render(request, 'demo/login.html', {'context': context})
+
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('index'))
+
+
+@login_required
+def special(request):
+    return HttpResponse("You are logged in '%s'." % request.user.username)
 
 
 def create_account(request):
@@ -90,13 +135,14 @@ def create_account(request):
                 key: value for key, value in form.cleaned_data.items()
             }
 
-            # Encrypt password #
+            # Encrypt password before creating account
             user_attributes.pop('confirm_password')
             secret = '%s' % user_attributes.get('password', '')
-            hashlib.sha512(secret.encode('utf-8')).hexdigest()
+            secret = utils.encrypt_password(secret)
+            user_attributes['password'] = secret
 
             try:
-                user = UnverifiedUser()
+                user = RegisteredUser()
                 user.update(**user_attributes)
                 user.save()
 

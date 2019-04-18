@@ -76,17 +76,10 @@ WSGI_APPLICATION = 'pegasus.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pegasus-dev',
+        'NAME': 'sandbox',
         'USER': 'admin',
         'PASSWORD': 'justD0it!',
         'HOST': '18.224.150.8',
@@ -113,6 +106,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'demo.utils.AuthBackend'
+]
+
+AUTH_USER_MODEL = 'demo.RegisteredUser'
+LOGIN_URL = '/demo/login'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/

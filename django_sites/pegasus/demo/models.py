@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.timezone import now
+from django.contrib.auth.models import AbstractUser
 
 
 class TextObject(models.Model):
@@ -69,7 +70,7 @@ class Comment(TextObject):
         return self.poster
 
 
-class User(models.Model):
+class User(AbstractUser):
     class Meta:
         abstract = True
 
@@ -92,7 +93,7 @@ class User(models.Model):
     is_student = models.BooleanField()
     email = models.EmailField(max_length=100)
     username = models.CharField(max_length=15, primary_key=True)
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=500)
 
     # Compatibility scores
     cleanliness = models.IntegerField(blank=True, null=True)
@@ -101,6 +102,7 @@ class User(models.Model):
 
     # Internal attributes
     permission_level = -1 # 0: Administrator, 1: Landlord, 2: Star Tenant, 3: Student, 4: Unverified user
+    last_login = models.DateTimeField(blank=True, null=True)
 
     def update(
             self, email=None, username=None, date_of_birth=None, physical_address=None, city=None, state=None, zip_code=None,
@@ -173,14 +175,14 @@ class DisabledUser(models.Model):
     email = models.EmailField(max_length=100)
 
 
-class UnverifiedUser(User):
+class RegisteredUser(User):
     class Meta:
         db_table = 'unverified_users'
 
     permission_level = 4
 
 
-class VerifiedUser(User):
+class VerifiedUser(RegisteredUser):
     class Meta:
         db_table = 'verified_users'
 
