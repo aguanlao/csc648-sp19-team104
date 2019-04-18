@@ -6,25 +6,38 @@
         return (
             <div>
                 <nav className="navbar navbar-expand-md  navbar-dark">
-                    <a className="navbar-brand" href="#">Team Pegasus</a>
+                    <a className="navbar-brand" href="{% url 'index' %}">Team Pegasus</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#collapsibleNavbar">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="collapsibleNavbar">
                         <ul className="navbar-nav ">
+
+                            {% if request.user.is_authenticated %}
+                             <li className="nav-item">
+                                <a className="nav-link text-white" href="{% url 'logout' %}">Logout</a>
+                            </li>
                             <li className="nav-item">
-                                <a className="nav-link text-white" href="">Login</a>
+                                <a className="nav-link text-white" href="{% url 'forgot_password' %}">Reset Password</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link text-white" href="{% url 'delete_user' %}">Delete Account</a>
+                            </li>
+                             <li className="nav-item">
+                                <a className="nav-link text-white" href="{% url 'compatibility' %}">Compatibility Survey</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link text-white" href="{% url 'modify_profile' %}">Edit Profile</a>
+                            </li>
+                            <p className="nav-link text-white"> {{request.user.first_name}} {{request.user.last_name}} </p>
+
+                            {% else %}
+                            <li className="nav-item">
+                                <a className="nav-link text-white" href="{% url 'login' %}">Login</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link text-white" href="{% url 'create_account' %}">Sign Up</a>
-                            </li>
-                            {% if request.user.is_authenticated %}
-                            <li className="nav-item">
-                                <p className="nav-link text-white">({{request.user.first_name}} {{request.user.last_name}})</p>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link text-white" href="{% url 'logout' %}">Logout</a>
                             </li>
                             {% endif %}
                         </ul>

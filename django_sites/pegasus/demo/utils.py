@@ -6,6 +6,14 @@ def encrypt_password(password):
     return make_password(password)
 
 
+def remove_empty_dict(**input_dict):
+    filtered_dict = {
+        key: value for key, value in input_dict.items() if value is not '' and value is not False and value is not None
+    }
+
+    return filtered_dict
+
+
 class AuthBackend:
     def authenticate(self, username=None, password=None, **kwargs):
         print("[INFO] Received auth request for '%s'." % username)

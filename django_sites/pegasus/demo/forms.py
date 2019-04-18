@@ -77,5 +77,14 @@ class CreateUserForm(forms.ModelForm):
         }
 
 
+class MyProfileForm(forms.ModelForm):
+    class Meta:
+        model = RegisteredUser
+        fields = (
+            'first_name', 'last_name', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code', 'phone_number',
+            'bio', 'profile_picture', 'email', 'username'
+        )
+
+
 class ForgotPasswordForm(forms.Form):
     email = forms.CharField(label="Email", max_length=20)

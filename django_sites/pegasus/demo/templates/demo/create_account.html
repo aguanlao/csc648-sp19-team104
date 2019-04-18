@@ -20,7 +20,19 @@
 
     <form method="post" class="text-center text-white  text-size">
         {% csrf_token %}
-        {{ results.form }}
+        <table align="center">
+            {% for field in context.form.visible_fields %}
+            <tr>
+                <td>{{ field.label_tag }}</td>
+                <td>
+                    {{ field.errors }}
+                    {{ field }}
+                    {{ field.help_text }}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
         <input type="submit" value="Submit" class="btn btn-primary btn-md">
     </form>
 </div>

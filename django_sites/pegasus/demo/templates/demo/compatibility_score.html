@@ -1,40 +1,18 @@
-{% extends 'demo/base.html' %}
+{% extends 'demo/navbar.html' %}
 {% block content %}
-<div id="app"></div>
-<script type="text/babel">
-    function Navbar(){
-        return(
-      <div>
-        <nav className="navbar navbar-expand-md  navbar-dark">
-        <a className="navbar-brand" href="#">Team Pegasus</a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul className="navbar-nav ">
-            <li className="nav-item">
-                <a className="nav-link text-white" href="#">Sign In</a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link text-white" href="#">Sign Up</a>
-            </li>
-            </ul>
-        </div>
-        </nav>
-     </div>
-        );
-    }
-     ReactDOM.render(
-            <Navbar/>,
-            document.getElementById("app")
-    );
-</script>
-
 <div id="form_area" class="jumbotron ">
-     <h1 class="text-center mb-5">Roommate Compatibility Survey</h1>
+    <h1 class="text-center mb-5">Roommate Compatibility Survey</h1>
+
+    <div>
+        <span style="color:red">
+            {{ context.error_message }}
+        </span>
+    </div>
+
     <form method="post" class="text-center text-white  text-size">
         {% csrf_token %}
-        {{ context.compatibility_form }}
+        {{ context.form }}
+        <input type="button" value="Cancel" class="btn btn-primary btn-md">
         <input type="submit" value="Submit" class="btn btn-primary btn-md">
     </form>
 </div>

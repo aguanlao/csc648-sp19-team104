@@ -109,55 +109,55 @@ class User(AbstractUser):
             password=None, first_name=None, last_name=None, bio=None, phone_number=None, is_student=None,
             cleanliness=None, socialness=None, partiness=None, profile_picture=None
     ):
-        if email != None:
+        if email != None and email != self.email:
             self.email = email
 
-        if username != None:
+        if username != None and username != self.username:
             self.username = username
 
-        if date_of_birth != None:
+        if date_of_birth != None and date_of_birth != self.date_of_birth:
             self.date_of_birth = date_of_birth
 
-        if physical_address != None:
-            self.address = physical_address
+        if physical_address != None and physical_address != self.physical_address:
+            self.physical_address = physical_address
 
-        if city != None:
+        if city != None and city != self.city:
             self.city = city
 
-        if state != None:
+        if state != None and state != self.state:
             self.state = state
 
-        if zip_code != None:
+        if zip_code != None and zip_code != self.zip_code:
             self.zip_code = zip_code
 
-        if password != None:
+        if password != None and password != self.password:
             self.password = password
 
-        if first_name != None:
+        if first_name != None and first_name != self.first_name:
             self.first_name = first_name
 
-        if last_name != None:
+        if last_name != None and last_name != self.last_name:
             self.last_name = last_name
 
-        if bio != None:
+        if bio != None and bio != self.bio:
             self.bio = bio
 
-        if phone_number != None:
+        if phone_number != None and phone_number != self.phone_number:
             self.phone_number = phone_number
 
-        if is_student != None:
+        if is_student != None and is_student != self.is_student:
             self.is_student = is_student
 
-        if cleanliness != None:
+        if cleanliness != None and cleanliness != self.cleanliness:
             self.cleanliness = cleanliness
 
-        if socialness != None:
+        if socialness != None and socialness != self.socialness:
             self.socialness = socialness
 
-        if partiness != None:
+        if partiness != None and partiness != self.partiness:
             self.partiness = partiness
 
-        if profile_picture != None:
+        if profile_picture != None and profile_picture != self.profile_picture:
             self.profile_picture = profile_picture
 
 
