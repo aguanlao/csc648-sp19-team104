@@ -170,6 +170,38 @@ def user_logout(request):
 
 
 @login_required
+def view_profile(request, username=None):
+    try:
+
+        # If no username is provided, default to currently logged in account
+        if username is None:
+            username = request.user.username
+
+        user_instance = RegisteredUser.objects.get(username=username)
+        if user_instance:
+            context = {
+                'user_found': True,
+                'user': user_instance,
+                'error_message': ''
+            }
+        else:
+            context = {
+                'user_found': False,
+                'user': None,
+                'error_message': "User '%s' not found." % username
+            }
+
+    except Exception as error_message:
+        context = {
+            'user_found': False,
+            'user': None,
+            'error_message': "User '%s' not found." % username
+        }
+
+    return render(request, 'demo/view_profile.html', {'context': context})
+
+
+@login_required
 def modify_profile(request):
     current_user = request.user.username
     user_instance = RegisteredUser.objects.get(username=current_user)
