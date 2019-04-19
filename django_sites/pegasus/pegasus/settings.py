@@ -107,7 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    'demo.utils.AuthBackend'
+    'demo.utils.AuthBackend',
+    'django.contrib.auth.backends.ModelBackend'
 ]
 
 AUTH_USER_MODEL = 'demo.RegisteredUser'

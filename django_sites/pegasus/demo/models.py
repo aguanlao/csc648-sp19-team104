@@ -76,6 +76,7 @@ class User(AbstractUser):
     class Meta:
         abstract = True
 
+
     # Form attributes
     first_name = models.CharField(max_length=20, blank=True, null=True)
     last_name = models.CharField(max_length=20, blank=True, null=True)
@@ -353,9 +354,9 @@ class ValidListing(Listing):
             self.description = description
 
 class Page(models.Model):
-    owners = ArrayField(VerifiedUser)
-    members = ArrayField(VerifiedUser, blank=True, null=True)
-    posts = ArrayField(Post, blank=True, null=True)
+    owners = models.CharField(max_length=500)
+    members =models.CharField(max_length=500, blank=True, null=True)
+    posts = models.CharField(max_length=500, blank=True, null=True)
     location = models.CharField(max_length=500)
     name = models.CharField(max_length=50, primary_key=True)
 

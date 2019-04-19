@@ -115,9 +115,7 @@ def user_login(request):
 
             # Login success
             if user is not None:
-                login(request, user)
-
-                pprint(request.POST)
+                login(request, user, backend='demo.utils.AuthBackend')
 
                 # Check if user needs to redirect to another page other than index
                 next_url = request.POST.get('next', '')
