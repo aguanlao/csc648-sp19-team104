@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils.timezone import now
 from django.contrib.auth.models import AbstractUser
-from django.contrib.postgres.fields import ArrayField
 
 
 class TextObject(models.Model):
@@ -19,13 +18,16 @@ class TextObject(models.Model):
 
 
 class Message(TextObject):
+    class Meta:
+        db_table = 'snn_messages'
+
+    message_id = models.IntegerField(primary_key=True)
+    poster = models.OneToOneField(
+        'VerifiedUser', on_delete=models.CASCADE, to_field='username',
+        related_name='message_poster_id'
+    )
     recipient = models.OneToOneField(
         'VerifiedUser', on_delete=models.CASCADE, to_field='username', related_name='recipient_id'
-    )
-
-    poster = models.OneToOneField(
-        'VerifiedUser', on_delete=models.CASCADE, primary_key=True, to_field='username',
-        related_name='message_poster_id'
     )
 
     def get_poster(self):
@@ -33,7 +35,19 @@ class Message(TextObject):
 
 
 class Post(TextObject):
+    class Meta:
+        db_table = 'snn_posts'
+
     comments = []
+
+    post_id = models.IntegerField(primary_key=True)
+    poster = models.OneToOneField(
+        'VerifiedUser', on_delete=models.CASCADE, to_field='username',
+        related_name='post_poster_id'
+    )
+
+    def get_poster(self):
+        return self.poster
 
     def add_comment(self, comment):
         self.comments.append(comment)
@@ -46,16 +60,11 @@ class Post(TextObject):
         except:
             return False
 
-    poster = models.OneToOneField(
-        'VerifiedUser', on_delete=models.CASCADE, primary_key=True, to_field='username',
-        related_name='post_poster_id'
-    )
-
-    def get_poster(self):
-        return self.poster
-
 
 class Comment(TextObject):
+    class Meta:
+        db_table = 'snn_comments'
+
     def __init__(self, post):
         TextObject.__init__(self)
         self.parent_post = post
@@ -63,13 +72,35 @@ class Comment(TextObject):
     def get_parent_post(self):
         return self.parent_post
 
+    comment_id = models.IntegerField(primary_key=True)
     poster = models.OneToOneField(
-        'VerifiedUser', on_delete=models.CASCADE, primary_key=True, to_field='username',
+        'VerifiedUser', on_delete=models.CASCADE, to_field='username',
         related_name='comment_poster_id'
     )
 
     def get_poster(self):
         return self.poster
+
+
+class Page(models.Model):
+    class Meta:
+        db_table = 'snn_pages'
+
+    owners = models.CharField(max_length=500)
+    members = models.CharField(max_length=500, blank=True, null=True)
+    name = models.CharField(max_length=50, primary_key=True)
+    posts = []
+
+    def update_members(self, list_of_usernames):
+        given_member_set = list(set(list_of_usernames))
+        self.members = ", ".join(given_member_set)
+
+    def update_owners(self, list_of_usernames):
+        given_owner_set = list(set(list_of_usernames))
+        self.owners = ", ".join(given_owner_set)
+
+    def update_name(self, name):
+        self.name = name
 
 
 class User(AbstractUser):
@@ -287,7 +318,7 @@ class Domicile(models.Model):
 class Listing(models.Model):
     class Meta:
         abstract = True
-        db_table = 'active_listings'
+        db_table = 'all_listings'
 
     creation_time = models.DateField(default=now, editable=False)
     residence = models.OneToOneField(
@@ -298,10 +329,16 @@ class Listing(models.Model):
 
 
 class ExpiredListing(Listing):
+    class Meta:
+        db_table = 'expired_listings'
+
     expire_time = models.DateField(default=now, editable=False)
 
 
 class ValidListing(Listing):
+    class Meta:
+        db_table = 'valid_listings'
+
     tenants = models.CharField(max_length=100)
     pet_friendly = models.BooleanField()
     pets_allowed = models.CharField(max_length=100, blank=True, null=True)
@@ -352,16 +389,3 @@ class ValidListing(Listing):
 
         if description is not None:
             self.description = description
-
-class Page(models.Model):
-    owners = models.CharField(max_length=500)
-    members =models.CharField(max_length=500, blank=True, null=True)
-    posts = models.CharField(max_length=500, blank=True, null=True)
-    location = models.CharField(max_length=500)
-    name = models.CharField(max_length=50, primary_key=True)
-
-    def add_member(self):
-        pass
-
-    def remove_member(self):
-        pass

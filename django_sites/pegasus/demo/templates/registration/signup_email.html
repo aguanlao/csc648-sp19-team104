@@ -1,8 +1,8 @@
 {% autoescape off %}
-To initiate the password reset process for your '{{ user.get_username }}' Pegasus Account,
+To finalize the registration process for your '{{ user.username }}' Pegasus Account,
 please click the link below:
 
-{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
 
 If clicking the link above doesn't work, please copy and paste the URL in a new browser
 window instead.
