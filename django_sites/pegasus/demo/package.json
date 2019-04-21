@@ -1,0 +1,17 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "Packages needed for Pegasus' website",
+  "main": "index.js",
+  "dependencies": {
+    "node-sass": "^4.11.0",
+    "sass": "^1.19.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "node-sass -w static/demo/scss -o static/demo/css"
+  },
+  "author": "",
+  "license": "ISC"
+}
