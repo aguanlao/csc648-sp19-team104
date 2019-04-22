@@ -207,7 +207,7 @@ def modify_profile(request):
     user_instance = RegisteredUser.objects.get(username=current_user)
 
     if request.method == 'POST':
-        form = MyProfileForm(request.POST)
+        form = EditUserForm(request.POST)
         if form.is_valid():
             user_attributes = {
                 key: value for key, value in form.cleaned_data.items()
@@ -238,7 +238,7 @@ def modify_profile(request):
             }
 
     else:
-        form = MyProfileForm(instance=user_instance)
+        form = EditUserForm(instance=user_instance)
         context = {
             'form': form,
             'update_success': False,

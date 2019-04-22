@@ -48,18 +48,6 @@ class EditListingForm(forms.ModelForm):
         }
 
 
-class EditUserForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = (
-            'email', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code',
-            'phone_number', 'bio'
-        )
-        widgets = {
-                'bio': forms.Textarea
-        }
-
-
 class CreateUserForm(forms.ModelForm):
     confirm_password = forms.CharField(label="Confirm password", max_length=20, widget=forms.PasswordInput)
 
@@ -77,13 +65,16 @@ class CreateUserForm(forms.ModelForm):
         }
 
 
-class MyProfileForm(forms.ModelForm):
+class EditUserForm(forms.ModelForm):
     class Meta:
         model = RegisteredUser
         fields = (
             'first_name', 'last_name', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code', 'phone_number',
             'bio', 'profile_picture', 'email', 'username'
         )
+        widgets = {
+            'bio': forms.Textarea
+        }
 
 
 class ForgotPasswordForm(forms.Form):
