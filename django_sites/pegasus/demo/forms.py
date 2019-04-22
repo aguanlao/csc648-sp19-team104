@@ -34,6 +34,29 @@ class DeleteUserForm(forms.Form):
     comment = forms.CharField(label="Comments", max_length=250, widget=forms.Textarea)
 
 
+class CreateDomicileForm(forms.ModelForm):
+    class Meta:
+        model = Domicile
+
+        fields = (
+            'residence_type', 'address', 'city', 'state', 'zip_code', 'size'
+        )
+
+
+class CreateListingForm(forms.ModelForm):
+    class Meta:
+        model = ValidListing
+
+        fields = (
+            'owner', 'price', 'pet_friendly', 'pets_allowed', 'limit_tenant_count', 'current_tenant_count', 'amenities',
+            'utilities_included_rent', 'is_active', 'description'
+        )
+        widgets = {
+            'pets_allowed': forms.Textarea,
+            'description': forms.Textarea
+        }
+
+
 class EditListingForm(forms.ModelForm):
     class Meta:
         # TODO: Uncomment ValidListing model once models are complete

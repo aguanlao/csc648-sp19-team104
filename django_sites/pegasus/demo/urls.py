@@ -15,4 +15,7 @@ urlpatterns = [
     path('view_profile/<str:username>/', views.view_profile, name='view_profile'),
     path('delete_user/', views.delete_user, name='delete_user'),
     path('compatibility/', views.compatibility_score, name='compatibility'),
+
+    #Listing paths
+    path('create_listing/', views.create_listing, name='create_listing'),
 ]

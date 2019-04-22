@@ -45,6 +45,45 @@ def index(request):
     return render(request, 'demo/search.html', {'context': context})
 
 
+def create_listing(request):
+    if request.method == 'POST':
+        domicile_form = CreateDomicileForm(request.POST)
+        listing_form = CreateListingForm(request.POST)
+
+        if domicile_form.is_valid() and listing_form.is_valid():
+            # TODO: Remove debug statements
+            for key, value in domicile_form.cleaned_data.items():
+                print("[DEBUG] (%s, %s)" % (key, value))
+            print("==================")
+            for key, value in listing_form.cleaned_data.items():
+                print("[DEBUG] (%s, %s)" % (key, value))
+
+            try:
+                domicile = Domicile()
+                domicile.update(**domicile_form.cleaned_data)
+                domicile.save()
+
+                listing = ValidListing()
+                listing.update(**listing_form.cleaned_data)
+                listing.residence = domicile
+                listing.save()
+
+                # TODO: Remove debug
+                print("Successfully created listing!")
+            except Exception as error_message:
+                print("[ERROR] %s" % error_message)
+    else:
+        domicile_form = CreateDomicileForm()
+        listing_form = CreateListingForm()
+
+    context = {
+        'domicile_form': domicile_form,
+        'listing_form': listing_form
+    }
+
+    return render(request, 'demo/create_listing.html', {'context': context})
+
+
 # USER PAGES #
 def create_account(request):
     if request.method == 'POST':
