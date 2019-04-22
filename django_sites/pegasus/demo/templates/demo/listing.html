@@ -1,0 +1,406 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../static/demo/css/main.css">
+    <title>Document</title>
+</head>
+<body>
+  <!-- nav bar -->
+      <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top py-2">
+      
+        <a class="navbar-brand d-flex" href="#">
+      
+          <img class="rounded-circle" src="//unsplash.it/50/50" alt="" />
+          <h4 class="mt-3 ml-3">Pegasus</h4>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+          aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+      
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="ui inverted white button d-flex" href="#">
+                <i class="home icon"></i>
+                Home
+              </a>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class=" ui inverted white button d-flex" href="#" data-toggle="modal" data-target="#exampleModal">
+                <i class="add user icon"></i>
+                Sign In</a>
+            </li>
+          </ul>
+        </div>
+      
+      </nav>
+
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+              
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form class="ui form">
+                        <div class="field">
+                          <label>E-Mail Address</label>
+                          <input type="email" name="email" placeholder="E-Mail Address" />
+                        </div>
+                        <div class="field">
+                          <label>Password</label>
+                          <input type="password" name="password" placeholder="Enter Password" />
+                        </div>
+                        <button class="ui blue button" type="submit">Sign In</button>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      Don't Have an Account ?
+                      </button>
+                      <a href="#" data-toggle="modal" data-target="#exampleModal2" data-dismiss="modal" aria-label="Close">Sign
+                        Up</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <!-- sign up modal  -->
+              
+              <div class="modal fade " id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+              
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="card bg-light">
+                        <article class="card-body mx-auto" style="max-width: 400px;">
+                          <h4 class="card-title mt-3 text-center">Create Account</h4>
+                          <p class="text-center">Get started with your free account</p>
+                          <form>
+                            <div class="form-group input-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                              </div>
+                              <input name="" class="form-control" placeholder="Full name" type="text">
+                            </div> <!-- form-group// -->
+                            <div class="form-group input-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                              </div>
+                              <input name="" class="form-control" placeholder="Email address" type="email">
+                            </div> <!-- form-group// -->
+                            <div class="form-group input-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                              </div>
+                              <select class="custom-select" style="max-width: 120px;">
+                                <option selected="">+1</option>
+                                <option value="1">+972</option>
+                                <option value="2">+198</option>
+                                <option value="3">+701</option>
+                              </select>
+                              <input name="" class="form-control" placeholder="Phone number" type="text">
+                            </div> <!-- form-group// -->
+                            <div class="form-group input-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                              </div>
+                              <select class="form-control">
+                                <option selected=""> Sign up as</option>
+                                <option>Home owner</option>
+                                <option>Manager</option>
+                                <option>Renter</option>
+                              </select>
+                            </div> <!-- form-group end.// -->
+                            <div class="form-group input-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                              </div>
+                              <input class="form-control" placeholder="Create password" type="password">
+                            </div> <!-- form-group// -->
+                            <div class="form-group input-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                              </div>
+                              <input class="form-control" placeholder="Repeat password" type="password">
+                            </div> <!-- form-group// -->
+                            <div class="form-group">
+                              <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
+                            </div> <!-- form-group// -->
+                            <p class="text-center">Have an account? <a href="" data-toggle="modal" data-target="#exampleModal"
+                                data-dismiss="modal" aria-label="Close">Log In</a> </p>
+                          </form>
+                        </article>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- listing filter -->
+              <ul class="nav nav-tabs sticky-top filter bg-dark ">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-info" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                    aria-expanded="false">Bedrooms</a>
+                  <div class="dropdown-menu">
+                  <div class="card">
+                    <div class="card-header">
+                      <h5 class="card-title">Bedrooms</h5>
+                    </div>
+                    <div class="card-body">
+                      <div class="blue ui buttons">
+                        <button class="ui button">1+</button>
+                        <button class="ui button">2+</button>
+                        <button class="ui button">3+</button>
+                        <button class="ui button">4+</button>
+                        <button class="ui button">5+</button>
+                        <button class="ui button">6+</button>
+                      </div>
+                      <a href="#" class="btn btn-primary mt-3">Apply</a>
+                    </div>
+                  </div>
+                  </div>
+                </li>
+                <!-- Price -->
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-info" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                    aria-expanded="false">Any Price</a>
+                  <div class="dropdown-menu">
+                    <div class="card">
+                      <div class="card-header">
+                        <h5 class="card-title">Price</h5>
+                      </div>
+                      <div class="card-body">
+                        <h3 class="text-center text-muted">Price Range</h3>
+                        <div id="rangeBox">
+                          <div id="inputRange">
+                            <input type="number" step="5" min="0" max="1000" placeholder="Min" id="min">
+                            <input type="number" step="5" min="0" max="1000" placeholder="Max" id="max">
+                          </div>
+                        </div>
+                        <a href="#" class="btn btn-primary mt-3">Apply</a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="nav-item dropdown ">
+                  <a class="nav-link dropdown-toggle text-info" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                    aria-expanded="false">Distance</a>
+                  <div class="dropdown-menu">
+                    <div class="card">
+                      <div class="card-body">
+                        <h4 class="text-center text-muted">Distance Range</h4>
+                        <div id="rangeBox">
+                          <div id="inputRange">
+                            <input type="number" step="5" min="0" max="1000" placeholder="Min" id="min">
+                            <input type="number" step="5" min="0" max="1000" placeholder="Max" id="max">
+                          </div>
+                        </div>
+                        <a href="#" class="btn btn-primary mt-3">Apply</a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-info" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                    aria-expanded="false">Home Type</a>
+                  <div class="dropdown-menu">
+                    <div class="card">
+                      <div class="card-body">
+                        
+                        <a href="#" class="btn btn-primary mt-3">Apply</a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+        <!-- Listing  -->
+        <div class="block-left">
+          <div class="container">
+          <div class="row">
+            <div class="col-12 mt-5 position-fixed" style="height:100%">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3155.9054564614885!2d-122.48039808446838!3d37.72189697976904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f7db005c0e281%3A0xa57a7c9f946a45d3!2sSan+Francisco+State+University!5e0!3m2!1sen!2sus!4v1555471256045!5m2!1sen!2sus"
+                width="800" height="800" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+            
+            </div>
+        </div>
+        </div>
+        <div class="block-right">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="media">
+                <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>
+                </div>
+                <a href="description.html">
+                  <img class="d-flex align-self-start"
+                    src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
+                    alt="Generic placeholder image">
+                </a>
+                <div class="media-body pl-3">
+                  <div class="price">$799,000<small>New York</small></div>
+                  <div class="stats">
+                    <span><i class="fa fa-arrows-alt"></i>1678 Sq ft</span>
+                    <span><i class="fa fa-bath"></i>2 Beadrooms</span>
+                  </div>
+                  <div class="address">4062 Walnut Hill Drive
+                    Cincinnati</div>
+                </div>
+              </div>
+            </div>
+              <div class="col-12">
+                <div class="media">
+                  <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>
+                  </div>
+                  <a href="description.html">
+                    <img class="d-flex align-self-start"
+                      src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
+                      alt="Generic placeholder image">
+                  </a>
+                  <div class="media-body pl-3">
+                    <div class="price">$799,000
+                      
+                      <small>New York</small>
+                      <div class="dot"> </div>
+                    </div>
+                       
+                    <div class="stats">
+                      <span><i class="fa fa-arrows-alt"></i>1678 Sq ft</span>
+                      <span><i class="fa fa-bath"></i>2 Beadrooms</span>
+                    </div>
+                    <div class="address">4062 Walnut Hill Drive
+                      Cincinnati</div>
+                  </div>
+                </div>
+              </div>
+                <div class="col-12">
+                  <div class="media">
+                    <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>
+                    </div>
+                    <a href="description.html">
+                      <img class="d-flex align-self-start"
+                        src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
+                        alt="Generic placeholder image">
+                    </a>
+                    <div class="media-body pl-3">
+                      <div class="price">$799,000<small>New York</small></div>
+                      <div class="stats">
+                        <span><i class="fa fa-arrows-alt"></i>1678 Sq ft</span>
+                        <span><i class="fa fa-bath"></i>2 Beadrooms</span>
+                      </div>
+                      <div class="address">4062 Walnut Hill Drive
+                        Cincinnati</div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+        </div>
+
+        
+        <!-- footer -->
+          <!-- Site footer -->
+          <footer class="site-footer">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  <h6>About</h6>
+                  <p class="text-justify">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative to help the upcoming
+                    programmers with the code. Scanfcode focuses on providing the most efficient code or snippets as the code
+                    wants to be simple. We will help programmers build up concepts in different programming languages that include
+                    C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.</p>
+                </div>
+          
+                <div class="col-xs-6 col-md-3">
+                  <h6>Categories</h6>
+                  <ul class="footer-links">
+                    <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
+                    <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
+                    <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
+                    <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
+                    <li><a href="http://scanfcode.com/category/android/">Android</a></li>
+                    <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
+                  </ul>
+                </div>
+          
+                <div class="col-xs-6 col-md-3">
+                  <h6>Quick Links</h6>
+                  <ul class="footer-links">
+                    <li><a href="http://scanfcode.com/about/">About Us</a></li>
+                    <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+                    <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+                    <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+                    <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+                  </ul>
+                </div>
+              </div>
+              <hr>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                  <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by
+                    <a href="#">Scanfcode</a>.
+                  </p>
+                </div>
+          
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                  <ul class="social-icons">
+                    <li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a class="dribbble" href="#"><i class="fab fa-dribbble"></i></a></li>
+                    <li><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </footer>
+       </div>
+
+        <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+</body>
+</html>
