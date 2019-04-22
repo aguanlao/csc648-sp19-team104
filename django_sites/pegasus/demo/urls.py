@@ -18,4 +18,6 @@ urlpatterns = [
 
     #Listing paths
     path('create_listing/', views.create_listing, name='create_listing'),
+    path('<int:listing_id>/', views.view_listing, name='view_listing'),
+    path('<int:listing_id>/edit/', views.edit_listing, name='edit_listing'),
 ]

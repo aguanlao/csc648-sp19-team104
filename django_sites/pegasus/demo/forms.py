@@ -50,6 +50,9 @@ class CreateListingForm(forms.ModelForm):
         fields = (
             'owner', 'price', 'pet_friendly', 'pets_allowed', 'limit_tenant_count', 'current_tenant_count', 'amenities',
             'utilities_included_rent', 'is_active', 'description'
+            # 'title', 'residence_type', 'price', 'owner', 'size', 'bed_count',
+            # 'bath_count', 'description', 'address', 'city', 'state', 'zip_code', 'pet_friendly', 'pets_allowed',
+            # 'amenities', 'utilities_included_rent', 'limit_tenant_count', 'current_tenant_count', 'is_active'
         )
         widgets = {
             'pets_allowed': forms.Textarea,

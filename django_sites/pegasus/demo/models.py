@@ -273,6 +273,8 @@ class Domicile(models.Model):
     ]
 
     residence_type = models.CharField(max_length=50, choices=residence_options)
+    # bed_count = models.IntegerField()
+    # bath_count = models.IntegerField()
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=2)
@@ -372,9 +374,10 @@ class ValidListing(Listing):
         if description is not None:
             self.description = description
 
+
 class Page(models.Model):
     owners = models.CharField(max_length=500)
-    members =models.CharField(max_length=500, blank=True, null=True)
+    members = models.CharField(max_length=500, blank=True, null=True)
     posts = models.CharField(max_length=500, blank=True, null=True)
     location = models.CharField(max_length=500)
     name = models.CharField(max_length=50, primary_key=True)

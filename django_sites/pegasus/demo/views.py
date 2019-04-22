@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -83,6 +83,24 @@ def create_listing(request):
 
     return render(request, 'demo/create_listing.html', {'context': context})
 
+
+def edit_listing(request, listing_id):
+    listing = get_object_or_404(ValidListing, pk=listing_id)
+
+    pass
+
+
+def view_listing(request, listing_id):
+    listing = get_object_or_404(ValidListing, pk=listing_id)
+    domicile = listing.residence
+    full_address = domicile.address + " " + domicile.city + " " + domicile.state + " " + str(domicile.zip_code)
+
+    context = {
+        'listing': listing,
+        'address': full_address,
+    }
+
+    return render(request, 'demo/view_listing.html', {'context': context})
 
 # USER PAGES #
 def create_account(request):
