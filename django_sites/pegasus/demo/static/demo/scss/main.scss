@@ -1,0 +1,13 @@
+$theme-colors: (
+  "primary": #0074d9,
+  "danger": #ff4136,
+  "navbar": #333B7C,
+  "dark": #333B7C
+);
+
+$btn-border-radius: 10rem;
+
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+
+
