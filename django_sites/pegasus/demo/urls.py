@@ -5,7 +5,8 @@ from . import views
 urlpatterns = [
     #TEST
     path('test/', views.test, name='test'),
-
+    #admin
+    path('admin/', views.admin, name='admin'),
     #index
     path('home/', views.homepage, name='homepage'),
     #add_new_property
