@@ -14,6 +14,13 @@ from .forms import *
 from .models import *
 from pprint import pprint
 
+#TEST
+def test(request):
+    return render(request, 'demo/test.html')
+
+#Admin
+def admin(request):
+    return render(request, 'demo/admin.html')
 
 # LISTING PAGES #
 def index(request):
