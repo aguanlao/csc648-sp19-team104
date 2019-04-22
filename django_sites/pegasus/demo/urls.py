@@ -6,8 +6,20 @@ urlpatterns = [
     #TEST
     path('test/', views.test, name='test'),
 
-    #Admin
-    path('admin/', views.admin, name='admin'),
+    #index
+    path('home/', views.homepage, name='homepage'),
+    #add_new_property
+    path('add_new_property/', views.add_new_property, name='add_new_property'),
+    #listing
+    path('listing/', views.listing, name='listing'),
+    #description
+    path('description/', views.description, name='description'),
+    #manager_profile
+    path('manager_profile/', views.manager_profile, name='manager_profile'),
+    #survey
+    path('survey/', views.survey, name='survey'),
+    #user_profile
+    path('user_profile/', views.user_profile, name='user_profile'),
     # Administrative paths
     path('', views.index, name='index'),
     path('login/', views.user_login, name='login'),
