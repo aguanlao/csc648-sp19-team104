@@ -1,9 +1,43 @@
+body {
+  height: 100%;
+  width: 100%; }
+
+#bodyid .parent-container {
+  border: 3px solid red;
+  height: 90%;
+  width: 100%; }
+
+#bodyid .left-container {
+  border: 3px solid green;
+  height: 100%; }
+
+#bodyid .right-container {
+  border: 3px solid blue;
+  height: 100%; }
+
+#bodyid .parent-row {
+  border: 3px dotted pink; }
+
+.r-child-col {
+  border: 3px dotted black; }
+
+.r-child-row {
+  border: 3px dotted purple; }
+
+#bodyid .user-photo {
+  display: block;
+  width: 120px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px; }
+
 .card {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   background: white;
   color: currentColor;
   text-decoration: none;
@@ -28,7 +62,7 @@
     bottom: 0;
     background-size: cover;
     background-position: center;
-    background-image: url("https://images.unsplash.com/photo-1553787762-b5f5721f3270?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80");
+    background-image: url("https://thedisneyblog.com/wp-content/uploads/2011/07/photo1-lrg.jpg");
     transform-origin: top center;
     transition-property: transform;
     transition-delay: 0.15s; }
