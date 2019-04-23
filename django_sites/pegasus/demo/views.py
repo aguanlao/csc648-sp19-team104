@@ -59,6 +59,7 @@ def create_listing(request):
                 print("[DEBUG] (%s, %s)" % (key, value))
 
             try:
+                # Save domicile to database, then add to listing
                 domicile = Domicile()
                 domicile.update(**domicile_form.cleaned_data)
                 domicile.save()
@@ -67,9 +68,6 @@ def create_listing(request):
                 listing.update(**listing_form.cleaned_data)
                 listing.residence = domicile
                 listing.save()
-
-                # TODO: Remove debug
-                print("Successfully created listing!")
             except Exception as error_message:
                 print("[ERROR] %s" % error_message)
     else:
@@ -87,7 +85,39 @@ def create_listing(request):
 def edit_listing(request, listing_id):
     listing = get_object_or_404(ValidListing, pk=listing_id)
 
-    pass
+    if request.method == 'POST':
+        form = EditListingForm(request.POST)
+
+        if form.is_valid():
+            try:
+                listing.update(**form.cleaned_data)
+                listing.save()
+
+                context = {
+                    'form': form,
+                    'update_success': True,
+                    'error_message': ''
+                }
+            except Exception as error_message:
+                context = {
+                    'form': form,
+                    'update_success': False,
+                    'error_message': '%s' % error_message
+                }
+        else:
+            context = {
+                'form': form,
+                'update_success': False,
+                'error_message': '%s' % form.errors
+            }
+    else:
+        form = EditListingForm(instance=listing)
+        context = {
+            'form': form,
+            'update_success': False,
+            'error_message': ''
+        }
+    return render(request, "demo/modify_listing.html", {'context': context})
 
 
 def view_listing(request, listing_id):
@@ -101,6 +131,7 @@ def view_listing(request, listing_id):
     }
 
     return render(request, 'demo/view_listing.html', {'context': context})
+
 
 # USER PAGES #
 def create_account(request):

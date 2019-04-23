@@ -39,6 +39,7 @@ class CreateDomicileForm(forms.ModelForm):
         model = Domicile
 
         fields = (
+            # TODO Add bed_count, bath_count
             'residence_type', 'address', 'city', 'state', 'zip_code', 'size'
         )
 
@@ -50,9 +51,6 @@ class CreateListingForm(forms.ModelForm):
         fields = (
             'owner', 'price', 'pet_friendly', 'pets_allowed', 'limit_tenant_count', 'current_tenant_count', 'amenities',
             'utilities_included_rent', 'is_active', 'description'
-            # 'title', 'residence_type', 'price', 'owner', 'size', 'bed_count',
-            # 'bath_count', 'description', 'address', 'city', 'state', 'zip_code', 'pet_friendly', 'pets_allowed',
-            # 'amenities', 'utilities_included_rent', 'limit_tenant_count', 'current_tenant_count', 'is_active'
         )
         widgets = {
             'pets_allowed': forms.Textarea,
@@ -62,12 +60,10 @@ class CreateListingForm(forms.ModelForm):
 
 class EditListingForm(forms.ModelForm):
     class Meta:
-        # TODO: Uncomment ValidListing model once models are complete
-        # model = ValidListing
+        model = ValidListing
         fields = (
-            'title', 'residence_type', 'price', 'agent', 'available', 'size_sq_ft', 'bed_count',
-            'bath_count', 'description', 'address', 'city', 'state', 'zip_code', 'pet_friendly', 'pets_allowed',
-            'amenities', 'utilities_included_in_rent', 'max_tenant_count', 'current_tenant_count', 'is_active'
+            'owner', 'price', 'pet_friendly', 'pets_allowed', 'limit_tenant_count', 'current_tenant_count', 'amenities',
+            'utilities_included_rent', 'is_active', 'description'
         )
         widgets = {
             'description': forms.Textarea
