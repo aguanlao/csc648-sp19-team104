@@ -1,0 +1,154 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Sass to CSS -->
+    <link rel="stylesheet" href="../../static/demo/css/main.css">
+    <link rel="stylesheet" href="../../static/demo/css/admin.css">
+    
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+        crossorigin="anonymous"> -->
+    <!-- Semantic UI-->
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <!-- Font Awesome-->  
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" 
+        crossorigin="anonymous">         
+    
+    <title>Admin</title>
+</head>
+
+
+<body id="bodyid">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a href="#" class="navbar-brand">Pegasus</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navBarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navBarMenu" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Account</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container parent-container">
+        <div class="row parent-row">
+            <div class="col-3 left-container">
+               <img src="https://www.icone-png.com/png/54/53791.png" class="rounded-circle user-photo">
+            </div>
+            <div class="col-9 right-container">
+                <div class="container child-container-right">
+                    <div class="row-12 r-child-row">
+                        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+                            <button class="navbar-toggler" data-toggle="collapse" data-target="#navBarMenu">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div id="navBarMenu" class="collapse navbar-collapse">
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">Listings</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">Community</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">Activity Log</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="row r-child-row">
+                        <div class="col r-child-col">
+                            <a href="#" class="card" id="card01">
+                                <div class="card__head">
+                                    <div class="card__image"></div>
+                                </div>
+                                <div class="card__body">
+                                    <h2 class="card__headline">Hover me</h2>
+                                    <p class="card__text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.</p>
+                                </div>
+                                <div class="card__foot">
+                                    <span class="card__link">Read more</span>
+                                </div>
+                                <div class="card__border"></div>
+                            </a>            
+                        </div>
+                        <div class="col align-self-center r-child-col">
+                            <button class="btn btn-outline-success" onclick="addItem()">Yes</button>
+                            <button class="btn btn-outline-danger" onclick="removeItem()">No</button>
+                        </div>
+                    </div>
+                    <div class="row r-child-row">
+                        <div class="col r-child-col">
+                            <a href="#" class="card" id="card01">
+                                <div class="card__head">
+                                    <div class="card__image"></div>
+                                </div>
+                                <div class="card__body">
+                                    <h2 class="card__headline">Hover me</h2>
+                                    <p class="card__text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.</p>
+                                </div>
+                                <div class="card__foot">
+                                    <span class="card__link">Read more</span>
+                                </div>
+                                <div class="card__border"></div>
+                            </a>            
+                        </div>
+                        <div class="col align-self-center r-child-col">
+                            <button class="btn btn-outline-success" onclick="addItem()">Yes</button>
+                            <button class="btn btn-outline-danger" onclick="removeItem()">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+       
+   
+  
+
+  
+
+   
+    <script src="../../static/demo/js/admin.js"></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->  
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+    crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
+    crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
+    crossorigin="anonymous">
+    </script>
+    <!-- Semantic UI-->
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+
+</body>
+</html>

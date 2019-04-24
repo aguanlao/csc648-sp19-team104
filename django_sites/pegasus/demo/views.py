@@ -1,12 +1,50 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout
-from django.http import HttpResponseRedirect, HttpResponse
-from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import EmailMessage
+from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.template.loader import render_to_string
+from .tokens import account_activation_token
 from . import utils
 from .forms import *
 from .models import *
 from pprint import pprint
+
+#TEST
+def test(request):
+    return render(request, 'demo/test.html')
+
+#Admin
+def admin(request):
+    return render(request, 'demo/admin.html')
+#index
+def homepage(request):
+    return render(request, 'demo/index.html')
+
+#add_new_property
+def add_new_property(request):
+    return render(request, 'demo/add_new_property.html')
+
+#listing
+def listing(request):
+    return render(request, 'demo/listing.html')
+
+#Description
+def description(request):
+    return render(request, 'demo/description.html')
+# manager_profile
+def manager_profile(request):
+    return render(request, 'demo/manager_profile.html')
+#survey
+def survey(request):
+    return render(request, 'demo/survey.html')
+#user profile
+def user_profile(request):
+    return render(request, 'demo/user_profile.html')
 
 
 # LISTING PAGES #
@@ -160,6 +198,19 @@ def create_account(request):
                     'error_message': ''
                 }
 
+                # User creation success, now send email to activate full account
+                current_site = get_current_site(request)
+                mail_subject = 'Pegasus account registration'
+                message = render_to_string('registration/signup_email.html', {
+                    'user': user,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(user.username)).decode(),
+                    'token': account_activation_token.make_token(user),
+                })
+                email = EmailMessage(mail_subject, message, to=[user.email])
+                email.send()
+                print("[INFO] Sent confirmation email to user '%s' for activation." % email)
+
             except Exception as error_message:
                 context = {
                     'form': form,
@@ -186,6 +237,28 @@ def create_account(request):
         }
 
     return render(request, 'demo/create_account.html', {'context': context})
+
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = RegisteredUser.objects.get(username=uid)
+    except (TypeError, ValueError, RegisteredUser.DoesNotExist):
+        user = None
+
+    if user is not None and account_activation_token.check_token(user, token):
+
+        # Coerce to verified user class
+        user.is_active = True
+        user.__class__ = VerifiedUser
+        user.save(force_insert = True)
+
+        login(request, user, backend='demo.utils.AuthBackend')
+        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+    else:
+        if user is not None:
+            print("[INFO] Got invalid token activation from user '%s'." % user.username)
+        return HttpResponse('Activation link is invalid!')
 
 
 def user_login(request):
@@ -352,7 +425,6 @@ def delete_user(request):
     return render(request, 'demo/delete_account.html', {'context': context})
 
 
-@login_required
 def forgot_password(request):
     if request.method == 'POST':
         form = ForgotPasswordForm(request.POST)
@@ -367,3 +439,28 @@ def forgot_password(request):
     }
 
     return render(request, 'demo/forgot_password.html', {'context': context})
+
+
+# SNN PAGES #
+@login_required
+def create_group(request):
+    context = {}
+    return render(request, 'demo/create_group.html', {'context': context})
+
+
+@login_required
+def edit_group(request, group_name=None):
+    context = {}
+    return render(request, 'demo/modify_group.html', {'context': context})
+
+
+@login_required
+def delete_group(request, group_name=None):
+    context = {}
+    return render(request, 'demo/delete_group.html', {'context': context})
+
+
+@login_required
+def view_group(request, group_name=None):
+    context = {}
+    return render(request, 'demo/view_group.html', {'context': context})
