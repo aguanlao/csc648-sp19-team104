@@ -409,17 +409,3 @@ class ValidListing(Listing):
 
         if description is not None:
             self.description = description
-
-
-class Page(models.Model):
-    owners = models.CharField(max_length=500)
-    members = models.CharField(max_length=500, blank=True, null=True)
-    posts = models.CharField(max_length=500, blank=True, null=True)
-    location = models.CharField(max_length=500)
-    name = models.CharField(max_length=50, primary_key=True)
-
-    def add_member(self):
-        pass
-
-    def remove_member(self):
-        pass
