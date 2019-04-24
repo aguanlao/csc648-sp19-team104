@@ -34,29 +34,39 @@ class DeleteUserForm(forms.Form):
     comment = forms.CharField(label="Comments", max_length=250, widget=forms.Textarea)
 
 
-class EditListingForm(forms.ModelForm):
+class CreateDomicileForm(forms.ModelForm):
     class Meta:
-        # TODO: Uncomment ValidListing model once models are complete
-        # model = ValidListing
+        model = Domicile
+
         fields = (
-            'title', 'residence_type', 'price', 'agent', 'available', 'size_sq_ft', 'bed_count',
-            'bath_count', 'description', 'address', 'city', 'state', 'zip_code', 'pet_friendly', 'pets_allowed',
-            'amenities', 'utilities_included_in_rent', 'max_tenant_count', 'current_tenant_count', 'is_active'
+            # TODO Add bed_count, bath_count
+            'residence_type', 'address', 'city', 'state', 'zip_code', 'size'
+        )
+
+
+class CreateListingForm(forms.ModelForm):
+    class Meta:
+        model = ValidListing
+
+        fields = (
+            'owner', 'price', 'pet_friendly', 'pets_allowed', 'limit_tenant_count', 'current_tenant_count', 'amenities',
+            'utilities_included_rent', 'is_active', 'description'
         )
         widgets = {
+            'pets_allowed': forms.Textarea,
             'description': forms.Textarea
         }
 
 
-class EditUserForm(forms.ModelForm):
+class EditListingForm(forms.ModelForm):
     class Meta:
-        model = User
+        model = ValidListing
         fields = (
-            'email', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code',
-            'phone_number', 'bio'
+            'owner', 'price', 'pet_friendly', 'pets_allowed', 'limit_tenant_count', 'current_tenant_count', 'amenities',
+            'utilities_included_rent', 'is_active', 'description'
         )
         widgets = {
-                'bio': forms.Textarea
+            'description': forms.Textarea
         }
 
 
@@ -77,13 +87,16 @@ class CreateUserForm(forms.ModelForm):
         }
 
 
-class MyProfileForm(forms.ModelForm):
+class EditUserForm(forms.ModelForm):
     class Meta:
         model = RegisteredUser
         fields = (
             'first_name', 'last_name', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code', 'phone_number',
             'bio', 'profile_picture', 'email', 'username'
         )
+        widgets = {
+            'bio': forms.Textarea
+        }
 
 
 class ForgotPasswordForm(forms.Form):
