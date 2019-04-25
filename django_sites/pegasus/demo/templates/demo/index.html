@@ -41,20 +41,40 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarResponsive">
-
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="ui inverted white button d-flex" href="#">
+            <a class="ui inverted white button d-flex" href="{% url 'index' %}">
               <i class="home icon"></i>
               Home
             </a>
             </a>
           </li>
+
+          {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class=" ui inverted white button d-flex" href="#" data-toggle="modal" data-target="#exampleModal">
+            <a class=" ui inverted white button d-flex" href="{% url 'view_profile' %}">
+              <i class="add user icon"></i>
+              {{request.user.first_name}} {{request.user.last_name}} </a>
+          </li>
+          <li class="nav-item">
+            <a class=" ui inverted white button d-flex" href="{% url 'logout' %}">
+              <i class="add user icon"></i>
+              Logout</a>
+          </li>
+
+          {% else %}
+          <li class="nav-item">
+            <a class=" ui inverted white button d-flex" href="{% url 'login' %}">
               <i class="add user icon"></i>
               Sign In</a>
           </li>
+          <li class="nav-item">
+            <a class=" ui inverted white button d-flex" href="{% url 'create_account' %}">
+              <i class="add user icon"></i>
+              Sign Up</a>
+          </li>
+
+          {% endif %}
         </ul>
       </div>
       
@@ -78,117 +98,51 @@
   </div>
 
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
+  <!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"-->
+    <!--aria-hidden="true">-->
+    <!--<div class="modal-dialog" role="document">-->
+      <!--<div class="modal-content">-->
+        <!--<div class="modal-header">-->
 
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form class="ui form">
-            <div class="field">
-              <label>E-Mail Address</label>
-              <input type="email" name="email" placeholder="E-Mail Address" />
-            </div>
-            <div class="field">
-              <label>Password</label>
-              <input type="password" name="password" placeholder="Enter Password" />
-            </div>
-            <button class="ui blue button" type="submit">Sign In</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          Don't Have an Account ?
-          </button>
-          <a href="#" data-toggle="modal" data-target="#exampleModal2" data-dismiss="modal" aria-label="Close">Sign
-            Up</a>
-        </div>
-      </div>
-    </div>
-  </div>
+          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+            <!--<span aria-hidden="true">&times;</span>-->
+          <!--</button>-->
+        <!--</div>-->
+        <!--<div class="modal-body">-->
+          <!--<div>-->
+              <!--<span style="color:red">-->
+                <!--{{ context.error_message }}-->
+              <!--</span>-->
+            <!---->
+          <!--</div>-->
+          <!--<form class="ui form" method="post">-->
+            <!--<div class="field">-->
+              <!--<label>User Name</label>-->
+              <!--&lt;!&ndash; <input type="text" name="username" placeholder="username" /> &ndash;&gt;-->
+              <!--{% csrf_token %}-->
+                <!--{{ context.login_form.username}}-->
+            <!--</div>-->
+            <!--<div class="field">-->
+              <!--<label>Password</label>-->
+              <!--<input type="password" name="password" placeholder="Enter Password" />-->
+            <!--</div>-->
+            <!--<button class="ui blue button" type="submit">Sign In</button>-->
+          <!--</form>-->
+        <!--</div>-->
+        <!--<div class="modal-footer">-->
+          <!--Don't Have an Account ?-->
+          <!--</button>-->
+          <!--<a href="#" data-toggle="modal" data-target="#exampleModal2" data-dismiss="modal" aria-label="Close">Sign-->
+            <!--Up</a>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
 
 
   <!-- sign up modal  -->
 
-  <div class="modal fade " id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="card bg-light">
-            <article class="card-body mx-auto" style="max-width: 400px;">
-              <h4 class="card-title mt-3 text-center">Create Account</h4>
-              <p class="text-center">Get started with your free account</p>
-              <form>
-                <div class="form-group input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                  </div>
-                  <input name="" class="form-control" placeholder="Full name" type="text">
-                </div> <!-- form-group// -->
-                <div class="form-group input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-                  </div>
-                  <input name="" class="form-control" placeholder="Email address" type="email">
-                </div> <!-- form-group// -->
-                <div class="form-group input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
-                  </div>
-                  <select class="custom-select" style="max-width: 120px;">
-                    <option selected="">+1</option>
-                    <option value="1">+972</option>
-                    <option value="2">+198</option>
-                    <option value="3">+701</option>
-                  </select>
-                  <input name="" class="form-control" placeholder="Phone number" type="text">
-                </div> <!-- form-group// -->
-                <div class="form-group input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
-                  </div>
-                  <select class="form-control">
-                    <option selected=""> Sign up as</option>
-                    <option>Home owner</option>
-                    <option>Manager</option>
-                    <option>Renter</option>
-                  </select>
-                </div> <!-- form-group end.// -->
-                <div class="form-group input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                  </div>
-                  <input class="form-control" placeholder="Create password" type="password">
-                </div> <!-- form-group// -->
-                <div class="form-group input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                  </div>
-                  <input class="form-control" placeholder="Repeat password" type="password">
-                </div> <!-- form-group// -->
-                <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
-                </div> <!-- form-group// -->
-                <p class="text-center">Have an account? <a href="" data-toggle="modal" data-target="#exampleModal"
-                    data-dismiss="modal" aria-label="Close">Log In</a> </p>
-              </form>
-            </article>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+ 
   <br>
   <br>
   <br>
@@ -196,7 +150,7 @@
   <!-- FOOTER -->
   
     
-    <footer class="site-footer">
+    <!-- <footer class="site-footer">
       <div class="container">
         <div class="row">
           <div class="col-sm-12 col-md-6">
@@ -251,7 +205,7 @@
           </div>
         </div>
       </div>
-    </footer>
+    </footer> -->
     <script>
      $('#year').text(new Date().getFullYear());
     </script>

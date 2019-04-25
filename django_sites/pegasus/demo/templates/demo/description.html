@@ -21,12 +21,20 @@
       crossorigin="anonymous"
     />
      <script src="js/index.js"></script>
+      <link rel="stylesheet" href="../../static/demo/css/main.css">
     <link rel="stylesheet" href="../../static/demo/css/description.css">
-
-    <link rel="stylesheet" href="../../static/demo/css/main.css">
+    <script src="../../static/demo/js/index.js"></script>
     
      
     <title>Document</title>
+    <style>
+    .modal-dialog {
+          width: 360px;
+          height: 300px;
+ 
+        }
+ 
+    </style>
   </head>
   <body>
    
@@ -67,16 +75,16 @@
     <ul class="nav nav-tabs sticky-top mt-0 p-2 bg-dark">
         <li class="nav-item ">
              <a class="nav-link text-info" href="#">
-            <i class="fas fa-heart"></i>Save</a>
+            <i class="fas fa-heart mr-2"></i>Save</a>
         </li>
         
         <li class="nav-item ">
             <a class="nav-link text-info" href="#" id="">
-            <i class="fas fa-address-book" ></i>Contact</a>
+            <i class="fas fa-address-book mr-2" ></i>Contact</a>
         </li>
         <li class="nav-item ">
           <a class="nav-link text-info" href="#"  data-toggle="modal" data-target="#calendar">
-            <i class="fas fa-calendar-alt" ></i>Calendar</a>
+            <i class="fas fa-calendar-alt mr-2" ></i>Calendar</a>
         </li>
        
     </ul>
@@ -216,16 +224,12 @@
               src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
               alt="Generic placeholder image">
               </a>
-              <h4 class="text-primary mt-3 d-flex price">$4999.00 <spn class="text-muted small"> | 3 bed</spn><span  class="text-muted small"> | 2 bath</span>
-                <span class="text-muted small"> | 3025 sqf</span>
+              <h4 class="text-primary mt-3 d-flex price"> ${{ context.listing.price|floatformat:-2 }} <spn class="text-muted small"> | 3 bed</spn><span  class="text-muted small"> | 2 bath</span>
+                <span class="text-muted small"> | {{ context.domicile.size }} Sq. Ft.</span>
               </h4>
-              <h4 class="text-dark">3456 market st, <span>San Francisco, </span> <span> California </span>
-                <span>94232</span>
+              <h4 class="text-dark"> <span> {{ context.domicile.address|title }} {{ context.domicile.city|title }} {{ context.domicile.state }} {{ context.domicile.zip_code }}</span>
               </h4>
-              <p class="text-info">Lorem ipsum dolor, sit amet consectetur
-                 adipisicing elit. Temporibus explicabo velit dolores veniam i
-                 d quia iure itaque et earum qui, atque autem repellendus quisquam 
-                 \harum inventore. Suscipit rerum necessitatibus dolore.</p>
+              <p class="text-info"> {{ context.listing.description }}</p>
                 <div class="share-button">
                   <div class="share-button__back">
                     <a class="share__link" href="#" title="twitter">
@@ -301,12 +305,12 @@
       <div class="col-md-6 p-0 bg-white h-md-100 loginarea">
         <div class="d-md-flex h-md-100 p-5 ">
         <iframe style="margin-top:-35px" class="google-map"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3155.9054564614885!2d-122.48039808446838!3d37.72189697976904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f7db005c0e281%3A0xa57a7c9f946a45d3!2sSan+Francisco+State+University!5e0!3m2!1sen!2sus!4v1555471256045!5m2!1sen!2sus"
+          src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q={{ context.domicile.address }}%2C%20{{ context.domicile.city }}%2C%20{{ context.domicile.state }}&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
           width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen>
         </iframe>
         <button class="btn btn-sm btn-info " style="position:absolute; bottom: 10%; left:50%" data-toggle="modal" data-target="#chats">chat</button>
         </div>
-          
+
         </div>
       </div>
        <!-- Corosel images -->
