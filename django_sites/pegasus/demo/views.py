@@ -117,7 +117,8 @@ def create_listing(request):
         'listing_form': listing_form
     }
 
-    return render(request, 'demo/create_listing.html', {'context': context})
+    # return render(request, 'demo/create_listing.html', {'context': context})
+    return render(request, 'demo/add_new_property.html', {'context': context})
 
 
 def edit_listing(request, listing_id):
@@ -165,11 +166,12 @@ def view_listing(request, listing_id):
 
     context = {
         'listing': listing,
+        'domicile': domicile,
         'address': full_address,
     }
 
-    return render(request, 'demo/view_listing.html', {'context': context})
-
+    # return render(request, 'demo/view_listing.html', {'context': context})
+    return render(request, 'demo/description.html', {'context': context})
 
 # USER PAGES #
 def create_account(request):

@@ -216,16 +216,12 @@
               src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
               alt="Generic placeholder image">
               </a>
-              <h4 class="text-primary mt-3 d-flex price">$4999.00 <spn class="text-muted small"> | 3 bed</spn><span  class="text-muted small"> | 2 bath</span>
-                <span class="text-muted small"> | 3025 sqf</span>
+              <h4 class="text-primary mt-3 d-flex price"> ${{ context.listing.price|floatformat:-2 }} <spn class="text-muted small"> | 3 bed</spn><span  class="text-muted small"> | 2 bath</span>
+                <span class="text-muted small"> | {{ context.domicile.size }} Sq. Ft.</span>
               </h4>
-              <h4 class="text-dark">3456 market st, <span>San Francisco, </span> <span> California </span>
-                <span>94232</span>
+              <h4 class="text-dark"> <span> {{ context.domicile.address|title }} {{ context.domicile.city|title }} {{ context.domicile.state }} {{ context.domicile.zip_code }}</span>
               </h4>
-              <p class="text-info">Lorem ipsum dolor, sit amet consectetur
-                 adipisicing elit. Temporibus explicabo velit dolores veniam i
-                 d quia iure itaque et earum qui, atque autem repellendus quisquam 
-                 \harum inventore. Suscipit rerum necessitatibus dolore.</p>
+              <p class="text-info"> {{ context.listing.description }}</p>
                 <div class="share-button">
                   <div class="share-button__back">
                     <a class="share__link" href="#" title="twitter">

@@ -10,7 +10,7 @@ urlpatterns = [
     #index
     path('home/', views.homepage, name='homepage'),
     #add_new_property
-    path('add_new_property/', views.add_new_property, name='add_new_property'),
+    path('add_new_property/', views.create_listing, name='add_new_property'),
     #listing
     path('listing/', views.listing, name='listing'),
     #description
