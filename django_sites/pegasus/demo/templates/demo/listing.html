@@ -18,8 +18,45 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link rel="stylesheet" href="../../static/demo/css/main.css">
     <title>Document</title>
-</head>
+    <style>
+      input[type='text'] {
+            background: none;
+            border: 0;
+            border-bottom: 1px solid #35bdff;
+            color: #fff;
+            margin: 0 auto;
+        }
+    
+        input[type='text']:focus {
+            outline: none !important;
+            border: none;
+        }
+    </style>
+    </head>
 <body>
+  <script>
+   window.addEventListener('scroll', function () {
+      document.querySelector('.block-left').style.marginTop =
+        Math.max(-108) + 'px';
+    }, false);
+
+    function myFunction() {
+        var input, filter, h1, small, a, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        h1 = document.getElementById("myUL");
+        small = h1.getElementsByTagName("div");
+        for (i = 0; i < small.length; i++) {
+          a = small[i].getElementsByTagName("small")[0];
+          txtValue = a.textContent || a.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            small[i].style.display = "";
+          } else {
+            small[i].style.display = "none";
+          }
+        }
+    }
+  </script>
   <!-- nav bar -->
       <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top py-2">
       
@@ -28,13 +65,17 @@
           <img class="rounded-circle" src="//unsplash.it/50/50" alt="" />
           <h4 class="mt-3 ml-3">Pegasus</h4>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
           aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
         <div class="collapse navbar-collapse" id="navbarResponsive">
-      
+          <form class="form-cont" method="post">
+            {% csrf_token %}
+            {{ context.form.city }}
+            <button class="btn btn-sm btn-info">Go</button>
+          </form>
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
               <a class="ui inverted white button d-flex" href="#">
@@ -100,66 +141,55 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <div class="card bg-light">
-                        <article class="card-body mx-auto" style="max-width: 400px;">
-                          <h4 class="card-title mt-3 text-center">Create Account</h4>
-                          <p class="text-center">Get started with your free account</p>
-                          <form>
-                            <div class="form-group input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                              </div>
-                              <input name="" class="form-control" placeholder="Full name" type="text">
-                            </div> <!-- form-group// -->
-                            <div class="form-group input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-                              </div>
-                              <input name="" class="form-control" placeholder="Email address" type="email">
-                            </div> <!-- form-group// -->
-                            <div class="form-group input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
-                              </div>
-                              <select class="custom-select" style="max-width: 120px;">
-                                <option selected="">+1</option>
-                                <option value="1">+972</option>
-                                <option value="2">+198</option>
-                                <option value="3">+701</option>
-                              </select>
-                              <input name="" class="form-control" placeholder="Phone number" type="text">
-                            </div> <!-- form-group// -->
-                            <div class="form-group input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-building"></i> </span>
-                              </div>
-                              <select class="form-control">
-                                <option selected=""> Sign up as</option>
-                                <option>Home owner</option>
-                                <option>Manager</option>
-                                <option>Renter</option>
-                              </select>
-                            </div> <!-- form-group end.// -->
-                            <div class="form-group input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                              </div>
-                              <input class="form-control" placeholder="Create password" type="password">
-                            </div> <!-- form-group// -->
-                            <div class="form-group input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                              </div>
-                              <input class="form-control" placeholder="Repeat password" type="password">
-                            </div> <!-- form-group// -->
-                            <div class="form-group">
-                              <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
-                            </div> <!-- form-group// -->
-                            <p class="text-center">Have an account? <a href="" data-toggle="modal" data-target="#exampleModal"
-                                data-dismiss="modal" aria-label="Close">Log In</a> </p>
-                          </form>
-                        </article>
+                    <form class="ui form">
+                      <h4 class="ui dividing header">Shipping Information</h4>
+                      <div class="field">
+                        <label>Name</label>
+                        <div class="two fields">
+                          <div class="field">
+                            <input type="text" name="shipping[first-name]" placeholder="First Name">
+                          </div>
+                          <div class="field">
+                            <input type="text" name="shipping[last-name]" placeholder="Last Name">
+                          </div>
+                        </div>
                       </div>
+                      <div class="field">
+                        <label>Date of brith</label>
+                        <input type="text" name="shipping[first-name]" placeholder="">
+                      </div>
+                        <div class="field">
+                          <label>Adress</label>
+                          <div class="fields">
+                            <div class="four wide field">
+                              <input type="text" name="shipping[address]" placeholder="St Address">
+                            </div>
+                            <div class="four wide field">
+                              <input type="text" name="shipping[address-2]" placeholder="city">
+                            </div>
+                            <div class="four wide field">
+                              <input type="text" name="shipping[address-2]" placeholder="State">
+                            </div>
+                            <div class="four wide field">
+                              <input type="text" name="shipping[address-2]" placeholder="zip">
+                            </div>
+                          </div>
+                          
+                        </div>
+                      <div class="field">
+                      <label>Phone number</label>
+                          <input type="text" name="shipping[first-name]" placeholder="(xxx)">
+                        </div>
+                        
+                      <div class="inline field">
+                        <div class="ui checkbox">
+                          <input type="checkbox" tabindex="0" class="hidden">
+                          <label>I agree to the terms and conditions</label>
+                        </div>
+                      </div>
+                      <div class="ui button" tabindex="0">Submit</div>
+                    </form>
+
                     </div>
                   </div>
                 </div>
@@ -254,136 +284,38 @@
             </div>
         </div>
         </div>
-        <div class="block-right">
+        <div class="block-right"  id="myUL">
         <div class="container">
           <div class="row">
+            {% if context.search_count %} {% for entry in context.search_results %}
             <div class="col-12">
-              <div class="media">
-                <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>
-                </div>
-                <a href="description.html">
-                  <img class="d-flex align-self-start"
-                    src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
-                    alt="Generic placeholder image">
-                </a>
-                <div class="media-body pl-3">
-                  <div class="price">$799,000<small>New York</small></div>
-                  <div class="stats">
-                    <span><i class="fa fa-arrows-alt"></i>1678 Sq ft</span>
-                    <span><i class="fa fa-bath"></i>2 Beadrooms</span>
-                  </div>
-                  <div class="address">4062 Walnut Hill Drive
-                    Cincinnati</div>
-                </div>
-              </div>
-            </div>
-              <div class="col-12">
-                <div class="media">
-                  <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>
-                  </div>
-                  <a href="description.html">
-                    <img class="d-flex align-self-start"
-                      src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
-                      alt="Generic placeholder image">
-                  </a>
-                  <div class="media-body pl-3">
-                    <div class="price">$799,000
-                      
-                      <small>New York</small>
-                      <div class="dot"> </div>
-                    </div>
-                       
-                    <div class="stats">
-                      <span><i class="fa fa-arrows-alt"></i>1678 Sq ft</span>
-                      <span><i class="fa fa-bath"></i>2 Beadrooms</span>
-                    </div>
-                    <div class="address">4062 Walnut Hill Drive
-                      Cincinnati</div>
-                  </div>
-                </div>
-              </div>
-                <div class="col-12">
                   <div class="media">
                     <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>
                     </div>
                     <a href="description.html">
                       <img class="d-flex align-self-start"
-                        src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
+                       src="{{ entry.photo.url }}"
                         alt="Generic placeholder image">
                     </a>
                     <div class="media-body pl-3">
-                      <div class="price">$799,000<small>New York</small></div>
+                      <div class="price">$799,000<small>{{ entry.city }}</small></div>
                       <div class="stats">
                         <span><i class="fa fa-arrows-alt"></i>1678 Sq ft</span>
                         <span><i class="fa fa-bath"></i>2 Beadrooms</span>
                       </div>
-                      <div class="address">4062 Walnut Hill Drive
-                        Cincinnati</div>
+                      <div class="address">{{ entry.address }}</div>
                     </div>
                   </div>
+                  {% endfor %} {% else %}
+                  <p>No search results.</p>
+                  {% endif %}
                 </div>
           </div>
         </div>
-
+        </div>
         
         <!-- footer -->
           <!-- Site footer -->
-          <footer class="site-footer">
-            <div class="container">
-              <div class="row">
-                <div class="col-sm-12 col-md-6">
-                  <h6>About</h6>
-                  <p class="text-justify">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative to help the upcoming
-                    programmers with the code. Scanfcode focuses on providing the most efficient code or snippets as the code
-                    wants to be simple. We will help programmers build up concepts in different programming languages that include
-                    C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.</p>
-                </div>
-          
-                <div class="col-xs-6 col-md-3">
-                  <h6>Categories</h6>
-                  <ul class="footer-links">
-                    <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
-                    <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
-                    <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
-                    <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
-                    <li><a href="http://scanfcode.com/category/android/">Android</a></li>
-                    <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
-                  </ul>
-                </div>
-          
-                <div class="col-xs-6 col-md-3">
-                  <h6>Quick Links</h6>
-                  <ul class="footer-links">
-                    <li><a href="http://scanfcode.com/about/">About Us</a></li>
-                    <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
-                    <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
-                    <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
-                    <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
-                  </ul>
-                </div>
-              </div>
-              <hr>
-            </div>
-            <div class="container">
-              <div class="row">
-                <div class="col-md-8 col-sm-6 col-xs-12">
-                  <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by
-                    <a href="#">Scanfcode</a>.
-                  </p>
-                </div>
-          
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <ul class="social-icons">
-                    <li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
-                    <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                    <li><a class="dribbble" href="#"><i class="fab fa-dribbble"></i></a></li>
-                    <li><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </footer>
-       </div>
 
         <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
