@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -84,6 +84,94 @@ def index(request):
         'search_results': []
     }
     return render(request, 'demo/listing.html', {'context': context})
+
+
+def create_listing(request):
+    if request.method == 'POST':
+        domicile_form = CreateDomicileForm(request.POST)
+        listing_form = CreateListingForm(request.POST)
+
+        if domicile_form.is_valid() and listing_form.is_valid():
+            # TODO: Remove debug statements
+            for key, value in domicile_form.cleaned_data.items():
+                print("[DEBUG] (%s, %s)" % (key, value))
+            print("==================")
+            for key, value in listing_form.cleaned_data.items():
+                print("[DEBUG] (%s, %s)" % (key, value))
+
+            try:
+                # Save domicile to database, then add to listing
+                domicile = Domicile()
+                domicile.update(**domicile_form.cleaned_data)
+                domicile.save()
+
+                listing = ValidListing()
+                listing.update(**listing_form.cleaned_data)
+                listing.residence = domicile
+                listing.save()
+            except Exception as error_message:
+                print("[ERROR] %s" % error_message)
+    else:
+        domicile_form = CreateDomicileForm()
+        listing_form = CreateListingForm()
+
+    context = {
+        'domicile_form': domicile_form,
+        'listing_form': listing_form
+    }
+
+    return render(request, 'demo/create_listing.html', {'context': context})
+
+
+def edit_listing(request, listing_id):
+    listing = get_object_or_404(ValidListing, pk=listing_id)
+
+    if request.method == 'POST':
+        form = EditListingForm(request.POST)
+
+        if form.is_valid():
+            try:
+                listing.update(**form.cleaned_data)
+                listing.save()
+
+                context = {
+                    'form': form,
+                    'update_success': True,
+                    'error_message': ''
+                }
+            except Exception as error_message:
+                context = {
+                    'form': form,
+                    'update_success': False,
+                    'error_message': '%s' % error_message
+                }
+        else:
+            context = {
+                'form': form,
+                'update_success': False,
+                'error_message': '%s' % form.errors
+            }
+    else:
+        form = EditListingForm(instance=listing)
+        context = {
+            'form': form,
+            'update_success': False,
+            'error_message': ''
+        }
+    return render(request, "demo/modify_listing.html", {'context': context})
+
+
+def view_listing(request, listing_id):
+    listing = get_object_or_404(ValidListing, pk=listing_id)
+    domicile = listing.residence
+    full_address = domicile.address + " " + domicile.city + " " + domicile.state + " " + str(domicile.zip_code)
+
+    context = {
+        'listing': listing,
+        'address': full_address,
+    }
+
+    return render(request, 'demo/view_listing.html', {'context': context})
 
 
 # USER PAGES #
@@ -283,7 +371,7 @@ def modify_profile(request):
     user_instance = RegisteredUser.objects.get(username=current_user)
 
     if request.method == 'POST':
-        form = MyProfileForm(request.POST)
+        form = EditUserForm(request.POST)
         if form.is_valid():
             user_attributes = {
                 key: value for key, value in form.cleaned_data.items()
@@ -314,7 +402,7 @@ def modify_profile(request):
             }
 
     else:
-        form = MyProfileForm(instance=user_instance)
+        form = EditUserForm(instance=user_instance)
         context = {
             'form': form,
             'update_success': False,

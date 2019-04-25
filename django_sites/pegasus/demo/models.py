@@ -107,7 +107,6 @@ class User(AbstractUser):
     class Meta:
         abstract = True
 
-
     # Form attributes
     first_name = models.CharField(max_length=20, blank=True, null=True)
     last_name = models.CharField(max_length=20, blank=True, null=True)
@@ -304,12 +303,33 @@ class Domicile(models.Model):
     ]
 
     residence_type = models.CharField(max_length=50, choices=residence_options)
+    # bed_count = models.IntegerField()
+    # bath_count = models.IntegerField()
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=2)
     zip_code = models.IntegerField()
     size = models.IntegerField()
     creation_time = models.DateField(default=now, editable=False)
+
+    def update(self, residence_type=None, address=None, city=None, state=None, zip_code=None, size=None):
+        if residence_type is not None:
+            self.residence_type = residence_type
+
+        if address is not None:
+            self.address = address
+
+        if city is not None:
+            self.city = city
+
+        if state is not None:
+            self.state = state
+
+        if zip_code is not None:
+            self.zip_code = zip_code
+
+        if size is not None:
+            self.size = size
 
     def __str__(self):
         return "%s, %s, %s %s" % (self.address, self.city, self.state, self.zip_code)
