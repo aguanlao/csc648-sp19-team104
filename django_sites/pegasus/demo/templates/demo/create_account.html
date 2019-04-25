@@ -74,7 +74,7 @@
           </span>
           <form class="ui form" method="post">
             {% csrf_token %}
-            <h4 class="ui dividing header text-center">Shipping Information</h4>
+            <h4 class="ui dividing header text-center">User Information</h4>
             {% for field in context.form.visible_fields %}
             <div class="field">
               <label>{{ field.label_tag }}</label>

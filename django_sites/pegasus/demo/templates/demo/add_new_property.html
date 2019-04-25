@@ -76,91 +76,147 @@
         </div>
 
     </nav>
-    <button class="btn btn-block btn-info" style="margin-top: 50px" > Add Images
-        <div class="p-image">
-            <i class="fa fa-camera upload-button"></i>
-            <input class="file-upload" type="file" accept="image/*" />
-        </div>
-    </button>
+<!--    <button class="btn btn-block btn-info"> Add Images-->
+<!--        <div class="p-image">-->
+<!--            <i class="fa fa-camera upload-button"></i>-->
+<!--            <input class="file-upload" type="file" accept="image/*" />-->
+<!--        </div>-->
+<!--    </button>-->
 
     <div class="container-fluid mt-3">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-6 ">
-                <div class="card">
-                    <img class="card-img-top"
-                        src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
-                        alt="Card image cap">
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="card">
-                    <img class="card-img-top"
-                        src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
-                        alt="Card image cap">
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="card">
-                    <img class="card-img-top"
-                        src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb alt="
-                        alt=" Card image cap" >
-                </div>
-            </div>
+        <form method="post">
+            {% csrf_token %}
             <div class="row">
-                <div class="col-12 mt-5">
-                    <div class="text-center ">
-                        <ul dont-close-dropdown class="dropdown-men">
-                            <div class="dropdown-form-group">
-                                <label for="">Number of Room </label>
-                                <input type="text" placeholder="# of Room" />
-                            </div>
-                            <div class="dropdown-form-group">
-                                <label for="">Pets Allowed</label>
-                                <input type="checkbox" />
-                            </div>
-                            <div class="dropdown-form-group">
-                                <label for="">Number of Bathrooms </label>
-                                <input type="text" placeholder="# of Bathrooms" />
-                            </div>
-                            <div class="dropdown-form-group">
-                                <label for="">Size </label>
-                                <input type="text" placeholder="Sqft" />
-                            </div>
-                            <div class="dropdown-form-group">
-                                <label for="">Price </label>
-                                <input type="text" placeholder="$" />
-                            </div>
-                            <div class="dropdown-form-group">
-                                <label for="street">Street:</label>
-                                <input type="text" name="street" id="street" placeholder="South Court" />
-                            </div>
-                            <div class="dropdown-form-group">
-                                <label for="neighborhood">Neighborhood:</label>
-                                <input type="text" name="neighborhood" id="neighborhood" placeholder="Old Palo Alto" />
-                            </div>
-                            <div class="dropdown-form-group">
-                                <label for="city">City:</label>
-                                <input type="text" name="city" id="city" placeholder="Palo Alto" />
-                            </div>
-                            <div class="dropdown-form-group">
-                                <label for="state">State / Province:</label>
-                                <input type="text" name="state" id="state" placeholder="California" />
-                            </div>
-                            <div class="dropdown-form-group"> 
-                                <label for="zip">ZIP / Postal code:</label>
-                                <input type="text" name="zip" id="zip" placeholder="94301" />
-                            </div>
-                            <div class="dropdown-form-group">
-                                <label>House Description</label>
-                                 <textarea class="form-control" name="comment" placeholder="Project Description"></textarea>
-                            </div>
-                       </ul>
+                <div class="col-lg-4 col-md-4 col-sm-6 ">
+                    <div class="card">
+                        <img class="card-img-top"
+                            src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
+                            alt="Card image cap">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="card">
+                        <img class="card-img-top"
+                            src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
+                            alt="Card image cap">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="card">
+                        <img class="card-img-top"
+                            src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb alt="
+                            alt=" Card image cap" >
+                    </div>
+                </div>
+
+                {{ context.listing_form.non_field_errors }}
+                {{ context.domicile_form.non_field_errors }}
+                <div class="row">
+                    <div class="col-12 mt-5">
+                        <div class="text-center ">
+                            <ul dont-close-dropdown class="dropdown-men">
+                                <div class="dropdown-form-group">
+<!--                                    <label for="">Number of Room </label>-->
+<!--                                    <input type="text" placeholder="# of Room" />-->
+                                    {{ context.domicile_form.residence_type.errors }}
+                                    <label for="{{ context.domicile_form.residence_type.id_for_label }}">Residence Type</label>
+                                    {{ context.domicile_form.residence_type }}
+                                </div>
+                                <div class="dropdown-form-group">
+                                    {{ context.listing_form.pet_friendly.errors }}
+                                    <label for="{{ listing_form.pet_friendly.id_for_label }}">Pets Allowed</label>
+                                    {{ context.listing_form.pet_friendly }}
+<!--                                    <input type="checkbox" />-->
+                                </div>
+<!--                                <div class="dropdown-form-group">-->
+<!--                                    <label for="">Number of Bathrooms </label>-->
+<!--                                    <input type="text" placeholder="# of Bathrooms" />-->
+<!--                                </div>-->
+                                <div class="dropdown-form-group">
+                                    {{ context.domicile_form.size.errors }}
+                                    <label for="{{ domicile_form.pet_friendly.id_for_label }}">Size </label>
+                                    {{ context.domicile_form.size }}
+<!--                                    <input type="text" placeholder="Sqft" />-->
+                                </div>
+                                <div class="dropdown-form-group">
+                                    {{ context.listing_form.price.errors }}
+                                    <label for="{{ listing_form.price.id_for_label }}">Price </label>
+                                    {{ context.listing_form.price }}
+<!--                                    <input type="text" placeholder="$" />-->
+                                </div>
+                                <div class="dropdown-form-group">
+                                    {{ context.listing_form.owner.errors }}
+                                    <label for="{{ listing_form.owner.id_for_label }}">Owner </label>
+                                    {{ context.listing_form.owner }}
+<!--                                    <input type="text" placeholder="$" />-->
+                                </div>
+                                <div class="dropdown-form-group">
+                                    {{ context.listing_form.limit_tenant_count.errors }}
+                                    <label for="{{ listing_form.limit_tenant_count.id_for_label }}">Max Tenants</label>
+                                    {{ context.listing_form.limit_tenant_count }}
+<!--                                    <input type="text" placeholder="$" />-->
+                                </div>
+                                <div class="dropdown-form-group">
+                                    {{ context.listing_form.current_tenant_count.errors }}
+                                    <label for="{{ listing_form.current_tenant_count.id_for_label }}">Current Tenants </label>
+                                    {{ context.listing_form.current_tenant_count }}
+<!--                                    <input type="text" placeholder="$" />-->
+                                </div>
+                                <div class="dropdown-form-group">
+                                    {{ context.listing_form.amenities.errors }}
+                                    <label for="{{ listing_form.amenities.id_for_label }}">Amenities </label>
+                                    {{ context.listing_form.amenities }}
+<!--                                    <input type="text" placeholder="$" />-->
+                                </div>
+                                <div class="dropdown-form-group">
+                                    {{ context.listing_form.utilities_included_rent.errors }}
+                                    <label for="{{ listing_form.utilities_included_rent.id_for_label }}">Utilities Included </label>
+                                    {{ context.listing_form.utilities_included_rent }}
+<!--                                    <input type="text" placeholder="$" />-->
+                                </div>
+                                <div class="dropdown-form-group">
+                                    {{ context.domicile_form.address.errors }}
+                                    <label for="street">Street:</label>
+                                    {{ context.domicile_form.address }}
+<!--                                    <input type="text" name="street" id="street" placeholder="South Court" />-->
+                                </div>
+<!--                                <div class="dropdown-form-group">-->
+<!--                                    <label for="neighborhood">Neighborhood:</label>-->
+<!--                                    <input type="text" name="neighborhood" id="neighborhood" placeholder="Old Palo Alto" />-->
+<!--                                </div>-->
+                                <div class="dropdown-form-group">
+                                    {{ context.domicile_form.city.errors }}
+                                    <label for="city">City:</label>
+                                    {{ context.domicile_form.city }}
+<!--                                    <input type="text" name="city" id="city" placeholder="Palo Alto" />-->
+                                </div>
+                                <div class="dropdown-form-group">
+                                    {{ context.domicile_form.state.errors }}
+                                    <label for="state">State / Province:</label>
+                                    {{ context.domicile_form.state }}
+<!--                                    <input type="text" name="state" id="state" placeholder="California" />-->
+                                </div>
+                                <div class="dropdown-form-group">
+                                    {{ context.domicile_form.zip_code.errors }}
+                                    <label for="{{ context.domicile_form.zip_code.id_for_label }}">ZIP / Postal code:</label>
+                                    {{ context.domicile_form.zip_code }}
+<!--                                    <input type="text" name="zip" id="zip" placeholder="94301" />-->
+                                </div>
+                                <div class="dropdown-form-group">
+                                    {{ context.listing_form.description.errors }}
+                                    <label for="{{ context.listing_form.description.id_for_label }}">Listing Description</label>
+                                    {{ context.listing_form.description }}
+<!--                                    <textarea class="form-control" name="comment" placeholder="Project Description"></textarea>-->
+                                </div>
+                           </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <button class="btn btn-primary btn-lg float-right mb-5 px-5"> Add</button>
-
+            <div class="col-12 mt-5">
+                <input type="submit" value="Submit" class="btn btn-primary btn-lg col-5 mb-5 px-5">
+            </div>
+        </form>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"

@@ -63,15 +63,23 @@ def index(request):
             }
 
             results = Domicile.objects.all().filter(**filters)
+            listings = ValidListing.objects.all().filter(pk__in=results)
 
             # TODO: Remove DEBUG statements
             # results = []
             for key, value in filters.items():
                 print("[DEBUG] (%s , %s)" % (key, value))
 
+            for entry in listings:
+                try:
+                    print(entry.photo.url)
+                except ValueError as exception:
+                    print(exception)
+
             context = {
                 'form': form,
                 'search_results': results,
+                'listing_results': listings,
                 'search_count': len(results)
             }
             return render(request, 'demo/listing.html', {'context': context})
@@ -120,7 +128,8 @@ def create_listing(request):
         'listing_form': listing_form
     }
 
-    return render(request, 'demo/create_listing.html', {'context': context})
+    # return render(request, 'demo/create_listing.html', {'context': context})
+    return render(request, 'demo/add_new_property.html', {'context': context})
 
 
 def edit_listing(request, listing_id):
@@ -168,11 +177,12 @@ def view_listing(request, listing_id):
 
     context = {
         'listing': listing,
+        'domicile': domicile,
         'address': full_address,
     }
 
-    return render(request, 'demo/view_listing.html', {'context': context})
-
+    # return render(request, 'demo/view_listing.html', {'context': context})
+    return render(request, 'demo/description.html', {'context': context})
 
 # USER PAGES #
 def create_account(request):
@@ -194,13 +204,6 @@ def create_account(request):
                 user.update(**user_attributes)
                 user.save()
 
-                context = {
-                    'form': form,
-                    'creation_success': True,
-                    'form_submitted': True,
-                    'error_message': ''
-                }
-
                 # User creation success, now send email to activate full account
                 current_site = get_current_site(request)
                 mail_subject = 'Pegasus account registration'
@@ -213,6 +216,7 @@ def create_account(request):
                 email = EmailMessage(mail_subject, message, to=[user.email])
                 email.send()
                 print("[INFO] Sent confirmation email to user '%s' for activation." % email)
+                return render(request, 'demo/login_confirmation.html')
 
             except Exception as error_message:
                 context = {
@@ -227,7 +231,7 @@ def create_account(request):
                 'form': form,
                 'creation_success': False,
                 'form_submitted': False,
-                'error_message': '%s.' % form.errors
+                'error_message': '%s' % form.errors
             }
 
     else:
@@ -307,7 +311,7 @@ def user_login(request):
             'login_form': form,
             'error_message': ''
         }
-    return render(request, 'demo/index.html', {'context': context})
+    return render(request, 'demo/login.html', {'context': context})
 
 
 @login_required
