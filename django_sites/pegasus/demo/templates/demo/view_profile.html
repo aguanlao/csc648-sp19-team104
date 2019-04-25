@@ -1,0 +1,21 @@
+{% extends 'demo/navbar.html' %}
+{% block content %}
+<div id="form_area" class="jumbotron ">
+    <h1 class="text-center mb-5">View Profile</h1>
+
+    <div>
+        <span style="color:red">
+            {{ context.error_message }}
+        </span>
+    </div>
+
+    <div>
+        {% if context.user_found %}
+        <p class="nav-link text-white">Username: {{context.user.username }}</p>
+        <p class="nav-link text-white">First Name: {{context.user.first_name }}</p>
+        <p class="nav-link text-white">Last Name: {{context.user.last_name }}</p>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

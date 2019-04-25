@@ -24,12 +24,19 @@ SECRET_KEY = '1f6yz5-2)&ff+$plkw4fm5t=i7^3=_zuovfaez8kz#za2cjs58'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = ['*']
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'pegasushousing.team@gmail.com'
+EMAIL_HOST_PASSWORD = 'Blue,039SKies!'
+
+POSTMAN_DISALLOW_ANONYMOUS = True
+POSTMAN_AUTO_MODERATE_AS = True
 
 # Application definition
-
 INSTALLED_APPS = [
     'about.apps.AboutConfig',
     'demo.apps.DemoConfig',
@@ -39,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'postman'
 ]
 
 MIDDLEWARE = [
@@ -68,6 +76,21 @@ TEMPLATES = [
             ],
         },
     },
+    {
+        'NAME': 'Postman',
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'postman/templates')]
+        ,
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
 ]
 
 WSGI_APPLICATION = 'pegasus.wsgi.application'
@@ -76,17 +99,10 @@ WSGI_APPLICATION = 'pegasus.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pegasus-dev',
+        'NAME': 'sandbox',
         'USER': 'admin',
         'PASSWORD': 'justD0it!',
         'HOST': '18.224.150.8',
@@ -113,6 +129,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'demo.utils.AuthBackend',
+    'django.contrib.auth.backends.ModelBackend'
+]
+
+AUTH_USER_MODEL = 'demo.RegisteredUser'
+LOGIN_URL = '/demo/login'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
