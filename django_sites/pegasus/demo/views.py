@@ -14,38 +14,33 @@ from .forms import *
 from .models import *
 from pprint import pprint
 
-#TEST
 def test(request):
     return render(request, 'demo/test.html')
 
-#Admin
 def admin(request):
     return render(request, 'demo/admin.html')
-#index
-def homepage(request):
+
+def home(request):
     return render(request, 'demo/index.html')
-#sign up
+
 def signup(request):
     return render(request, 'demo/signup.html')
 
-#add_new_property
 def add_new_property(request):
     return render(request, 'demo/add_new_property.html')
 
-#listing
-def listing(request):
-    return render(request, 'demo/listing.html')
+#def listing(request):
+#    return render(request, 'demo/listing.html')
 
-#Description
 def description(request):
     return render(request, 'demo/description.html')
-# manager_profile
+
 def manager_profile(request):
     return render(request, 'demo/manager_profile.html')
-#survey
+
 def survey(request):
     return render(request, 'demo/survey.html')
-#user profile
+
 def user_profile(request):
     return render(request, 'demo/user_profile.html')
 

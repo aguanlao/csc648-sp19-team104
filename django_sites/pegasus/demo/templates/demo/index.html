@@ -43,7 +43,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="ui inverted white button d-flex" href="{% url 'index' %}">
+            <a class="ui inverted white button d-flex" href="{% url 'home' %}">
               <i class="home icon"></i>
               Home
             </a>
@@ -87,8 +87,8 @@
     <div class="wrap">
       <div class="search">
         <input type="text" class="searchTerm" placeholder="Search">
-        <a href="listing.html">
-        <button type="submit" class="searchButton">
+        <a href="{% url 'index' %}">
+        <button class="searchButton">
           <i class="fa fa-search"></i>
         </button>
         </a>

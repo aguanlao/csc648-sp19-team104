@@ -3,19 +3,18 @@ from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
+    path('', views.index, name='index'),
     path('test/', views.test, name='test'),
     path('admin/', views.admin, name='admin'),
-    path('home/', views.user_login, name='homepage'),
+    path('home/', views.home, name='home'),
     path('signup/', views.signup, name='signup'),
     path('add_new_property/', views.create_listing, name='add_new_property'),
-    path('listing/', views.index, name='listing'),
     path('description/', views.description, name='description'),
     path('manager_profile/', views.manager_profile, name='manager_profile'),
     path('survey/', views.survey, name='survey'),
     path('user_profile/', views.user_profile, name='user_profile'),
 
     # Administrative paths
-    path('', views.index, name='index'),
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
     re_path(
