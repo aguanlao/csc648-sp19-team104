@@ -63,6 +63,7 @@ def index(request):
             }
 
             results = Domicile.objects.all().filter(**filters)
+            listings = ValidListing.objects.all().filter(pk__in=results)
 
             # TODO: Remove DEBUG statements
             # results = []
@@ -72,6 +73,7 @@ def index(request):
             context = {
                 'form': form,
                 'search_results': results,
+                'listing_results': listings,
                 'search_count': len(results)
             }
             return render(request, 'demo/listing.html', {'context': context})

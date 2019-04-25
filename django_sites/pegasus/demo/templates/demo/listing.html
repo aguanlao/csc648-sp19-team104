@@ -287,29 +287,29 @@
         <div class="block-right"  id="myUL">
         <div class="container">
           <div class="row">
-            {% if context.search_count %} {% for entry in context.search_results %}
+            {% if context.search_count %} {% for entry in context.listing_results %}
             <div class="col-12">
                   <div class="media">
                     <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>
                     </div>
-                    <a href="description.html">
+                    <a href={% url 'view_listing' listing_id=entry.pk %}>
                       <img class="d-flex align-self-start"
-                       src="{{ entry.photo.url }}"
+                       src="{{ entry.residence.photo.url }}"
                         alt="Generic placeholder image">
                     </a>
                     <div class="media-body pl-3">
-                      <div class="price">$799,000<small>{{ entry.city }}</small></div>
+                      <div class="price">${{ entry.price|floatformat:-2 }}<small>{{ entry.residence.city }}</small></div>
                       <div class="stats">
-                        <span><i class="fa fa-arrows-alt"></i>1678 Sq ft</span>
-                        <span><i class="fa fa-bath"></i>2 Beadrooms</span>
+                        <span><i class="fa fa-arrows-alt"></i>{{ entry.residence.size }} Sq ft</span>
+                        <span><i class="fa fa-bath"></i>2 Bedrooms</span>
                       </div>
-                      <div class="address">{{ entry.address }}</div>
+                      <div class="address">{{ entry.residence.address }}</div>
                     </div>
                   </div>
-                  {% endfor %} {% else %}
-                  <p>No search results.</p>
-                  {% endif %}
-                </div>
+            </div>
+            {% endfor %} {% else %}
+            <p class="col-12">No search results.</p>
+            {% endif %}
           </div>
         </div>
         </div>
