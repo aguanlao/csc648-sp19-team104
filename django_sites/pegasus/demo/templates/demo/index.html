@@ -89,10 +89,18 @@
           </button>
         </div>
         <div class="modal-body">
-          <form class="ui form">
+          <div>
+              <span style="color:red">
+                {{ context.error_message }}
+              </span>
+            
+          </div>
+          <form class="ui form" method="post">
             <div class="field">
-              <label>E-Mail Address</label>
-              <input type="email" name="email" placeholder="E-Mail Address" />
+              <label>User Name</label>
+              <!-- <input type="text" name="username" placeholder="username" /> -->
+              {% csrf_token %}
+                {{ context.login_form.username}}
             </div>
             <div class="field">
               <label>Password</label>
@@ -104,7 +112,7 @@
         <div class="modal-footer">
           Don't Have an Account ?
           </button>
-          <a href="#" data-toggle="modal" data-target="#exampleModal2" data-dismiss="modal" aria-label="Close">Sign
+          <a href="signup.html" data-toggle="modal" data-target="#exampleModal2" data-dismiss="modal" aria-label="Close">Sign
             Up</a>
         </div>
       </div>
@@ -114,81 +122,7 @@
 
   <!-- sign up modal  -->
 
-  <div class="modal fade " id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="card bg-light">
-            <article class="card-body mx-auto" style="max-width: 400px;">
-              <h4 class="card-title mt-3 text-center">Create Account</h4>
-              <p class="text-center">Get started with your free account</p>
-              <form>
-                <div class="form-group input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                  </div>
-                  <input name="" class="form-control" placeholder="Full name" type="text">
-                </div> <!-- form-group// -->
-                <div class="form-group input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-                  </div>
-                  <input name="" class="form-control" placeholder="Email address" type="email">
-                </div> <!-- form-group// -->
-                <div class="form-group input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
-                  </div>
-                  <select class="custom-select" style="max-width: 120px;">
-                    <option selected="">+1</option>
-                    <option value="1">+972</option>
-                    <option value="2">+198</option>
-                    <option value="3">+701</option>
-                  </select>
-                  <input name="" class="form-control" placeholder="Phone number" type="text">
-                </div> <!-- form-group// -->
-                <div class="form-group input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
-                  </div>
-                  <select class="form-control">
-                    <option selected=""> Sign up as</option>
-                    <option>Home owner</option>
-                    <option>Manager</option>
-                    <option>Renter</option>
-                  </select>
-                </div> <!-- form-group end.// -->
-                <div class="form-group input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                  </div>
-                  <input class="form-control" placeholder="Create password" type="password">
-                </div> <!-- form-group// -->
-                <div class="form-group input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                  </div>
-                  <input class="form-control" placeholder="Repeat password" type="password">
-                </div> <!-- form-group// -->
-                <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
-                </div> <!-- form-group// -->
-                <p class="text-center">Have an account? <a href="" data-toggle="modal" data-target="#exampleModal"
-                    data-dismiss="modal" aria-label="Close">Log In</a> </p>
-              </form>
-            </article>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+ 
   <br>
   <br>
   <br>
@@ -196,7 +130,7 @@
   <!-- FOOTER -->
   
     
-    <footer class="site-footer">
+    <!-- <footer class="site-footer">
       <div class="container">
         <div class="row">
           <div class="col-sm-12 col-md-6">
@@ -251,7 +185,7 @@
           </div>
         </div>
       </div>
-    </footer>
+    </footer> -->
     <script>
      $('#year').text(new Date().getFullYear());
     </script>

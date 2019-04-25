@@ -7,11 +7,13 @@ urlpatterns = [
     path('test/', views.test, name='test'),
 
     #index
-    path('home/', views.homepage, name='homepage'),
+    path('home/', views.user_login, name='homepage'),
+    #sign up
+    path('signup/', views.signup, name='signup'), #the new page
     #add_new_property
     path('add_new_property/', views.add_new_property, name='add_new_property'),
     #listing
-    path('listing/', views.listing, name='listing'),
+    path('listing/', views.index, name='listing'), 
     #description
     path('description/', views.description, name='description'),
     #manager_profile

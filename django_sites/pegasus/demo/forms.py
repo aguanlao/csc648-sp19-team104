@@ -67,7 +67,7 @@ class CreateUserForm(forms.ModelForm):
         model = RegisteredUser
         fields = (
             'first_name', 'last_name', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code', 'phone_number',
-            'bio', 'profile_picture', 'is_student', 'email', 'username', 'password'
+            'is_student', 'email', 'username', 'password'
         )
         labels = {
             'is_student': 'Are you a student? '
