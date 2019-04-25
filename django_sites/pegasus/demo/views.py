@@ -70,6 +70,12 @@ def index(request):
             for key, value in filters.items():
                 print("[DEBUG] (%s , %s)" % (key, value))
 
+            for entry in listings:
+                try:
+                    print(entry.photo.url)
+                except ValueError as exception:
+                    print(exception)
+
             context = {
                 'form': form,
                 'search_results': results,
@@ -198,13 +204,6 @@ def create_account(request):
                 user.update(**user_attributes)
                 user.save()
 
-                context = {
-                    'form': form,
-                    'creation_success': True,
-                    'form_submitted': True,
-                    'error_message': ''
-                }
-
                 # User creation success, now send email to activate full account
                 current_site = get_current_site(request)
                 mail_subject = 'Pegasus account registration'
@@ -217,6 +216,7 @@ def create_account(request):
                 email = EmailMessage(mail_subject, message, to=[user.email])
                 email.send()
                 print("[INFO] Sent confirmation email to user '%s' for activation." % email)
+                return render(request, 'demo/login_confirmation.html')
 
             except Exception as error_message:
                 context = {
@@ -231,7 +231,7 @@ def create_account(request):
                 'form': form,
                 'creation_success': False,
                 'form_submitted': False,
-                'error_message': '%s.' % form.errors
+                'error_message': '%s' % form.errors
             }
 
     else:
@@ -311,7 +311,7 @@ def user_login(request):
             'login_form': form,
             'error_message': ''
         }
-    return render(request, 'demo/index.html', {'context': context})
+    return render(request, 'demo/login.html', {'context': context})
 
 
 @login_required

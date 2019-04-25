@@ -41,20 +41,40 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarResponsive">
-
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="ui inverted white button d-flex" href="#">
+            <a class="ui inverted white button d-flex" href="{% url 'index' %}">
               <i class="home icon"></i>
               Home
             </a>
             </a>
           </li>
+
+          {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class=" ui inverted white button d-flex" href="#" data-toggle="modal" data-target="#exampleModal">
+            <a class=" ui inverted white button d-flex" href="{% url 'view_profile' %}">
+              <i class="add user icon"></i>
+              {{request.user.first_name}} {{request.user.last_name}} </a>
+          </li>
+          <li class="nav-item">
+            <a class=" ui inverted white button d-flex" href="{% url 'logout' %}">
+              <i class="add user icon"></i>
+              Logout</a>
+          </li>
+
+          {% else %}
+          <li class="nav-item">
+            <a class=" ui inverted white button d-flex" href="{% url 'login' %}">
               <i class="add user icon"></i>
               Sign In</a>
           </li>
+          <li class="nav-item">
+            <a class=" ui inverted white button d-flex" href="{% url 'create_account' %}">
+              <i class="add user icon"></i>
+              Sign Up</a>
+          </li>
+
+          {% endif %}
         </ul>
       </div>
       
@@ -78,46 +98,46 @@
   </div>
 
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
+  <!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"-->
+    <!--aria-hidden="true">-->
+    <!--<div class="modal-dialog" role="document">-->
+      <!--<div class="modal-content">-->
+        <!--<div class="modal-header">-->
 
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div>
-              <span style="color:red">
-                {{ context.error_message }}
-              </span>
-            
-          </div>
-          <form class="ui form" method="post">
-            <div class="field">
-              <label>User Name</label>
-              <!-- <input type="text" name="username" placeholder="username" /> -->
-              {% csrf_token %}
-                {{ context.login_form.username}}
-            </div>
-            <div class="field">
-              <label>Password</label>
-              <input type="password" name="password" placeholder="Enter Password" />
-            </div>
-            <button class="ui blue button" type="submit">Sign In</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          Don't Have an Account ?
-          </button>
-          <a href="#" data-toggle="modal" data-target="#exampleModal2" data-dismiss="modal" aria-label="Close">Sign
-            Up</a>
-        </div>
-      </div>
-    </div>
-  </div>
+          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+            <!--<span aria-hidden="true">&times;</span>-->
+          <!--</button>-->
+        <!--</div>-->
+        <!--<div class="modal-body">-->
+          <!--<div>-->
+              <!--<span style="color:red">-->
+                <!--{{ context.error_message }}-->
+              <!--</span>-->
+            <!---->
+          <!--</div>-->
+          <!--<form class="ui form" method="post">-->
+            <!--<div class="field">-->
+              <!--<label>User Name</label>-->
+              <!--&lt;!&ndash; <input type="text" name="username" placeholder="username" /> &ndash;&gt;-->
+              <!--{% csrf_token %}-->
+                <!--{{ context.login_form.username}}-->
+            <!--</div>-->
+            <!--<div class="field">-->
+              <!--<label>Password</label>-->
+              <!--<input type="password" name="password" placeholder="Enter Password" />-->
+            <!--</div>-->
+            <!--<button class="ui blue button" type="submit">Sign In</button>-->
+          <!--</form>-->
+        <!--</div>-->
+        <!--<div class="modal-footer">-->
+          <!--Don't Have an Account ?-->
+          <!--</button>-->
+          <!--<a href="#" data-toggle="modal" data-target="#exampleModal2" data-dismiss="modal" aria-label="Close">Sign-->
+            <!--Up</a>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
 
 
   <!-- sign up modal  -->
