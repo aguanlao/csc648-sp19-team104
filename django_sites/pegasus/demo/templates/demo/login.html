@@ -1,19 +1,18 @@
-{% extends 'demo/base.html' %}
-{% block content %}
+{% extends 'demo/base.html' %} {% block content %}
 <div id="form_area" class="jumbotron ">
-     <h1 class="text-center mb-5">Welcome Back!</h1>
+  <h1 class="text-center mb-5">Welcome Back!</h1>
 
-    <div>
-        <span style="color:red">
-            {{ context.error_message }}
-        </span>
-    </div>
+  <div>
+    <span style="color:red">
+      {{ context.error_message }}
+    </span>
+  </div>
 
-    <form method="post" class="text-center text-white  text-size">
-        {% csrf_token %}
-        {{ context.login_form }}
-        <input type="hidden" name="next" value="{{ request.GET.next }}"/>
-        <input type="submit" value="Submit" class="btn btn-primary btn-md">
-    </form>
+  <form method="post" class="text-center text-white  text-size">
+    {% csrf_token %}
+    {{ context.login_form }}
+    <input type="hidden" name="next" value="{{ request.GET.next }}" />
+    <input type="submit" value="Submit" class="btn btn-primary btn-md" />
+  </form>
 </div>
 {% endblock %}
