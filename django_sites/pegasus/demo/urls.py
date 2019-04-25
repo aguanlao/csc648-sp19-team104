@@ -5,7 +5,8 @@ from . import views
 urlpatterns = [
     #TEST
     path('test/', views.test, name='test'),
-
+    #admin
+    path('admin/', views.admin, name='admin'),
     #index
     path('home/', views.homepage, name='homepage'),
     #add_new_property
@@ -36,6 +37,11 @@ urlpatterns = [
     path('view_profile/<str:username>/', views.view_profile, name='view_profile'),
     path('delete_user/', views.delete_user, name='delete_user'),
     path('compatibility/', views.compatibility_score, name='compatibility'),
+
+    # Listing paths
+    path('create_listing/', views.create_listing, name='create_listing'),
+    path('<int:listing_id>/', views.view_listing, name='view_listing'),
+    path('<int:listing_id>/edit/', views.edit_listing, name='edit_listing'),
 
     # SNN paths
     path('create_group/', views.create_group, name='create_group'),

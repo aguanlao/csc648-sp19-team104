@@ -33,8 +33,10 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'pegasushousing.team@gmail.com'
 EMAIL_HOST_PASSWORD = 'Blue,039SKies!'
 
-# Application definition
+POSTMAN_DISALLOW_ANONYMOUS = True
+POSTMAN_AUTO_MODERATE_AS = True
 
+# Application definition
 INSTALLED_APPS = [
     'about.apps.AboutConfig',
     'demo.apps.DemoConfig',
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'postman'
 ]
 
 MIDDLEWARE = [
@@ -62,6 +65,21 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        ,
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+    {
+        'NAME': 'Postman',
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'postman/templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
