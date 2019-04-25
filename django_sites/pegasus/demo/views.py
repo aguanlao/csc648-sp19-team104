@@ -24,6 +24,9 @@ def admin(request):
 #index
 def homepage(request):
     return render(request, 'demo/index.html')
+#sign up
+def signup(request):
+    return render(request, 'demo/signup.html')
 
 #add_new_property
 def add_new_property(request):
@@ -59,10 +62,10 @@ def index(request):
                 if value is not '' and value is not False and value is not None and '%s'.lower() % value != 'all'
             }
 
-            # results = Domicile.objects.all().filter(**filters)
+            results = Domicile.objects.all().filter(**filters)
 
             # TODO: Remove DEBUG statements
-            results = []
+            # results = []
             for key, value in filters.items():
                 print("[DEBUG] (%s , %s)" % (key, value))
 
@@ -71,7 +74,7 @@ def index(request):
                 'search_results': results,
                 'search_count': len(results)
             }
-            return render(request, 'demo/search.html', {'context': context})
+            return render(request, 'demo/listing.html', {'context': context})
 
     else:
         form = SearchForm()
@@ -80,7 +83,7 @@ def index(request):
         'form': form,
         'search_results': []
     }
-    return render(request, 'demo/search.html', {'context': context})
+    return render(request, 'demo/listing.html', {'context': context})
 
 
 def create_listing(request):
@@ -306,7 +309,7 @@ def user_login(request):
             'login_form': form,
             'error_message': ''
         }
-    return render(request, 'demo/login.html', {'context': context})
+    return render(request, 'demo/index.html', {'context': context})
 
 
 @login_required

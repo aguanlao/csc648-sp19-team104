@@ -4,3 +4,4 @@
 *db_config*
 django_sites/.idea/*
 django_sites/pegasus/venv-win/
+*.pyc
