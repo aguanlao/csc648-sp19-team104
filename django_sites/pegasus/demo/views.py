@@ -509,5 +509,5 @@ def maps(request):
         'longitude': geodata['lng'],
         'all_lat_lng': all_lat_lng,
     }
-
+    pprint(context)
     return render(request, 'demo/maps.html', context)

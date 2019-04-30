@@ -31,11 +31,16 @@
         var san_francisco = {lat: 37.77493, lng: -122.41942};
       	var marker = new google.maps.Marker({position: san_francisco, map: map});
       
-      {% for entry in all_lat_long %}
+      {% for entry in all_lat_lng %}
+      	var marker_position = {
+      		"lat": parseFloat("{{ entry.lat }}"),
+      		"lng": parseFloat("{{ entry.lng }}"),
+      	}
+      	var marker = new google.maps.Marker({position: marker_position, map: map});	
 
-      	var marker_position = {{entry}};
-      	var latlong = {'lat': marker_position['lat'], 'lng': marker_position['lng']};
-      	var marker = new google.maps.Marker({position: latlong, map: map});	
+      	// var marker_position = {{entry}};
+      	// var latlong = {'lat': marker_position['lat'], 'lng': marker_position['lng']};
+      	// var marker = new google.maps.Marker({position: latlong, map: map});	
 
       {% endfor %}
 
@@ -46,7 +51,7 @@
     {% for entry in all_lat_lng %}
 
       	<p>{{ entry  }}</p>
-      	
+
       {% endfor %}
   	</div>
 
