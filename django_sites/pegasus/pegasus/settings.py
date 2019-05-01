@@ -14,6 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SITE_ID = 1
 
 
 # Quick-start development settings - unsuitable for production
@@ -36,6 +37,8 @@ EMAIL_HOST_PASSWORD = 'Blue,039SKies!'
 POSTMAN_DISALLOW_ANONYMOUS = True
 POSTMAN_AUTO_MODERATE_AS = True
 
+PYBB_TEMPLATE = 'demo/base.html'
+
 # Application definition
 INSTALLED_APPS = [
     'about.apps.AboutConfig',
@@ -46,7 +49,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'postman'
+    'django.contrib.sites',
+    'postman',
+    'pybb'
 ]
 
 MIDDLEWARE = [
@@ -57,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'pybb.middleware.PybbMiddleware'
 ]
 
 ROOT_URLCONF = 'pegasus.urls'
@@ -73,6 +79,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'pybb.context_processors.processor'
             ],
         },
     },
@@ -102,7 +109,7 @@ WSGI_APPLICATION = 'pegasus.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pegasus',
+        'NAME': 'spirit',
         'USER': 'admin',
         'PASSWORD': 'justD0it!',
         'HOST': '18.224.150.8',
