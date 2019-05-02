@@ -295,34 +295,29 @@
                 <div class="col-12 mt-5 position-fixed" style="height:100%">
                     <div id="map"></div>
                 </div>
-
             </div>
         </div>
-    </div>
-    <script>
-        var map;
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 37.77493, lng: -122.41942 },
-                zoom: 12
-            });
-
-            {% for entry in context.lat_lng %}
-            var marker_position = {
-                "lat": parseFloat("{{ entry.lat }}"),
-                "lng": parseFloat("{{ entry.lng }}"),
-            }
-            var marker = new google.maps.Marker({ position: marker_position, map: map });
-            {% endfor %}
-        }
-    </script>
-    <div class="block-right" id="myUL" style="margin-top:90px">
-        <div class="container">
-            <div class="row">
-                {% if context.search_count %} {% for entry in context.listing_results %}
-                <div class="col-12">
-                    <div class="media">
-                        <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>
+    </li>
+</ul>
+<!-- Listing  -->
+<div class="block-right" id="myUL">
+    <div class="container">
+        <div class="row">
+            {% if context.search_count %} {% for entry in context.listing_results %}
+            <div class="col-12">
+                <div class="media">
+                    <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>
+                    </div>
+                    <a href={% url 'view_listing' listing_id=entry.pk %}>
+                    <img class="d-flex align-self-start"
+                         {% if entry.photo %}
+                         src="{{ entry.photo.url }}"
+                         {% endif %}
+                         alt="Generic placeholder image">
+                    </a>
+                    <div class="media-body pl-3">
+                        <div class="price">${{ entry.price|floatformat:-2 }}
+                            <small>{{ entry.residence.city }}</small>
                         </div>
                         <a href={% url 'view_listing' listing_id=entry.pk %}>
                             <img class="d-flex align-self-start" {% if entry.photo %} src="{{ entry.photo.url }}"
@@ -346,6 +341,49 @@
             </div>
         </div>
     </div>
+
+
+</div>
+<div class="block-left">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-5 position-fixed" style="height:100%">
+                <style>
+                /* Always set the map height explicitly to define the size of the div
+                    * element that contains the map. */
+                #map {
+                height: 500px;
+                margin-bottom: 0x;
+                }
+                /* Optional: Makes the sample page fill the window. */
+                </style>
+                <div id="map"></div>
+                <script>
+                var map;
+                function initMap() {
+                    map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: 37.77493, lng: -122.41942},
+                    zoom: 12
+                });
+      
+                {% for entry in context.lat_lng %}
+                var marker_position = {
+                    "lat": parseFloat("{{ entry.lat }}"),
+                    "lng": parseFloat("{{ entry.lng }}"),
+                 }
+                var marker = new google.maps.Marker({position: marker_position, map: map});
+                {% endfor %}
+
+                }
+            </script>
+
+        <div>
+            </div>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbr6KeU9un_uLPpH581LUfOb8PE3zi1x0&callback=initMap"
+            async defer></script>
+        </div>
+    </div>
+</div
 
     <!-- footer -->
     <!-- Site footer -->

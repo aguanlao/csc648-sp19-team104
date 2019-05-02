@@ -13,6 +13,7 @@ from . import utils
 from .forms import *
 from .models import *
 from pprint import pprint
+import requests
 
 
 def test(request):
@@ -70,6 +71,8 @@ def index(request):
             results = Domicile.objects.all().filter(**filters)
             listings = ValidListing.objects.all().filter(pk__in=results)
 
+            searched_lat_lng = get_lat_long(listings)
+
             # TODO: Remove DEBUG statements
             # results = []
             for key, value in filters.items():
@@ -85,13 +88,15 @@ def index(request):
                 'form': form,
                 'search_results': results,
                 'listing_results': listings,
-                'search_count': len(results)
+                'search_count': len(results),
+                'lat_lng': searched_lat_lng
             }
             return render(request, 'demo/listing.html', {'context': context})
 
     else:
         form = SearchForm()
 
+    # Should have some default listings displayed (maybe most recent?)
     context = {
         'form': form,
         'search_results': []
@@ -482,3 +487,73 @@ def delete_group(request, group_name=None):
 def view_group(request, group_name=None):
     context = {}
     return render(request, 'demo/view_group.html', {'context': context})
+
+
+
+# Method to get geocoding data (lat / long) for searched listings
+def get_lat_long(listings):
+    # List of dictionaries {'lat': xxx, 'lng':xxx}
+    all_lat_lng = []
+    for listing in listings:
+
+        geodata = dict()
+        geodata['lat'] = 0
+        geodata['lng'] = 0
+        addr = listing.residence.address
+
+        if addr:
+            GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json?address='+addr+'&key=AIzaSyCbr6KeU9un_uLPpH581LUfOb8PE3zi1x0'
+
+            params = {'address': addr}
+
+            map_request = requests.get(GOOGLE_MAPS_API_URL, params=params)
+            response = map_request.json()
+            #print('response: ', response)
+
+            if len(response['results']) > 0:
+                result = response['results'][0]
+                geodata['lat'] = result['geometry']['location']['lat']
+                geodata['lng'] = result['geometry']['location']['lng']
+                all_lat_lng.append(geodata)
+
+    return all_lat_lng
+
+
+# maps method to be used for standalone map (can delete once map is functional)
+def maps(request):
+    listings = ValidListing.objects.all()
+    for listing in listings:
+        print(listing.residence.address)
+
+    # Holds geocoding data for all addresses (each of which is a dictionary)
+    all_lat_lng = []
+    for listing in listings:
+
+        geodata = dict()
+        geodata['lat'] = 0
+        geodata['lng'] = 0
+        addr = listing.residence.address
+
+        if addr:
+            GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json?address='+addr+'&key=AIzaSyCbr6KeU9un_uLPpH581LUfOb8PE3zi1x0'
+
+            params = {'address': addr}
+
+            map_request = requests.get(GOOGLE_MAPS_API_URL, params=params)
+            response = map_request.json()
+            #print('response: ', response)
+
+            if len(response['results']) > 0:
+                result = response['results'][0]
+                geodata['lat'] = result['geometry']['location']['lat']
+                geodata['lng'] = result['geometry']['location']['lng']
+                all_lat_lng.append(geodata)
+
+    context = {
+        'addresses': listings, 
+        'latitude': geodata['lat'],
+        'longitude': geodata['lng'],
+        'all_lat_lng': all_lat_lng,
+    }
+    pprint(context)
+    return render(request, 'demo/maps.html', context)
