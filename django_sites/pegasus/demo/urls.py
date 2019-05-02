@@ -41,4 +41,7 @@ urlpatterns = [
     path('edit_group/<str:group_name>/', views.edit_group, name='edit_group'),
     path('delete_group/<str:group_name>/', views.delete_group, name='delete_group'),
     path('view_group/<str:group_name>/', views.view_group, name='view_group'),
+
+    path('maps/', views.maps, name='maps'),
+
 ]

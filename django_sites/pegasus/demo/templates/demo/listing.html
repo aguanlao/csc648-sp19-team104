@@ -294,18 +294,6 @@
     </li>
 </ul>
 <!-- Listing  -->
-<div class="block-left">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 mt-5 position-fixed" style="height:100%">
-                <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3155.9054564614885!2d-122.48039808446838!3d37.72189697976904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f7db005c0e281%3A0xa57a7c9f946a45d3!2sSan+Francisco+State+University!5e0!3m2!1sen!2sus!4v1555471256045!5m2!1sen!2sus"
-                        width="800" height="800" frameborder="0" style="border:0" allowfullscreen></iframe>
-            </div>
-
-        </div>
-    </div>
-</div>
 <div class="block-right" id="myUL">
     <div class="container">
         <div class="row">
@@ -336,6 +324,46 @@
             {% endfor %} {% else %}
             <p class="col-12">No search results.</p>
             {% endif %}
+        </div>
+    </div>
+</div>
+<div class="block-left">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-5 position-fixed" style="height:100%">
+                <style>
+                /* Always set the map height explicitly to define the size of the div
+                    * element that contains the map. */
+                #map {
+                height: 500px;
+                margin-bottom: 0x;
+                }
+                /* Optional: Makes the sample page fill the window. */
+                </style>
+                <div id="map"></div>
+                <script>
+                var map;
+                function initMap() {
+                    map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: 37.77493, lng: -122.41942},
+                    zoom: 12
+                });
+      
+                {% for entry in context.lat_lng %}
+                var marker_position = {
+                    "lat": parseFloat("{{ entry.lat }}"),
+                    "lng": parseFloat("{{ entry.lng }}"),
+                 }
+                var marker = new google.maps.Marker({position: marker_position, map: map});
+                {% endfor %}
+
+                }
+            </script>
+
+        <div>
+            </div>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbr6KeU9un_uLPpH581LUfOb8PE3zi1x0&callback=initMap"
+            async defer></script>
         </div>
     </div>
 </div>
