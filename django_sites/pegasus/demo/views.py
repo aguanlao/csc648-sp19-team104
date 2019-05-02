@@ -14,32 +14,42 @@ from .forms import *
 from .models import *
 from pprint import pprint
 
+
 def test(request):
     return render(request, 'demo/test.html')
+
 
 def admin(request):
     return render(request, 'demo/admin.html')
 
+
 def home(request):
     return render(request, 'demo/index.html')
+
 
 def signup(request):
     return render(request, 'demo/signup.html')
 
+
 def add_new_property(request):
     return render(request, 'demo/add_new_property.html')
 
-#def listing(request):
-#    return render(request, 'demo/listing.html')
+
+def listing(request):
+    return render(request, 'demo/listing.html')
+
 
 def description(request):
     return render(request, 'demo/description.html')
 
+
 def manager_profile(request):
     return render(request, 'demo/manager_profile.html')
 
+
 def survey(request):
     return render(request, 'demo/survey.html')
+
 
 def user_profile(request):
     return render(request, 'demo/user_profile.html')
@@ -168,7 +178,8 @@ def edit_listing(request, listing_id):
 def view_listing(request, listing_id):
     listing = get_object_or_404(ValidListing, pk=listing_id)
     domicile = listing.residence
-    full_address = domicile.address + " " + domicile.city + " " + domicile.state + " " + str(domicile.zip_code)
+    full_address = domicile.address + " " + domicile.city + \
+        " " + domicile.state + " " + str(domicile.zip_code)
 
     context = {
         'listing': listing,
@@ -180,6 +191,8 @@ def view_listing(request, listing_id):
     return render(request, 'demo/description.html', {'context': context})
 
 # USER PAGES #
+
+
 def create_account(request):
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
@@ -210,7 +223,8 @@ def create_account(request):
                 })
                 email = EmailMessage(mail_subject, message, to=[user.email])
                 email.send()
-                print("[INFO] Sent confirmation email to user '%s' for activation." % email)
+                print(
+                    "[INFO] Sent confirmation email to user '%s' for activation." % email)
                 return render(request, 'demo/login_confirmation.html')
 
             except Exception as error_message:
@@ -253,13 +267,14 @@ def activate(request, uidb64, token):
         # Coerce to verified user class
         user.is_active = True
         user.__class__ = VerifiedUser
-        user.save(force_insert = True)
+        user.save(force_insert=True)
 
         login(request, user, backend='demo.utils.AuthBackend')
         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
         if user is not None:
-            print("[INFO] Got invalid token activation from user '%s'." % user.username)
+            print("[INFO] Got invalid token activation from user '%s'." %
+                  user.username)
         return HttpResponse('Activation link is invalid!')
 
 
@@ -274,7 +289,8 @@ def user_login(request):
             username = form_data['username']
             password = form_data['password']
             auth_backend = utils.AuthBackend()
-            user = auth_backend.authenticate(username=username, password=password)
+            user = auth_backend.authenticate(
+                username=username, password=password)
 
             # Login success
             if user is not None:

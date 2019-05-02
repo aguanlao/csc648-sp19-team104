@@ -1,121 +1,132 @@
-{% extends 'demo/base.html' %} {% block content %}
-<!-- <div id="form_area" class="jumbotron ">
-  <h1 class="text-center mb-5">CREATE ACCOUNT</h1>
+<style>
+  .bs-example {
+    margin: 20px;
+  }
+  @media (max-width: 768px) {
+    .modal-body {
+      height: 250px;
+      overflow-y: auto;
+    }
+  }
+</style>
 
-  <div>
-    <span style="color:white">
-      {% if context.form_submitted %} {% if context.creation_success %}
-      <p>USER CREATED</p>
-      {% else %}
-      <p>{{ context.error_message }}</p>
-      {% endif %} {% else %}
-      <p>{{ context.error_message }}</p>
-      {% endif %}
-    </span>
-  </div>
+<div class="modal-header bg-info text-white">
+  <h4>
+    <span class="glyphicon glyphicon-info-sign"></span> Create Your Account
+  </h4>
+  <button
+    type="button"
+    class="close text-white"
+    data-dismiss="modal"
+    aria-label="Close"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 
-  <form method="post" class="text-center text-white  text-size">
+<div class="modal-body">
+  <form class="ui form" method="post">
     {% csrf_token %}
-    <table align="center">
-      {% for field in context.form.visible_fields %}
-      <tr>
-        <td>{{ field.label_tag }}</td>
-        <td>
-          {{ field.errors }}
-          {{ field }}
-          {{ field.help_text }}
-        </td>
-      </tr>
-      {% endfor %}
-    </table>
-
-    <input type="submit" value="Submit" class="btn btn-primary btn-md" />
-  </form>
-</div> -->
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    />
-
-    <link rel="stylesheet" href="../../static/demo/css/main.css" />
-    <title>Document</title>
-  </head>
-
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <span style="color:white">
-            {% if context.form_submitted %} {% if context.creation_success %}
-            <p>USER CREATED</p>
-            {% else %}
-            <p>{{ context.error_message }}</p>
-            {% endif %} {% else %}
-            <p>{{ context.error_message }}</p>
-            {% endif %}
-          </span>
-          <form class="ui form" method="post">
-            {% csrf_token %}
-            <h4 class="ui dividing header text-center">User Information</h4>
-            {% for field in context.form.visible_fields %}
-            <div class="field">
-              <label>{{ field.label_tag }}</label>
-
-              <div class="two fields">
-                <div class="field"></div>
-              </div>
-              {{ field.errors }}
-              {{ field }}
-              {{ field.help_text }}
-            </div>
-            {% endfor %}
-
-            <input
-              type="submit"
-              value="Submit"
-              class="ui button"
-              tabindex="0"
-            />
-          </form>
+    <div class="field">
+      <div class="two fields">
+        <div class="field">
+          {{ context.form.first_name.error }}
+          <label for="{{ context.form.first_name.id_for_lable }}">
+            First Name</label
+          >
+          {{ context.form.first_name }}
+        </div>
+        <div class="field">
+          {{ context.form.last_name.error }}
+          <label for="{{ context.form.last_name.id_for_lable }}"
+            >Last Name</label
+          >
+          {{ context.form.last_name }}
         </div>
       </div>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script
-      src="http://code.jquery.com/jquery-3.3.1.min.js"
-      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html>
-
-{% endblock %}
+    <div class="field">
+      <div class="two fields">
+        <div class="field">
+          {{ context.form.email.error }}
+          <label for="{{ context.form.email.id_for_lable }}"
+            >Email Address</label
+          >
+          {{ context.form.email }}
+        </div>
+        <div class="field">
+          {{ context.form.username.error }}
+          <label for="{{ context.form.username.id_for_lable }}"
+            >User Name</label
+          >
+          {{ context.form.username }}
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      {{ context.form.date_of_birth.error }}
+      <label for="{{ context.form.date_of_birth.id_for_lable }}"
+        >Date of birth</label
+      >
+      {{ context.form.date_of_birth }}
+    </div>
+    <div class="fields">
+      <div class="four wide field">
+        {{ context.form.physical_address.error }}
+        <label for="{{ context.form.physical_address.id_for_lable }}">
+          Adress</label
+        >
+        {{ context.form.physical_address }}
+      </div>
+      <div class=" four wide field">
+        {{ context.form.city.error }}
+        <label for="{{ context.form.city.id_for_lable }}">City</label>
+        {{ context.form.city }}
+      </div>
+      <div class=" four wide field">
+        {{ context.form.state.error }}
+        <label for="{{ context.form.state.id_for_lable }}">State</label>
+        {{ context.form.state }}
+      </div>
+      <div class=" four wide field">
+        {{ context.form.zip_code.error }}
+        <label for="{{ context.form.zip_code.id_for_lable }}">Zib Code</label>
+        {{ context.form.zip_code }}
+      </div>
+    </div>
+    <div class="field">
+      {{ context.form.phone_number.error }}
+      <label for="{{ context.form.phone_number.id_for_lable }}"
+        >Phone Number</label
+      >
+      {{ context.form.phone_number }}
+    </div>
+    <div class="field">
+      <div class="two fields">
+        <div class="field">
+          {{ context.form.password.error }}
+          <label for="{{ context.form.password.id_for_lable }}"
+            >Confirm Password</label
+          >
+          {{ context.form.password }}
+        </div>
+        <div class="field">
+          {{ context.form.confirm_password.error }}
+          <label for="{{ context.form.confirm_password.id_for_lable }}"
+            >Confirm Password</label
+          >
+          {{ context.form.confirm_password }}
+        </div>
+      </div>
+    </div>
+    <div class="form-check mb-1">
+      {{ context.form.is_student }}
+      <label
+        class="form-check-label"
+        for="{{ context.form.is_student.id_for_lable }}"
+        >Are You Student?</label
+      >
+    </div>
+    <input type="submit" class="btn btn-info btn-block" />
+  </form>
+</div>
