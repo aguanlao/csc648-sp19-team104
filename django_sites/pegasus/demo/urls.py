@@ -13,6 +13,7 @@ urlpatterns = [
     path('manager_profile/', views.manager_profile, name='manager_profile'),
     path('survey/', views.survey, name='survey'),
     path('user_profile/', views.user_profile, name='user_profile'),
+    path('profile/', views.base_profile, name='profile'),
 
     # Administrative paths
     path('login/', views.login, name='login'),
