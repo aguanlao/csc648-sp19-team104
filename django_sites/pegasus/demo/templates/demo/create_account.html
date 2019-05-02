@@ -1,132 +1,67 @@
-<style>
-  .bs-example {
-    margin: 20px;
-  }
-  @media (max-width: 768px) {
-    .modal-body {
-      height: 250px;
-      overflow-y: auto;
-    }
-  }
-</style>
-
-<div class="modal-header bg-info text-white">
-  <h4>
-    <span class="glyphicon glyphicon-info-sign"></span> Create Your Account
-  </h4>
-  <button
-    type="button"
-    class="close text-white"
-    data-dismiss="modal"
-    aria-label="Close"
-  >
-    <span aria-hidden="true">&times;</span>
-  </button>
+{% extends 'demo/navbar.html' %}
+{% block content %}
+<div>
+  <span style="color:white">
+    {% if context.form_submitted %} {% if context.creation_success %}
+    <p>USER CREATED</p>
+    {% else %}
+    <p>{{ context.error_message }}</p>
+    {% endif %} {% else %}
+    <p>{{ context.error_message }}</p>
+    {% endif %}
+  </span>
 </div>
-
-<div class="modal-body">
-  <form class="ui form" method="post">
-    {% csrf_token %}
-    <div class="field">
-      <div class="two fields">
+<!-- <form method="post" class="text-center text-white  text-size">
+  {% csrf_token %}
+  <table align="center">
+    {% for field in context.form.visible_fields %}
+    <tr>
+      <td>{{ field.label_tag }}</td>
+      <td>
+        {{ field.errors }}
+        {{ field }}
+        {{ field.help_text }}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  <input type="submit" value="Submit" class="btn btn-primary btn-md" />
+</form> -->
+</div> 
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <span style="color:white">
+        {% if context.form_submitted %} {% if context.creation_success %}
+        <p>USER CREATED</p>
+        {% else %}
+        <p>{{ context.error_message }}</p>
+        {% endif %} {% else %}
+        <p>{{ context.error_message }}</p>
+        {% endif %}
+      </span>
+      <form class="ui form" method="post">
+        {% csrf_token %}
+        <h4 class="ui dividing header text-center">User Information</h4>
+        {% for field in context.form.visible_fields %}
         <div class="field">
-          {{ context.form.first_name.error }}
-          <label for="{{ context.form.first_name.id_for_lable }}">
-            First Name</label
-          >
-          {{ context.form.first_name }}
+          <label>{{ field.label_tag }}</label>
+          <div class="two fields">
+            <div class="field"></div>
+          </div>
+          {{ field.errors }}
+          {{ field }}
+          {{ field.help_text }}
         </div>
-        <div class="field">
-          {{ context.form.last_name.error }}
-          <label for="{{ context.form.last_name.id_for_lable }}"
-            >Last Name</label
-          >
-          {{ context.form.last_name }}
-        </div>
-      </div>
+        {% endfor %}
+        <input
+          type="submit"
+          value="Submit"
+          class="btn btn-info"
+          tabindex="0"
+        />
+      </form>
     </div>
-    <div class="field">
-      <div class="two fields">
-        <div class="field">
-          {{ context.form.email.error }}
-          <label for="{{ context.form.email.id_for_lable }}"
-            >Email Address</label
-          >
-          {{ context.form.email }}
-        </div>
-        <div class="field">
-          {{ context.form.username.error }}
-          <label for="{{ context.form.username.id_for_lable }}"
-            >User Name</label
-          >
-          {{ context.form.username }}
-        </div>
-      </div>
-    </div>
-    <div class="field">
-      {{ context.form.date_of_birth.error }}
-      <label for="{{ context.form.date_of_birth.id_for_lable }}"
-        >Date of birth</label
-      >
-      {{ context.form.date_of_birth }}
-    </div>
-    <div class="fields">
-      <div class="four wide field">
-        {{ context.form.physical_address.error }}
-        <label for="{{ context.form.physical_address.id_for_lable }}">
-          Adress</label
-        >
-        {{ context.form.physical_address }}
-      </div>
-      <div class=" four wide field">
-        {{ context.form.city.error }}
-        <label for="{{ context.form.city.id_for_lable }}">City</label>
-        {{ context.form.city }}
-      </div>
-      <div class=" four wide field">
-        {{ context.form.state.error }}
-        <label for="{{ context.form.state.id_for_lable }}">State</label>
-        {{ context.form.state }}
-      </div>
-      <div class=" four wide field">
-        {{ context.form.zip_code.error }}
-        <label for="{{ context.form.zip_code.id_for_lable }}">Zib Code</label>
-        {{ context.form.zip_code }}
-      </div>
-    </div>
-    <div class="field">
-      {{ context.form.phone_number.error }}
-      <label for="{{ context.form.phone_number.id_for_lable }}"
-        >Phone Number</label
-      >
-      {{ context.form.phone_number }}
-    </div>
-    <div class="field">
-      <div class="two fields">
-        <div class="field">
-          {{ context.form.password.error }}
-          <label for="{{ context.form.password.id_for_lable }}"
-            >Confirm Password</label
-          >
-          {{ context.form.password }}
-        </div>
-        <div class="field">
-          {{ context.form.confirm_password.error }}
-          <label for="{{ context.form.confirm_password.id_for_lable }}"
-            >Confirm Password</label
-          >
-          {{ context.form.confirm_password }}
-        </div>
-      </div>
-    </div>
-    <div class="form-check mb-1">
-      {{ context.form.is_student }}
-      <label
-        class="form-check-label"
-        for="{{ context.form.is_student.id_for_lable }}"
-        >Are You Student?</label
-      >
-    </div>
-    <input type="submit" class="btn btn-info btn-block" />
-  </form>
+  </div>
 </div>
+{% endblock %}
