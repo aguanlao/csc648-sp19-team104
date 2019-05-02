@@ -10,7 +10,7 @@
 
   <form method="post" class="text-center text-white  text-size">
     {% csrf_token %}
-    {{ context.login_form }}
+    {{ context.login_form. }}
     <input type="hidden" name="next" value="{{ request.GET.next }}" />
     <input type="submit" value="Submit" class="btn btn-primary btn-md" />
   </form>
