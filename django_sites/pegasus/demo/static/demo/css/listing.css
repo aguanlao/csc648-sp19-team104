@@ -1,15 +1,14 @@
 .block-left {
-  width: 60%;
+  width: 50%;
   height: 100vh;
   margin-top: -2.9rem;
   float: left; }
 
 .block-right {
-  width: 40%;
+  width: 50%;
   height: 100vh;
   margin-top: 0.2rem;
-  float: left;
-  scroll-margin-top: -200px !important; }
+  float: left; }
 
 .nav-tabs {
   margin-top: -20px; }

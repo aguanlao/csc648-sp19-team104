@@ -76,12 +76,13 @@
         </div>
 
     </nav>
-<!--    <button class="btn btn-block btn-info"> Add Images-->
-<!--        <div class="p-image">-->
-<!--            <i class="fa fa-camera upload-button"></i>-->
-<!--            <input class="file-upload" type="file" accept="image/*" />-->
-<!--        </div>-->
-<!--    </button>-->
+
+    <button class="btn btn-block btn-info p-3" style="margin-top:70px; border-radius:0px"> Add Images
+        <div class="p-image">
+            <i class="fa fa-camera upload-button"></i>
+            <input class="file-upload" type="file" accept="image/*" />
+        </div>
+    </button>
 
     <div class="container-fluid mt-3">
         <form method="post">
@@ -111,6 +112,7 @@
 
                 {{ context.listing_form.non_field_errors }}
                 {{ context.domicile_form.non_field_errors }}
+            </div>
                 <div class="row">
                     <div class="col-12 mt-5">
                         <div class="text-center ">
@@ -211,7 +213,7 @@
                            </ul>
                         </div>
                     </div>
-                </div>
+            </div>
             </div>
             <div class="col-12 mt-5">
                 <input type="submit" value="Submit" class="btn btn-primary btn-lg col-5 mb-5 px-5">
