@@ -492,7 +492,6 @@ def view_group(request, group_name=None):
     return render(request, 'demo/view_group.html', {'context': context})
 
 
-
 # Method to get geocoding data (lat / long) for searched listings
 def get_lat_long(listings):
     # List of dictionaries {'lat': xxx, 'lng':xxx}
