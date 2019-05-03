@@ -55,6 +55,9 @@ def survey(request):
 def user_profile(request):
     return render(request, 'demo/user_profile.html')
 
+def base_profile(request):
+    return render(request, 'demo/base_profile.html')
+
 
 # LISTING PAGES #
 def index(request):

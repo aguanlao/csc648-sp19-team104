@@ -3,16 +3,17 @@ from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('index', views.index, name='index'),
     path('test/', views.test, name='test'),
     path('admin/', views.admin, name='admin'),
-    path('home/', views.home, name='home'),
+    path('', views.home, name='home'),
     path('signup/', views.signup, name='signup'),
     path('add_new_property/', views.create_listing, name='add_new_property'),
     path('description/', views.description, name='description'),
     path('manager_profile/', views.manager_profile, name='manager_profile'),
     path('survey/', views.survey, name='survey'),
     path('user_profile/', views.user_profile, name='user_profile'),
+    path('profile/', views.base_profile, name='profile'),
 
     # Administrative paths
     path('login/', views.login, name='login'),
