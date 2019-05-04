@@ -1,30 +1,31 @@
 {% extends 'demo/navbar.html' %}
 {% block content %}
 <div>
- <style>
-  body{
-    background-image: url('../../static/demo/images/home.jpg');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
- </style>
+  <style>
+    body{
+      background-image: url('../../static/demo/images/home.jpg');
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  </style>
 </div>
 
 <div class="jumbotron text-center ">
-   <h2 class="mb-5 secondary-title">
-     Let Pegasus Guide you Home Hello!!
-   </h2>
-  <div class="col-12">
-    <div class="wrap">
-      <div class="search">
-        <input type="text" class="searchTerm" placeholder="Search">
-        <a href={% url 'index' %}>
-          <button type="submit" class="searchButton">
-            <i class="fa fa-search"></i>
-          </button>
-        </a>
-      </div>
+  <h2 class="mb-5 secondary-title">
+      Let Pegasus Guide you Home Hello!!
+  </h2>
+</div>
+
+<div class="col-12">
+  <div class="wrap">
+    <div class="search">
+      <input type="text" class="searchTerm" placeholder="Search">
+      <a href={% url 'index' %}>
+        <button type="submit" class="searchButton">
+          <i class="fa fa-search"></i>
+        </button>
+      </a>
     </div>
   </div>
 </div>
