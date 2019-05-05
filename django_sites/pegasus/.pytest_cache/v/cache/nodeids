@@ -1,0 +1,5 @@
+[
+  "demo/test_cases.py::test_tautology",
+  "demo/test_cases.py::test_user_creation",
+  "demo/test_cases.py::test_listing_response"
+]
