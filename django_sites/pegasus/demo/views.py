@@ -294,7 +294,7 @@ def activate(request, uidb64, token):
         user.save(force_insert=True)
 
         login(request, user, backend='demo.utils.AuthBackend')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        return HttpResponse('Thank you for your email confirmation. You may now login with your account.')
     else:
         if user is not None:
             logging.warning("Got invalid token activation from user '%s'." % user.username)
