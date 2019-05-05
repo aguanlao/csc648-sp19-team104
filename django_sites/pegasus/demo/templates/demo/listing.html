@@ -305,7 +305,7 @@
                     <a href={% url 'view_listing' listing_id=entry.pk %}>
                     <img class="d-flex align-self-start"
                          {% if entry.photo %}
-                         src="{{ entry.photo.url }}"
+                         src="../{{ entry.photo.url }}"
                          {% endif %}
                          alt="Generic placeholder image">
                     </a>

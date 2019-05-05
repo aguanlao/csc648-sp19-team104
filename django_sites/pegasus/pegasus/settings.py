@@ -181,15 +181,20 @@ LOGGING = {
             'backupCount': 31,
             'formatter': 'verbose',
         },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
 
     },
     'loggers': {
         'django': {
-            'handlers': ['file'],
+            'handlers': ['file', 'console'],
             'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
         },
         '': {
-            'handlers': ['file'],
+            'handlers': ['file', 'console'],
             'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
         }
     },
