@@ -155,8 +155,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/opt/project_pegasus/django_sites/pegasus/static'
-MEDIA_ROOT = '/opt/project_pegasus/django_sites/pegasus/media'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
 
 # Logging set up to rotate logs on midnight and save copies for one month
@@ -176,7 +176,7 @@ LOGGING = {
         'file': {
             'level': 'INFO',
             'class': 'logging.handlers.TimedRotatingFileHandler',
-            'filename': '/opt/project_pegasus/django_sites/pegasus/pegasus/program_run.log',
+            'filename': os.path.join(BASE_DIR, 'logs/program_run.log'),
             'when': 'midnight',
             'interval': 1,
             'backupCount': 31,
