@@ -25,7 +25,51 @@ def admin(request):
 
 
 def home(request):
-    return render(request, 'demo/index.html')
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+
+            # Filter all null values from filter set
+            filters = {
+                key: value for key, value in form.cleaned_data.items()
+                if value is not '' and value is not False and value is not None and '%s'.lower() % value != 'all'
+            }
+
+            results = Domicile.objects.all().filter(**filters)
+            listings = ValidListing.objects.all().filter(pk__in=results)
+
+            searched_lat_lng = get_lat_long(listings)
+
+            # TODO: Remove DEBUG statements
+            # results = []
+            for key, value in filters.items():
+                print("[DEBUG] (%s , %s)" % (key, value))
+
+            for entry in listings:
+                try:
+                    print(entry.photo.url)
+                except ValueError as exception:
+                    print(exception)
+
+            context = {
+                'form': form,
+                'search_results': results,
+                'listing_results': listings,
+                'search_count': len(results),
+                'lat_lng': searched_lat_lng
+            }
+            return render(request, 'demo/listing.html', {'context': context})
+
+    else:
+        form = SearchForm()
+
+    # Should have some default listings displayed (maybe most recent?)
+    context = {
+        'form': form,
+        'search_results': []
+    }
+    return render(request, 'demo/index.html', {'context': context})
+
 
 
 def signup(request):
