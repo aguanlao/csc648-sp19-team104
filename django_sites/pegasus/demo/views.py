@@ -27,7 +27,7 @@ def description(request):
 
 
 def manager_profile(request):
-    return render(request, 'demo/manager_profile.html')
+    return render(request, 'demo/user_profile.html')
 
 
 def survey(request):

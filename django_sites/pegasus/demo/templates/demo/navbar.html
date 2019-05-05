@@ -2,7 +2,6 @@
 {% block header %}
 <div>
     <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top py-2">
-        <div>
             <a class="navbar-brand d-flex" href="{% url 'index' %}">
             <img class="rounded-circle" src="//unsplash.it/50/50" alt="" />
             <h4 class="mt-3 ml-3">Pegasus</h4>
@@ -11,7 +10,6 @@
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-        </div>
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
@@ -26,9 +24,15 @@
                     {% if request.user.is_authenticated %}
                 <div class="ui compact menu " style="background:transparent; border: none;">
                     <div class="ui simple dropdown item text-white">
-                        {{request.user.first_name}} {{request.user.last_name}} </a>
+                        {{request.user.first_name}} {{request.user.last_name}}</a>
                         <i class="dropdown icon"></i>
                         <div class="menu">
+                            {% if request.user.permission_level == 0 %}
+                            <div class="item"> <a href="{% url 'admin' %}">
+                                <i class="fas fa-user"></i>
+                                dashboard</a> 
+                            </div>
+                            {% endif %}
                             <div class="item"> <a href="{% url 'view_profile' %}">
                                 <i class="fas fa-user"></i>
                                 view profile</a> 
