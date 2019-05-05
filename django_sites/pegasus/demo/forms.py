@@ -28,9 +28,19 @@ class SearchForm(forms.Form):
 
 class LoginForm(forms.Form):
     MAX_FIELD_LENGTH = 20
-    username = forms.CharField(label="Username", max_length=MAX_FIELD_LENGTH)
+    username = forms.CharField(label="", max_length=MAX_FIELD_LENGTH,widget=forms.TextInput(
+        attrs = {
+            'class' : 'form-control col-auto',
+            'placeholder' : 'username'
+        }
+    ))
     password = forms.CharField(
-        label="Password", max_length=MAX_FIELD_LENGTH, widget=forms.PasswordInput)
+        label="", help_text='max 20 characters', max_length=MAX_FIELD_LENGTH, widget=forms.PasswordInput(
+            attrs = {
+                'class' : 'form-control col-auto',
+                'placeholder' : 'password'
+            }
+        ))
 
 
 class CompatibilityScoreForm(forms.Form):
