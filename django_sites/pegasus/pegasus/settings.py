@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'postman',
-    'pybb'
+    'pybb',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [

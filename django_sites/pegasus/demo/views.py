@@ -47,7 +47,7 @@ def index(request):
 
             results = Domicile.objects.all().filter(**filters)
             listings = ValidListing.objects.all().filter(pk__in=results)
-            searched_lat_lng = get_lat_long(listings)
+            searched_lat_lng = get_lat_long(results)
 
             for key, value in filters.items():
                 logging.debug("Search filters: (%s , %s)" % (key, value))
@@ -90,7 +90,7 @@ def listing(request):
 
             results = Domicile.objects.all().filter(**filters)
             listings = ValidListing.objects.all().filter(pk__in=results)
-            searched_lat_lng = get_lat_long(listings)
+            searched_lat_lng = None
 
             for key, value in filters.items():
                 logging.debug("Search filters: (%s , %s)" % (key, value))
@@ -487,31 +487,29 @@ def forgot_password(request):
 
 
 # Get geocoding data (lat / long) for searched listings
-def get_lat_long(listings):
+def get_lat_long(residences):
     # List of dictionaries {'lat': xxx, 'lng':xxx}
     all_lat_lng = []
-    for listing in listings:
-
-        geodata = dict()
-        geodata['lat'] = 0
-        geodata['lng'] = 0
-        addr = listing.residence.address
+    for residence in residences:
+        geodata = {
+            'lat': 0,
+            'lng': 0
+        }
+        addr = residence.address
 
         if addr:
-            GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + addr + '&key=AIzaSyCbr6KeU9un_uLPpH581LUfOb8PE3zi1x0'
-
+            GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' \
+                                  + addr \
+                                  + '&key=AIzaSyCbr6KeU9un_uLPpH581LUfOb8PE3zi1x0'
             params = {'address': addr}
-
             map_request = requests.get(GOOGLE_MAPS_API_URL, params=params)
             response = map_request.json()
-            # print('response: ', response)
 
             if len(response['results']) > 0:
                 result = response['results'][0]
                 geodata['lat'] = result['geometry']['location']['lat']
                 geodata['lng'] = result['geometry']['location']['lng']
                 all_lat_lng.append(geodata)
-
     return all_lat_lng
 
 
