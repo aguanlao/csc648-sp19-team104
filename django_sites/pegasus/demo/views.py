@@ -207,10 +207,17 @@ def view_listing(request, listing_id):
     domicile = listing.residence
     full_address = domicile.address + " " + domicile.city + " " + domicile.state + " " + str(domicile.zip_code)
 
+    # get_lat_long takes a list of listings as argument and returns a list of dicts
+    lat_long = get_lat_long([domicile])
+
+    # Get the single dictionary
+    single_lat_long = lat_long[0]
+
     context = {
         'listing': listing,
         'domicile': domicile,
         'address': full_address,
+        'lat_long': single_lat_long,
     }
     return render(request, 'demo/description.html', {'context': context})
 
