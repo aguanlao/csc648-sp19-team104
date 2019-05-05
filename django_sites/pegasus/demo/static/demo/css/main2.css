@@ -107,18 +107,6 @@ body {
   .secondary-title {
     font-size: 2rem; } }
 
-.block-left {
-  width: 50%;
-  height: 100vh;
-  margin-top: -2.9rem;
-  float: left; }
-
-.block-right {
-  width: 50%;
-  height: 100vh;
-  margin-top: 0.2rem;
-  float: left; }
-
 .nav-tabs {
   margin-top: -20px; }
 
