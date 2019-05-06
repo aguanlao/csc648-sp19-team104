@@ -7,8 +7,8 @@ class SearchForm(forms.Form):
     residence_type = forms.ChoiceField(
         label="Residence type", choices=form_residence_options, required=False)
     pet_friendly = forms.BooleanField(label="Allows pets", required=False)
-    beds = forms.IntegerField(label="Beds", min_value=0, required=False)
-    baths = forms.IntegerField(label="Baths", min_value=0, required=False)
+    beds = forms.IntegerField(label="Bedrooms", min_value=0, required=False)
+    baths = forms.IntegerField(label="Bathrooms", min_value=0, required=False)
     size_sq_ft = forms.FloatField(
         label="Square Footage", min_value=0.0, required=False)
     price = forms.FloatField(label="Price", min_value=0.0, required=False)
@@ -28,17 +28,17 @@ class SearchForm(forms.Form):
 
 class LoginForm(forms.Form):
     MAX_FIELD_LENGTH = 20
-    username = forms.CharField(label="", max_length=MAX_FIELD_LENGTH,widget=forms.TextInput(
-        attrs = {
-            'class' : 'form-control col-auto',
-            'placeholder' : 'username'
+    username = forms.CharField(label="", max_length=MAX_FIELD_LENGTH, widget=forms.TextInput(
+        attrs={
+            'class': 'form-control col-auto',
+            'placeholder': 'username'
         }
     ))
     password = forms.CharField(
         label="", help_text='max 20 characters', max_length=MAX_FIELD_LENGTH, widget=forms.PasswordInput(
-            attrs = {
-                'class' : 'form-control col-auto',
-                'placeholder' : 'password'
+            attrs={
+                'class': 'form-control col-auto',
+                'placeholder': 'password'
             }
         ))
 
@@ -66,8 +66,7 @@ class CreateDomicileForm(forms.ModelForm):
         model = Domicile
 
         fields = (
-            # TODO Add bed_count, bath_count
-            'residence_type', 'address', 'city', 'state', 'zip_code', 'size'
+            'residence_type', 'address', 'city', 'state', 'zip_code', 'size', 'bed_count', 'bath_count'
         )
 
 
