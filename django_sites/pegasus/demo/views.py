@@ -45,7 +45,13 @@ def index(request):
                 if value is not '' and value is not False and value is not None and '%s'.lower() % value != 'all'
             }
 
-            results = Domicile.objects.all().filter(**filters)
+            # Case-insensitive city search
+            if 'city' in filters:
+                city_value = filters.pop('city')
+                results = Domicile.objects.all().filter(city__iexact=city_value).filter(**filters)
+            else:
+                results = Domicile.objects.all().filter(**filters)
+
             listings = ValidListing.objects.all().filter(pk__in=results)
             searched_lat_lng = get_lat_long(results)
 
@@ -88,7 +94,13 @@ def listing(request):
                 if value is not '' and value is not False and value is not None and '%s'.lower() % value != 'all'
             }
 
-            results = Domicile.objects.all().filter(**filters)
+            # Case-insensitive city search
+            if 'city' in filters:
+                city_value = filters.pop('city')
+                results = Domicile.objects.all().filter(city__iexact=city_value).filter(**filters)
+            else:
+                results = Domicile.objects.all().filter(**filters)
+
             listings = ValidListing.objects.all().filter(pk__in=results)
             searched_lat_lng = None
 
