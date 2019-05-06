@@ -147,6 +147,12 @@ def create_listing(request):
 
             try:
                 logging.info("Creating new residence...")
+
+                owner = listing_form.cleaned_data.pop('owner')
+                owner_exists = len(VerifiedUser.objects.all().filter(username=owner)) >= 1
+                if not owner_exists:
+                    raise KeyError("Owner '%s' not found." % owner)
+
                 domicile = Domicile()
                 domicile.update(**domicile_form.cleaned_data)
                 domicile.save()
@@ -214,6 +220,7 @@ def edit_listing(request, listing_id):
     return render(request, "demo/modify_listing.html", {'context': context})
 
 
+@login_required
 def view_listing(request, listing_id):
     listing = get_object_or_404(ValidListing, pk=listing_id)
     domicile = listing.residence
@@ -307,9 +314,12 @@ def activate(request, uidb64, token):
 
     if user is not None and account_activation_token.check_token(user, token):
 
-        # Coerce to verified user class
+        # Coerce to class depending on settings checked
         user.is_active = True
-        user.__class__ = VerifiedUser
+        if user.is_student:
+            user.__class__ = Student
+        else:
+            user.__class__ = Landlord
         user.save(force_insert=True)
 
         login(request, user, backend='demo.utils.AuthBackend')
