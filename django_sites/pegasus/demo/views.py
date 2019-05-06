@@ -314,8 +314,11 @@ def activate(request, uidb64, token):
 
     if user is not None and account_activation_token.check_token(user, token):
 
-        # Coerce to class depending on settings checked
+        # Coerce registered user to verified user first. Then promote to either Student or Landlord
         user.is_active = True
+        user.__class__ = VerifiedUser
+        user.save(force_insert=True)
+
         if user.is_student:
             user.__class__ = Student
         else:
