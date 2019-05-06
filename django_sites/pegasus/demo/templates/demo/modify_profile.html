@@ -11,14 +11,17 @@
 
     <form method="post" class="text-center text-white  text-size">
         {% csrf_token %}
-
         <table align="center">
             {% for field in context.form.visible_fields %}
             <tr>
                 <td>{{ field.label_tag }}</td>
                 <td>
-                    {{ field.errors }}
-                    {{ field }}
+                    {{ field.errors }}       
+                    {% if field%}
+                    
+                    <input type={{ field }} readonly>
+                    <input type="checkbox" onclick="true">
+                    {% endif %}
                     {{ field.help_text }}
                 </td>
             </tr>

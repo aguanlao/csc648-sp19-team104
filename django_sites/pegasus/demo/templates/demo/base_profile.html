@@ -21,18 +21,11 @@
           </a>
         </li>
         <li>
-          <a data-toggle="tab" href="#tab3">
-            <!-- <i class="blue ace-icon fa fa-users bigger-120"></i> -->
-            <i class="fas fa-cogs bigger-120 blue ace-icon"></i>
-            {% block tab3%}
-            {%endblock%}
-          </a>
-        </li>
         {% if request.user.permission_level == 1%}
         <li>
           <a data-toggle="tab" href="#tab4">
             <i class=" green ace-icon far fa-save bigger-120"></i>
-            {% block tab4%}
+            {% block tab3%}
             {%endblock%}
           </a>
         </li>
@@ -50,15 +43,10 @@
         {% block tab2_info %}
         {% endblock %}
       </div>
-       
+      
       <div id="tab3" class="tab-pane">
         {% block tab3_info %}
         {% endblock %}
-      </div>
-
-      <div id="tab4" class="tab-pane">
-          {% block tab4_info %}
-          {% endblock %}
       </div>
 
         </div>
