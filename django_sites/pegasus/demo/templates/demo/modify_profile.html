@@ -19,7 +19,7 @@
                     {{ field.errors }}       
                     {% if field%}
                     
-                    <input type={{ field }} readonly>
+                    {{ field }}
                     <input type="checkbox" onclick="true">
                     {% endif %}
                     {{ field.help_text }}
