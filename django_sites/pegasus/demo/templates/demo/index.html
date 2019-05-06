@@ -1,73 +1,41 @@
 {% extends 'demo/navbar.html' %}
 {% block content %}
 <div>
- <style>
-  body{
-    background-image: url('../../static/demo/images/home.jpg');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
- </style>
+    <style>
+        body {
+            background-image: url('../../static/demo/images/home.jpg');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
 </div>
 
 <div class="jumbotron text-center ">
-   <h2 class="mb-5 secondary-title">
-     Let Pegasus Guide you Home Hello!!
-   </h2>
-  <div class="col-12">
-    <div class="wrap">
-      <div class="search">
-        <input type="text" class="searchTerm" placeholder="Search">
-        <a href={% url 'index' %}>
-          <button type="submit" class="searchButton">
-            <i class="fa fa-search"></i>
-          </button>
-        </a>
-      </div>
+    <h2 class="mb-5 secondary-title" style="color: white; font-size: 5rem ;  text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);">
+        Let Pegasus Guide you Home!!
+    </h2>
+    <div>
+        <!--<input type="text" class="searchTerm" placeholder="Search">-->
+        <form class="form-cont" method="post">
+            {% csrf_token %}
+            {{ context.form.city }}
+            <button class="btn btn-sm btn-info">Go</button>
+        </form>
     </div>
-  </div>
+
+    <div class="col-12">
+        <div class="wrap">
+            <div class="search">
+
+                <!--<a href={% url 'index' %}>-->
+                <!---->
+                <!--<button class="searchButton">-->
+                <!--<i class="fa fa-search"></i>-->
+                <!--</button>-->
+                <!--</a>-->
+            </div>
+        </div>
+    </div>
 </div>
- 
-   <!-- Modal -->
-   <!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"-->
-     <!--aria-hidden="true">-->
-     <!--<div class="modal-dialog" role="document">-->
-       <!--<div class="modal-content">-->
-         <!--<div class="modal-header">-->
- 
-           <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-             <!--<span aria-hidden="true">&times;</span>-->
-           <!--</button>-->
-         <!--</div>-->
-         <!--<div class="modal-body">-->
-           <!--<div>-->
-               <!--<span style="color:red">-->
-                 <!--{{ context.error_message }}-->
-               <!--</span>-->
-             <!---->
-           <!--</div>-->
-           <!--<form class="ui form" method="post">-->
-             <!--<div class="field">-->
-               <!--<label>User Name</label>-->
-               <!--&lt;!&ndash; <input type="text" name="username" placeholder="username" /> &ndash;&gt;-->
-               <!--{% csrf_token %}-->
-                 <!--{{ context.login_form.username}}-->
-             <!--</div>-->
-             <!--<div class="field">-->
-               <!--<label>Password</label>-->
-               <!--<input type="password" name="password" placeholder="Enter Password" />-->
-             <!--</div>-->
-             <!--<button class="ui blue button" type="submit">Sign In</button>-->
-           <!--</form>-->
-         <!--</div>-->
-         <!--<div class="modal-footer">-->
-           <!--Don't Have an Account ?-->
-           <!--</button>-->
-           <!--<a href="#" data-toggle="modal" data-target="#exampleModal2" data-dismiss="modal" aria-label="Close">Sign-->
-             <!--Up</a>-->
-         <!--</div>-->
-       <!--</div>-->
-     <!--</div>-->
-   <!--</div>-->
 {% endblock %}

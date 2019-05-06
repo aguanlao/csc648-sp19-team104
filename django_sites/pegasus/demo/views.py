@@ -14,30 +14,12 @@ from .forms import *
 from .models import *
 from pprint import pprint
 import requests
+import logging
 
 
-def test(request):
-    return render(request, 'demo/test.html')
-
-
-def admin(request):
-    return render(request, 'demo/admin.html')
-
-
-def home(request):
-    return render(request, 'demo/index.html')
-
-
-def signup(request):
-    return render(request, 'demo/signup.html')
-
-
+# TODO: View stubs
 def add_new_property(request):
     return render(request, 'demo/add_new_property.html')
-
-
-def listing(request):
-    return render(request, 'demo/listing.html')
 
 
 def description(request):
@@ -52,14 +34,6 @@ def survey(request):
     return render(request, 'demo/survey.html')
 
 
-def user_profile(request):
-    return render(request, 'demo/user_profile.html')
-
-def base_profile(request):
-    return render(request, 'demo/base_profile.html')
-
-
-# LISTING PAGES #
 def index(request):
     if request.method == 'POST':
         form = SearchForm(request.POST)
@@ -73,19 +47,59 @@ def index(request):
 
             results = Domicile.objects.all().filter(**filters)
             listings = ValidListing.objects.all().filter(pk__in=results)
+            searched_lat_lng = get_lat_long(results)
 
-            searched_lat_lng = get_lat_long(listings)
-
-            # TODO: Remove DEBUG statements
-            # results = []
             for key, value in filters.items():
-                print("[DEBUG] (%s , %s)" % (key, value))
+                logging.debug("Search filters: (%s , %s)" % (key, value))
 
             for entry in listings:
                 try:
-                    print(entry.photo.url)
+                    logging.debug(entry.photo.url)
                 except ValueError as exception:
-                    print(exception)
+                    logging.warning(exception)
+
+            context = {
+                'form': form,
+                'search_results': results,
+                'listing_results': listings,
+                'search_count': len(results),
+                'lat_lng': searched_lat_lng
+            }
+            return render(request, 'demo/listing.html', {'context': context})
+
+    else:
+        form = SearchForm()
+    context = {
+        'form': form,
+        'search_results': []
+    }
+    return render(request, 'demo/index.html', {'context': context})
+
+
+# LISTING PAGES #
+def listing(request):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+
+            # Filter all null values from filter set
+            filters = {
+                key: value for key, value in form.cleaned_data.items()
+                if value is not '' and value is not False and value is not None and '%s'.lower() % value != 'all'
+            }
+
+            results = Domicile.objects.all().filter(**filters)
+            listings = ValidListing.objects.all().filter(pk__in=results)
+            searched_lat_lng = None
+
+            for key, value in filters.items():
+                logging.debug("Search filters: (%s , %s)" % (key, value))
+
+            for entry in listings:
+                try:
+                    logging.debug(entry.photo.url)
+                except ValueError as exception:
+                    logging.warning(exception)
 
             context = {
                 'form': form,
@@ -107,31 +121,32 @@ def index(request):
     return render(request, 'demo/listing.html', {'context': context})
 
 
+@login_required
 def create_listing(request):
     if request.method == 'POST':
         domicile_form = CreateDomicileForm(request.POST)
         listing_form = CreateListingForm(request.POST)
 
         if domicile_form.is_valid() and listing_form.is_valid():
-            # TODO: Remove debug statements
             for key, value in domicile_form.cleaned_data.items():
-                print("[DEBUG] (%s, %s)" % (key, value))
-            print("==================")
+                logging.debug("(%s, %s)" % (key, value))
             for key, value in listing_form.cleaned_data.items():
-                print("[DEBUG] (%s, %s)" % (key, value))
+                logging.debug("(%s, %s)" % (key, value))
 
             try:
-                # Save domicile to database, then add to listing
+                logging.info("Creating new residence...")
                 domicile = Domicile()
                 domicile.update(**domicile_form.cleaned_data)
                 domicile.save()
 
+                logging.info("Creating new listing...")
                 listing = ValidListing()
                 listing.update(**listing_form.cleaned_data)
                 listing.residence = domicile
                 listing.save()
+
             except Exception as error_message:
-                print("[ERROR] %s" % error_message)
+                logging.error("Operation failed: %s" % error_message)
     else:
         domicile_form = CreateDomicileForm()
         listing_form = CreateListingForm()
@@ -141,10 +156,10 @@ def create_listing(request):
         'listing_form': listing_form
     }
 
-    # return render(request, 'demo/create_listing.html', {'context': context})
     return render(request, 'demo/add_new_property.html', {'context': context})
 
 
+@login_required
 def edit_listing(request, listing_id):
     listing = get_object_or_404(ValidListing, pk=listing_id)
 
@@ -153,6 +168,7 @@ def edit_listing(request, listing_id):
 
         if form.is_valid():
             try:
+                logging.info("Editing listing '%s'..." % listing_id)
                 listing.update(**form.cleaned_data)
                 listing.save()
 
@@ -180,27 +196,33 @@ def edit_listing(request, listing_id):
             'update_success': False,
             'error_message': ''
         }
+
+    if context['error_message']:
+        logging.error("Edit operation failed: %s" % context['error_message'])
     return render(request, "demo/modify_listing.html", {'context': context})
 
 
 def view_listing(request, listing_id):
     listing = get_object_or_404(ValidListing, pk=listing_id)
     domicile = listing.residence
-    full_address = domicile.address + " " + domicile.city + \
-        " " + domicile.state + " " + str(domicile.zip_code)
+    full_address = domicile.address + " " + domicile.city + " " + domicile.state + " " + str(domicile.zip_code)
+
+    # get_lat_long takes a list of listings as argument and returns a list of dicts
+    lat_long = get_lat_long([domicile])
+
+    # Get the single dictionary
+    single_lat_long = lat_long[0]
 
     context = {
         'listing': listing,
         'domicile': domicile,
         'address': full_address,
+        'lat_long': single_lat_long,
     }
-
-    # return render(request, 'demo/view_listing.html', {'context': context})
     return render(request, 'demo/description.html', {'context': context})
 
+
 # USER PAGES #
-
-
 def create_account(request):
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
@@ -216,9 +238,11 @@ def create_account(request):
             user_attributes['password'] = secret
 
             try:
+                logging.info("Creating new user...")
                 user = RegisteredUser()
                 user.update(**user_attributes)
                 user.save()
+                logging.info("Created user '%s'." % user.email)
 
                 # User creation success, now send email to activate full account
                 current_site = get_current_site(request)
@@ -231,8 +255,7 @@ def create_account(request):
                 })
                 email = EmailMessage(mail_subject, message, to=[user.email])
                 email.send()
-                print(
-                    "[INFO] Sent confirmation email to user '%s' for activation." % email)
+                logging.info("Sent confirmation email to user '%s' for activation." % email)
                 return render(request, 'demo/login_confirmation.html')
 
             except Exception as error_message:
@@ -278,11 +301,10 @@ def activate(request, uidb64, token):
         user.save(force_insert=True)
 
         login(request, user, backend='demo.utils.AuthBackend')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        return HttpResponse('Thank you for your email confirmation. You may now login with your account.')
     else:
         if user is not None:
-            print("[INFO] Got invalid token activation from user '%s'." %
-                  user.username)
+            logging.warning("Got invalid token activation from user '%s'." % user.username)
         return HttpResponse('Activation link is invalid!')
 
 
@@ -300,8 +322,11 @@ def user_login(request):
             user = auth_backend.authenticate(
                 username=username, password=password)
 
+            logging.info("Got login request from '%s'." % username)
+
             # Login success
             if user is not None:
+                logging.info("Login success.")
                 login(request, user, backend='demo.utils.AuthBackend')
 
                 # Check if user needs to redirect to another page other than index
@@ -313,6 +338,7 @@ def user_login(request):
 
             # Login failure
             else:
+                logging.info("Login failure. Check username or password.")
                 context = {
                     'login_form': form,
                     'error_message': 'Username or password is incorrect.'
@@ -467,61 +493,34 @@ def forgot_password(request):
     return render(request, 'demo/forgot_password.html', {'context': context})
 
 
-# SNN PAGES #
-@login_required
-def create_group(request):
-    context = {}
-    return render(request, 'demo/create_group.html', {'context': context})
-
-
-@login_required
-def edit_group(request, group_name=None):
-    context = {}
-    return render(request, 'demo/modify_group.html', {'context': context})
-
-
-@login_required
-def delete_group(request, group_name=None):
-    context = {}
-    return render(request, 'demo/delete_group.html', {'context': context})
-
-
-@login_required
-def view_group(request, group_name=None):
-    context = {}
-    return render(request, 'demo/view_group.html', {'context': context})
-
-
-# Method to get geocoding data (lat / long) for searched listings
-def get_lat_long(listings):
+# Get geocoding data (lat / long) for searched listings
+def get_lat_long(residences):
     # List of dictionaries {'lat': xxx, 'lng':xxx}
     all_lat_lng = []
-    for listing in listings:
-
-        geodata = dict()
-        geodata['lat'] = 0
-        geodata['lng'] = 0
-        addr = listing.residence.address
+    for residence in residences:
+        geodata = {
+            'lat': 0,
+            'lng': 0
+        }
+        addr = residence.address
 
         if addr:
-            GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json?address='+addr+'&key=AIzaSyCbr6KeU9un_uLPpH581LUfOb8PE3zi1x0'
-
+            GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' \
+                                  + addr \
+                                  + '&key=AIzaSyCbr6KeU9un_uLPpH581LUfOb8PE3zi1x0'
             params = {'address': addr}
-
             map_request = requests.get(GOOGLE_MAPS_API_URL, params=params)
             response = map_request.json()
-            #print('response: ', response)
 
             if len(response['results']) > 0:
                 result = response['results'][0]
                 geodata['lat'] = result['geometry']['location']['lat']
                 geodata['lng'] = result['geometry']['location']['lng']
                 all_lat_lng.append(geodata)
-
     return all_lat_lng
 
 
-# maps method to be used for standalone map (can delete once map is functional)
+#TODO: remove once functional
 def maps(request):
     listings = ValidListing.objects.all()
     for listing in listings:
@@ -537,13 +536,13 @@ def maps(request):
         addr = listing.residence.address
 
         if addr:
-            GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json?address='+addr+'&key=AIzaSyCbr6KeU9un_uLPpH581LUfOb8PE3zi1x0'
+            GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + addr + '&key=AIzaSyCbr6KeU9un_uLPpH581LUfOb8PE3zi1x0'
 
             params = {'address': addr}
 
             map_request = requests.get(GOOGLE_MAPS_API_URL, params=params)
             response = map_request.json()
-            #print('response: ', response)
+            # print('response: ', response)
 
             if len(response['results']) > 0:
                 result = response['results'][0]
@@ -552,7 +551,7 @@ def maps(request):
                 all_lat_lng.append(geodata)
 
     context = {
-        'addresses': listings, 
+        'addresses': listings,
         'latitude': geodata['lat'],
         'longitude': geodata['lng'],
         'all_lat_lng': all_lat_lng,

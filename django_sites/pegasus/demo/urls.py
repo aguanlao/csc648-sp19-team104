@@ -1,19 +1,13 @@
 from django.urls import path, re_path
-from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
-    path('index', views.index, name='index'),
-    path('test/', views.test, name='test'),
-    path('admin/', views.admin, name='admin'),
-    path('', views.home, name='home'),
-    path('signup/', views.signup, name='signup'),
+    path('', views.index, name='index'),
+    path('listing/', views.listing, name='listing'),
     path('add_new_property/', views.create_listing, name='add_new_property'),
     path('description/', views.description, name='description'),
     path('manager_profile/', views.manager_profile, name='manager_profile'),
     path('survey/', views.survey, name='survey'),
-    path('user_profile/', views.user_profile, name='user_profile'),
-    path('profile/', views.base_profile, name='profile'),
 
     # Administrative paths
     path('login/', views.user_login, name='login'),
@@ -37,13 +31,5 @@ urlpatterns = [
     path('<int:listing_id>/', views.view_listing, name='view_listing'),
     path('<int:listing_id>/edit/', views.edit_listing, name='edit_listing'),
 
-    # SNN paths
-    path('create_group/', views.create_group, name='create_group'),
-    path('edit_group/<str:group_name>/', views.edit_group, name='edit_group'),
-    path('delete_group/<str:group_name>/',
-         views.delete_group, name='delete_group'),
-    path('view_group/<str:group_name>/', views.view_group, name='view_group'),
-
     path('maps/', views.maps, name='maps'),
-
 ]
