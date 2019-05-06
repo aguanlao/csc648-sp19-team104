@@ -240,6 +240,7 @@ class Administrator(VerifiedUser):
         db_table = "admins"
 
     permission_level = 0
+    is_staff = True
 
     # TODO
     def accept_listing(self):
