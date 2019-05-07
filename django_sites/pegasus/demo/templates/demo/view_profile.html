@@ -11,14 +11,14 @@
 <div class="row">
     <div class="col-xs-12 col-sm-3 center">
         <a href="#">
-        <span class="profile-picture" style="width:100px; height:100px; border-radius: 50%;">
-            <img style="height:100%; width:100%; border-radius: 50%;" class="editable img-responsive" alt=" Avatar" id="avatar2"
-            src= "{{context.user.profile_picture}}" >
-            <div class="p-image text-warning">
-                <i class="fa fa-camera upload-button"></i>
-                <input class="file-upload" type="file" accept="image/*" />
-            </div>
-        </span>
+            <span class="profile-picture" style="width:100px; height:100px; border-radius: 50%;">
+                <img style="height:100%; width:100%; border-radius: 50%;" class="editable img-responsive" alt=" Avatar"
+                    id="avatar2" src="{{context.user.profile_picture}}">
+                <div class="p-image text-warning">
+                    <i class="fa fa-camera upload-button"></i>
+                    <input class="file-upload" type="file" accept="image/*" />
+                </div>
+            </span>
         </a>
         <div class="space space-4"></div>
     </div>
@@ -28,33 +28,33 @@
             <span class="middle">{{context.user.first_name}} {{context.user.last_name}}</span>
         </h4>
         <div class="profile-user-info">
-        <div class="profile-info-row">
-        <div class="profile-info-name"> Username </div>
-        <div class="profile-info-value">
-            <span> {{context.user.username}} </span>
-        </div>
-        </div>
-        <div class="profile-info-row">
-        <div class="profile-info-name"> Location </div>
-        <div class="profile-info-value">
-            <i class="fa fa-map-marker light-orange bigger-110"></i>
-            <span> {{context.user.city}} </span>
-            <span> {{context.user.state}}</span>
-        </div>
-        </div>
+            <div class="profile-info-row">
+                <div class="profile-info-name"> Username </div>
+                <div class="profile-info-value">
+                    <span> {{context.user.username}} </span>
+                </div>
+            </div>
+            <div class="profile-info-row">
+                <div class="profile-info-name"> Location </div>
+                <div class="profile-info-value">
+                    <i class="fa fa-map-marker light-orange bigger-110"></i>
+                    <span> {{context.user.city}} </span>
+                    <span> {{context.user.state}}</span>
+                </div>
+            </div>
         </div>
         <div class="hr hr-8 dotted"></div>
         <div class="profile-user-info">
             <div class="profile-info-row">
                 <div class="profile-info-name"> Email </div>
-                
+
                 <div class="profile-info-value">
                     <a href="#" target="_blank"> {{context.user.email}} </a>
                 </div>
             </div>
             <div class="profile-info-row">
                 <div class="profile-info-name">
-                <i class="middle ace-icon fa fa-twitter-square bigger-150 light-blue"></i>
+                    <i class="middle ace-icon fa fa-twitter-square bigger-150 light-blue"></i>
                 </div>
                 <div class="profile-info-value">
                     <a href="{% url 'postman:inbox' %}">Inbox</a>
@@ -70,25 +70,25 @@
             </div>
         </div>
     </div>
-    </div>
-    <div class="space-20"></div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-6">
-            <div class="widget-box transparent">
+</div>
+<div class="space-20"></div>
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="widget-box transparent">
             <div class="widget-header widget-header-small">
                 <h4 class="widget-title smaller">
                     <i class="ace-icon fa fa-check-square-o bigger-110"></i>
                     Little About Me
                 </h4>
             </div>
-                <div class="widget-body">
-                    <div class="widget-main">
-                            {{context.user.bio}} 
-                    </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    {{context.user.bio}}
                 </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
 
 {% block tab2_info %}
@@ -101,8 +101,8 @@
                 <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>
                 </div>
                 <img class="d-flex align-self-start"
-                src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
-                alt="Generic placeholder image">
+                    src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
+                    alt="Generic placeholder image">
                 <div class="media-body pl-3">
                     <div class="price">$799,000<small>New York</small></div>
                     <div class="stats">
@@ -120,8 +120,8 @@
                 <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>
                 </div>
                 <img class="d-flex align-self-start"
-                src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
-                alt="Generic placeholder image">
+                    src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
+                    alt="Generic placeholder image">
                 <div class="media-body pl-3">
                     <div class="price">$799,000<small>New York</small></div>
                     <div class="stats">
@@ -139,8 +139,8 @@
                 <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>
                 </div>
                 <img class="d-flex align-self-start"
-                src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
-                alt="Generic placeholder image">
+                    src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
+                    alt="Generic placeholder image">
                 <div class="media-body pl-3">
                     <div class="price">$799,000<small>New York</small></div>
                     <div class="stats">
@@ -158,8 +158,8 @@
                 <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>
                 </div>
                 <img class="d-flex align-self-start"
-                src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
-                alt="Generic placeholder image">
+                    src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb"
+                    alt="Generic placeholder image">
                 <div class="media-body pl-3">
                     <div class="price">$799,000<small>New York</small></div>
                     <div class="stats">
@@ -184,7 +184,7 @@
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-            placeholder="Enter email">
+                placeholder="Enter email">
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1"> Change Password</label>
@@ -200,5 +200,5 @@
 {% endblock %}
 
 {% else %}
-    <h1>YOUR'E NOT SUPPOSED TO BE HERE</h1>
+<h1>YOUR'E NOT SUPPOSED TO BE HERE</h1>
 {% endif %}

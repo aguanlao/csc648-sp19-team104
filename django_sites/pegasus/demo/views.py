@@ -45,14 +45,32 @@ def index(request):
                 if value is not '' and value is not False and value is not None and '%s'.lower() % value != 'all'
             }
 
-            # Case-insensitive city search
-            if 'city' in filters:
-                city_value = filters.pop('city')
-                results = Domicile.objects.all().filter(city__iexact=city_value).filter(**filters)
-            else:
-                results = Domicile.objects.all().filter(**filters)
+            # Separate domicile filters
+            domicile_filters = {
+                key: value for key, value in filters.items() if key in Domicile.__dict__
+            }
+            all(map(filters.pop, domicile_filters))
+            logging.debug("Listing filters: %s" % filters)
 
-            listings = ValidListing.objects.all().filter(pk__in=results)
+            for key, value in domicile_filters.items():
+                logging.debug("Domicile filter: (%s, %s)" % (key, value))
+
+            results = Domicile.objects.all()
+            # Filter domiciles
+            if domicile_filters:
+                # Case-insensitive city search
+                if 'city' in domicile_filters:
+                    city_value = domicile_filters.pop('city')
+                    results = results.filter(city__iexact=city_value).filter(**domicile_filters)
+                else:
+                    results = results.filter(**domicile_filters)
+
+            listings = ValidListing.objects.all().filter(pk__in=results).filter(**filters)
+
+            # Filter domiciles from filtered listings
+            if filters:
+                results = results.filter(pk__in=listings)
+
             searched_lat_lng = get_lat_long(results)
 
             for key, value in filters.items():
@@ -94,15 +112,38 @@ def listing(request):
                 if value is not '' and value is not False and value is not None and '%s'.lower() % value != 'all'
             }
 
-            # Case-insensitive city search
-            if 'city' in filters:
-                city_value = filters.pop('city')
-                results = Domicile.objects.all().filter(city__iexact=city_value).filter(**filters)
-            else:
-                results = Domicile.objects.all().filter(**filters)
+            # Separate domicile filters
+            domicile_filters = {
+                key: value for key, value in filters.items() if key in Domicile.__dict__
+            }
+            all(map(filters.pop, domicile_filters))
+            logging.debug("Listing filters: %s" % filters)
 
-            listings = ValidListing.objects.all().filter(pk__in=results)
-            searched_lat_lng = None
+            for key, value in domicile_filters.items():
+                logging.debug("Domicile filter: (%s, %s)" % (key, value))
+
+            results = Domicile.objects.all()
+            # Filter domiciles
+            if domicile_filters:
+                # Case-insensitive city search
+                if 'city' in domicile_filters:
+                    city_value = domicile_filters.pop('city')
+                    results = results.filter(city__iexact=city_value)
+
+                # Filter for square footage
+                if 'size' in domicile_filters:
+                    size = domicile_filters.pop('size')
+                    results = results.filter(size__gte=size)
+
+                results = results.filter(**domicile_filters)
+
+            listings = ValidListing.objects.all().filter(pk__in=results).filter(**filters)
+
+            # Filter domiciles from filtered listings
+            if filters:
+                results = results.filter(pk__in=listings)
+
+            searched_lat_lng = get_lat_long(results)
 
             for key, value in filters.items():
                 logging.debug("Search filters: (%s , %s)" % (key, value))
