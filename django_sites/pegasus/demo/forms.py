@@ -7,9 +7,9 @@ class SearchForm(forms.Form):
     residence_type = forms.ChoiceField(
         label="Residence type", choices=form_residence_options, required=False)
     pet_friendly = forms.BooleanField(label="Allows pets", required=False)
-    beds = forms.IntegerField(label="Bedrooms", min_value=0, required=False)
-    baths = forms.IntegerField(label="Bathrooms", min_value=0, required=False)
-    size_sq_ft = forms.FloatField(
+    bed_count = forms.IntegerField(label="Bedrooms", min_value=0, required=False)
+    bath_count = forms.IntegerField(label="Bathrooms", min_value=0, required=False)
+    size = forms.FloatField(
         label="Square Footage", min_value=0.0, required=False)
     price = forms.FloatField(label="Price", min_value=0.0, required=False)
     city = forms.CharField(label="City", max_length=20, required=False)

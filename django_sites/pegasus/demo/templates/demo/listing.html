@@ -202,60 +202,62 @@
 
 
     <!-- Filter and search  forms-->
-    <div class="filter-search ">
-        <form class="form-cont" method="post">
-            {% csrf_token %}
-            {{ context.form.city }}
-            <button class="btn btn-sm btn-info">Go</button>
-            <span style="font-size:16px;cursor:pointer; color: #f1f1f1;" onclick="openNav()"><i
-                    class="fas fa-filter"></i>
-                Filter</span>
-        </form>
-    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="filter-search ">
+                <div class="form-cont">
+                {{ context.form.city }}
+                <button class="btn btn-sm btn-info">Go</button>
+                <span style="font-size:16px;cursor:pointer; color: #f1f1f1;" onclick="openNav()"><i
+                        class="fas fa-filter"></i>
+                    Filter</span>
+                </div>
+        </div>
 
 
-    <div id="mySidenav" class="sidenav" style="margin-top:50px;">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <form class="ui form text-white" method="post">
-            {% csrf_token %}
-            <h4 class="ui dividing header text-center text-white">Filter Your Search</h4>
-            <div class="dropdown">
-                <label for="{{ context.form.residence_type.id_for_label }}" class="text-white">Residence Type</label>
-                {{ context.form.residence_type }}
-            </div>
-            <div class="field">
-                <div class="two fields">
-                    <div class="field">
-                        <label for="{{ context.form.beds.id_for_label }}" class="text-white">Bedrooms</label>
-                        {{ context.form.beds }}
+        <div id="mySidenav" class="sidenav" style="margin-top:50px;">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="ui form text-white">
+                <h4 class="ui dividing header text-center text-white">Filter Your Search</h4>
+                <div class="dropdown">
+                    <label for="{{ context.form.residence_type.id_for_label }}" class="text-white">Residence Type</label>
+                    {{ context.form.residence_type }}
+                </div>
+                <div class="field">
+                    <div class="two fields">
+                        <div class="field">
+                            <label for="{{ context.form.bed_count.id_for_label }}" class="text-white">Bedrooms</label>
+                            {{ context.form.bed_count }}
+                        </div>
+                        <div class="field">
+                            <label for="{{ context.form.bath_count.id_for_label }}" class="text-white">Bathroom</label>
+                            {{ context.form.bath_count }}
+                        </div>
                     </div>
-                    <div class="field">
-                        <label for="{{ context.form.baths.id_for_label }}" class="text-white">Bathroom</label>
-                        {{ context.form.baths }}
+                </div>
+                <div class="form-check">
+                    <label for="{{ context.form.pet_friendly.id_for_label }}" class="form-check-label text-white">Pets allowed</label>
+                    {{ context.form.pet_friendly }}
+                </div>
+                <div class="fields">
+                    <div class=" four wide field">
+                        <label for="{{ context.form.price.id_for_label }}" class="text-white">Min Price</label>
+                        {{ context.form.price }}
+                    </div>
+                    <div class=" four wide field">
+                        <label class="text-white">Max Price</label>
+                        <input type="text" placeholder="Max price" />
+                    </div>
+                    <div class=" six wide field">
+                        <label class="text-white">Square Footage</label>
+                        <input type="text" placeholder="Square Footage" />
                     </div>
                 </div>
+                <input type="submit" value="Save" class="btn btn-outline-info mx-auto" />
             </div>
-            <div class="form-check">
-                <label for="{{ context.form.pet_friendly.id_for_label }}" class="form-check-label text-white">Pets allowed</label>
-                {{ context.form.pet_friendly }}
-            </div>
-            <div class="fields">
-                <div class=" four wide field">
-                    <label for="{{ context.form.price.id_for_label }}" class="text-white">Min Price</label>
-                    {{ context.form.price }}
-                </div>
-                <div class=" four wide field">
-                    <label class="text-white">Max Price</label>
-                    <input type="text" placeholder="Max price" />
-                </div>
-                <div class=" six wide field">
-                    <label class="text-white">Square Footage</label>
-                    <input type="text" placeholder="Square Footage" />
-                </div>
-            </div>
-            <input type="submit" value="Save" class="btn btn-outline-info mx-auto" />
-        </form>
-    </div>
+        </div>
+    </form>
 
     <!-- Listing results -->
     <div class="block-right" id="myUL">
@@ -279,7 +281,7 @@
                                 <span><i class="fa fa-bed"></i>{{ entry.residence.bed_count }} Bedroom{{ entry.residence.bed_count|pluralize}}</span>
                                 <span><i class="fa fa-bath"></i>{{ entry.residence.bath_count }} Bathroom{{ entry.residence.bath_count|pluralize}}</span>
                             </div>
-                            <div class="address">{{ entry.residence.address }}</div>
+                            <div class="address">{{ entry.residence.address|title }}</div>
                         </div>
                     </div>
                 </div>
