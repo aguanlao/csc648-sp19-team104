@@ -102,7 +102,7 @@ def listing(request):
                 results = Domicile.objects.all().filter(**filters)
 
             listings = ValidListing.objects.all().filter(pk__in=results)
-            searched_lat_lng = None
+            searched_lat_lng = get_lat_long(results)
 
             for key, value in filters.items():
                 logging.debug("Search filters: (%s , %s)" % (key, value))

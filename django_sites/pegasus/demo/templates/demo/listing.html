@@ -209,10 +209,9 @@
             <button class="btn btn-sm btn-info">Go</button>
             <span style="font-size:16px;cursor:pointer; color: #f1f1f1;" onclick="openNav()"><i
                     class="fas fa-filter"></i>
-                filter</span>
+                Filter</span>
         </form>
     </div>
-    <!-- end Filter and search  forms-->
 
 
     <div id="mySidenav" class="sidenav" style="margin-top:50px;">
@@ -220,26 +219,29 @@
         <form class="ui form text-white" method="post">
             {% csrf_token %}
             <h4 class="ui dividing header text-center text-white">Filter Your Search</h4>
-            {{residence_type}}
+            <div class="dropdown">
+                <label for="{{ context.form.residence_type.id_for_label }}" class="text-white">Residence Type</label>
+                {{ context.form.residence_type }}
+            </div>
             <div class="field">
                 <div class="two fields">
                     <div class="field">
-                        <label for="{{ context.form.beds.id_for_lable }}" class="text-white">Bedrooms</label>
+                        <label for="{{ context.form.beds.id_for_label }}" class="text-white">Bedrooms</label>
                         {{ context.form.beds }}
                     </div>
                     <div class="field">
-                        <label class="text-white">Bathroom</label>
-                        <input type="text" name="shipping[last-name]" placeholder="Last Name" />
+                        <label for="{{ context.form.baths.id_for_label }}" class="text-white">Bathroom</label>
+                        {{ context.form.baths }}
                     </div>
                 </div>
             </div>
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                <label class="form-check-label text-white" for="exampleCheck1">Peets allowed</label>
+                <label for="{{ context.form.pet_friendly.id_for_label }}" class="form-check-label text-white">Pets allowed</label>
+                {{ context.form.pet_friendly }}
             </div>
             <div class="fields">
                 <div class=" four wide field">
-                    <label for="{{ context.form.price.id_for_lable }}" class="text-white">Min Price</label>
+                    <label for="{{ context.form.price.id_for_label }}" class="text-white">Min Price</label>
                     {{ context.form.price }}
                 </div>
                 <div class=" four wide field">
@@ -251,11 +253,11 @@
                     <input type="text" placeholder="Square Footage" />
                 </div>
             </div>
-            <input type="submit" value="Save" class="batn btn-outline-info mx-auto" />
+            <input type="submit" value="Save" class="btn btn-outline-info mx-auto" />
         </form>
     </div>
 
-
+    <!-- Listing results -->
     <div class="block-right" id="myUL">
         <div class="container">
             <div class="row">
@@ -265,16 +267,17 @@
                         <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>
                         </div>
                         <a href={% url 'view_listing' listing_id=entry.pk %}>
-                            <img class="d-flex align-self-start" {% if entry.photo %} src="{{ entry.photo.url }}"
+                            <img class="d-flex align-self-start" {% if entry.photo %} src="../{{ entry.photo.url }}"
                                 {% endif %} alt="Generic placeholder image">
                         </a>
                         <div class="media-body pl-3">
                             <div class="price">${{ entry.price|floatformat:-2 }}
-                                <small>{{ entry.residence.city }}</small>
+                                <small>{{ entry.residence.city|title }}</small>
                             </div>
                             <div class="stats">
-                                <span><i class="fa fa-arrows-alt"></i>{{ entry.residence.size }} Sq ft</span>
-                                <span><i class="fa fa-bath"></i>2 Bedrooms</span>
+                                <span><i class="fa fa-arrows-alt"></i>{{ entry.residence.size }} sq ft</span>
+                                <span><i class="fa fa-bed"></i>{{ entry.residence.bed_count }} Bedroom{{ entry.residence.bed_count|pluralize}}</span>
+                                <span><i class="fa fa-bath"></i>{{ entry.residence.bath_count }} Bathroom{{ entry.residence.bath_count|pluralize}}</span>
                             </div>
                             <div class="address">{{ entry.residence.address }}</div>
                         </div>
@@ -285,8 +288,9 @@
                 {% endif %}
             </div>
         </div>
-
     </div>
+
+    <!--  Map  -->
     <div class="block-left" style="margin-top: 20px">
         <div class="container position-fixed">
             <div class="row">
