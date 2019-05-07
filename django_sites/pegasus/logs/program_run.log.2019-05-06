@@ -1,0 +1,80 @@
+[06/May/2019 23:02:16] INFO [django.server:154] "GET / HTTP/1.1" 200 1792
+[06/May/2019 23:02:16] INFO [django.server:154] "GET / HTTP/1.1" 200 1792
+[06/May/2019 23:02:16] INFO [django.server:154] "GET /static/about/site.css HTTP/1.1" 200 1059
+[06/May/2019 23:02:16] INFO [django.server:154] "GET /static/about/site.css HTTP/1.1" 200 1059
+[06/May/2019 23:02:16] INFO [django.server:154] "GET /static/about/jquery.js HTTP/1.1" 200 86709
+[06/May/2019 23:02:16] INFO [django.server:154] "GET /static/about/jquery.js HTTP/1.1" 200 86709
+[06/May/2019 23:02:16] INFO [django.server:154] "GET /static/about/images/pegasus.png HTTP/1.1" 200 1543374
+[06/May/2019 23:02:16] INFO [django.server:154] "GET /static/about/images/pegasus.png HTTP/1.1" 200 1543374
+[06/May/2019 23:02:16] INFO [django.server:154] "GET /static/about/images/background.jpg HTTP/1.1" 200 347151
+[06/May/2019 23:02:16] INFO [django.server:154] "GET /static/about/images/background.jpg HTTP/1.1" 200 347151
+[06/May/2019 23:02:17] INFO [django.server:154] "GET /static/about/images/favicon.ico HTTP/1.1" 200 5893
+[06/May/2019 23:02:17] INFO [django.server:154] "GET /static/about/images/favicon.ico HTTP/1.1" 200 5893
+[06/May/2019 23:02:19] INFO [django.server:154] "GET /demo HTTP/1.1" 301 0
+[06/May/2019 23:02:19] INFO [django.server:154] "GET /demo HTTP/1.1" 301 0
+[06/May/2019 23:02:19] INFO [django.server:154] "GET /demo/ HTTP/1.1" 200 5139
+[06/May/2019 23:02:19] INFO [django.server:154] "GET /demo/ HTTP/1.1" 200 5139
+[06/May/2019 23:02:19] INFO [django.server:154] "GET /static/demo/css/main.css HTTP/1.1" 200 206950
+[06/May/2019 23:02:19] INFO [django.server:154] "GET /static/demo/css/main.css HTTP/1.1" 200 206950
+[06/May/2019 23:02:20] INFO [django.server:154] "GET /static/demo/images/logos.png HTTP/1.1" 200 10194
+[06/May/2019 23:02:20] INFO [django.server:154] "GET /static/demo/images/logos.png HTTP/1.1" 200 10194
+[06/May/2019 23:02:20] INFO [django.server:154] "GET /static/demo/images/home.jpg HTTP/1.1" 200 1056872
+[06/May/2019 23:02:20] INFO [django.server:154] "GET /static/demo/images/home.jpg HTTP/1.1" 200 1056872
+[06/May/2019 23:02:20] WARNING [django.request:228] Not Found: /favicon.ico
+[06/May/2019 23:02:20] WARNING [django.request:228] Not Found: /favicon.ico
+[06/May/2019 23:02:20] WARNING [django.server:154] "GET /favicon.ico HTTP/1.1" 404 4222
+[06/May/2019 23:02:20] WARNING [django.server:154] "GET /favicon.ico HTTP/1.1" 404 4222
+[06/May/2019 23:02:40] WARNING [root:83] The 'photo' attribute has no file associated with it.
+[06/May/2019 23:02:40] WARNING [root:83] The 'photo' attribute has no file associated with it.
+[06/May/2019 23:02:40] WARNING [root:83] The 'photo' attribute has no file associated with it.
+[06/May/2019 23:02:40] WARNING [root:83] The 'photo' attribute has no file associated with it.
+[06/May/2019 23:02:40] INFO [django.server:154] "POST /demo/ HTTP/1.1" 200 43760
+[06/May/2019 23:02:40] INFO [django.server:154] "POST /demo/ HTTP/1.1" 200 43760
+[06/May/2019 23:02:40] INFO [django.server:154] "GET /media/demo/residence_pictures/house1.jpeg HTTP/1.1" 200 10179
+[06/May/2019 23:02:40] INFO [django.server:154] "GET /media/demo/residence_pictures/house1.jpeg HTTP/1.1" 200 10179
+[06/May/2019 23:02:40] INFO [django.server:154] "GET /media/demo/residence_pictures/house5.jpeg HTTP/1.1" 200 11854
+[06/May/2019 23:02:40] INFO [django.server:154] "GET /media/demo/residence_pictures/house5.jpeg HTTP/1.1" 200 11854
+[06/May/2019 23:02:40] INFO [django.server:154] "GET /media/demo/residence_pictures/house4.jpeg HTTP/1.1" 200 11732
+[06/May/2019 23:02:40] INFO [django.server:154] "GET /media/demo/residence_pictures/house4.jpeg HTTP/1.1" 200 11732
+[06/May/2019 23:02:40] INFO [django.server:154] "GET /media/demo/residence_pictures/apartment2.jpeg HTTP/1.1" 200 5797
+[06/May/2019 23:02:40] INFO [django.server:154] "GET /media/demo/residence_pictures/apartment2.jpeg HTTP/1.1" 200 5797
+[06/May/2019 23:02:40] INFO [django.server:154] "GET /media/demo/residence_pictures/apartment3.jpeg HTTP/1.1" 200 7827
+[06/May/2019 23:02:40] INFO [django.server:154] "GET /media/demo/residence_pictures/apartment3.jpeg HTTP/1.1" 200 7827
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/apartment1.jpeg HTTP/1.1" 200 5834
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/apartment1.jpeg HTTP/1.1" 200 5834
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/apartment4.jpeg HTTP/1.1" 200 5138
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/apartment4.jpeg HTTP/1.1" 200 5138
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/apartment5.jpeg HTTP/1.1" 200 7958
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/apartment5.jpeg HTTP/1.1" 200 7958
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/room1.jpeg HTTP/1.1" 200 8280
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/room1.jpeg HTTP/1.1" 200 8280
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/room2.jpeg HTTP/1.1" 200 10825
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/room2.jpeg HTTP/1.1" 200 10825
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/room3.jpeg HTTP/1.1" 200 6996
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/room3.jpeg HTTP/1.1" 200 6996
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/room4.jpeg HTTP/1.1" 200 5845
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/room4.jpeg HTTP/1.1" 200 5845
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/room5.jpeg HTTP/1.1" 200 8369
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/room5.jpeg HTTP/1.1" 200 8369
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/lafayette_sVpBddJ.jpg HTTP/1.1" 200 23783
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/lafayette_sVpBddJ.jpg HTTP/1.1" 200 23783
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/2134_green_st_F8KRMOk.png HTTP/1.1" 200 296743
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/2134_green_st_F8KRMOk.png HTTP/1.1" 200 296743
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/house3.jpeg HTTP/1.1" 200 11149
+[06/May/2019 23:02:41] INFO [django.server:154] "GET /media/demo/residence_pictures/house3.jpeg HTTP/1.1" 200 11149
+[06/May/2019 23:02:41] WARNING [django.request:228] Not Found: /favicon.ico
+[06/May/2019 23:02:41] WARNING [django.request:228] Not Found: /favicon.ico
+[06/May/2019 23:02:41] WARNING [django.server:154] "GET /favicon.ico HTTP/1.1" 404 4222
+[06/May/2019 23:02:41] WARNING [django.server:154] "GET /favicon.ico HTTP/1.1" 404 4222
+[06/May/2019 23:02:47] INFO [django.server:154] "GET /demo/5/ HTTP/1.1" 200 22593
+[06/May/2019 23:02:47] INFO [django.server:154] "GET /demo/5/ HTTP/1.1" 200 22593
+[06/May/2019 23:03:53] INFO [django.server:154] "GET /demo/5/ HTTP/1.1" 200 22613
+[06/May/2019 23:03:53] INFO [django.server:154] "GET /demo/5/ HTTP/1.1" 200 22613
+[06/May/2019 23:03:54] INFO [django.server:154] "GET /static/demo/css/main.css HTTP/1.1" 200 206950
+[06/May/2019 23:03:54] INFO [django.server:154] "GET /static/demo/css/main.css HTTP/1.1" 200 206950
+[06/May/2019 23:03:54] INFO [django.server:154] "GET /static/demo/images/logos.png HTTP/1.1" 200 10194
+[06/May/2019 23:03:54] INFO [django.server:154] "GET /static/demo/images/logos.png HTTP/1.1" 200 10194
+[06/May/2019 23:03:56] WARNING [django.request:228] Not Found: /favicon.ico
+[06/May/2019 23:03:56] WARNING [django.request:228] Not Found: /favicon.ico
+[06/May/2019 23:03:56] WARNING [django.server:154] "GET /favicon.ico HTTP/1.1" 404 4222
+[06/May/2019 23:03:56] WARNING [django.server:154] "GET /favicon.ico HTTP/1.1" 404 4222
