@@ -313,9 +313,16 @@ class Domicile(models.Model):
     size = models.IntegerField()
     creation_time = models.DateField(default=now, editable=False)
 
-    def update(self, residence_type=None, address=None, city=None, state=None, zip_code=None, size=None):
+    def update(self, residence_type=None, bed_count=None, bath_count=None, address=None, city=None, state=None,
+               zip_code=None, size=None):
         if residence_type is not None:
             self.residence_type = residence_type
+
+        if bed_count is not None:
+            self.bed_count = bed_count
+
+        if bath_count is not None:
+            self.bath_count = bath_count
 
         if address is not None:
             self.address = address

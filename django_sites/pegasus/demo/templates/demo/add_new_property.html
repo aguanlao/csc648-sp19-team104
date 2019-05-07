@@ -109,6 +109,7 @@
 
     </nav>
 
+    <!--  Edit listing form  -->
     <div class="container" style="margin-top:100px;">
         <form method="post" class="ui form">
             {% csrf_token %}
@@ -122,91 +123,86 @@
                     
                 </div>
                 <i class="fa fa-plus imgAdd"></i>
-
-                
             </div>
             
-            {{ context.listing_form.non_field_errors }}
+                {{ context.listing_form.non_field_errors }}
                 {{ context.domicile_form.non_field_errors }}
                 <div class="row">
                     <div class="col-12 mt-5">
                         <div class="text-center ">
-                            <!-- <div class="dropdown-form-group">
-                                {{ context.listing_form.pet_friendly.errors }}
-                                <label for="{{ listing_form.pet_friendly.id_for_label }}">Pets Allowed</label>
-                                {{ context.listing_form.pet_friendly }}
-                              
-                            </div> -->
                             <!-- <ul dont-close-dropdown class="dropdown-men"> -->
-                                <div class="field">
-                                <div class="two fields">
-                                <div class="field">
-<!--                                    <label for="">Number of Room </label>-->
-<!--                                    <input type="text" placeholder="# of Room" />-->
-                                    {{ context.domicile_form.residence_type.errors }}
-                                    <label for="{{ context.domicile_form.residence_type.id_for_label }}">Residence Type</label>
-                                    {{ context.domicile_form.residence_type }}
-                                </div>
-                                
-<!--                                <div class="dropdown-form-group">-->
-<!--                                    <label for="">Number of Bathrooms </label>-->
-<!--                                    <input type="text" placeholder="# of Bathrooms" />-->
-<!--                                </div>-->
-                                <div class="field">
-                                    {{ context.domicile_form.size.errors }}
-                                    <label for="{{ domicile_form.pet_friendly.id_for_label }}">Size </label>
-                                    {{ context.domicile_form.size }}
-<!--                                    <input type="text" placeholder="Sqft" />-->
-                                </div>
+                            <div class="field">
+                                <div class="fields">
+                                    <div class="four wide field">
+                                        {{ context.domicile_form.residence_type.errors }}
+                                        <label for="{{ context.domicile_form.residence_type.id_for_label }}">Residence
+                                            Type</label>
+                                        {{ context.domicile_form.residence_type }}
+                                    </div>
+                                    <div class="four wide field">
+                                        {{ context.domicile_form.size.errors }}
+                                        <label for="{{ domicile_form.size.id_for_label }}">Square Footage </label>
+                                        {{ context.domicile_form.size }}
+                                    </div>
+                                    <div class="four wide field">
+                                        {{ context.domicile_form.bed_count.errors }}
+                                        <label for="{{ context.domicile_form.bed_count.id_for_label }}">Number of Bedrooms</label>
+                                        {{ context.domicile_form.bed_count }}
+                                    </div>
+                                    <div class="four wide field">
+                                        {{ context.domicile_form.bath_count.errors }}
+                                        <label for="{{ domicile_form.bath_count.id_for_label }}">Number of Bathrooms</label>
+                                        {{ context.domicile_form.bath_count }}
+                                    </div>
                                 </div>
                                 <div class="fields">
-                                <div class="four wide field">
-                                    {{ context.listing_form.price.errors }}
-                                    <label for="{{ listing_form.price.id_for_label }}">Price </label>
-                                    {{ context.listing_form.price }}
-                                    <!--                                    <input type="text" placeholder="$" />-->
-                                </div>
-                                
-                                
-                                <div class="four wide field">
-                                    {{ context.listing_form.owner.errors }}
-                                    <label for="{{ listing_form.owner.id_for_label }}">Owner </label>
-                                    {{ context.listing_form.owner }}
-<!--                                    <input type="text" placeholder="$" />-->
-                                </div>
-                                <div class="four wide field">
-                                    {{ context.listing_form.limit_tenant_count.errors }}
-                                    <label for="{{ listing_form.limit_tenant_count.id_for_label }}">Max Tenants</label>
-                                    {{ context.listing_form.limit_tenant_count }}
-<!--                                    <input type="text" placeholder="$" />-->
-                                </div>
-                                
-                                <div class="four wide field">
-                                    {{ context.listing_form.current_tenant_count.errors }}
-                                    <label for="{{ listing_form.current_tenant_count.id_for_label }}">Current Tenants </label>
-                                    {{ context.listing_form.current_tenant_count }}
-<!--                                    <input type="text" placeholder="$" />-->
-                                </div>
+                                    <div class="four wide field">
+                                        {{ context.listing_form.price.errors }}
+                                        <label for="{{ listing_form.price.id_for_label }}">Price </label>
+                                        {{ context.listing_form.price }}
+                                        <!--<input type="text" placeholder="$" />-->
+                                    </div>
+                                    <div class="four wide field">
+                                        {{ context.listing_form.owner.errors }}
+                                        <label for="{{ listing_form.owner.id_for_label }}">Owner </label>
+                                        {{ context.listing_form.owner }}
+                                        <!--<input type="text" placeholder="$" />-->
+                                    </div>
+                                    <div class="four wide field">
+                                        {{ context.listing_form.limit_tenant_count.errors }}
+                                        <label for="{{ listing_form.limit_tenant_count.id_for_label }}">Max
+                                            Tenants</label>
+                                        {{ context.listing_form.limit_tenant_count }}
+                                        <!-- <input type="text" placeholder="$" />-->
+                                    </div>
+                                    <div class="four wide field">
+                                        {{ context.listing_form.current_tenant_count.errors }}
+                                        <label for="{{ listing_form.current_tenant_count.id_for_label }}">Current
+                                            Tenants </label>
+                                        {{ context.listing_form.current_tenant_count }}
+                                        <!--<input type="text" placeholder="$" />-->
+                                    </div>
                                 </div>
                                 <div class="dropdown-form-group">
                                     {{ context.listing_form.pet_friendly.errors }}
                                     <label for="{{ listing_form.pet_friendly.id_for_label }}">Pets Allowed</label>
                                     {{ context.listing_form.pet_friendly }}
-                                    <!--                                    <input type="checkbox" />-->
+                                    <!--<input type="checkbox" />-->
                                 </div>
                                 <div class="dropdown-form-group">
                                     {{ context.listing_form.utilities_included_rent.errors }}
-                                    <label for="{{ listing_form.utilities_included_rent.id_for_label }}">Utilities Included </label>
+                                    <label for="{{ listing_form.utilities_included_rent.id_for_label }}">Utilities
+                                        Included </label>
                                     {{ context.listing_form.utilities_included_rent }}
-                                    <!--                                    <input type="text" placeholder="$" />-->
+                                    <!--<input type="text" placeholder="$" />-->
                                 </div>
                                 <div class="dropdown-form-group">
                                     {{ context.listing_form.amenities.errors }}
                                     <label for="{{ listing_form.amenities.id_for_label }}">Amenities </label>
                                     {{ context.listing_form.amenities }}
-<!--                                    <input type="text" placeholder="$" />-->
+                                    <!--<input type="text" placeholder="$" />-->
                                 </div>
-                                
+
                                 <div class="fields">
                                     <div class="four wide field">
                                         {{ context.domicile_form.address.errors }}
@@ -220,30 +216,32 @@
                                     <!--                                </div>-->
                                     <div class="four wide field">
                                         {{ context.domicile_form.city.errors }}
-                                        <label for="city">City:</label>
+                                        <label for="city">City</label>
                                         {{ context.domicile_form.city }}
                                         <!--                                    <input type="text" name="city" id="city" placeholder="Palo Alto" />-->
                                     </div>
                                     <div class="four wide field">
                                         {{ context.domicile_form.state.errors }}
-                                        <label for="state">State / Province:</label>
+                                        <label for="state">State / Province</label>
                                         {{ context.domicile_form.state }}
                                         <!--                                    <input type="text" name="state" id="state" placeholder="California" />-->
                                     </div>
                                     <div class="four wide field">
                                         {{ context.domicile_form.zip_code.errors }}
-                                        <label for="{{ context.domicile_form.zip_code.id_for_label }}">ZIP / Postal code:</label>
+                                        <label for="{{ context.domicile_form.zip_code.id_for_label }}">ZIP / Postal
+                                            Code</label>
                                         {{ context.domicile_form.zip_code }}
                                         <!--                                    <input type="text" name="zip" id="zip" placeholder="94301" />-->
                                     </div>
                                 </div>
-    
-                                
+
+
                                 <div class="dropdown-form-group ">
                                     {{ context.listing_form.description.errors }}
-                                    <label for="{{ context.listing_form.description.id_for_label }}">Listing Description</label>
+                                    <label for="{{ context.listing_form.description.id_for_label }}">Listing
+                                        Description</label>
                                     {{ context.listing_form.description }}
-<!--                                    <textarea class="form-control" name="comment" placeholder="Project Description"></textarea>-->
+                                    <!--                                    <textarea class="form-control" name="comment" placeholder="Project Description"></textarea>-->
                                 </div>
                                 
                            <!-- </ul> -->
@@ -258,6 +256,7 @@
             </div>
             
         </form>
+    </div>
         
     
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
