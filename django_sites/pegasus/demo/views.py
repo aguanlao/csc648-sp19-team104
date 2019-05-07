@@ -70,7 +70,7 @@ def index(request):
             # Filter domiciles from filtered listings
             if filters:
                 results = results.filter(pk__in=listings)
-                
+
             searched_lat_lng = get_lat_long(results)
 
             for key, value in filters.items():
@@ -128,9 +128,14 @@ def listing(request):
                 # Case-insensitive city search
                 if 'city' in domicile_filters:
                     city_value = domicile_filters.pop('city')
-                    results = results.filter(city__iexact=city_value).filter(**domicile_filters)
-                else:
-                    results = results.filter(**domicile_filters)
+                    results = results.filter(city__iexact=city_value)
+
+                # Filter for square footage
+                if 'size' in domicile_filters:
+                    size = domicile_filters.pop('size')
+                    results = results.filter(size__gte=size)
+
+                results = results.filter(**domicile_filters)
 
             listings = ValidListing.objects.all().filter(pk__in=results).filter(**filters)
 

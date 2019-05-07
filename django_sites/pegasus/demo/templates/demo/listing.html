@@ -241,18 +241,18 @@
                         allowed</label>
                     {{ context.form.pet_friendly }}
                 </div>
-                <div class="fields">
-                    <div class=" four wide field">
-                        <label for="{{ context.form.price.id_for_label }}" class="text-white">Min Price</label>
+                <div class="two fields">
+                    <div class="field">
+                        <label for="{{ context.form.price.id_for_label }}" class="text-white">Price</label>
                         {{ context.form.price }}
                     </div>
-                    <div class=" four wide field">
-                        <label class="text-white">Max Price</label>
-                        <input type="text" placeholder="Max price" />
-                    </div>
-                    <div class=" six wide field">
-                        <label class="text-white">Square Footage</label>
-                        <input type="text" placeholder="Square Footage" />
+<!--                    <div class=" four wide field">-->
+<!--                        <label class="text-white">Max Price</label>-->
+<!--                        <input type="text" placeholder="Max price" />-->
+<!--                    </div>-->
+                    <div class="field">
+                        <label for="{{ context.form.size.id_for_label }}" class="text-white">Square Footage</label>
+                        {{ context.form.size }}
                     </div>
                 </div>
                 <div class="text-center">
