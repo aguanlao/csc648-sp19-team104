@@ -95,59 +95,59 @@ class User(AbstractUser):
         return self.email
 
 
-# class RegisteredUser(User):
-#     class Meta:
-#         db_table = 'final_unverified_users'
-#
-#     permission_level = 4
-#
-#
-# class VerifiedUser(RegisteredUser):
-#     class Meta:
-#         db_table = 'final_verified_users'
-#
-#     permission_level = 3
-#
-#
-# class Administrator(VerifiedUser):
-#     class Meta:
-#         db_table = "final_admins"
-#
-#     permission_level = 0
-#     is_staff = True
-#
-#
-# class Landlord(VerifiedUser):
-#     class Meta:
-#         db_table = "final_landlords"
-#
-#     permission_level = 1
-#     agency = models.CharField(max_length=50, blank=True, null=True)
-#
-#     def update_agency(self, agency):
-#         self.agency = agency
-#
-#
-# class StarTenant(VerifiedUser):
-#     class Meta:
-#         db_table = "final_star_tenants"
-#
-#     permission_level = 2
-#
-#
-# class Student(VerifiedUser):
-#     class Meta:
-#         db_table = "final_students"
-#
-#     permission_level = 3
-#     is_student = True
-#     is_tenant = False
-#
-#     def update_tenant_status(self, status):
-#         if status:
-#             self.is_tenant = True
-#         else:
-#             self.is_tenant = False
+class RegisteredUser(User):
+    class Meta:
+        db_table = 'final_unverified_users'
+
+    permission_level = 4
+
+
+class VerifiedUser(RegisteredUser):
+    class Meta:
+        db_table = 'final_verified_users    '
+
+    permission_level = 3
+
+
+class Administrator(VerifiedUser):
+    class Meta:
+        db_table = "final_admins"
+
+    permission_level = 0
+    is_staff = True
+
+
+class Landlord(VerifiedUser):
+    class Meta:
+        db_table = "final_landlords"
+
+    permission_level = 1
+    agency = models.CharField(max_length=50, blank=True, null=True)
+
+    def update_agency(self, agency):
+        self.agency = agency
+
+
+class StarTenant(VerifiedUser):
+    class Meta:
+        db_table = "final_star_tenants"
+
+    permission_level = 2
+
+
+class Student(VerifiedUser):
+    class Meta:
+        db_table = "final_students"
+
+    permission_level = 3
+    is_student = True
+    is_tenant = False
+
+    def update_tenant_status(self, status):
+        if status:
+            self.is_tenant = True
+        else:
+            self.is_tenant = False
 
 
 class Domicile(models.Model):
@@ -164,6 +164,7 @@ class Domicile(models.Model):
         ('other', 'Other')
     ]
 
+    photo = models.ImageField(upload_to='final/residence_pictures')
     residence_type = models.CharField(max_length=50, choices=residence_options)
     bed_count = models.IntegerField()
     bath_count = models.IntegerField()

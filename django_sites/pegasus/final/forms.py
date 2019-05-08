@@ -81,38 +81,38 @@ class EditListingForm(forms.ModelForm):
             'description': forms.Textarea
         }
 
-#
-# class CreateUserForm(forms.ModelForm):
-#     confirm_password = forms.CharField(
-#         label="Confirm password", max_length=20, widget=forms.PasswordInput)
-#
-#     class Meta:
-#         model = RegisteredUser
-#         fields = (
-#             'first_name', 'last_name', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code', 'phone_number',
-#             'is_student', 'email', 'username', 'password'
-#         )
-#         labels = {
-#             'is_student': 'Are you a student? '
-#         }
-#         widgets = {
-#             'first_name': forms.TextInput(attrs={'placeholder': 'First name'}),
-#             'last_name': forms.TextInput(attrs={'placeholder': 'Last name'}),
-#
-#             'password': forms.PasswordInput
-#         }
-#
-#
-# class EditUserForm(forms.ModelForm):
-#     class Meta:
-#         model = RegisteredUser
-#         fields = (
-#             'first_name', 'last_name', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code', 'phone_number',
-#             'bio', 'profile_picture', 'email', 'username'
-#         )
-#         widgets = {
-#             'bio': forms.Textarea
-#         }
+
+class CreateUserForm(forms.ModelForm):
+    confirm_password = forms.CharField(
+        label="Confirm password", max_length=20, widget=forms.PasswordInput)
+
+    class Meta:
+        model = RegisteredUser
+        fields = (
+            'first_name', 'last_name', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code', 'phone_number',
+            'is_student', 'email', 'username', 'password'
+        )
+        labels = {
+            'is_student': 'Are you a student? '
+        }
+        widgets = {
+            'first_name': forms.TextInput(attrs={'placeholder': 'First name'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Last name'}),
+
+            'password': forms.PasswordInput
+        }
+
+
+class EditUserForm(forms.ModelForm):
+    class Meta:
+        model = RegisteredUser
+        fields = (
+            'first_name', 'last_name', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code', 'phone_number',
+            'bio', 'profile_picture', 'email', 'username'
+        )
+        widgets = {
+            'bio': forms.Textarea
+        }
 
 
 class ForgotPasswordForm(forms.Form):

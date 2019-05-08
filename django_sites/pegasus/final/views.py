@@ -18,19 +18,19 @@ import logging
 
 # TODO: View stubs
 def add_new_property(request):
-    return render(request, 'demo/add_new_property.html')
+    return render(request, 'final/add_new_property.html')
 
 
 def description(request):
-    return render(request, 'demo/description.html')
+    return render(request, 'final/description.html')
 
 
 def manager_profile(request):
-    return render(request, 'demo/manager_profile.html')
+    return render(request, 'final/manager_profile.html')
 
 
 def survey(request):
-    return render(request, 'demo/survey.html')
+    return render(request, 'final/survey.html')
 
 
 def index(request):
@@ -44,6 +44,8 @@ def index(request):
                 if value is not '' and value is not False and value is not None and '%s'.lower() % value != 'all'
             }
 
+            pprint(filters)
+
             # Separate domicile filters
             domicile_filters = {
                 key: value for key, value in filters.items() if key in Domicile.__dict__
@@ -54,6 +56,7 @@ def index(request):
 
             results = Domicile.objects.all()
             if domicile_filters:
+
                 # Case-insensitive city search
                 if 'city' in domicile_filters:
                     city_value = domicile_filters.pop('city')
@@ -80,7 +83,7 @@ def index(request):
                 'search_count': len(results),
                 'lat_lng': searched_lat_lng
             }
-            return render(request, 'demo/listing.html', {'context': context})
+            return render(request, 'final/listing.html', {'context': context})
 
     else:
         form = SearchForm()
@@ -88,7 +91,7 @@ def index(request):
         'form': form,
         'search_results': []
     }
-    return render(request, 'demo/index.html', {'context': context})
+    return render(request, 'final/index.html', {'context': context})
 
 
 # LISTING PAGES #
@@ -104,36 +107,22 @@ def listing(request):
             }
 
             # Separate domicile filters
-            domicile_filters = {
-                key: value for key, value in filters.items() if key in Domicile.__dict__
-            }
-            all(map(filters.pop, domicile_filters))
-            logging.debug("Listing filters: %s" % filters)
+            domicile_filters = {key: value for key, value in filters.items() if key in Domicile.__dict__}
 
             for key, value in domicile_filters.items():
                 logging.debug("Domicile filter: (%s, %s)" % (key, value))
 
             results = Domicile.objects.all()
-            # Filter domiciles
             if domicile_filters:
+
                 # Case-insensitive city search
                 if 'city' in domicile_filters:
                     city_value = domicile_filters.pop('city')
-                    results = results.filter(city__iexact=city_value)
+                    results = results.filter(city__iexact=city_value).filter(**domicile_filters)
+                else:
+                    results = results.filter(**domicile_filters)
 
-                # Filter for square footage
-                if 'size' in domicile_filters:
-                    size = domicile_filters.pop('size')
-                    results = results.filter(size__gte=size)
-
-                results = results.filter(**domicile_filters)
-
-            listings = ValidListing.objects.all().filter(pk__in=results).filter(**filters)
-
-            # Filter domiciles from filtered listings
-            if filters:
-                results = results.filter(pk__in=listings)
-
+            listings = Domicile.objects.all().filter(pk__in=results).filter(**filters)
             searched_lat_lng = utils.get_lat_long(results)
 
             for key, value in filters.items():
@@ -152,7 +141,7 @@ def listing(request):
                 'search_count': len(results),
                 'lat_lng': searched_lat_lng
             }
-            return render(request, 'demo/listing.html', {'context': context})
+            return render(request, 'final/listing.html', {'context': context})
 
     else:
         form = SearchForm()
@@ -162,7 +151,7 @@ def listing(request):
         'form': form,
         'search_results': []
     }
-    return render(request, 'demo/listing.html', {'context': context})
+    return render(request, 'final/listing.html', {'context': context})
 
 
 @login_required
@@ -198,7 +187,7 @@ def create_listing(request):
         'domicile_form': domicile_form,
     }
 
-    return render(request, 'demo/add_new_property.html', {'context': context})
+    return render(request, 'final/add_new_property.html', {'context': context})
 
 
 @login_required
@@ -241,13 +230,12 @@ def edit_listing(request, listing_id):
 
     if context['error_message']:
         logging.error("Edit operation failed: %s" % context['error_message'])
-    return render(request, "demo/modify_listing.html", {'context': context})
+    return render(request, "final/modify_listing.html", {'context': context})
 
 
 @login_required
 def view_listing(request, listing_id):
-    listing = get_object_or_404(Domicile, pk=listing_id)
-    domicile = listing.residence
+    domicile = get_object_or_404(Domicile, pk=listing_id)
     full_address = domicile.address + " " + domicile.city + " " + domicile.state + " " + str(domicile.zip_code)
 
     # get_lat_long takes a list of listings as argument and returns a list of dicts
@@ -262,7 +250,7 @@ def view_listing(request, listing_id):
         'address': full_address,
         'lat_long': single_lat_long,
     }
-    return render(request, 'demo/description.html', {'context': context})
+    return render(request, 'final/description.html', {'context': context})
 
 
 # USER PAGES #
@@ -299,7 +287,7 @@ def create_account(request):
                 email = EmailMessage(mail_subject, message, to=[user.email])
                 email.send()
                 logging.info("Sent confirmation email to user '%s' for activation." % email)
-                return render(request, 'demo/login_confirmation.html')
+                return render(request, 'final/login_confirmation.html')
 
             except Exception as error_message:
                 context = {
@@ -326,7 +314,7 @@ def create_account(request):
             'error_message': ''
         }
 
-    return render(request, 'demo/create_account.html', {'context': context})
+    return render(request, 'final/create_account.html', {'context': context})
 
 
 def activate(request, uidb64, token):
@@ -349,7 +337,7 @@ def activate(request, uidb64, token):
             user.__class__ = Landlord
         user.save(force_insert=True)
 
-        login(request, user, backend='demo.utils.AuthBackend')
+        login(request, user, backend='final.utils.AuthBackend')
         return HttpResponse('Thank you for your email confirmation. You may now login with your account.')
     else:
         if user is not None:
@@ -376,7 +364,7 @@ def user_login(request):
             # Login success
             if user is not None:
                 logging.info("Login success.")
-                login(request, user, backend='demo.utils.AuthBackend')
+                login(request, user, backend='final.utils.AuthBackend')
 
                 # Check if user needs to redirect to another page other than index
                 next_url = request.POST.get('next', '')
@@ -405,7 +393,7 @@ def user_login(request):
             'login_form': form,
             'error_message': ''
         }
-    return render(request, 'demo/login.html', {'context': context})
+    return render(request, 'final/login.html', {'context': context})
 
 
 @login_required
@@ -422,7 +410,7 @@ def compatibility_score(request):
         'form': compatibility_form
     }
 
-    return render(request, 'demo/compatibility_score.html', {'context': context})
+    return render(request, 'final/compatibility_score.html', {'context': context})
 
 
 @login_required
@@ -460,7 +448,7 @@ def view_profile(request, username=None):
             'error_message': "User '%s' not found." % username
         }
 
-    return render(request, 'demo/view_profile.html', {'context': context})
+    return render(request, 'final/view_profile.html', {'context': context})
 
 
 @login_required
@@ -506,7 +494,7 @@ def modify_profile(request):
             'update_success': False,
             'error_message': ''
         }
-    return render(request, 'demo/modify_profile.html', {'context': context})
+    return render(request, 'final/modify_profile.html', {'context': context})
 
 
 @login_required
@@ -523,7 +511,7 @@ def delete_user(request):
         'form': form
     }
 
-    return render(request, 'demo/delete_account.html', {'context': context})
+    return render(request, 'final/delete_account.html', {'context': context})
 
 
 def forgot_password(request):
@@ -539,4 +527,4 @@ def forgot_password(request):
         'form': form
     }
 
-    return render(request, 'demo/forgot_password.html', {'context': context})
+    return render(request, 'final/forgot_password.html', {'context': context})

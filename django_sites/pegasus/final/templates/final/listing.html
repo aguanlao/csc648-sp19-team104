@@ -278,16 +278,16 @@
                         </a>
                         <div class="media-body pl-3">
                             <div class="price">${{ entry.price|floatformat:-2 }}
-                                <small>{{ entry.residence.city|title }}</small>
+                                <small>{{ entry.city|title }}</small>
                             </div>
                             <div class="stats">
-                                <span><i class="fa fa-arrows-alt"></i>{{ entry.residence.size }} sq ft</span>
-                                <span><i class="fa fa-bed"></i>{{ entry.residence.bed_count }}
-                                    Bedroom{{ entry.residence.bed_count|pluralize}}</span>
-                                <span><i class="fa fa-bath"></i>{{ entry.residence.bath_count }}
-                                    Bathroom{{ entry.residence.bath_count|pluralize}}</span>
+                                <span><i class="fa fa-arrows-alt"></i>{{ entry.size }} sq ft</span>
+                                <span><i class="fa fa-bed"></i>{{ entry.bed_count }}
+                                    Bedroom{{ entry.bed_count|pluralize}}</span>
+                                <span><i class="fa fa-bath"></i>{{ entry.bath_count }}
+                                    Bathroom{{ entry.bath_count|pluralize}}</span>
                             </div>
-                            <div class="address">{{ entry.residence.address|title }}</div>
+                            <div class="address">{{ entry.address|title }}</div>
                         </div>
                     </div>
                 </div>
