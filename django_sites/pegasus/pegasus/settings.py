@@ -42,6 +42,7 @@ PYBB_TEMPLATE = 'demo/base.html'
 INSTALLED_APPS = [
     'about.apps.AboutConfig',
     'demo.apps.DemoConfig',
+    'final.apps.FinalConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
