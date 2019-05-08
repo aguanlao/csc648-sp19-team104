@@ -19,7 +19,7 @@ class TextObject(models.Model):
 
 class Message(TextObject):
     class Meta:
-        db_table = 'snn_messages'
+        db_table = 'demo_snn_messages'
 
     message_id = models.IntegerField(primary_key=True)
     poster = models.OneToOneField(
@@ -36,7 +36,7 @@ class Message(TextObject):
 
 class Post(TextObject):
     class Meta:
-        db_table = 'snn_posts'
+        db_table = 'demo_snn_posts'
 
     comments = []
 
@@ -63,7 +63,7 @@ class Post(TextObject):
 
 class Comment(TextObject):
     class Meta:
-        db_table = 'snn_comments'
+        db_table = 'demo_snn_comments'
 
     def __init__(self, post):
         TextObject.__init__(self)
@@ -84,7 +84,7 @@ class Comment(TextObject):
 
 class Page(models.Model):
     class Meta:
-        db_table = 'snn_pages'
+        db_table = 'demo_snn_pages'
 
     owners = models.CharField(max_length=500)
     members = models.CharField(max_length=500, blank=True, null=True)
@@ -199,7 +199,7 @@ class User(AbstractUser):
 
 class DisabledUser(models.Model):
     class Meta:
-        db_table = 'disabled_users'
+        db_table = 'demo_disabled_users'
 
     deletion_time = models.DateField(default=now, editable=False)
     secret_key = models.CharField(max_length=50)
@@ -209,14 +209,14 @@ class DisabledUser(models.Model):
 
 class RegisteredUser(User):
     class Meta:
-        db_table = 'unverified_users'
+        db_table = 'demo_unverified_users'
 
     permission_level = 4
 
 
 class VerifiedUser(RegisteredUser):
     class Meta:
-        db_table = 'verified_users'
+        db_table = 'demo_verified_users'
 
     permission_level = 3
     friends = []
@@ -237,7 +237,7 @@ class VerifiedUser(RegisteredUser):
 
 class Administrator(VerifiedUser):
     class Meta:
-        db_table = "admins"
+        db_table = "demo_admins"
 
     permission_level = 0
     is_staff = True
@@ -258,7 +258,7 @@ class Administrator(VerifiedUser):
 
 class Landlord(VerifiedUser):
     class Meta:
-        db_table = "landlords"
+        db_table = "demo_landlords"
 
     permission_level = 1
     agency = models.CharField(max_length=50, blank=True, null=True)
@@ -269,14 +269,14 @@ class Landlord(VerifiedUser):
 
 class StarTenant(VerifiedUser):
     class Meta:
-        db_table = "star_tenants"
+        db_table = "demo_star_tenants"
 
     permission_level = 2
 
 
 class Student(VerifiedUser):
     class Meta:
-        db_table = "students"
+        db_table = "demo_students"
 
     permission_level = 3
     is_student = True
@@ -291,7 +291,7 @@ class Student(VerifiedUser):
 
 class Domicile(models.Model):
     class Meta:
-        db_table = 'residences'
+        db_table = 'demo_residences'
 
     residence_id = models.AutoField(primary_key=True)
     residence_options = [
@@ -346,7 +346,7 @@ class Domicile(models.Model):
 class Listing(models.Model):
     class Meta:
         abstract = True
-        db_table = 'all_listings'
+        db_table = 'demo_all_listings'
 
     creation_time = models.DateField(default=now, editable=False)
     residence = models.OneToOneField(
@@ -358,14 +358,14 @@ class Listing(models.Model):
 
 class ExpiredListing(Listing):
     class Meta:
-        db_table = 'expired_listings'
+        db_table = 'demo_expired_listings'
 
     expire_time = models.DateField(default=now, editable=False)
 
 
 class ValidListing(Listing):
     class Meta:
-        db_table = 'valid_listings'
+        db_table = 'demo_valid_listings'
 
     tenants = models.CharField(max_length=100)
     pet_friendly = models.BooleanField()
