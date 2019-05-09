@@ -46,23 +46,23 @@ def index(request):
 
             pprint(filters)
 
-            # Separate domicile filters
-            domicile_filters = {
-                key: value for key, value in filters.items() if key in Domicile.__dict__
-            }
+            # # Separate domicile filters
+            # domicile_filters = {
+            #     key: value for key, value in filters.items() if key in Domicile.__dict__
+            # }
 
-            for key, value in domicile_filters.items():
-                logging.debug("Domicile filter: (%s, %s)" % (key, value))
+            for key, value in filters.items():
+                logging.debug("Filter: (%s, %s)" % (key, value))
 
             results = Domicile.objects.all()
-            if domicile_filters:
+            if filters:
 
                 # Case-insensitive city search
-                if 'city' in domicile_filters:
-                    city_value = domicile_filters.pop('city')
-                    results = results.filter(city__iexact=city_value).filter(**domicile_filters)
+                if 'city' in filters:
+                    city_value = filters.pop('city')
+                    results = results.filter(city__iexact=city_value).filter(**filters)
                 else:
-                    results = results.filter(**domicile_filters)
+                    results = results.filter(**filters)
 
             listings = Domicile.objects.all().filter(pk__in=results).filter(**filters)
             searched_lat_lng = utils.get_lat_long(results)
@@ -80,7 +80,7 @@ def index(request):
                 'form': form,
                 'search_results': results,
                 'listing_results': listings,
-                'search_count': len(results),
+                'search_count': len(listings),
                 'lat_lng': searched_lat_lng
             }
             return render(request, 'final/listing.html', {'context': context})
@@ -157,34 +157,31 @@ def listing(request):
 @login_required
 def create_listing(request):
     if request.method == 'POST':
-        domicile_form = CreateDomicileForm(request.POST)
-        listing_form = CreateListingForm(request.POST)
+        form = CreateDomicileForm(request.POST)
 
-        if domicile_form.is_valid() and listing_form.is_valid():
-            for key, value in domicile_form.cleaned_data.items():
-                logging.debug("(%s, %s)" % (key, value))
-            for key, value in listing_form.cleaned_data.items():
+        if form.is_valid():
+            for key, value in form.cleaned_data.items():
                 logging.debug("(%s, %s)" % (key, value))
 
             try:
                 logging.info("Creating new residence...")
 
-                owner = listing_form.cleaned_data.pop('owner')
+                owner = form.cleaned_data.pop('owner')
                 owner_exists = len(VerifiedUser.objects.all().filter(username=owner)) >= 1
                 if not owner_exists:
                     raise KeyError("Owner '%s' not found." % owner)
 
                 domicile = Domicile()
-                domicile.update(**domicile_form.cleaned_data)
+                domicile.update(**form.cleaned_data)
                 domicile.save()
 
             except Exception as error_message:
                 logging.error("Operation failed: %s" % error_message)
     else:
-        domicile_form = CreateDomicileForm()
+        form = CreateDomicileForm()
 
     context = {
-        'domicile_form': domicile_form,
+        'form': form,
     }
 
     return render(request, 'final/add_new_property.html', {'context': context})

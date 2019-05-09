@@ -321,7 +321,7 @@
         </div>
         <!--Start listing information-->
         <div style="margin-top:100px;">
-          <h4 class="text-primary mt-3 d-flex price"> ${{ context.listing.price|floatformat:-2 }}
+          <h4 class="text-primary mt-3 d-flex price"> ${{ context.domicile.price|floatformat:-2 }}
             <span class="text-muted"> | {{ context.domicile.bed_count }}
               bed{{ context.domicile.bed_count|pluralize }}</span>
             <span class="text-muted"> | {{ context.domicile.bath_count }}
@@ -333,21 +333,21 @@
             <span> {{ context.domicile.address|title }}, {{ context.domicile.city|title }},
               {{ context.domicile.state|upper }} {{ context.domicile.zip_code }}</span>
           </h4>
-          <p class="text-secondary"> Posted by {{ context.listing.owner }} </p>
-          <p class="text-info"> Utilities included: {{ context.listing.utilities_included_rent }} </p>
-          <p class="text-info"> Pet friendly: {{ context.listing.pet_friendly }}</p>
+          <p class="text-secondary"> Posted by {{ context.domicile.owner }} </p>
+          <p class="text-info"> Utilities included: {{ context.domicile.utilities_included_rent }} </p>
+          <p class="text-info"> Pet friendly: {{ context.domicile.pet_friendly }}</p>
           <!--Display allowed pets if pet friendly-->
-          {% if context.listing.pet_friendly %}
-          <p class="text-info"> Pets allowed: {{ context.listing.pets_allowed }}</p>
+          {% if context.domicile.pet_friendly %}
+          <p class="text-info"> Pets allowed: {{ context.domicile.pets_allowed }}</p>
           {% endif %}
 
-          <p class="text-info"> Amenities: {{ context.listing.amenities }}</p>
-          <p class="text-info"> {{ context.listing.description }}</p>
+          <p class="text-info"> Amenities: {{ context.domicile.amenities }}</p>
+          <p class="text-info"> {{ context.domicile.description }}</p>
           <!--Display number of tenant openings available-->
-          {% if context.listing.limit_tenant_count %}
-          {% with count=context.listing.current_tenant_count|default_if_none:"0" %}
+          {% if context.domicile.limit_tenant_count %}
+          {% with count=context.domicile.current_tenant_count|default_if_none:"0" %}
           <p class="text-info">
-            <span> {{ count }} / {{ context.listing.limit_tenant_count }} </span>
+            <span> {{ count }} / {{ context.domicile.limit_tenant_count }} </span>
             <span> current tenant{{ count|pluralize }} </span>
           </p>
           {% endwith %}

@@ -54,13 +54,8 @@ class DeleteUserForm(forms.Form):
 class CreateDomicileForm(forms.ModelForm):
     class Meta:
         model = Domicile
-        fields = ('residence_type', 'address', 'city', 'state', 'zip_code', 'size', 'bed_count', 'bath_count')
-
-
-class CreateListingForm(forms.ModelForm):
-    class Meta:
-        model = Domicile
         fields = (
+            'residence_type', 'address', 'city', 'state', 'zip_code', 'size', 'bed_count', 'bath_count',
             'owner', 'price', 'pet_friendly', 'pets_allowed', 'limit_tenant_count', 'current_tenant_count', 'amenities',
             'utilities_included_rent', 'is_active', 'description'
         )
