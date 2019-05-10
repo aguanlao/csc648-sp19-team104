@@ -92,19 +92,19 @@ class User(AbstractUser):
             self.profile_picture = profile_picture
 
     def __str__(self):
-        return self.email
+        return "(%s)'%s': '%s'" % (self.__class__, self.username, self.email)
 
 
 class RegisteredUser(User):
     class Meta:
-        db_table = 'final_unverified_users'
+        db_table = 'final_all_registered_users'
 
     permission_level = 4
 
 
 class VerifiedUser(RegisteredUser):
     class Meta:
-        db_table = 'final_verified_users    '
+        db_table = 'final_verified_users'
 
     permission_level = 3
 

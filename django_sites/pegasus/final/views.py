@@ -1,6 +1,5 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -273,11 +272,10 @@ def create_account(request):
                 logging.info("Created user '%s'." % user.email)
 
                 # User creation success, now send email to activate full account
-                current_site = get_current_site(request)
                 mail_subject = 'Pegasus account registration'
                 message = render_to_string('registration/signup_email.html', {
                     'user': user,
-                    'domain': current_site.domain,
+                    'domain': request.META['HTTP_HOST'],
                     'uid': urlsafe_base64_encode(force_bytes(user.username)).decode(),
                     'token': account_activation_token.make_token(user),
                 })
@@ -332,6 +330,7 @@ def activate(request, uidb64, token):
             user.__class__ = Student
         else:
             user.__class__ = Landlord
+            user.agency = ''
         user.save(force_insert=True)
 
         login(request, user, backend='final.utils.AuthBackend')
