@@ -6,8 +6,4 @@ from django.contrib import admin
 
 # Register your models here.
 admin.site.register(RegisteredUser)
-admin.site.register(VerifiedUser)
-admin.site.register(Student)
-admin.site.register(Landlord)
-admin.site.register(StarTenant)
 admin.site.register(Domicile)

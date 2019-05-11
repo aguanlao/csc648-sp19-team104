@@ -32,7 +32,14 @@ class User(AbstractUser):
     partiness = models.IntegerField(blank=True, null=True)
 
     # Internal attributes
-    permission_level = -1  # 0: Administrator, 1: Landlord, 2: Star Tenant, 3: Student, 4: Unverified user
+    permission_level = models.IntegerField(default=4)
+    # Permission levels:
+    #   0. Administrator
+    #   1. Landlord
+    #   2. Star Tenant
+    #   3. Student
+    #   4. Unverified User
+
     last_login = models.DateTimeField(blank=True, null=True)
 
     def update(
@@ -92,62 +99,38 @@ class User(AbstractUser):
             self.profile_picture = profile_picture
 
     def __str__(self):
-        return "(%s)'%s': '%s'" % (self.__class__, self.username, self.email)
+        return "(%s)'%s': '%s'" % (self.permission_level, self.username, self.email)
 
 
 class RegisteredUser(User):
     class Meta:
         db_table = 'final_all_registered_users'
 
-    permission_level = 4
+    def activate_account(self):
+        self.permission_level = 4
+        self.is_active = True
+        self.is_staff = False
+        self.is_superuser = False
+        self.save()
 
+    def promote_student(self):
+        self.permission_level = 3
+        self.save()
 
-class VerifiedUser(RegisteredUser):
-    class Meta:
-        db_table = 'final_verified_users'
+    def promote_landlord(self):
+        self.permission_level = 1
+        self.agency = models.CharField(max_length=100, blank=True, null=True, default='')
+        self.save()
 
-    permission_level = 3
+    def promote_star_tenant(self):
+        self.permission_level = 2
+        self.save()
 
-
-class Administrator(VerifiedUser):
-    class Meta:
-        db_table = "final_admins"
-
-    permission_level = 0
-    is_staff = True
-
-
-class Landlord(VerifiedUser):
-    class Meta:
-        db_table = "final_landlords"
-
-    permission_level = 1
-    agency = models.CharField(max_length=50, blank=True, null=True)
-
-    def update_agency(self, agency):
-        self.agency = agency
-
-
-class StarTenant(VerifiedUser):
-    class Meta:
-        db_table = "final_star_tenants"
-
-    permission_level = 2
-
-
-class Student(VerifiedUser):
-    class Meta:
-        db_table = "final_students"
-
-    permission_level = 3
-    is_student = True
-    is_tenant = False
-
-    def update_tenant_status(self, status):
-        if status:
-            self.is_tenant = True
-        else:
-            self.is_tenant = False
+    def promote_admin(self):
+        self.permission_level = 0
+        self.is_superuser = True
+        self.is_staff = True
+        self.save()
 
 
 class Domicile(models.Model):

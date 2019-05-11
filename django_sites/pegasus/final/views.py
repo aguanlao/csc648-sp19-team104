@@ -166,7 +166,7 @@ def create_listing(request):
                 logging.info("Creating new residence...")
 
                 owner = form.cleaned_data.pop('owner')
-                owner_exists = len(VerifiedUser.objects.all().filter(username=owner)) >= 1
+                owner_exists = len(RegisteredUser.objects.all().filter(username=owner)) >= 1
                 if not owner_exists:
                     raise KeyError("Owner '%s' not found." % owner)
 
@@ -321,17 +321,13 @@ def activate(request, uidb64, token):
 
     if user is not None and account_activation_token.check_token(user, token):
 
-        # Coerce registered user to verified user first. Then promote to either Student or Landlord
-        user.is_active = True
-        user.__class__ = VerifiedUser
-        user.save(force_insert=True)
+        # Activate user account
+        user.activate_account()
 
         if user.is_student:
-            user.__class__ = Student
+            user.promote_student()
         else:
-            user.__class__ = Landlord
-            user.agency = ''
-        user.save(force_insert=True)
+            user.promote_landlord()
 
         login(request, user, backend='final.utils.AuthBackend')
         return HttpResponse('Thank you for your email confirmation. You may now login with your account.')
