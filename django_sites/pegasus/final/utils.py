@@ -50,10 +50,12 @@ def get_lat_long(residences):
             'lng': 0
         }
         addr = residence.address
+        city = residence.city
+        state = residence.state
 
         if addr:
             GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' \
-                                  + addr \
+                                  + addr + '+' + city + '+' + state \
                                   + '&key=AIzaSyCbr6KeU9un_uLPpH581LUfOb8PE3zi1x0'
             params = {'address': addr}
             map_request = requests.get(GOOGLE_MAPS_API_URL, params=params)
