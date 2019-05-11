@@ -1,11 +1,11 @@
-{% extends 'demo/base_profile.html' %}
+{% extends 'final/base_profile.html' %}
 
 <!--Tabs-->
 {% block tab1 %} Profile {% endblock %}
 {% block tab2 %} Listings {% endblock %}
 {% block tab3 %} My Listings {% endblock %}
 
-{% if context.user_found %}
+{% if request.user.is_authenticated %}
 {% block tab1_info %}
 <!--Home-->
 <div class="row">
@@ -52,6 +52,7 @@
                     <a href="#" target="_blank"> {{context.user.email}} </a>
                 </div>
             </div>
+            {% if context.user_found %}
             <div class="profile-info-row">
                 <div class="profile-info-name">
                     <i class="middle ace-icon fa fa-twitter-square bigger-150 light-blue"></i>
@@ -60,6 +61,7 @@
                     <a href="{% url 'postman:inbox' %}">Inbox</a>
                 </div>
             </div>
+            {% else %}
             <div class="profile-info-row">
                 <div class="profile-info-name">
                 <i class="middle ace-icon fa fa-twitter-square bigger-150 light-blue"></i>
@@ -68,6 +70,17 @@
                     <a href="{% url 'postman:write' %}">Message Me</a>
                 </div>
             </div>
+            {% endif %}
+            {% if request.user.permission_level == 1%}
+            <div class="profile-info-row">
+                    <div class="profile-info-name">
+                    <i class="middle ace-icon fa fa-twitter-square bigger-150 light-blue"></i>
+                    </div>
+                    <div class="profile-info-value">
+                        <a href="{% url './add_new_property' %}">Add New Listings</a>
+                    </div>
+                </div>
+            {% endif %}  
         </div>
     </div>
 </div>

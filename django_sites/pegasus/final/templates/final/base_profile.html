@@ -1,0 +1,62 @@
+{% extends 'final/navbar.html' %}
+{% block content %}
+<div>
+    <link rel="stylesheet" href="../../static/demo/css/profile.css" />
+    <script>
+        $(".mynavmenu li").on("click", function() {
+          $(".navmenu li").removeClass("active");
+          $(this).addClass("active");
+        });
+    
+    </script>
+</div>
+  <div id="user-profile-2" class="user-profile" style="margin-top:0px">
+    <div class="tabbable">
+      <ul id="mynavmenu" class="nav nav-tabs padding-18">
+        <li class="mytab">
+          <a data-toggle="tab" href="#tab1" onclick="thetab()">
+            <i class="ace-icon fa fa-user bigger-120"></i>
+            {% block tab1 %}
+            {%endblock%}
+          </a>
+        </li>
+        <li class="mytab">
+          <a data-toggle="tab" href="#tab2" onclick="thetab()">
+            <i class="ace-icon far home icon bigger-120"></i>
+            {% block tab2 %}
+            {%endblock%}
+          </a>
+        </li>
+        <!-- {% if request.user.permission_level == 1%}
+        <li class="mytab">
+          <a data-toggle="tab" href="#tab3" onclick="thetab()">
+            <i class="ace-icon far fa-save bigger-120"></i>
+            {% block tab3%}
+            {%endblock%}
+          </a>
+        </li>
+        {% endif %} -->
+      </ul>
+
+      <div class="tab-content no-border padding-24">
+
+        <div id="tab1" class="tab-pane in active">
+          {% block tab1_info %}
+          {% endblock %}
+        </div>
+
+      <div id="tab2" class="tab-pane">
+        {% block tab2_info %}
+        {% endblock %}
+      </div>
+      
+      <div id="tab3" class="tab-pane">
+        {% block tab3_info %}
+        {% endblock %}
+      </div>
+
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}
