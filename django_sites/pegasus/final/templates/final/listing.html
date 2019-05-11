@@ -155,7 +155,7 @@
                     <div class="ui simple dropdown item text-white">
                         {{request.user.first_name}} {{request.user.last_name}}</a>
                         <i class="dropdown icon"></i>
-                        <div class="menu">
+                        <div class="menu" style="background: #333b7c">
                             {% if request.user.permission_level == 0 %}
                             <div class="item"> <a href="{% url 'admin:index' %}">
                                     <i class="fas fa-user"></i>

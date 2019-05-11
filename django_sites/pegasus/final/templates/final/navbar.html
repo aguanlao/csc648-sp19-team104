@@ -1,5 +1,13 @@
-{% extends 'demo/base.html' %}
+{% extends 'final/base.html' %}
 {% block header %}
+<div>
+        <style>
+            .dropdown-menu{
+                background-color: #333b7c;
+            }
+        </style>
+</div>
+
 <div>
     <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top py-2">
         <a class="navbar-brand d-flex" href="{% url 'index' %}">
@@ -19,37 +27,58 @@
                     <a class="ui white button d-flex  border-0 text-white" href="{% url 'index' %}"
                         style="background:transparent">
                         <i class="home icon"></i>
-                        Home
+                        home
                     </a>
                     </a>
                 </li>
+                {% if request.user.is_authenticated %}
                 <li class="nav-item">
                     <a class=" ui  white button d-flex border-0 text-white" href="{% url 'pybbm:index' %}"
                         style="background:transparent">
-                        Community</a>
+                        community</a>
                 </li>
-                {% if request.user.is_authenticated %}
+                <div class="ui compact menu " style="background:transparent; border: none;">
+                    <div class="ui simple dropdown item text-white">
+                        messages
+                        <i class="dropdown icon"></i>
+                        <div class="menu" style="background: #333b7c">
+                            <div class="item">
+                                <a href="{% url 'postman:inbox' %}" style="color: white">
+                                    <i class="fas fa-user" style="color: white"></i>
+                                    inbox
+                                </a>
+                            </div>
+                            <div class="item">
+                                <a href="{% url 'postman:write' %}" style="color: white">
+                                    <i class="fas fa-cogs" style="color: white"></i>
+                                    message
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="ui compact menu " style="background:transparent; border: none;">
                     <div class="ui simple dropdown item text-white">
                         {{request.user.first_name}} {{request.user.last_name}}</a>
                         <i class="dropdown icon"></i>
-                        <div class="menu">
+                        <div class="menu" style="background: #333b7c">
                             {% if request.user.permission_level == 0 %}
-                            <div class="item"> <a href="{% url 'admin:index' %}">
-                                    <i class="fas fa-user"></i>
+                            <div class="item"> <a href="{% url 'admin:index' %}" style="color: white">
+                                    <i class="fas fa-user" style="color: white"></i>
                                     dashboard</a>
                             </div>
                             {% endif %}
-                            <div class="item"> <a href="{% url 'view_profile' %}">
-                                    <i class="fas fa-user"></i>
+                            <div class="item"> <a href="{% url 'view_profile' %}" style="color: white">
+                                    <i class="fas fa-user" style="color: white"></i>
                                     view profile</a>
                             </div>
-                            <div class="item"><a href="{% url 'modify_profile' %}">
-                                    <i class="fas fa-cogs"></i>
+                            <div class="item"><a href="{% url 'modify_profile' %}" style="color: white">
+                                    <i class="fas fa-cogs" style="color: white"></i>
                                     edit profile</a>
                             </div>
-                            <div class="item"><a href="{% url 'logout' %}">
-                                    <i class="fas fa-sign-out-alt"></i>
+                            <div class="item"><a href="{% url 'logout' %}" style="color: white">
+                                    <i class="fas fa-sign-out-alt" style="color: white"></i>
                                     logout</a>
                             </div>
                         </div>
@@ -60,13 +89,13 @@
                     <a class=" ui  white button d-flex border-0 text-white" href="{% url 'login' %}"
                         style="background:transparent">
                         <i class="add user icon"></i>
-                        Sign In</a>
+                        sign in</a>
                 </li>
                 <li class="nav-item">
                     <a class=" ui  white button d-flex border-0 text-white" href="{% url 'create_account' %}"
                         style="background:transparent">
                         <i class="add user icon"></i>
-                        Sign Up</a>
+                        sign up</a>
                 </li>
                 {% endif %}
             </ul>
