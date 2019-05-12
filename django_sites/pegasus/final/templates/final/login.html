@@ -30,9 +30,6 @@
       <div class = "row-md my-row form-group align-items-center">
         {{ context.login_form.username}}
         {{ context.login_form.password}}
-        <small id="passwordHelpBlock" class="form-text" style="color: black">
-          {{ context.login_form.password.help_text }}
-        </small>
       </div>
 
     <input type="hidden" name="next" value="{{ request.GET.next }}" />

@@ -74,10 +74,10 @@
             {% if request.user.permission_level == 1%}
             <div class="profile-info-row">
                     <div class="profile-info-name">
-                    <i class="middle ace-icon fa fa-twitter-square bigger-150 light-blue"></i>
+                    <i class="middle home icon bigger-150 light-blue"></i>
                     </div>
                     <div class="profile-info-value">
-                        <a href="{% url './add_new_property' %}">Add New Listings</a>
+                        <a href="{% url 'add_new_property' %}">Add New Listings +</a>
                     </div>
                 </div>
             {% endif %}  

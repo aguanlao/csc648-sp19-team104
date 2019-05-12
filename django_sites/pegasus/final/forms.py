@@ -106,7 +106,17 @@ class EditUserForm(forms.ModelForm):
             'bio', 'profile_picture', 'email', 'username'
         )
         widgets = {
-            'bio': forms.Textarea
+            'bio': forms.Textarea,
+            'first_name': forms.TextInput(attrs={'class':"input col form-control"}),
+            'last_name': forms.TextInput(attrs={'class':"input col form-control"}),
+            'date_of_birth': forms.TextInput(attrs={'class':"input col form-control"}),
+            'physical_address': forms.TextInput(attrs={'class':"input col form-control"}),
+            'city': forms.TextInput(attrs={'class':"input col form-control"}),
+            'state': forms.TextInput(attrs={'class':"input col form-control"}),
+            'email': forms.TextInput(attrs={'class':"input col form-control"}),
+            'username': forms.TextInput(attrs={'class':"input col form-control"}),
+            'zip_code': forms.TextInput(attrs={'class':"input col form-control"}),
+            'phone_number': forms.TextInput(attrs={'class':"input col form-control"})
         }
 
 
