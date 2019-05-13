@@ -235,3 +235,11 @@ class Domicile(models.Model):
 
     def __str__(self):
         return "%s, %s, %s %s" % (self.address, self.city, self.state, self.zip_code)
+
+
+class DomicilePhoto(models.Model):
+    class Meta:
+        db_table = 'final_residence_photos'
+
+    listing = models.ForeignKey(Domicile, on_delete=models.CASCADE)
+    photo_url = models.ImageField(upload_to='final/residence_pictures', blank=True, null=True)

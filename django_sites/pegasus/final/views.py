@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
+from django.forms import formset_factory
 from .tokens import account_activation_token
 from .forms import *
 from .models import *
@@ -230,9 +231,90 @@ def edit_listing(request, listing_id):
 
 
 @login_required
+def edit_listing_photo(request, listing_id):
+    listing = get_object_or_404(Domicile, pk=listing_id)
+
+    # Get initial photo data for listing
+    photos = DomicilePhoto.objects.filter(listing=listing)
+    initial_photo_data = [{'photo_url': x.photo_url, 'action': 'N'} for x in photos]
+    update_success = False
+    error_message = ''
+
+    if request.method == 'POST':
+        formset = EditPhotoFormSet(request.POST, request.FILES)
+        if formset.is_valid():
+            try:
+                logging.info("Editing listing '%s'..." % listing_id)
+
+                # Build log of operations
+                actions = '\n'
+                for counter, form in enumerate(formset):
+                    actions = actions + 'Action %s: %s, URL: %s\n' % (
+                        counter, form.cleaned_data.get('action', ''), form.cleaned_data.get('photo_url', '')
+                    )
+                logging.info("Actions to be taken: %s" % actions)
+                deletion_occurred = False
+
+                for counter, form in enumerate(formset):
+                    action_type = form.cleaned_data.get('action', '')
+                    photo_url = form.cleaned_data.get('photo_url', '')
+
+                    # Add Image
+                    if action_type == 'A':
+                        if photo_url:
+                            logging.info("Adding new image...")
+                            image = DomicilePhoto()
+                            image.photo_url = photo_url
+                            image.listing = listing
+                            image.save()
+
+                    # Delete Image
+                    if action_type == 'D':
+                        logging.info("Deleting image...")
+                        image = photos[counter]
+                        image.delete()
+                        deletion_occurred = True
+
+                update_success = True
+
+                # On photo delete, also clear out any null-valued images from DB
+                if deletion_occurred:
+                    photos = DomicilePhoto.objects.filter(listing=listing, photo_url='')
+                    [photo.delete() for photo in photos]
+
+                # On update success, update formset to include edited photos and reload page
+                photos = DomicilePhoto.objects.filter(listing=listing)
+                initial_photo_data = [{'photo_url': x.photo_url, 'action': 'N'} for x in photos]
+                formset = EditPhotoFormSet(initial=initial_photo_data)
+
+            except Exception as exception:
+                error_message = exception
+
+        else:
+            logging.info("Failed formset edit: %s" % formset.errors)
+            error_message = formset.errors
+            formset = EditPhotoFormSet(initial=initial_photo_data)
+    else:
+        formset = EditPhotoFormSet(initial=initial_photo_data)
+
+    context = {
+        'formset': formset,
+        'update_success': update_success,
+        'error_message': error_message
+    }
+    if error_message:
+        logging.error("Edit operation failed: %s" % context['error_message'])
+
+    return render(request, "final/modify_listing_photo.html", {'context': context})
+
+
+@login_required
 def view_listing(request, listing_id):
     domicile = get_object_or_404(Domicile, pk=listing_id)
     full_address = domicile.address + " " + domicile.city + " " + domicile.state + " " + str(domicile.zip_code)
+
+    photos = DomicilePhoto.objects.filter(listing=domicile)
+    photo_urls = [x.photo_url.url for x in photos]
 
     # get_lat_long takes a list of listings as argument and returns a list of dicts
     lat_long = utils.get_lat_long([domicile])
@@ -245,7 +327,9 @@ def view_listing(request, listing_id):
         'domicile': domicile,
         'address': full_address,
         'lat_long': single_lat_long,
+        'listing_photos': photo_urls
     }
+    pprint(context)
     return render(request, 'final/description.html', {'context': context})
 
 

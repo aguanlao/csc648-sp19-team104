@@ -352,6 +352,12 @@
           </p>
           {% endwith %}
           {% endif %}
+
+          <p>LISTING PHOTOS</p>
+          {% for image_url in context.listing_photos %}
+          <o class="text-info"> URL:  {{ image_url }} </o>
+          <img class="d-flex align-self-start" src="../{{ image_url }}" alt="Generic placeholder image">
+          {% endfor %}
         </div>
         <!--End listing information-->
         <!-- <div class="share-button mt-5">

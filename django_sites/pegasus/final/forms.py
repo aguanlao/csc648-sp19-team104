@@ -1,3 +1,5 @@
+from django.forms import formset_factory
+from django.forms.formsets import BaseFormSet
 from django import forms
 from .models import *
 
@@ -75,6 +77,34 @@ class EditListingForm(forms.ModelForm):
         widgets = {
             'description': forms.Textarea
         }
+
+
+class EditPhotoForm(forms.ModelForm):
+    ADD = 'A'
+    DELETE = 'D'
+    NONE = 'N'
+    ACTION_CHOICES = (
+        (ADD, 'Add'),
+        (DELETE, 'Delete'),
+        (NONE, 'NONE'),
+    )
+    action = forms.ChoiceField(choices=ACTION_CHOICES)
+    class Meta:
+        model = DomicilePhoto
+        fields = (
+            'photo_url',
+        )
+        widgets = {
+            'photo_url': forms.FileInput()
+        }
+
+
+class NoValidationFormSet(BaseFormSet):
+    def clean(self):
+        # Perform no validation
+        return
+
+EditPhotoFormSet = formset_factory(EditPhotoForm, extra=1, formset=NoValidationFormSet)
 
 
 class CreateUserForm(forms.ModelForm):
