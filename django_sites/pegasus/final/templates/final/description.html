@@ -321,6 +321,11 @@
         </div>
         <!--Start listing information-->
         <div style="margin-top:100px;">
+
+          {% if context.domicile.is_active == False %}
+          <span style="color: red; background-color: #0c0e1c;"><br/>This listing has not yet been approved.<br /></span>
+          {% endif %}
+
           <h4 class="text-primary mt-3 d-flex price"> ${{ context.domicile.price|floatformat:-2 }}
             <span class="text-muted"> | {{ context.domicile.bed_count }}
               bed{{ context.domicile.bed_count|pluralize }}</span>

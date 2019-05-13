@@ -14,6 +14,7 @@ from .models import *
 from . import utils
 from pprint import pprint
 import logging
+import json
 
 
 # TODO: View stubs
@@ -156,34 +157,47 @@ def listing(request):
 
 @login_required
 def create_listing(request):
+    error_message = ''
     if request.method == 'POST':
-        form = CreateDomicileForm(request.POST)
-
+        form = CreateDomicileForm(request.POST, request.FILES)
         if form.is_valid():
-            for key, value in form.cleaned_data.items():
-                logging.debug("(%s, %s)" % (key, value))
-
             try:
-                logging.info("Creating new residence...")
-
-                owner = form.cleaned_data.pop('owner')
+                logging.info("Creating new residence...\n%s" % json.dumps('%s' % form.cleaned_data, indent=4))
+                owner = request.user.username
                 owner_exists = len(RegisteredUser.objects.all().filter(username=owner)) >= 1
                 if not owner_exists:
                     raise KeyError("Owner '%s' not found." % owner)
 
                 domicile = Domicile()
-                domicile.update(**form.cleaned_data)
+                domicile.update_old(**form.cleaned_data)
+                domicile.is_active = False
                 domicile.save()
 
-            except Exception as error_message:
-                logging.error("Operation failed: %s" % error_message)
+                # Domicile has been created, now submit email
+                mail_subject = 'Pegasus listing submission'
+                message = render_to_string('final/property_confirmation_email.html', {
+                    'user': request.user,
+                    'domain': request.META['HTTP_HOST'],
+                    'listing': domicile
+                })
+                email = EmailMessage(mail_subject, message, to=[request.user.email])
+                email.send()
+                logging.info("Sent confirmation email to user '%s' for listing." % email)
+                return render(request, 'final/property_confirmation.html')
+
+            except Exception as exception_message:
+                logging.error("Operation failed: %s" % exception_message)
+                error_message = exception_message
+
     else:
         form = CreateDomicileForm()
 
     context = {
         'form': form,
+        'error_message': error_message
     }
 
+    pprint(context)
     return render(request, 'final/add_new_property.html', {'context': context})
 
 

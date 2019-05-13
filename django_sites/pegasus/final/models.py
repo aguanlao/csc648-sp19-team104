@@ -170,11 +170,11 @@ class Domicile(models.Model):
     coordinates = models.CharField(max_length=20, blank=True, null=True)
     description = models.TextField()
 
-    def update(
+    def update_old(
             self, residence_type=None, bed_count=None, bath_count=None, address=None, city=None, state=None,
             zip_code=None, size=None, owner=None, price=None, tenants=None, pet_friendly=None, pets_allowed=None,
             limit_tenant_count=None, current_tenant_count=None, amenities=None, utilities_included_rent=None,
-            is_active=None, description=None
+            is_active=None, description=None, photo=None
     ):
         if residence_type is not None:
             self.residence_type = residence_type
@@ -232,6 +232,14 @@ class Domicile(models.Model):
 
         if description is not None:
             self.description = description
+
+        if photo is not None:
+            self.photo = photo
+
+    def update(self, **kwargs):
+        for key, value in kwargs.items():
+            if getattr(self, key):
+                setattr(self, key, value)
 
     def __str__(self):
         return "%s, %s, %s %s" % (self.address, self.city, self.state, self.zip_code)
