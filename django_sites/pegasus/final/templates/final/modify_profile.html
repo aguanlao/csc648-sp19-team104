@@ -9,7 +9,7 @@
         </span>
     </div>
 
-    <form method="post" class="text-center text-white  text-size">
+    <form method="post" class="text-center text-black text-size">
         {% csrf_token %}
         <table align="center">
             {% for field in context.form.visible_fields %}
@@ -17,10 +17,13 @@
                 <td>{{ field.label_tag }}</td>
                 <td>
                     {{ field.errors }}       
-                    {% if field%}
-                    
-                    {{ field }}
-                    <input type="checkbox" onclick="true">
+                    {% if field%}                  
+                    <div class="form-group form-inline">
+                        {{ field }}
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input form-control" type="checkbox" value="" id="defaultCheck1">
+                        </div>
+                    </div>
                     {% endif %}
                     {{ field.help_text }}
                 </td>
