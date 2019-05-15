@@ -2,6 +2,8 @@ from django.contrib.auth.hashers import make_password, check_password
 from .models import *
 import requests
 
+SIZE_RANGE = 500
+
 
 def encrypt_password(password):
     return make_password(password)
@@ -67,3 +69,19 @@ def get_lat_long(residences):
                 geodata['lng'] = result['geometry']['location']['lng']
                 all_lat_lng.append(geodata)
     return all_lat_lng
+
+
+# Returns a set of domiciles based on input filters
+def filter_domiciles(**input_filters):
+
+    results = Domicile.objects.all()
+    if input_filters:
+
+        # Case-insensitive city search
+        if 'city' in input_filters:
+            city_value = input_filters.pop('city')
+            results = results.filter(city__iexact=city_value)
+
+        results = results.filter(**input_filters)
+
+    return results

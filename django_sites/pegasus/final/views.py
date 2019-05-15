@@ -47,31 +47,24 @@ def index(request):
 
             pprint(filters)
 
-            # # Separate domicile filters
-            # domicile_filters = {
-            #     key: value for key, value in filters.items() if key in Domicile.__dict__
-            # }
-
-            for key, value in filters.items():
-                logging.debug("Filter: (%s, %s)" % (key, value))
-
-            results = Domicile.objects.all()
-            if filters:
-
-                # Case-insensitive city search
-                if 'city' in filters:
-                    city_value = filters.pop('city')
-                    results = results.filter(city__iexact=city_value).filter(**filters)
-                else:
-                    results = results.filter(**filters)
-
-            listings = Domicile.objects.all().filter(pk__in=results).filter(**filters)
+            # results = Domicile.objects.all()
+            # if filters:
+            #
+            #     # Case-insensitive city search
+            #     if 'city' in filters:
+            #         city_value = filters.pop('city')
+            #         results = results.filter(city__iexact=city_value).filter(**filters)
+            #     else:
+            #         results = results.filter(**filters)
+            #
+            # listings = Domicile.objects.all().filter(pk__in=results).filter(**filters)
+            results = utils.filter_domiciles(**filters)
             searched_lat_lng = utils.get_lat_long(results)
 
             for key, value in filters.items():
                 logging.debug("Search filters: (%s , %s)" % (key, value))
 
-            for entry in listings:
+            for entry in results:
                 try:
                     logging.debug(entry.photo.url)
                 except ValueError as exception:
@@ -80,8 +73,8 @@ def index(request):
             context = {
                 'form': form,
                 'search_results': results,
-                'listing_results': listings,
-                'search_count': len(listings),
+                'listing_results': results,
+                'search_count': len(results),
                 'lat_lng': searched_lat_lng
             }
             return render(request, 'final/listing.html', {'context': context})
@@ -107,29 +100,13 @@ def listing(request):
                 if value is not '' and value is not False and value is not None and '%s'.lower() % value != 'all'
             }
 
-            # Separate domicile filters
-            domicile_filters = {key: value for key, value in filters.items() if key in Domicile.__dict__}
-
-            for key, value in domicile_filters.items():
-                logging.debug("Domicile filter: (%s, %s)" % (key, value))
-
-            results = Domicile.objects.all()
-            if domicile_filters:
-
-                # Case-insensitive city search
-                if 'city' in domicile_filters:
-                    city_value = domicile_filters.pop('city')
-                    results = results.filter(city__iexact=city_value).filter(**domicile_filters)
-                else:
-                    results = results.filter(**domicile_filters)
-
-            listings = Domicile.objects.all().filter(pk__in=results).filter(**filters)
+            results = utils.filter_domiciles(**filters)
             searched_lat_lng = utils.get_lat_long(results)
 
             for key, value in filters.items():
                 logging.debug("Search filters: (%s , %s)" % (key, value))
 
-            for entry in listings:
+            for entry in results:
                 try:
                     logging.debug(entry.photo.url)
                 except ValueError as exception:
@@ -138,7 +115,7 @@ def listing(request):
             context = {
                 'form': form,
                 'search_results': results,
-                'listing_results': listings,
+                'listing_results': results,
                 'search_count': len(results),
                 'lat_lng': searched_lat_lng
             }
