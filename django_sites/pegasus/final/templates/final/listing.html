@@ -242,6 +242,11 @@
                             allowed</label>
                         {{ context.form.pet_friendly }}
                     </div>
+                    <div class="form-check">
+                        <label for="{{ context.form.utilities_included_rent.id_for_label }}" class="form-check-label text-white">Utilities
+                            included</label>
+                        {{ context.form.utilities_included_rent }}
+                    </div>
 
                 </div>
                 <div class="two fields">
@@ -259,10 +264,11 @@
                         <label for="{{ context.form.size.id_for_label }}" class="text-white">Square Footage</label>
                         {{ context.form.size }}
                     </div>
+                    <div class="field text-center">
+                        <input type="submit" value="Apply" class="btn btn-outline-light mx-auto" />
+                    </div>
                 </div>
-                <div class="text-center">
-                    <input type="submit" value="Apply" class="btn btn-outline-light mx-auto" />
-                </div>
+
 
             </div>
         </div>

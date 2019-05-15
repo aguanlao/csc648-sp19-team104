@@ -99,7 +99,6 @@ def filter_domiciles(**input_filters):
             max_value = input_filters.pop('max_price')
             results = results.filter(price__lte=max_value)
 
-
         results = results.filter(**input_filters)
 
     return results

@@ -8,6 +8,7 @@ class SearchForm(forms.Form):
     form_residence_options = [('all', 'All')] + Domicile.residence_options
     residence_type = forms.ChoiceField(label="Residence type", choices=form_residence_options, required=False)
     pet_friendly = forms.BooleanField(label="Allows pets", required=False)
+    utilities_included_rent = forms.BooleanField(label="Utilities Included", required=False)
     bed_count = forms.IntegerField(label="Bedrooms", min_value=0, required=False)
     bath_count = forms.IntegerField(label="Bathrooms", min_value=0, required=False)
     size = forms.FloatField(label="Square Footage", min_value=0.0, required=False)
