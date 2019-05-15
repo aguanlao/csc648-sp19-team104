@@ -349,12 +349,29 @@
                                 },
                                 fullscreenControl: true
                             });
+                            
+                            var address_labels = []
+                            var listing_ids = []
+                            {% for item in context.listing_results %}
+                                address_labels.push("{{ item }}");
+                                listing_ids.push("{{ item.residence_id }}");
+                            {% endfor %}
+                            
                             {% for entry in context.lat_lng %}
                             var marker_position = {
                                 "lat": parseFloat("{{ entry.lat }}"),
                                 "lng": parseFloat("{{ entry.lng }}"),
                             }
-                            var marker = new google.maps.Marker({ position: marker_position, map: map });
+                            var marker = new google.maps.Marker({ 
+                                position: marker_position, 
+                                map: map, 
+                                title: address_labels["{{forloop.counter0}}"]
+                            });
+                    
+                            google.maps.event.addListener(marker, 'click', function(){ 
+                                window.location.replace('/'+listing_ids["{{forloop.counter0}}"]);
+                                })
+                                
                             {% endfor %}
                         }
                     </script>
