@@ -70,17 +70,7 @@
                     <a href="{% url 'postman:write' %}">Message Me</a>
                 </div>
             </div>
-            {% endif %}
-            {% if request.user.permission_level == 1%}
-            <div class="profile-info-row">
-                    <div class="profile-info-name">
-                    <i class="middle home icon bigger-150 light-blue"></i>
-                    </div>
-                    <div class="profile-info-value">
-                        <a href="{% url 'add_new_property' %}">Add New Listings +</a>
-                    </div>
-                </div>
-            {% endif %}  
+            {% endif %} 
         </div>
     </div>
 </div>
@@ -106,7 +96,17 @@
 
 {% block tab2_info %}
 <!--Listings-->
-<h1 class="text-center">Listings</h1>
+<h1 class="text-center" style=>Listings</h1>
+{% if request.user.permission_level == 1%}
+<div style="padding-bottom: 1rem; padding-left: 1rem"> 
+    <button class="ui basic button">
+        <i class="home icon"></i>
+        <a href="{% url 'add_new_property' %}">
+            Add New Listings +   
+        </a>
+    </button>
+</div>
+{% endif %}
 <div class="container-fluid">
     <div class="row">
         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
@@ -185,7 +185,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 </div>
 {% endblock %}
 
