@@ -47,17 +47,6 @@ def index(request):
 
             pprint(filters)
 
-            # results = Domicile.objects.all()
-            # if filters:
-            #
-            #     # Case-insensitive city search
-            #     if 'city' in filters:
-            #         city_value = filters.pop('city')
-            #         results = results.filter(city__iexact=city_value).filter(**filters)
-            #     else:
-            #         results = results.filter(**filters)
-            #
-            # listings = Domicile.objects.all().filter(pk__in=results).filter(**filters)
             results = utils.filter_domiciles(**filters)
             searched_lat_lng = utils.get_lat_long(results)
 
@@ -73,7 +62,6 @@ def index(request):
             context = {
                 'form': form,
                 'search_results': results,
-                'listing_results': results,
                 'search_count': len(results),
                 'lat_lng': searched_lat_lng
             }
@@ -115,7 +103,6 @@ def listing(request):
             context = {
                 'form': form,
                 'search_results': results,
-                'listing_results': results,
                 'search_count': len(results),
                 'lat_lng': searched_lat_lng
             }
