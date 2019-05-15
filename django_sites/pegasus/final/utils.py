@@ -82,6 +82,11 @@ def filter_domiciles(**input_filters):
             city_value = input_filters.pop('city')
             results = results.filter(city__iexact=city_value)
 
+        # Square footage search +/- SIZE_RANGE
+        if 'size' in input_filters:
+            size_value = input_filters.pop('size')
+            results = results.filter(size__range=(max(0, size_value - SIZE_RANGE), size_value + SIZE_RANGE))
+
         results = results.filter(**input_filters)
 
     return results
