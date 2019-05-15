@@ -87,6 +87,19 @@ def filter_domiciles(**input_filters):
             size_value = input_filters.pop('size')
             results = results.filter(size__range=(max(0, size_value - SIZE_RANGE), size_value + SIZE_RANGE))
 
+        # Search by min & max prices
+        if 'min_price' in input_filters and 'max_price' in input_filters:
+            min_value = input_filters.pop('min_price')
+            max_value = input_filters.pop('max_price')
+            results = results.filter(price__range=(min_value, max_value))
+        elif 'min_price' in input_filters:
+            min_value = input_filters.pop('min_price')
+            results = results.filter(price__gte=min_value)
+        elif 'max_price' in input_filters:
+            max_value = input_filters.pop('max_price')
+            results = results.filter(price__lte=max_value)
+
+
         results = results.filter(**input_filters)
 
     return results

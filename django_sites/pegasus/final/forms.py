@@ -11,7 +11,8 @@ class SearchForm(forms.Form):
     bed_count = forms.IntegerField(label="Bedrooms", min_value=0, required=False)
     bath_count = forms.IntegerField(label="Bathrooms", min_value=0, required=False)
     size = forms.FloatField(label="Square Footage", min_value=0.0, required=False)
-    price = forms.FloatField(label="Price", min_value=0.0, required=False)
+    min_price = forms.FloatField(label="Min Price", min_value=0.0, required=False)
+    max_price = forms.FloatField(label="Max Price", min_value=0.0, required=False)
     city = forms.CharField(label="City", max_length=20, required=False)
     zip_code = forms.IntegerField(label="Zip Code", required=False)
 

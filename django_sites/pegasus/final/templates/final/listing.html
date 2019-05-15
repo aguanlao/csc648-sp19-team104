@@ -236,27 +236,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-check">
-                    <label for="{{ context.form.pet_friendly.id_for_label }}" class="form-check-label text-white">Pets
-                        allowed</label>
-                    {{ context.form.pet_friendly }}
+                <div class="two fields">
+                    <div class="form-check">
+                        <label for="{{ context.form.pet_friendly.id_for_label }}" class="form-check-label text-white">Pets
+                            allowed</label>
+                        {{ context.form.pet_friendly }}
+                    </div>
+
                 </div>
                 <div class="two fields">
                     <div class="field">
-                        <label for="{{ context.form.price.id_for_label }}" class="text-white">Price</label>
-                        {{ context.form.price }}
+                        <label for="{{ context.form.min_price.id_for_label }}" class="text-white">Min Price</label>
+                        {{ context.form.min_price }}
                     </div>
-<!--                    <div class=" four wide field">-->
-<!--                        <label class="text-white">Max Price</label>-->
-<!--                        <input type="text" placeholder="Max price" />-->
-<!--                    </div>-->
+                    <div class="field">
+                        <label for="{{ context.form.max_price.id_for_label }}" class="text-white">Max Price</label>
+                        {{ context.form.max_price }}
+                    </div>
+                </div>
+                <div class="two fields">
                     <div class="field">
                         <label for="{{ context.form.size.id_for_label }}" class="text-white">Square Footage</label>
                         {{ context.form.size }}
                     </div>
                 </div>
                 <div class="text-center">
-                    <input type="submit" value="Save" class="btn btn-outline-light mx-auto" />
+                    <input type="submit" value="Apply" class="btn btn-outline-light mx-auto" />
                 </div>
 
             </div>
