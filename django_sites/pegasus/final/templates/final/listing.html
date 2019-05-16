@@ -236,28 +236,39 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-check">
-                    <label for="{{ context.form.pet_friendly.id_for_label }}" class="form-check-label text-white">Pets
-                        allowed</label>
-                    {{ context.form.pet_friendly }}
+                <div class="two fields">
+                    <div class="form-check">
+                        <label for="{{ context.form.pet_friendly.id_for_label }}" class="form-check-label text-white">Pets
+                            allowed</label>
+                        {{ context.form.pet_friendly }}
+                    </div>
+                    <div class="form-check">
+                        <label for="{{ context.form.utilities_included_rent.id_for_label }}" class="form-check-label text-white">Utilities
+                            included</label>
+                        {{ context.form.utilities_included_rent }}
+                    </div>
+
                 </div>
                 <div class="two fields">
                     <div class="field">
-                        <label for="{{ context.form.price.id_for_label }}" class="text-white">Price</label>
-                        {{ context.form.price }}
+                        <label for="{{ context.form.min_price.id_for_label }}" class="text-white">Min Price</label>
+                        {{ context.form.min_price }}
                     </div>
-<!--                    <div class=" four wide field">-->
-<!--                        <label class="text-white">Max Price</label>-->
-<!--                        <input type="text" placeholder="Max price" />-->
-<!--                    </div>-->
+                    <div class="field">
+                        <label for="{{ context.form.max_price.id_for_label }}" class="text-white">Max Price</label>
+                        {{ context.form.max_price }}
+                    </div>
+                </div>
+                <div class="two fields">
                     <div class="field">
                         <label for="{{ context.form.size.id_for_label }}" class="text-white">Square Footage</label>
                         {{ context.form.size }}
                     </div>
+                    <div class="field text-center">
+                        <input type="submit" value="Apply" class="btn btn-outline-light mx-auto" />
+                    </div>
                 </div>
-                <div class="text-center">
-                    <input type="submit" value="Save" class="btn btn-outline-light mx-auto" />
-                </div>
+
 
             </div>
         </div>
@@ -267,7 +278,7 @@
     <div class="block-right" id="myUL">
         <div class="container">
             <div class="row">
-                {% if context.search_count %} {% for entry in context.listing_results %}
+                {% if context.search_count %} {% for entry in context.search_results %}
                 <div class="col-12">
                     <div class="media">
                         <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>

@@ -2,6 +2,8 @@ from django.contrib.auth.hashers import make_password, check_password
 from .models import *
 import requests
 
+SIZE_RANGE = 500
+
 
 def encrypt_password(password):
     return make_password(password)
@@ -67,3 +69,36 @@ def get_lat_long(residences):
                 geodata['lng'] = result['geometry']['location']['lng']
                 all_lat_lng.append(geodata)
     return all_lat_lng
+
+
+# Returns a set of domiciles based on input filters
+def filter_domiciles(**input_filters):
+
+    results = Domicile.objects.all()
+    if input_filters:
+
+        # Case-insensitive city search
+        if 'city' in input_filters:
+            city_value = input_filters.pop('city')
+            results = results.filter(city__iexact=city_value)
+
+        # Square footage search +/- SIZE_RANGE
+        if 'size' in input_filters:
+            size_value = input_filters.pop('size')
+            results = results.filter(size__range=(max(0, size_value - SIZE_RANGE), size_value + SIZE_RANGE))
+
+        # Search by min & max prices
+        if 'min_price' in input_filters and 'max_price' in input_filters:
+            min_value = input_filters.pop('min_price')
+            max_value = input_filters.pop('max_price')
+            results = results.filter(price__range=(min_value, max_value))
+        elif 'min_price' in input_filters:
+            min_value = input_filters.pop('min_price')
+            results = results.filter(price__gte=min_value)
+        elif 'max_price' in input_filters:
+            max_value = input_filters.pop('max_price')
+            results = results.filter(price__lte=max_value)
+
+        results = results.filter(**input_filters)
+
+    return results
