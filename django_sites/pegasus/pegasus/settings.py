@@ -109,7 +109,7 @@ WSGI_APPLICATION = 'pegasus.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'sandbox',
+        'NAME': 'pegasus',
         'USER': 'admin',
         'PASSWORD': 'justD0it!',
         'HOST': '18.224.150.8',
