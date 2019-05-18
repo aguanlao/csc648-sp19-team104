@@ -7,7 +7,6 @@ from django.urls import reverse
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
-from django.forms import formset_factory
 from .tokens import account_activation_token
 from .forms import *
 from .models import *
@@ -132,8 +131,10 @@ def create_listing(request):
                 if not owner_exists:
                     raise KeyError("Owner '%s' not found." % owner)
 
+                form.cleaned_data['owner'] = owner
+
                 domicile = Domicile()
-                domicile.update_old(**form.cleaned_data)
+                domicile.update(**form.cleaned_data)
                 domicile.is_active = False
                 domicile.save()
 

@@ -159,7 +159,7 @@ class Domicile(models.Model):
     creation_time = models.DateField(default=now, editable=False)
     owner = models.CharField(max_length=15)
     price = models.FloatField(max_length=10)
-    tenants = models.CharField(max_length=100)
+    tenants = models.CharField(max_length=100, blank=True, null=True)
     pet_friendly = models.BooleanField()
     pets_allowed = models.CharField(max_length=100, blank=True, null=True)
     limit_tenant_count = models.IntegerField(blank=True, null=True)
@@ -169,12 +169,13 @@ class Domicile(models.Model):
     is_active = models.BooleanField()
     coordinates = models.CharField(max_length=20, blank=True, null=True)
     description = models.TextField()
+    district = models.CharField(max_length=50)
 
-    def update_old(
+    def update(
             self, residence_type=None, bed_count=None, bath_count=None, address=None, city=None, state=None,
             zip_code=None, size=None, owner=None, price=None, tenants=None, pet_friendly=None, pets_allowed=None,
             limit_tenant_count=None, current_tenant_count=None, amenities=None, utilities_included_rent=None,
-            is_active=None, description=None, photo=None
+            is_active=None, description=None, photo=None, district=None
     ):
         if residence_type is not None:
             self.residence_type = residence_type
@@ -196,6 +197,9 @@ class Domicile(models.Model):
 
         if zip_code is not None:
             self.zip_code = zip_code
+
+        if district is not None:
+            self.district = district
 
         if size is not None:
             self.size = size
@@ -235,11 +239,6 @@ class Domicile(models.Model):
 
         if photo is not None:
             self.photo = photo
-
-    def update(self, **kwargs):
-        for key, value in kwargs.items():
-            if getattr(self, key):
-                setattr(self, key, value)
 
     def __str__(self):
         return "%s, %s, %s %s" % (self.address, self.city, self.state, self.zip_code)
