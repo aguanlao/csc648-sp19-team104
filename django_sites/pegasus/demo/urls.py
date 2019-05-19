@@ -32,4 +32,5 @@ urlpatterns = [
     path('<int:listing_id>/edit/', views.edit_listing, name='edit_listing'),
 
     path('maps/', views.maps, name='maps'),
+    re_path(r'^events/(?P&lt;event_id&gt;\d+)/export/', 'app_events.ics_views.export', name="event_ics_export"),
 ]
