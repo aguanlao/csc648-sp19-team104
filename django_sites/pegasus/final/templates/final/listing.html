@@ -247,6 +247,10 @@
             <a href="javascript:void(0)" class="closebtn text-white" onclick="closeNav()">&times;</a>
             <div class="ui form text-white" style="padding-right: 20px; padding-left:20px">
                 <h4 class="ui dividing header text-center text-white">Filter Your Search</h4>
+                <div class="field">
+                    <label for="{{ context.form.neighborhood.id_for_label }}" class="text-white">Neighborhood</label>
+                    {{ context.form.neighborhood }}
+                </div>
                 <div class="dropdown">
                     <label for="{{ context.form.residence_type.id_for_label }}" class="text-white">Residence
                         Type</label>
