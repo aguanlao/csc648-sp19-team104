@@ -289,6 +289,7 @@
                         </a>
                         <div class="media-body pl-3">
                             <div class="price">${{ entry.price|floatformat:-2 }}
+                                <small class="float-right mr-2">{{ forloop.counter }}</small>
                                 <small>{{ entry.city|title }}</small>
                                 <small>{{ entry.district }}</small>
                             </div>
@@ -332,6 +333,7 @@
                     <script>
                         var map;
                         function initMap() {
+                            console.log("Initializing map...");
                             map = new google.maps.Map(document.getElementById('map'), {
                                 zoom: 10,
                                 center: { lat: 37.77493, lng: -122.41942 },
@@ -354,6 +356,7 @@
                             
                             var address_labels = []
                             var listing_ids = []
+
                             {% for item in context.listing_results %}
                                 address_labels.push("{{ item }}");
                                 listing_ids.push("{{ item.residence_id }}");
@@ -367,13 +370,13 @@
                             var marker = new google.maps.Marker({ 
                                 position: marker_position, 
                                 map: map, 
+                                label: "{{forloop.counter}}",
                                 title: address_labels["{{forloop.counter0}}"]
                             });
-                    
                             google.maps.event.addListener(marker, 'click', function(){ 
                                 window.location.replace('/'+listing_ids["{{forloop.counter0}}"]);
-                                })
-                                
+                                });
+                            
                             {% endfor %}
                         }
         
@@ -383,14 +386,11 @@
                     </div>
                     <script
                         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbr6KeU9un_uLPpH581LUfOb8PE3zi1x0&callback=initMap"
-                        async defer></script>
+                        async defer>
+                    </script>
                 </div>
             </div>
         </div>
-
-        <script>
-            $(window).on("resize", function () { $("#map").height($(window).height()); map.invalidateSize(); }).trigger("resize");
-        </script>
 
         <!-- footer -->
         <!-- Site footer -->
