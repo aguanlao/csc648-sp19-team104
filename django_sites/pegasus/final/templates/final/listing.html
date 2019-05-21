@@ -357,7 +357,7 @@
                             var address_labels = []
                             var listing_ids = []
 
-                            {% for item in context.listing_results %}
+                            {% for item in context.search_results %}
                                 address_labels.push("{{ item }}");
                                 listing_ids.push("{{ item.residence_id }}");
                             {% endfor %}
