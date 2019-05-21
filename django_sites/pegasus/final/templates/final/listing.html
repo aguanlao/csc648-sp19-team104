@@ -125,6 +125,10 @@
             }
 
             .media {
+                width: 93vw !important;
+            }
+
+            #map {
                 width: 100vw !important;
             }
 
@@ -180,23 +184,23 @@
                         <div class="ui simple dropdown item text-white">
                             {{request.user.first_name}} {{request.user.last_name}}</a>
                             <i class="dropdown icon"></i>
-                            <div class="menu" style="background: #333b7c">
+                            <div class="menu " style="background: #333b7c;">
                                 {% if request.user.permission_level == 0 %}
-                                <div class="item"> <a href="{% url 'admin:index' %}">
+                                <div class="item "> <a href="{% url 'admin:index' %}">
                                         <i class="fas fa-user"></i>
                                         dashboard</a>
                                 </div>
                                 {% endif %}
-                                <div class="item"> <a href="{% url 'view_profile' %}">
-                                        <i class="fas fa-user"></i>
+                                <div class="item text-white"> <a href="{% url 'view_profile' %}" style="color: #fff">
+                                        <i class="fas fa-user" style="color: #fff"></i>
                                         view profile</a>
                                 </div>
-                                <div class="item"><a href="#">
-                                        <i class="fas fa-cogs"></i>
+                                <div class="item"><a href="#" style="color: #fff">
+                                        <i class="fas fa-cogs" style="color: #fff"></i>
                                         setting</a>
                                 </div>
-                                <div class="item"><a href="{% url 'logout' %}">
-                                        <i class="fas fa-sign-out-alt"></i>
+                                <div class="item"><a href="{% url 'logout' %}" style="color: #fff">
+                                        <i class="fas fa-sign-out-alt" style="color: #fff"></i>
                                         logout</a>
                                 </div>
                             </div>
@@ -218,28 +222,19 @@
                     {% endif %}
                 </ul>
             </div>
-            <div class="filter-search  position-fixed" style="margin-top: 64px; margin-left: -14px">
-                <div class="form-cont">
-                    {{ context.form.city }}
-                    <button class="btn btn-sm btn-info">Go</button>
-                    <span style="font-size:16px;cursor:pointer; color: #f1f1f1;" onclick="openNav()"><i
-                            class="fas fa-filter"></i>
-                        Filter</span>
-                </div>
-            </div>
+
         </div>
+
     </nav>
 
     <!-- Listing  -->
 
 
 
-
-    <!-- Filter and search  forms-->
-
     <form method="post">
         {% csrf_token %}
-        <!-- <div class="filter-search  position-fixed">
+
+        <div class="filter-search  position-fixed" style="position: absolute; left: 0%; top: 0;z-index:1; ">
             <div class="form-cont">
                 {{ context.form.city }}
                 <button class="btn btn-sm btn-info">Go</button>
@@ -247,9 +242,7 @@
                         class="fas fa-filter"></i>
                     Filter</span>
             </div>
-        </div> -->
-
-
+        </div>
         <div id="mySidenav" class="sidenav" style="margin-top:100px;">
             <a href="javascript:void(0)" class="closebtn text-white" onclick="closeNav()">&times;</a>
             <div class="ui form text-white" style="padding-right: 20px; padding-left:20px">
@@ -312,6 +305,7 @@
         </div>
     </form>
 
+    <!-- Filter and search  forms-->
     <!-- Listing results -->
     <div class=" block-right" id="myUL" style="margin-top:140px">
         <div class="container">
