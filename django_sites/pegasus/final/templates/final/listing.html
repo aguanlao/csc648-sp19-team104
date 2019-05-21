@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="../../static/demo/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <title>Document</title>
     <style>
         input[type='text'] {
@@ -93,14 +94,18 @@
 
         .filter-search {
             width: 100%;
-            height: 100px;
-            background-color: lightblue;
+            height: 50px;
+            background-color: #333b7c;
             margin-top: 75px;
             display: flex;
             align-self: center;
             align-content: center;
             align-items: center;
             justify-content: center;
+        }
+
+        .btn-hide {
+            display: none;
         }
 
         @media screen and (max-height: 450px) {
@@ -112,15 +117,34 @@
                 font-size: 18px;
             }
         }
+
+        @media (max-width:750px) {
+            .btn-hide {
+                display: flex;
+                flex-wrap: nowrap;
+            }
+
+            .media {
+                width: 93vw !important;
+            }
+
+            #map {
+                width: 100vw !important;
+            }
+
+            .filter-search {
+                margin-top: 60px !important;
+            }
+        }
     </style>
 </head>
 
 <body>
     <script>
-        window.addEventListener('scroll', function () {
-            document.querySelector('.block-left').style.marginTop =
-                Math.max(-10) + 'px';
-        }, false);
+        // window.addEventListener('scroll', function () {
+        //     document.querySelector('.block-left').style.marginTop =
+        //         Math.max(-10) + 'px';
+        // }, false);
         function openNav() {
             document.getElementById("mySidenav").style.width = "250px";
         }
@@ -129,82 +153,88 @@
         }
     </script>
     <!-- nav bar -->
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top py-2">
-        <a class="navbar-brand d-flex" href="{% url 'index' %}">
-            <img class="rounded-circle" src="../../static/demo/images/logos.png" style="width:50px; height: 50px;"
-                alt="" />
-            <h4 class="mt-3 ml-3">Pegasus</h4>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top py-2">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex" href="{% url 'index' %}">
+                <img class="rounded-circle" src="../../static/demo/images/logos.png" style="width:50px; height: 50px;"
+                    alt="" />
+                <h4 class="mt-3 ml-3">Pegasus</h4>
+            </a>
+            <div class="btn-hide">
+                <button class="btn btn-sm btn-light button-1" onclick="myFunction()">List</button>
+                <button class="btn btn-sm btn-light button-2" onclick="mapFunction()">Map</button>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="ui white button d-flex  border-0 text-white" href="{% url 'index' %}"
-                        style="background:transparent">
-                        <i class="home icon"></i>
-                        Home
-                    </a>
-                    </a>
-                </li>
-                {% if request.user.is_authenticated %}
-                <div class="ui compact menu " style="background:transparent; border: none;">
-                    <div class="ui simple dropdown item text-white">
-                        {{request.user.first_name}} {{request.user.last_name}}</a>
-                        <i class="dropdown icon"></i>
-                        <div class="menu" style="background: #333b7c">
-                            {% if request.user.permission_level == 0 %}
-                            <div class="item"> <a href="{% url 'admin:index' %}">
-                                    <i class="fas fa-user"></i>
-                                    dashboard</a>
-                            </div>
-                            {% endif %}
-                            <div class="item"> <a href="{% url 'view_profile' %}">
-                                    <i class="fas fa-user"></i>
-                                    view profile</a>
-                            </div>
-                            <div class="item"><a href="#">
-                                    <i class="fas fa-cogs"></i>
-                                    setting</a>
-                            </div>
-                            <div class="item"><a href="{% url 'logout' %}">
-                                    <i class="fas fa-sign-out-alt"></i>
-                                    logout</a>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="ui white button d-flex  border-0 text-white" href="{% url 'index' %}"
+                            style="background:transparent">
+                            <i class="home icon"></i>
+                            Home
+                        </a>
+                        </a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                    <div class="ui compact menu " style="background:transparent; border: none;">
+                        <div class="ui simple dropdown item text-white">
+                            {{request.user.first_name}} {{request.user.last_name}}</a>
+                            <i class="dropdown icon"></i>
+                            <div class="menu " style="background: #333b7c;">
+                                {% if request.user.permission_level == 0 %}
+                                <div class="item "> <a href="{% url 'admin:index' %}">
+                                        <i class="fas fa-user"></i>
+                                        dashboard</a>
+                                </div>
+                                {% endif %}
+                                <div class="item text-white"> <a href="{% url 'view_profile' %}" style="color: #fff">
+                                        <i class="fas fa-user" style="color: #fff"></i>
+                                        view profile</a>
+                                </div>
+                                <div class="item"><a href="#" style="color: #fff">
+                                        <i class="fas fa-cogs" style="color: #fff"></i>
+                                        setting</a>
+                                </div>
+                                <div class="item"><a href="{% url 'logout' %}" style="color: #fff">
+                                        <i class="fas fa-sign-out-alt" style="color: #fff"></i>
+                                        logout</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                {% else %}
-                <li class="nav-item">
-                    <a class=" ui  white button d-flex border-0 text-white" href="{% url 'login' %}"
-                        style="background:transparent">
-                        <i class="add user icon"></i>
-                        Sign In</a>
-                </li>
-                <li class="nav-item">
-                    <a class=" ui  white button d-flex border-0 text-white" href="{% url 'create_account' %}"
-                        style="background:transparent">
-                        <i class="add user icon"></i>
-                        Sign Up</a>
-                </li>
-                {% endif %}
-            </ul>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class=" ui  white button d-flex border-0 text-white" href="{% url 'login' %}"
+                            style="background:transparent">
+                            <i class="add user icon"></i>
+                            Sign In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class=" ui  white button d-flex border-0 text-white" href="{% url 'create_account' %}"
+                            style="background:transparent">
+                            <i class="add user icon"></i>
+                            Sign Up</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+
         </div>
+
     </nav>
 
     <!-- Listing  -->
 
 
 
-
-    <!-- Filter and search  forms-->
-
     <form method="post">
         {% csrf_token %}
-        <div class="filter-search ">
+
+        <div class="filter-search  position-fixed" style="position: absolute; left: 0%; top: 0;z-index:1; ">
             <div class="form-cont">
                 {{ context.form.city }}
                 <button class="btn btn-sm btn-info">Go</button>
@@ -213,10 +243,8 @@
                     Filter</span>
             </div>
         </div>
-
-
-        <div id="mySidenav" class="sidenav" style="margin-top:50px;">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div id="mySidenav" class="sidenav" style="margin-top:100px;">
+            <a href="javascript:void(0)" class="closebtn text-white" onclick="closeNav()">&times;</a>
             <div class="ui form text-white" style="padding-right: 20px; padding-left:20px">
                 <h4 class="ui dividing header text-center text-white">Filter Your Search</h4>
                 <div class="dropdown">
@@ -238,12 +266,14 @@
                 </div>
                 <div class="two fields">
                     <div class="form-check">
-                        <label for="{{ context.form.pet_friendly.id_for_label }}" class="form-check-label text-white">Pets
+                        <label for="{{ context.form.pet_friendly.id_for_label }}"
+                            class="form-check-label text-white">Pets
                             allowed</label>
                         {{ context.form.pet_friendly }}
                     </div>
                     <div class="form-check">
-                        <label for="{{ context.form.utilities_included_rent.id_for_label }}" class="form-check-label text-white">Utilities
+                        <label for="{{ context.form.utilities_included_rent.id_for_label }}"
+                            class="form-check-label text-white">Utilities
                             included</label>
                         {{ context.form.utilities_included_rent }}
                     </div>
@@ -265,7 +295,8 @@
                         {{ context.form.size }}
                     </div>
                     <div class="field text-center">
-                        <input type="submit" value="Apply" class="btn btn-outline-light mx-auto" />
+                        <input type="submit" value="Apply" class="btn btn-outline-light mx-auto mt-5"
+                            onclick="closeNav()" />
                     </div>
                 </div>
 
@@ -274,8 +305,9 @@
         </div>
     </form>
 
+    <!-- Filter and search  forms-->
     <!-- Listing results -->
-    <div class="block-right" id="myUL">
+    <div class=" block-right" id="myUL" style="margin-top:140px">
         <div class="container">
             <div class="row">
                 {% if context.search_count %} {% for entry in context.search_results %}
@@ -312,17 +344,21 @@
     </div>
 
     <!--  Map  -->
-    <div class="block-left" style="margin-top: 20px">
-        <div class="container position-fixed" style="margin-top: 0px; margin-bottom: 20px">
+
+    <div class="block-left" style="margin-top:140px">
+        <div class="container position-fixed">
             <div class="row">
                 <div class="col-6 ">
                     <style>
                         /* Always set the map height explicitly to define the size of the div
-										* element that contains the map. */
+								* element that contains the map. */
+
+
                         #map {
                             height: 140%;
                             width: 46vw;
                             margin-bottom: 20px;
+
                         }
 
                         /* Optional: Makes the sample page fill the window. */
@@ -353,20 +389,27 @@
                                 },
                                 fullscreenControl: true
                             });
-                            
+
                             var address_labels = []
                             var listing_ids = []
+
+                            {% for item in context.listing_results %}
+                            address_labels.push("{{ item }}");
+                            listing_ids.push("{{ item.residence_id }}");
+
 
                             {% for item in context.search_results %}
                                 address_labels.push("{{ item }}");
                                 listing_ids.push("{{ item.residence_id }}");
+\
                             {% endfor %}
-                            
+
                             {% for entry in context.lat_lng %}
                             var marker_position = {
                                 "lat": parseFloat("{{ entry.lat }}"),
                                 "lng": parseFloat("{{ entry.lng }}"),
                             }
+
                             var marker = new google.maps.Marker({ 
                                 position: marker_position, 
                                 map: map, 
@@ -379,7 +422,7 @@
                             
                             {% endfor %}
                         }
-        
+
                     </script>
 
                     <div>
@@ -391,6 +434,19 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            $('.button-1').click(function () {
+                $('.block-left').hide();
+                $('.block-right').show();
+            });
+            $('.button-2').click(function () {
+                $('.block-right').hide();
+                $('.block-left').show();
+            })
+            $(window).on("resize", function () { $("#map").height($(window).height()); map.invalidateSize(); }).trigger("resize");
+        </script>
+
 
         <!-- footer -->
         <!-- Site footer -->
@@ -404,6 +460,8 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 </body>
