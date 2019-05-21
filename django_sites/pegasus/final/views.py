@@ -321,15 +321,30 @@ def create_account(request):
                 key: value for key, value in form.cleaned_data.items()
             }
 
-            # Encrypt password before creating account
-            user_attributes.pop('confirm_password')
-            secret = '%s' % user_attributes.get('password', '')
-            secret = utils.encrypt_password(secret)
-            user_attributes['password'] = secret
-
             try:
                 logging.info("Creating new user...")
                 user = RegisteredUser()
+
+                # Check passwords match
+                secret = '%s' % user_attributes.get('password', '')
+                confirm_secret = '%s' % user_attributes.get('confirm_password', '')
+                if secret != confirm_secret:
+                    raise ValueError("Passwords do not match!")
+
+                # Check email is SFSU
+                email_address = user_attributes.get('email', '')
+                email_address = email_address.strip().lower()
+                if not email_address.endswith('@mail.sfsu.edu'):
+                    raise ValueError("Only SFSU EDU accounts are allowed.")
+
+                # Encrypt password before creating account
+                user_attributes.pop('confirm_password')
+                secret = utils.encrypt_password(secret)
+                user_attributes['password'] = secret
+
+                student_account = user_attributes.pop('student_account')
+                user.is_student = student_account == 'Y'
+
                 user.update(**user_attributes)
                 user.save()
                 logging.info("Created user '%s'." % user.email)
@@ -371,6 +386,8 @@ def create_account(request):
             'form_submitted': False,
             'error_message': ''
         }
+
+    pprint(context)
 
     return render(request, 'final/create_account.html', {'context': context})
 

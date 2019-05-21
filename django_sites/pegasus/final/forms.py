@@ -90,6 +90,7 @@ class EditPhotoForm(forms.ModelForm):
         (NONE, 'NONE'),
     )
     action = forms.ChoiceField(choices=ACTION_CHOICES)
+
     class Meta:
         model = DomicilePhoto
         fields = (
@@ -110,21 +111,25 @@ EditPhotoFormSet = formset_factory(EditPhotoForm, extra=1, formset=NoValidationF
 
 class CreateUserForm(forms.ModelForm):
     confirm_password = forms.CharField(
-        label="Confirm password", max_length=20, widget=forms.PasswordInput)
+        label="Confirm password", max_length=20, widget=forms.PasswordInput
+    )
+
+    STUDENT_CHOICES = (
+        ('Y', 'Yes, I am a student.'),
+        ('N', 'No, I am a landlord.'),
+    )
+
+    student_account = forms.ChoiceField(choices=STUDENT_CHOICES, label='Are you a student?')
 
     class Meta:
         model = RegisteredUser
         fields = (
             'first_name', 'last_name', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code', 'phone_number',
-            'is_student', 'email', 'username', 'password'
+            'email', 'username', 'password'
         )
-        labels = {
-            'is_student': 'Are you a student? '
-        }
         widgets = {
             'first_name': forms.TextInput(attrs={'placeholder': 'First name'}),
             'last_name': forms.TextInput(attrs={'placeholder': 'Last name'}),
-
             'password': forms.PasswordInput
         }
 
