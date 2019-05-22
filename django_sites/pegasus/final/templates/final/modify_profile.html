@@ -1,7 +1,16 @@
 {% extends 'final/navbar.html' %}
 {% block content %}
-<div id="form_area" class="jumbotron ">
-    <h1 class="text-center mb-5">Edit Profile</h1>
+<div>
+</div>
+<div id="form_area" style="padding-top: 2rem">
+    <div class="block">
+        <h1 class="text-center mb-5">Edit Profile</h1>
+        <a href="{% url 'view_profile' %}" style="color: black; padding-left: 6rem;">
+            <i class="arrow left icon"></i>
+            Back
+        </a>
+    </div>
+ 
 
     <div>
         <span style="color:red">
@@ -34,7 +43,7 @@
         <a href="{% url 'index' %}">
             <input type="button" value="Cancel" class="btn btn-primary btn-md" style="padding-right: 1rem">
         </a>
-        <input type="submit" value="Submit" class="btn btn-primary btn-md" style="padding-left: 1rem">
+            <input type="submit" value="Submit" class="btn btn-primary btn-md" style="padding-left: 1rem">
     </form>
 
     <script src = "../../static/final/js/modify_profile.js"></script>
