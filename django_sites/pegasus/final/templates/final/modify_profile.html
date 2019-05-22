@@ -9,7 +9,7 @@
         </span>
     </div>
 
-    <form method="post" class="text-center text-black text-size">
+    <form method="post" class="text-center text-black text-size" enctype="multipart/form-data">
         {% csrf_token %}
         <table align="center"> 
             {% for field in context.form.visible_fields %}

@@ -135,25 +135,38 @@ class CreateUserForm(forms.ModelForm):
 
 
 class EditUserForm(forms.ModelForm):
+    first_name = forms.CharField(required=False)
+    last_name = forms.CharField(required=False)
+    date_of_birth = forms.DateField(required=False)
+    physical_address = forms.CharField(required=False)
+    city = forms.CharField(required=False)
+    state = forms.CharField(required=False)
+    zip_code = forms.CharField(required=False)
+    phone_number = forms.CharField(required=False)
+    bio = forms.CharField(required=False)
+    profile_picture = forms.ImageField(required=False)
+    email = forms.CharField(required=False)
+    username = forms.CharField(required=False)
+
+    first_name.widget = forms.TextInput(attrs={'class':"input col form-control", "readonly":"readonly"})
+    last_name.widget = forms.TextInput(attrs={'class':"input col form-control", "readonly":"readonly"})
+    date_of_birth.widget = forms.DateInput(attrs={'class':"input col form-control", "readonly":"readonly"})
+    physical_address.widget = forms.TextInput(attrs={'class':"input col form-control", "readonly":"readonly"})
+    city.widget = forms.TextInput(attrs={'class':"input col form-control", "readonly":"readonly"})
+    state.widget = forms.TextInput(attrs={'class':"input col form-control", "readonly":"readonly"})
+    zip_code.widget = forms.TextInput(attrs={'class':"input col form-control", "readonly":"readonly"})
+    phone_number.widget = forms.TextInput(attrs={'class':"input col form-control", "readonly":"readonly"})
+    bio.widget = forms.Textarea(attrs={'class':"input col form-control", 'readonly':'readonly'})
+    profile_picture.widget = forms.FileInput(attrs={'class':"input col form-control", 'readonly':'readonly'})
+    email.widget = forms.TextInput(attrs={'class':"input col form-control", "readonly":"readonly"})
+    username.widget = forms.TextInput(attrs={'class':"input col form-control", "readonly":"readonly"})
+
     class Meta:
         model = RegisteredUser
         fields = (
             'first_name', 'last_name', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code', 'phone_number',
             'bio', 'profile_picture', 'email', 'username'
         )
-        widgets = {
-            'bio': forms.Textarea,
-            'first_name': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"}),
-            'last_name': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"}),
-            'date_of_birth': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"}),
-            'physical_address': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"}),
-            'city': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"}),
-            'state': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"}),
-            'email': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"}),
-            'username': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"}),
-            'zip_code': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"}),
-            'phone_number': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"})
-        }
 
 
 class ForgotPasswordForm(forms.Form):
