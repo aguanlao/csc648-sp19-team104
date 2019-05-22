@@ -15,11 +15,15 @@ from .models import *
 from pprint import pprint
 import requests
 import logging
+
 from datetime import datetime
 from icalendar import Calendar, Event
 from django.db.models import get_model
 from django.http import HttpResponse
 from django.contrib.sites.models import Site
+
+
+
 
 # TODO: View stubs
 def add_new_property(request):
@@ -653,3 +657,4 @@ def export(request, event_id):
     response = HttpResponse(cal.as_string(), mimetype="text/calendar")
     response['Content-Disposition'] = 'attachment; filename=%s.ics' % event.slug
     return response
+    
