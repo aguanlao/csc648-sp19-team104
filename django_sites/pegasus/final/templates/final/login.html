@@ -19,21 +19,22 @@
 <div id="form_area" class="jumbotron ">
   <h1 class="text-center mb-5" style="color: white; font-size: 8rem ;  text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);">Welcome Back!</h1>
 
-  <div>
-    <span style="color:red">
-      {{ context.error_message }}
-    </span>
-  </div>
   
   <form method="post" class="text-center text-size" style="width: 450px; margin: auto">
     {% csrf_token %}
-      <div class = "row-md my-row form-group align-items-center">
-        {{ context.login_form.username}}
-        {{ context.login_form.password}}
-      </div>
-
-    <input type="hidden" name="next" value="{{ request.GET.next }}" />
-    <input type="submit" value="Submit" class="btn btn-primary btn-md form-control" />
+    <div class = "row-md my-row form-group align-items-center">
+      {{ context.login_form.username}}
+      {{ context.login_form.password}}
+    </div>
+    <div>
+      <span style="color:red">
+        {{ context.error_message }}
+      </span>
+    </div>
+    <div>
+      <input type="hidden" name="next" value="{{ request.GET.next }}" />
+      <input type="submit" value="Submit" class="btn btn-primary btn-md form-control" />
+    </div>
   </form>
 
 </div>

@@ -11,17 +11,17 @@
 
     <form method="post" class="text-center text-black text-size">
         {% csrf_token %}
-        <table align="center">
+        <table align="center"> 
             {% for field in context.form.visible_fields %}
             <tr>
                 <td>{{ field.label_tag }}</td>
                 <td>
                     {{ field.errors }}       
-                    {% if field%}                  
+                    {% if field%}             
                     <div class="form-group form-inline">
                         {{ field }}
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input form-control" type="checkbox" value="" id="defaultCheck1">
+                            <input class="form-check-input form-control" type="checkbox" value="" id="defaultCheck{{field.auto_id}}">
                         </div>
                     </div>
                     {% endif %}
@@ -31,8 +31,12 @@
             {% endfor %}
         </table>
 
-        <input type="button" value="Cancel" class="btn btn-primary btn-md">
-        <input type="submit" value="Submit" class="btn btn-primary btn-md">
+        <a href="{% url 'index' %}">
+            <input type="button" value="Cancel" class="btn btn-primary btn-md" style="padding-right: 1rem">
+        </a>
+        <input type="submit" value="Submit" class="btn btn-primary btn-md" style="padding-left: 1rem">
     </form>
+
+    <script src = "../../static/final/js/modify_profile.js"></script>
 </div>
 {% endblock %}

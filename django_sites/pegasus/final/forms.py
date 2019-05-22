@@ -26,14 +26,14 @@ class SearchForm(forms.Form):
 
 class LoginForm(forms.Form):
     MAX_FIELD_LENGTH = 20
-    username = forms.CharField(label="", max_length=MAX_FIELD_LENGTH, widget=forms.TextInput(
+    username = forms.CharField(label="username", max_length=MAX_FIELD_LENGTH, widget=forms.TextInput(
         attrs={
             'class': 'form-control col-auto',
             'placeholder': 'username'
         }
     ))
     password = forms.CharField(
-        label="", help_text='max 20 characters', max_length=MAX_FIELD_LENGTH, widget=forms.PasswordInput(
+        label="password", help_text='max 20 characters', max_length=MAX_FIELD_LENGTH, widget=forms.PasswordInput(
             attrs={
                 'class': 'form-control col-auto',
                 'placeholder': 'password'
@@ -143,16 +143,16 @@ class EditUserForm(forms.ModelForm):
         )
         widgets = {
             'bio': forms.Textarea,
-            'first_name': forms.TextInput(attrs={'class':"input col form-control"}),
-            'last_name': forms.TextInput(attrs={'class':"input col form-control"}),
-            'date_of_birth': forms.TextInput(attrs={'class':"input col form-control"}),
-            'physical_address': forms.TextInput(attrs={'class':"input col form-control"}),
-            'city': forms.TextInput(attrs={'class':"input col form-control"}),
-            'state': forms.TextInput(attrs={'class':"input col form-control"}),
-            'email': forms.TextInput(attrs={'class':"input col form-control"}),
-            'username': forms.TextInput(attrs={'class':"input col form-control"}),
-            'zip_code': forms.TextInput(attrs={'class':"input col form-control"}),
-            'phone_number': forms.TextInput(attrs={'class':"input col form-control"})
+            'first_name': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"}),
+            'last_name': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"}),
+            'date_of_birth': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"}),
+            'physical_address': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"}),
+            'city': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"}),
+            'state': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"}),
+            'email': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"}),
+            'username': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"}),
+            'zip_code': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"}),
+            'phone_number': forms.TextInput(attrs={'class':"input col form-control", "disabled":"disabled"})
         }
 
 
