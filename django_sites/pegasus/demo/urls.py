@@ -30,6 +30,7 @@ urlpatterns = [
     path('create_listing/', views.create_listing, name='create_listing'),
     path('<int:listing_id>/', views.view_listing, name='view_listing'),
     path('<int:listing_id>/edit/', views.edit_listing, name='edit_listing'),
+    re_path(r'^events/(?P&lt;event_id&gt;\d+)/export/', 'app_events.ics_views.export', name="event_ics_export"),
 
     path('maps/', views.maps, name='maps'),
 ]
