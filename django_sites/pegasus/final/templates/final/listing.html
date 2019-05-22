@@ -393,15 +393,9 @@
                             var address_labels = []
                             var listing_ids = []
 
-                            {% for item in context.listing_results %}
-                            address_labels.push("{{ item }}");
-                            listing_ids.push("{{ item.residence_id }}");
-
-
                             {% for item in context.search_results %}
                                 address_labels.push("{{ item }}");
                                 listing_ids.push("{{ item.residence_id }}");
-\
                             {% endfor %}
 
                             {% for entry in context.lat_lng %}
@@ -424,9 +418,7 @@
                         }
 
                     </script>
-
-                    <div>
-                    </div>
+                    
                     <script
                         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbr6KeU9un_uLPpH581LUfOb8PE3zi1x0&callback=initMap"
                         async defer>
