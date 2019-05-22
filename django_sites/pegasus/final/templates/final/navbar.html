@@ -27,7 +27,7 @@
                     <a class="ui white button d-flex  border-0 text-white" href="{% url 'index' %}"
                         style="background:transparent">
                         <i class="home icon"></i>
-                        home
+                        Home
                     </a>
                     </a>
                 </li>
@@ -35,23 +35,23 @@
                 <li class="nav-item">
                     <a class=" ui  white button d-flex border-0 text-white" href="{% url 'pybbm:index' %}"
                         style="background:transparent">
-                        community</a>
+                        Community</a>
                 </li>
                 <div class="ui compact menu " style="background:transparent; border: none;">
                     <div class="ui simple dropdown item text-white">
-                        messages
+                        Messages
                         <i class="dropdown icon"></i>
                         <div class="menu" style="background: #333b7c">
                             <div class="item">
                                 <a href="{% url 'postman:inbox' %}" style="color: white">
                                     <i class="inbox icon" style="color: white"></i>
-                                    inbox
+                                    Inbox
                                 </a>
                             </div>
                             <div class="item">
                                 <a href="{% url 'postman:write' %}" style="color: white">
                                     <i class="paper plane outline icon" style="color: white"></i>
-                                    message
+                                    Message
                                 </a>
                             </div>
                         </div>
@@ -65,21 +65,21 @@
                         <div class="menu" style="background: #333b7c">
                             {% if request.user.permission_level == 0 %}
                             <div class="item"> <a href="{% url 'admin:index' %}" style="color: white">
-                                    <i class="fas fa-user" style="color: white"></i>
-                                    dashboard</a>
+                                    <i class="fas fa-columns" style="color: white"></i>
+                                    Dashboard</a>
                             </div>
                             {% endif %}
                             <div class="item"> <a href="{% url 'view_profile' %}" style="color: white">
                                     <i class="fas fa-user" style="color: white"></i>
-                                    view profile</a>
+                                    View Profile</a>
                             </div>
                             <div class="item"><a href="{% url 'modify_profile' %}" style="color: white">
                                     <i class="fas fa-cogs" style="color: white"></i>
-                                    edit profile</a>
+                                    Edit Profile</a>
                             </div>
                             <div class="item"><a href="{% url 'logout' %}" style="color: white">
                                     <i class="fas fa-sign-out-alt" style="color: white"></i>
-                                    logout</a>
+                                    Logout</a>
                             </div>
                         </div>
                     </div>
@@ -89,13 +89,13 @@
                     <a class=" ui  white button d-flex border-0 text-white" href="{% url 'login' %}"
                         style="background:transparent">
                         <i class="add user icon"></i>
-                        sign in</a>
+                        Login</a>
                 </li>
                 <li class="nav-item">
                     <a class=" ui  white button d-flex border-0 text-white" href="{% url 'create_account' %}"
                         style="background:transparent">
                         <i class="add user icon"></i>
-                        sign up</a>
+                        Signup</a>
                 </li>
                 {% endif %}
             </ul>

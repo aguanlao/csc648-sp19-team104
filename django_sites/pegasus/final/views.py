@@ -529,43 +529,47 @@ def modify_profile(request):
     user_instance = RegisteredUser.objects.get(username=current_user)
 
     if request.method == 'POST':
-        form = EditUserForm(request.POST)
+        form = EditUserForm(request.POST, request.FILES, instance=user_instance)
         if form.is_valid():
             user_attributes = {
                 key: value for key, value in form.cleaned_data.items()
             }
+
+            pprint(user_attributes)
 
             try:
                 user_instance.update(**user_attributes)
                 user_instance.save()
 
                 context = {
-                    'form': form,
                     'update_success': True,
                     'error_message': ''
                 }
 
             except Exception as error_message:
                 context = {
-                    'form': form,
                     'update_success': False,
                     'error_message': '%s' % error_message
                 }
 
         else:
             context = {
-                'form': form,
                 'update_success': False,
                 'error_message': '%s.' % form.errors
             }
 
     else:
-        form = EditUserForm(instance=user_instance)
         context = {
-            'form': form,
             'update_success': False,
             'error_message': ''
         }
+
+    # If update is succesful, refresh instance
+    if context['update_success']:
+        user_instance = RegisteredUser.objects.get(username=current_user)
+    context['form'] = EditUserForm(instance=user_instance)
+
+    pprint(context)
     return render(request, 'final/modify_profile.html', {'context': context})
 
 
