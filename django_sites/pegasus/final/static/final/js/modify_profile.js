@@ -28,7 +28,7 @@ $('#defaultCheckid_date_of_birth').click(function(){
         $('#id_date_of_birth').attr('disabled','disabled');
         counter2 -=1;
     } else {
-        $('id_date_of_birth').removeAttr('disabled','disabled');
+        $('#id_date_of_birth').removeAttr('disabled','disabled');
         counter2 +=1;
     }      
 });       
@@ -93,12 +93,12 @@ $('#defaultCheckid_email').click(function(){
     }      
 }); 
 
-$('#defaultCheckid_email').click(function(){
+$('#defaultCheckid_username').click(function(){
     if (counter9 == 1) {
-        $('#id_email').attr('disabled','disabled');
+        $('#id_username').attr('disabled','disabled');
         counter9 -=1;
     } else {
-        $('#id_email').removeAttr('disabled','disabled');
+        $('#id_username').removeAttr('disabled','disabled');
         counter9 +=1;
     }      
 }); 
