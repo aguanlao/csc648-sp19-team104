@@ -27,7 +27,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('about/', include('about.urls', namespace='about')),
     path('forums/', include('pybb.urls', namespace='pybb')),
-
     # Demo site paths
     path('demo/', include('demo.urls', namespace='demo')),
 ]
