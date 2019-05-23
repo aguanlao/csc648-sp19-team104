@@ -74,7 +74,7 @@ class EditListingForm(forms.ModelForm):
     class Meta:
         model = Domicile
         fields = (
-            'owner', 'price',  'pet_friendly', 'pets_allowed', 'limit_tenant_count', 'current_tenant_count', 'amenities',
+            'owner', 'price', 'pet_friendly', 'pets_allowed', 'limit_tenant_count', 'current_tenant_count', 'amenities',
             'utilities_included_rent', 'is_active', 'description'
         )
         widgets = {
@@ -107,6 +107,7 @@ class NoValidationFormSet(BaseFormSet):
     def clean(self):
         # Perform no validation
         return
+
 
 EditPhotoFormSet = formset_factory(EditPhotoForm, extra=1, formset=NoValidationFormSet)
 
@@ -150,18 +151,18 @@ class EditUserForm(forms.ModelForm):
     email = forms.CharField(required=False)
     username = forms.CharField(required=False)
 
-    first_name.widget = forms.TextInput(attrs={'class':"input col form-control", "readonly":"readonly"})
-    last_name.widget = forms.TextInput(attrs={'class':"input col form-control", "readonly":"readonly"})
-    date_of_birth.widget = forms.DateInput(attrs={'class':"input col form-control", "readonly":"readonly"})
-    physical_address.widget = forms.TextInput(attrs={'class':"input col form-control", "readonly":"readonly"})
-    city.widget = forms.TextInput(attrs={'class':"input col form-control", "readonly":"readonly"})
-    state.widget = forms.TextInput(attrs={'class':"input col form-control", "readonly":"readonly"})
-    zip_code.widget = forms.TextInput(attrs={'class':"input col form-control", "readonly":"readonly"})
-    phone_number.widget = forms.TextInput(attrs={'class':"input col form-control", "readonly":"readonly"})
-    bio.widget = forms.Textarea(attrs={'class':"input col form-control", 'readonly':'readonly'})
-    profile_picture.widget = forms.FileInput(attrs={'class':"input col form-control", 'readonly':'readonly'})
-    email.widget = forms.TextInput(attrs={'class':"input col form-control", "readonly":"readonly"})
-    username.widget = forms.TextInput(attrs={'class':"input col form-control", "readonly":"readonly"})
+    first_name.widget = forms.TextInput(attrs={'class': "input col form-control", "readonly": "readonly"})
+    last_name.widget = forms.TextInput(attrs={'class': "input col form-control", "readonly": "readonly"})
+    date_of_birth.widget = forms.DateInput(attrs={'class': "input col form-control", "readonly": "readonly"})
+    physical_address.widget = forms.TextInput(attrs={'class': "input col form-control", "readonly": "readonly"})
+    city.widget = forms.TextInput(attrs={'class': "input col form-control", "readonly": "readonly"})
+    state.widget = forms.TextInput(attrs={'class': "input col form-control", "readonly": "readonly"})
+    zip_code.widget = forms.TextInput(attrs={'class': "input col form-control", "readonly": "readonly"})
+    phone_number.widget = forms.TextInput(attrs={'class': "input col form-control", "readonly": "readonly"})
+    bio.widget = forms.Textarea(attrs={'class': "input col form-control", 'readonly': 'readonly'})
+    profile_picture.widget = forms.FileInput(attrs={'class': "input col form-control", 'readonly': 'readonly'})
+    email.widget = forms.TextInput(attrs={'class': "input col form-control", "readonly": "readonly"})
+    username.widget = forms.TextInput(attrs={'class': "input col form-control", "readonly": "readonly"})
 
     class Meta:
         model = RegisteredUser

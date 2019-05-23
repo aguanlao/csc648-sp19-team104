@@ -4,7 +4,7 @@ from time import time
 import pytest
 import logging
 
-
+'''
 # Override default pytest behavior and use production database
 @pytest.fixture(scope='session')
 def django_db_setup():
@@ -42,3 +42,4 @@ def test_listing_response(rf):
     runtime = end - start
     logging.info("Listing response time: %s" % runtime)
     assert (runtime < 5)
+'''

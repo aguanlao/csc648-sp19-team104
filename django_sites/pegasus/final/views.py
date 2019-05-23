@@ -12,13 +12,9 @@ from .forms import *
 from .models import *
 from . import utils
 from pprint import pprint
-from datetime import datetime
-from icalendar import Calendar, Event
-from django.db.models import get_model
 from django.contrib.sites.models import Site
 import logging
 import json
-
 
 
 # TODO: View stubs
@@ -609,28 +605,3 @@ def forgot_password(request):
     }
 
     return render(request, 'final/forgot_password.html', {'context': context})
-
-def export(request, event_id):
-    event = get_model('events', 'event').objects.get(id = event_id)
-
-    cal = Calendar()
-    site = Site.objects.get_current()
-
-    cal.add('prodid', '-//%s Events Calendar//%s//' % (site.name, site.domain))
-    cal.add('version', '2.0')
-
-    site_token = site.domain.split('.')
-    site_token.reverse()
-    site_token = '.'.join(site_token)
-
-    ical_event = Event()
-    ical_event.add('summary', event.description)
-    ical_event.add('dtstart', event.start)
-    ical_event.add('dtend', event.end and event.end or event.start)
-    ical_event.add('dtstamp', event.end and event.end or event.start)
-    ical_event['uid'] = '%d.event.events.%s' % (event.id, site_token)
-    cal.add_component(ical_event)
-
-    response = HttpResponse(cal.as_string(), mimetype="text/calendar")
-    response['Content-Disposition'] = 'attachment; filename=%s.ics' % event.slug
-    return response

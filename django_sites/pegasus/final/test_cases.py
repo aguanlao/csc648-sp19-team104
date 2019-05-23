@@ -3,6 +3,8 @@ from django.conf import settings
 from time import time
 import pytest
 import logging
+from . import utils
+from . import models
 
 
 # Override default pytest behavior and use production database
@@ -25,10 +27,20 @@ def test_tautology():
 
 
 # Verify user creation page is up
-def test_user_creation(rf):
+def test_user_creation_page(rf):
     request = rf.get('/demo/create_account')
     response = views.create_account(request)
     assert response.status_code == 200
+
+
+# Verifies user can be properly authenticated with hashed password stored in database
+@pytest.mark.django_db
+def test_user_authentication():
+    username = 'rena2'
+    password = 'Twin,16tails'
+    auth = utils.AuthBackend()
+    user = auth.authenticate(username=username, password=password)
+    assert user is not None
 
 
 # Verify listing page generates responses relatively quickly
