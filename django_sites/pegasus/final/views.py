@@ -44,8 +44,6 @@ def index(request):
                 if value is not '' and value is not False and value is not None and '%s'.lower() % value != 'all'
             }
 
-            pprint(filters)
-
             results = utils.filter_domiciles(**filters)
             searched_lat_lng = utils.get_lat_long(results)
 
@@ -519,6 +517,8 @@ def view_profile(request, username=None):
             'user': None,
             'error_message': "User '%s' not found." % username
         }
+
+    context["domain"] = request.META['HTTP_HOST']
 
     return render(request, 'final/view_profile.html', {'context': context})
 
