@@ -336,11 +336,13 @@ def create_account(request):
                 if secret != confirm_secret:
                     raise ValueError("Passwords do not match!")
 
-                # Check email is SFSU
-                email_address = user_attributes.get('email', '')
-                email_address = email_address.strip().lower()
-                if not email_address.endswith('@mail.sfsu.edu'):
-                    raise ValueError("Only SFSU EDU accounts are allowed.")
+                # Check email is SFSU, but only for student accounts
+                account_status = user_attributes.get('student_account', '')
+                if account_status == 'Y':
+                    email_address = user_attributes.get('email', '')
+                    email_address = email_address.strip().lower()
+                    if not email_address.endswith('@mail.sfsu.edu'):
+                        raise ValueError("Only SFSU EDU accounts are allowed.")
 
                 # Encrypt password before creating account
                 user_attributes.pop('confirm_password')
