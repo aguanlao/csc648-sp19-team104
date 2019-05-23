@@ -22,8 +22,13 @@ SITE_ID = 1
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '1f6yz5-2)&ff+$plkw4fm5t=i7^3=_zuovfaez8kz#za2cjs58'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# DEV SETUP
+LOGIN_URL = '/login'
 DEBUG = True
+
+# PRD SETUP
+# LOGIN_URL = '/web/login'
+# DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -141,7 +146,6 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 AUTH_USER_MODEL = 'final.RegisteredUser'
-LOGIN_URL = '/login'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/

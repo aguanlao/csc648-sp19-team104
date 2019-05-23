@@ -1,7 +1,7 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.utils.encoding import force_bytes, force_text
@@ -218,6 +218,11 @@ def edit_listing(request, listing_id):
 def edit_listing_photo(request, listing_id):
     listing = get_object_or_404(Domicile, pk=listing_id)
 
+    # Verify current user is owner. Otherwise, raise 404 error
+    current_user = request.user.username
+    if listing.owner != current_user:
+        raise Http404()
+
     # Get initial photo data for listing
     photos = DomicilePhoto.objects.filter(listing=listing)
     initial_photo_data = [{'photo_url': x.photo_url, 'action': 'N'} for x in photos]
@@ -311,7 +316,8 @@ def view_listing(request, listing_id):
         'domicile': domicile,
         'address': full_address,
         'lat_long': single_lat_long,
-        'listing_photos': photo_urls
+        'listing_photos': photo_urls,
+        'viewer_is_owner': request.user.username == domicile.owner
     }
     pprint(context)
     return render(request, 'final/description.html', {'context': context})
@@ -336,11 +342,13 @@ def create_account(request):
                 if secret != confirm_secret:
                     raise ValueError("Passwords do not match!")
 
-                # Check email is SFSU
-                email_address = user_attributes.get('email', '')
-                email_address = email_address.strip().lower()
-                if not email_address.endswith('@mail.sfsu.edu'):
-                    raise ValueError("Only SFSU EDU accounts are allowed.")
+                # Check email is SFSU, but only for student accounts
+                account_status = user_attributes.get('student_account', '')
+                if account_status == 'Y':
+                    email_address = user_attributes.get('email', '')
+                    email_address = email_address.strip().lower()
+                    if not email_address.endswith('@mail.sfsu.edu'):
+                        raise ValueError("Only SFSU EDU accounts are allowed.")
 
                 # Encrypt password before creating account
                 user_attributes.pop('confirm_password')

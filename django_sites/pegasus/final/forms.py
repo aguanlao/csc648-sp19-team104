@@ -109,7 +109,7 @@ class NoValidationFormSet(BaseFormSet):
         return
 
 
-EditPhotoFormSet = formset_factory(EditPhotoForm, extra=1, formset=NoValidationFormSet)
+EditPhotoFormSet = formset_factory(EditPhotoForm, extra=3, formset=NoValidationFormSet)
 
 
 class CreateUserForm(forms.ModelForm):
