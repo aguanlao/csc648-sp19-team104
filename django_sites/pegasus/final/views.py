@@ -12,26 +12,8 @@ from .forms import *
 from .models import *
 from . import utils
 from pprint import pprint
-from django.contrib.sites.models import Site
 import logging
 import json
-
-
-# TODO: View stubs
-def add_new_property(request):
-    return render(request, 'final/add_new_property.html')
-
-
-def description(request):
-    return render(request, 'final/description.html')
-
-
-def manager_profile(request):
-    return render(request, 'final/manager_profile.html')
-
-
-def survey(request):
-    return render(request, 'final/survey.html')
 
 
 def index(request):
@@ -61,15 +43,18 @@ def index(request):
                 'form': form,
                 'search_results': results,
                 'search_count': len(results),
-                'lat_lng': searched_lat_lng
+                'lat_lng': searched_lat_lng,
+                'domain': request.META['HTTP_HOST']
             }
             return render(request, 'final/listing.html', {'context': context})
 
     else:
         form = SearchForm()
+
     context = {
         'form': form,
-        'search_results': []
+        'search_results': [],
+        'domain': request.META['HTTP_HOST']
     }
     return render(request, 'final/index.html', {'context': context})
 
@@ -102,8 +87,11 @@ def listing(request):
                 'form': form,
                 'search_results': results,
                 'search_count': len(results),
-                'lat_lng': searched_lat_lng
+                'lat_lng': searched_lat_lng,
+                'domain': request.META['HTTP_HOST']
             }
+
+
             return render(request, 'final/listing.html', {'context': context})
 
     else:
@@ -112,8 +100,10 @@ def listing(request):
     # Should have some default listings displayed (maybe most recent?)
     context = {
         'form': form,
-        'search_results': []
+        'search_results': [],
+        'domain': request.META['HTTP_HOST']
     }
+
     return render(request, 'final/listing.html', {'context': context})
 
 
@@ -205,6 +195,8 @@ def edit_listing(request, listing_id):
 
     if context['error_message']:
         logging.error("Edit operation failed: %s" % context['error_message'])
+
+    context["domain"] = request.META['HTTP_HOST']
     return render(request, "final/modify_listing.html", {'context': context})
 
 
@@ -520,7 +512,6 @@ def view_profile(request, username=None):
         }
 
     context["domain"] = request.META['HTTP_HOST']
-
     return render(request, 'final/view_profile.html', {'context': context})
 
 

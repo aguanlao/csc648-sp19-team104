@@ -5,9 +5,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('listing/', views.listing, name='listing'),
     path('add_new_property/', views.create_listing, name='add_new_property'),
-    path('description/', views.description, name='description'),
-    path('manager_profile/', views.manager_profile, name='manager_profile'),
-    path('survey/', views.survey, name='survey'),
 
     # Administrative paths
     path('login/', views.user_login, name='login'),
