@@ -60,7 +60,7 @@ def test_user_promotion():
     user.promote_admin()
     assert user.is_superuser == True
     assert user.is_staff == True
-    assert user.permission_level == 0 
+    assert user.permission_level == 0
 
 
 # Verify listing page generates responses relatively quickly
