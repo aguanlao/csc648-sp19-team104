@@ -77,6 +77,14 @@ def filter_domiciles(**input_filters):
     results = Domicile.objects.all()
     if input_filters:
 
+        # Only pull valid listings
+        results = results.filter(is_active=True)
+
+        # If user is provided, also include inactive listings that were posted by that user
+        if 'user' in input_filters:
+            additional_listings = Domicile.objects.all().filter(owner=input_filters.pop('user'), is_active=False)
+            results = results | additional_listings
+
         # Case-insensitive city search
         if 'city' in input_filters:
             city_value = input_filters.pop('city')

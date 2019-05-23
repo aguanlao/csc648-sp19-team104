@@ -1,23 +1,22 @@
 {% extends 'final/navbar.html' %}
 {% block content %}
 <style>
-    .purple-background{
-        background-color: darkslategrey;
-    }
     .spaced_table {
         border-collapse: separate;
         border-spacing: 0 15px;
     }
+    td{
+        color: black;
+    }
 </style>
 <div id="form_area" class="jumbotron ">
     <h1 class="text-center mb-5">Edit Listing</h1>
-
     <div>
         <span style="color:red">
             {{ context.error_message }}
         </span>
     </div>
-    <div class="purple-background">
+    <div>
     <form method="post" class="text-center text-white  text-size" enctype='multipart/form-data'>
         {% csrf_token %}
         {{ context.formset.management_form }}

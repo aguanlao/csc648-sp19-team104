@@ -37,6 +37,12 @@ def index(request):
                 if value is not '' and value is not False and value is not None and '%s'.lower() % value != 'all'
             }
 
+            # Only search for active listings, or listings that belong to the current user (if there is one)
+            try:
+                filters['user'] = request.user.username
+            except:
+                pass
+
             results = utils.filter_domiciles(**filters)
             searched_lat_lng = utils.get_lat_long(results)
 
