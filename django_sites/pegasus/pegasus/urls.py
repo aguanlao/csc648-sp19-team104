@@ -25,15 +25,8 @@ urlpatterns = [
     path('', include('django.contrib.auth.urls')),
     path('', include('postman.urls')),
     path('admin/', admin.site.urls),
-   
-    path('demo/', include('demo.urls')),
-    path('demo/', include('django.contrib.auth.urls')),
-    path('demo/', include('postman.urls')),
-
-
     path('about/', include('about.urls', namespace='about')),
     path('forums/', include('pybb.urls', namespace='pybb')),
-
     # Demo site paths
     path('demo/', include('demo.urls', namespace='demo')),
 ]

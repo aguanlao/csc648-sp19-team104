@@ -16,11 +16,7 @@ from pprint import pprint
 import requests
 import logging
 
-from datetime import datetime
-from icalendar import Calendar, Event
-from django.db.models import get_model
-from django.http import HttpResponse
-from django.contrib.sites.models import Site
+
 
 
 
