@@ -140,18 +140,18 @@
 
 <div>
     <div>
-    <script>
-        // window.addEventListener('scroll', function () {
-        //     document.querySelector('.block-left').style.marginTop =
-        //         Math.max(-10) + 'px';
-        // }, false);
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-        }
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-        }
-    </script>
+        <script>
+            // window.addEventListener('scroll', function () {
+            //     document.querySelector('.block-left').style.marginTop =
+            //         Math.max(-10) + 'px';
+            // }, false);
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+            }
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+            }
+        </script>
     </div>
 
     <!-- Listing  -->
@@ -325,8 +325,8 @@
                             var listing_ids = []
 
                             {% for item in context.search_results %}
-                                address_labels.push("{{ item }}");
-                                listing_ids.push("{{ item.residence_id }}");
+                            address_labels.push("{{ item }}");
+                            listing_ids.push("{{ item.residence_id }}");
                             {% endfor %}
 
                             {% for entry in context.lat_lng %}
@@ -335,40 +335,40 @@
                                 "lng": parseFloat("{{ entry.lng }}"),
                             }
 
-                            var marker = new google.maps.Marker({ 
-                                position: marker_position, 
-                                map: map, 
+                            var marker = new google.maps.Marker({
+                                position: marker_position,
+                                map: map,
                                 label: "{{forloop.counter}}",
                                 title: address_labels["{{forloop.counter0}}"]
                             });
-                            google.maps.event.addListener(marker, 'click', function(){ 
-                                window.location.replace('/'+listing_ids["{{forloop.counter0}}"]);
-                                });
-                            
+                            google.maps.event.addListener(marker, 'click', function () {
+                                window.location.replace('/' + listing_ids["{{forloop.counter0}}"]);
+                            });
+
                             {% endfor %}
                         }
 
                     </script>
-                    
+
                     <script
                         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbr6KeU9un_uLPpH581LUfOb8PE3zi1x0&callback=initMap"
                         async defer>
-                    </script>
+                        </script>
                 </div>
             </div>
         </div>
 
-<!--        <script>-->
-<!--            $('.button-1').click(function () {-->
-<!--                $('.block-left').hide();-->
-<!--                $('.block-right').show();-->
-<!--            });-->
-<!--            $('.button-2').click(function () {-->
-<!--                $('.block-right').hide();-->
-<!--                $('.block-left').show();-->
-<!--            })-->
-<!--            $(window).on("resize", function () { $("#map").height($(window).height()); map.invalidateSize(); }).trigger("resize");-->
-<!--        </script>-->
+        <!--        <script>-->
+        <!--            $('.button-1').click(function () {-->
+        <!--                $('.block-left').hide();-->
+        <!--                $('.block-right').show();-->
+        <!--            });-->
+        <!--            $('.button-2').click(function () {-->
+        <!--                $('.block-right').hide();-->
+        <!--                $('.block-left').show();-->
+        <!--            })-->
+        <!--            $(window).on("resize", function () { $("#map").height($(window).height()); map.invalidateSize(); }).trigger("resize");-->
+        <!--        </script>-->
 
 
         <!-- footer -->
@@ -387,5 +387,5 @@
 
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-</div>
-{% endblock %}
+    </div>
+    {% endblock %}
