@@ -35,11 +35,13 @@
                     </a>
                 </li>
                 {% if request.user.is_authenticated %}
+                {% if request.user.permission_level != 1 %}
                 <li class="nav-item">
                     <a class=" ui  white button d-flex border-0 text-white" href="{% url 'pybbm:index' %}"
                         style="background:transparent">
                         Community</a>
                 </li>
+                {% endif %}
                 <div class="ui compact menu " style="background:transparent; border: none;">
                     <div class="ui simple dropdown item text-white">
                         Messages
