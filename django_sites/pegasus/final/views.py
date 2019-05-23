@@ -532,8 +532,7 @@ def view_profile(request, username=None):
             'user': None,
             'error_message': "User '%s' not found." % username
         }
-
-    context["domain"] = request.META['HTTP_HOST']
+    context['media_base'] = get_media_base_url(request)
     return render(request, 'final/view_profile.html', {'context': context})
 
 
