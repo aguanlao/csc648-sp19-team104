@@ -16,12 +16,14 @@ class SearchForm(forms.Form):
     max_price = forms.FloatField(label="Max Price", min_value=0.0, required=False)
     city = forms.CharField(label="City", max_length=20, required=False)
     zip_code = forms.IntegerField(label="Zip Code", required=False)
+    neighborhood = forms.CharField(label="Neighborhood", max_length=20, required=False)
 
     def __init__(self, *args, **kwargs):
         super(SearchForm, self).__init__(*args, **kwargs)
         self.fields['city'].widget.attrs['placeholder'] = 'Search By City'
         self.fields['bed_count'].widget.attrs['placeholder'] = '# Bed'
         self.fields['bath_count'].widget.attrs['placeholder'] = '# Bath'
+        self.fields['neighborhood'].widget.attrs['placeholder'] = 'Search By Neighborhood'
 
 
 class LoginForm(forms.Form):
