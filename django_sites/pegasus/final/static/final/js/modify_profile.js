@@ -1,8 +1,3 @@
-counter0 = counter1 = counter2 = counter3 = 0;
-counter4 = counter5 = counter6 = counter7 = 0;
-counter8 = counter9 = counter10 = counter11= 0;
-
-
 $('#defaultCheckid_first_name').click(function(){
     if ($('#defaultCheckid_first_name').prop("checked")) {
         $('#id_first_name').prop('readonly', false);
