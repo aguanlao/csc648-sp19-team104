@@ -17,6 +17,10 @@ import requests
 import logging
 
 
+
+
+
+
 # TODO: View stubs
 def add_new_property(request):
     return render(request, 'demo/add_new_property.html')
@@ -624,3 +628,6 @@ def maps(request):
     }
     pprint(context)
     return render(request, 'demo/maps.html', context)
+
+
+    

@@ -99,6 +99,11 @@ def filter_domiciles(**input_filters):
             max_value = input_filters.pop('max_price')
             results = results.filter(price__lte=max_value)
 
+        # Case insensitive neighborhood filter
+        if 'neighborhood' in input_filters:
+            neighborhood_value = input_filters.pop('neighborhood')
+            results = results.filter(district__iexact=neighborhood_value)
+
         results = results.filter(**input_filters)
 
     return results
