@@ -1,0 +1,537 @@
+{% extends 'final/navbar.html' %}
+{% load static %}
+
+<!--<head>-->
+<!--  <meta charset="UTF-8" />-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--  <meta http-equiv="X-UA-Compatible" content="ie=edge" />-->
+<!--  <link rel="stylesheet" type="text/css"-->
+<!--    href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />-->
+<!--  &lt;!&ndash; bootstrap css &ndash;&gt;-->
+<!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"-->
+<!--    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />-->
+<!--  &lt;!&ndash; fontawesome &ndash;&gt;-->
+<!--  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"-->
+<!--    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />-->
+<!--  <script src="js/index.js"></script>-->
+<!--  <link rel="stylesheet" href="../../static/demo/css/description.css">-->
+<!--  <link rel="stylesheet" href="../../static/demo/css/footer.css">-->
+<!--  <script src="../../static/demo/js/index.js"></script>-->
+
+
+<!--  <title>Document</title>-->
+<!--  <style>-->
+<!--    .modal-dialog {-->
+<!--      width: 360px;-->
+<!--      height: 300px;-->
+<!--    }-->
+<!--  </style>-->
+
+<!--  &lt;!&ndash; Nav Bar &ndash;&gt;-->
+<!--  <nav class="navbar navbar-expand-md bg-dark navbar-dark py-2">-->
+<!--    <a class="navbar-brand d-flex" href="#">-->
+<!--      <img class="rounded-circle" src="//unsplash.it/50/50" alt="" />-->
+<!--      <h4 class="mt-3 ml-3">Pegasus</h4>-->
+<!--    </a>-->
+<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"-->
+<!--      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+
+<!--    <div class="collapse navbar-collapse" id="navbarResponsive">-->
+
+<!--      <ul class="navbar-nav ml-auto">-->
+<!--        <li class="nav-item active">-->
+<!--          <a class="ui inverted white button d-flex" href="index.html">-->
+<!--            <i class="home icon"></i>-->
+<!--            Home-->
+<!--          </a>-->
+<!--          </a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--          <a class=" ui inverted white button d-flex" href="#" data-toggle="modal" data-target="#exampleModal">-->
+<!--            <i class="add user icon"></i>-->
+<!--            Sign In</a>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+
+<!--  </nav>-->
+<!--  &lt;!&ndash; end of nav bar &ndash;&gt;-->
+
+<!--  &lt;!&ndash; links &ndash;&gt;-->
+
+<!--  <ul class="nav nav-tabs sticky-top mt-0 p-2 bg-dark">-->
+<!--    <li class="nav-item ">-->
+<!--      <a class="nav-link text-info" href="#">-->
+<!--        <i class="fas fa-heart mr-2"></i>Save</a>-->
+<!--    </li>-->
+
+<!--    <li class="nav-item ">-->
+<!--      <a class="nav-link text-info" href="#" id="">-->
+<!--        <i class="fas fa-address-book mr-2"></i>Contact</a>-->
+<!--    </li>-->
+<!--    <li class="nav-item ">-->
+<!--      <a class="nav-link text-info" href="#" data-toggle="modal" data-target="#calendar">-->
+<!--        <i class="fas fa-calendar-alt mr-2"></i>Calendar</a>-->
+<!--    </li>-->
+
+<!--  </ul>-->
+
+<!--  &lt;!&ndash; chat &ndash;&gt;-->
+<!--  <div class="modal fade" id="chats" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog" role="document">-->
+<!--      <div class="modal-content">-->
+<!--        <div class="modal-header">-->
+<!--          <h5 class="modal-title" id="exampleModalLabel">Live Chat</h5>-->
+<!--          <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--            <span aria-hidden="true">&times;</span>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--        <div class="modal-body">-->
+<!--          <div class="container-fluid">-->
+<!--            <div class="row">-->
+<!--              <div class="col-12">-->
+<!--                <div class="panel panel-primary">-->
+<!--                  <div class="panel-heading">-->
+<!--                    <span class="glyphicon glyphicon-comment"></span> Chat-->
+<!--                    <div class="btn-group pull-right">-->
+<!--                      <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">-->
+<!--                        <span class="glyphicon glyphicon-chevron-down"></span>-->
+<!--                      </button>-->
+<!--                      <ul class="dropdown-menu slidedown">-->
+<!--                        <li><a href="#"><span class="glyphicon glyphicon-ok-sign"></span>Available</a></li>-->
+<!--                        <li><a href="#"><span class="glyphicon glyphicon-remove"></span>Busy</a></li>-->
+<!--                        <li><a href="#"><span class="glyphicon glyphicon-time"></span>Away</a></li>-->
+<!--                      </ul>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="panel-body">-->
+<!--                    <ul class="chat">-->
+<!--                      <li class="left clearfix">-->
+<!--                        <span class="chat-img pull-left">-->
+<!--                          <img src="//unsplash.it/50/50" style="width:100%; height:100%; border-radius:50%"-->
+<!--                            alt="User Avatar" class="img-circle" />-->
+<!--                        </span>-->
+<!--                        <div class="chat-body clearfix">-->
+<!--                          <div class="header">-->
+<!--                            <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">-->
+<!--                              <span class="glyphicon glyphicon-time"></span>12 mins ago</small>-->
+<!--                          </div>-->
+<!--                          <p>-->
+<!--                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor,-->
+<!--                            quis-->
+<!--                            ullamcorper ligula sodales.-->
+<!--                          </p>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="right clearfix"><span class="chat-img pull-right">-->
+<!--                          <img src="//unsplash.it/50/51" style="width:100%; height:100%; border-radius:50%"-->
+<!--                            alt="User Avatar" class="img-circle" />-->
+<!--                        </span>-->
+<!--                        <div class="chat-body clearfix">-->
+<!--                          <div class="header">-->
+<!--                            <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>-->
+<!--                            <strong class="pull-right primary-font">Bhaumik Patel</strong>-->
+<!--                          </div>-->
+<!--                          <p>-->
+<!--                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor,-->
+<!--                            quis-->
+<!--                            ullamcorper ligula sodales.-->
+<!--                          </p>-->
+<!--                        </div>-->
+<!--                      </li>-->
+
+<!--                    </ul>-->
+<!--                  </div>-->
+<!--                  <div class="panel-footer">-->
+<!--                    <div class="input-group">-->
+<!--                      <input id="btn-input" type="text" class="form-control input-sm"-->
+<!--                        placeholder="Type your message here..." />-->
+<!--                      <span class="input-group-btn">-->
+<!--                        <button class="btn btn-warning btn-md" data-toggle="modal" data-target="#chat">-->
+<!--                          Send</button>-->
+<!--                      </span>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  &lt;!&ndash; end chat &ndash;&gt;-->
+
+
+<!--  &lt;!&ndash; calender &ndash;&gt;-->
+<!--  <div class="modal" id="calendar">-->
+<!--    <div class="modal-dialog">-->
+<!--      <div class="modal-content">-->
+
+<!--        &lt;!&ndash; Modal Header &ndash;&gt;-->
+<!--        <div class="modal-header">-->
+<!--          <h4 class="modal-title">Open house</h4>-->
+<!--          <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Modal body &ndash;&gt;-->
+<!--        <div class="modal-body">-->
+<!--          <div class="calendar">-->
+<!--            <div class="header">-->
+<!--              <a data-action="prev-month" href="javascript:void(0)" title="Previous Month"><i></i></a>-->
+<!--              <div class="text" data-render="month-year"></div>-->
+<!--              <a data-action="next-month" href="javascript:void(0)" title="Next Month"><i></i></a>-->
+<!--            </div>-->
+<!--            <div class="months" data-flow="left">-->
+<!--              <div class="month month-a">-->
+<!--                <div class="render render-a"></div>-->
+<!--              </div>-->
+<!--              <div class="month month-b">-->
+<!--                <div class="render render-b"></div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Modal footer &ndash;&gt;-->
+<!--        <div class="modal-footer">-->
+<!--          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>-->
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  &lt;!&ndash; end of calender &ndash;&gt;-->
+
+
+{% block content %}
+<div class="d-md-flex h-md-100 ">
+
+  <!-- First Half -->
+
+  <div class="col-md-6 p-0 bg-indigo h-md-100">
+    <div class="text-white d-md-flex  h-100 p-5 ">
+      <div class="logoarea pt-5 pb-5">
+        <div id="content-slider" style="margin-top:-250px;">
+          <div class="wrap-slider">
+
+            <!-- <h1 class="main-title">automatic slider css only</h1> -->
+
+            <!-- ===== Thumbnail ControlNav ======= -->
+            <input type="radio" id="a-1" name="a">
+            <input type="radio" id="a-2" name="a">
+            <input type="radio" id="a-3" name="a">
+            <input type="radio" id="a-4" name="a">
+
+            <nav id="main">
+              <label for="a-1" class="first"></label>
+              <label for="a-2" class="first"></label>
+              <label for="a-3" class="first"></label>
+              <label for="a-4" class="first"></label>
+            </nav>
+
+            <!-- =================================== -->
+            <nav id="control">
+              <label for="a-1"></label>
+              <label for="a-2"></label>
+              <label for="a-3">
+
+              </label>
+              <label for="a-4"></label>
+            </nav>
+            <!-- =================================== -->
+
+            <!-- 	IMAGE NAVIGATION pic -->
+
+            <!-- <span id="b-1" class="th" tabindex="10">
+              {% for url in context.listing_photos %}
+              <div>
+
+                <p>URL: {{ url }}</p>
+
+              </div>
+              {% endfor %}
+            </span> -->
+
+
+            <!-- <span id="b-2" class="th" tabindex="11">
+              {% for image_url in context.listing_photos %}
+              <o class="text-info"> URL: {{ image_url }}</o>
+              <img src="../{{ image_url }}" alt="" id="p-2">
+              {% endfor %} -->
+            <!-- </span> -->
+
+            <!-- <span id="b-3" class="th" tabindex="12">
+              <img src="../{{ entry.photo.url }}" alt="" id="p-3">
+              <div class="title-3">
+
+              </div>
+            </span>
+
+            <span id="b-4" class="th" tabindex="13">
+              <img src="../{{ entry.photo.url }}" alt="" id="p-4">
+              <div class="title-4">
+
+              </div>
+            </span> -->
+
+            <!-- ===== IMages ======= -->
+
+            <div class="slider" style="margin-top: 200px">
+              {% for image_url in context.listing_photos %}
+              <div class="inset">
+
+                <figure>
+                  <o class="text-info"> URL: {{ image_url }}</o>
+                  <img src="../{{ image_url }}" alt="" id="i-1" class="f">
+                </figure>
+
+                <!-- <figure>
+                  <figcaption class="title-2">
+
+                  </figcaption>
+                  <img src="../{{ entry.photo.url }}" alt="" id="i-2" class="f">
+                </figure>
+
+                <figure>
+                  <figcaption class="title-3">
+
+                  </figcaption>
+                  <img src="../{{ entry.photo.url }}" alt="" id="i-3" class="f">
+                </figure>
+
+                <figure>
+                  <figcaption class="title-4">
+
+                  </figcaption>
+                  <img src="../{{ entry.photo.url }}" alt="" id="i-4" class="f">
+                </figure>
+
+
+                <figure>
+                  <figcaption class="title-5">
+
+                  </figcaption>
+                  <img src="../{{ entry.photo.url }}" alt="" id="i-5" class="f">
+                </figure> -->
+              </div>
+              {% endfor %}
+            </div>
+
+          </div>
+        </div>
+        <!--Start listing information-->
+        <div style="margin-top:100px;">
+
+          {% if context.domicile.is_active == False %} <span style="color: red; background-color: #0c0e1c;"><br />This
+            listing has not yet been
+            approved.<br /></span>
+          {% endif %}
+
+          <h4 class="text-primary mt-3 d-flex price"> ${{ context.domicile.price|floatformat:-2 }}
+            <span class="text-muted"> | {{ context.domicile.bed_count }}
+              bed{{ context.domicile.bed_count|pluralize }}</span>
+            <span class="text-muted"> | {{ context.domicile.bath_count }}
+              bath{{ context.domicile.bath_count|pluralize }}</span>
+            <span class="text-muted"> | {{ context.domicile.size }} sq ft
+              {{context.domicile.residence_type|title}}</span>
+          </h4>
+          <h4 class="text-dark">
+            <span> {{ context.domicile.address|title }}, {{ context.domicile.city|title }},
+              {{ context.domicile.state|upper }} {{ context.domicile.zip_code }}</span>
+          </h4>
+          <p class="text-secondary"> Posted by {{ context.domicile.owner }} </p>
+          <p class="text-info"> Utilities included: {{ context.domicile.utilities_included_rent }} </p>
+          <p class="text-info"> Pet friendly: {{ context.domicile.pet_friendly }}</p>
+          <!--Display allowed pets if pet friendly-->
+          {% if context.domicile.pet_friendly %}
+          <p class="text-info"> Pets allowed: {{ context.domicile.pets_allowed }}</p>
+          {% endif %}
+
+          <p class="text-info"> Amenities: {{ context.domicile.amenities }}</p>
+          <p class="text-info"> {{ context.domicile.description }}</p>
+          <!--Display number of tenant openings available-->
+          {% if context.domicile.limit_tenant_count %}
+          {% with count=context.domicile.current_tenant_count|default_if_none:"0" %}
+          <p class="text-info">
+            <span> {{ count }} / {{ context.domicile.limit_tenant_count }} </span>
+            <span> current tenant{{ count|pluralize }} </span>
+          </p>
+          {% endwith %}
+          {% endif %}
+        </div>
+        <!--End listing information-->
+      </div>
+    </div>
+  </div>
+
+  <!-- Second Half -->
+
+  <div class="col-md-6 p-0 bg-white h-md-100 loginarea">
+
+    <!-- <iframe style="margin-top:-35px" class="google-map"
+                        src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q={{ context.domicile.address }}%2C%20{{ context.domicile.city }}%2C%20{{ context.domicile.state }}&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
+                        width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen>
+                    </iframe> -->
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+                                                                      * element that contains the map. */
+      #map {
+        height: 80%;
+        margin-bottom: 10x;
+      }
+
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 1%;
+        z-index: 5;
+        background-color: blueviolet;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto', 'sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+
+      #directionsPanel {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+    </style>
+    <div id="floating-panel">
+      <strong>Mode of Travel: </strong>
+      <select id="mode">
+        <option value="DRIVING">Driving</option>
+        <option value="WALKING">Walking</option>
+        <option value="BICYCLING">Bicycling</option>
+        <option value="TRANSIT">Transit</option>
+      </select>
+    </div>
+    <div id="map"></div>
+    <div id="directionsPanel" style="overflow-y: scroll; height:200px; margin-bottom: 50px;"></div>
+    <script>
+      var map;
+      var marker_position;
+      var sfsuLatLong;
+
+      function initMap() {
+        var directionsService = new google.maps.DirectionsService();
+        var directionsDisplay = new google.maps.DirectionsRenderer();
+        sfsuLatLong = new google.maps.LatLng(37.722952, -122.475994);
+
+        marker_position = {
+          "lat": parseFloat("{{ context.lat_long.lat }}"),
+          "lng": parseFloat("{{ context.lat_long.lng }}"),
+        }
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: marker_position,
+          zoom: 14
+        });
+
+        var marker = new google.maps.Marker({ position: marker_position, map: map });
+        document.getElementById('mode').addEventListener('change', function () {
+          calcAndRenderDirections(directionsService, directionsDisplay);
+        });
+
+      }
+
+      function calcAndRenderDirections(directionsService, directionsDisplay) {
+
+        directionsDisplay.setMap(map);
+        directionsDisplay.setPanel(document.getElementById('directionsPanel'));
+        var selectedMode = document.getElementById('mode').value;
+
+        request = {
+          origin: marker_position,
+          destination: sfsuLatLong,
+          travelMode: google.maps.TravelMode[selectedMode]
+        };
+
+        directionsService.route(request, function (result, status) {
+          console.log("Status = ", status);
+          if (status == 'OK') {
+            directionsDisplay.setDirections(result);
+          }
+        });
+      }
+      $(window).on("resize", function () { $("#map").height($(window).height()); map.invalidateSize(); }).trigger("resize");
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbr6KeU9un_uLPpH581LUfOb8PE3zi1x0&callback=initMap"
+      async defer></script>
+  </div>
+
+</div>
+<!-- Corosel images -->
+
+<footer class="site-footer" style="margin-top: 250px">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <h6>About</h6>
+        <p class="text-justify">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative to help the upcoming
+          programmers with the code. Scanfcode focuses on providing the most efficient code or snippets as the code
+          wants to be simple. We will help programmers build up concepts in different programming languages that
+          include
+          C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.</p>
+      </div>
+
+      <div class="col-xs-6 col-md-3">
+        <h6>Categories</h6>
+        <ul class="footer-links">
+          <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
+          <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
+          <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
+          <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
+          <li><a href="http://scanfcode.com/category/android/">Android</a></li>
+          <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
+        </ul>
+      </div>
+
+      <div class="col-xs-6 col-md-3">
+        <h6>Quick Links</h6>
+        <ul class="footer-links">
+          <li><a href="http://scanfcode.com/about/">About Us</a></li>
+          <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+          <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+          <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-6 col-xs-12">
+        <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by
+          <a href="#">Scanfcode</a>.
+        </p>
+      </div>
+
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <ul class="social-icons">
+          <li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+          <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+          <li><a class="dribbble" href="#"><i class="fab fa-dribbble"></i></a></li>
+          <li><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+{% endblock %}

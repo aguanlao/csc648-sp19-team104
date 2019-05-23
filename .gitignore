@@ -1,4 +1,5 @@
 *.log
+*.log.*
 .DS*
 **/.DS_Store
 *vscode*

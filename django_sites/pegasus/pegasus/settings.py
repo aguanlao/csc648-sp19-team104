@@ -36,12 +36,13 @@ EMAIL_HOST_PASSWORD = 'Blue,039SKies!'
 POSTMAN_DISALLOW_ANONYMOUS = True
 POSTMAN_AUTO_MODERATE_AS = True
 
-PYBB_TEMPLATE = 'demo/base.html'
+PYBB_TEMPLATE = 'final/base.html'
 
 # Application definition
 INSTALLED_APPS = [
     'about.apps.AboutConfig',
     'demo.apps.DemoConfig',
+    'final.apps.FinalConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -135,12 +136,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    'demo.utils.AuthBackend',
+    'final.utils.AuthBackend',
     'django.contrib.auth.backends.ModelBackend'
 ]
 
-AUTH_USER_MODEL = 'demo.RegisteredUser'
-LOGIN_URL = '/demo/login'
+AUTH_USER_MODEL = 'final.RegisteredUser'
+LOGIN_URL = '/login'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/

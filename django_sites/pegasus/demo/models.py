@@ -19,16 +19,16 @@ class TextObject(models.Model):
 
 class Message(TextObject):
     class Meta:
-        db_table = 'snn_messages'
+        db_table = 'demo_snn_messages'
 
     message_id = models.IntegerField(primary_key=True)
-    poster = models.OneToOneField(
-        'VerifiedUser', on_delete=models.CASCADE, to_field='username',
-        related_name='message_poster_id'
-    )
-    recipient = models.OneToOneField(
-        'VerifiedUser', on_delete=models.CASCADE, to_field='username', related_name='recipient_id'
-    )
+    # poster = models.OneToOneField(
+    #     'VerifiedUser', on_delete=models.CASCADE, to_field='username',
+    #     related_name='message_poster_id'
+    # )
+    # recipient = models.OneToOneField(
+    #     'VerifiedUser', on_delete=models.CASCADE, to_field='username', related_name='recipient_id'
+    # )
 
     def get_poster(self):
         return self.poster
@@ -36,15 +36,15 @@ class Message(TextObject):
 
 class Post(TextObject):
     class Meta:
-        db_table = 'snn_posts'
+        db_table = 'demo_snn_posts'
 
     comments = []
 
     post_id = models.IntegerField(primary_key=True)
-    poster = models.OneToOneField(
-        'VerifiedUser', on_delete=models.CASCADE, to_field='username',
-        related_name='post_poster_id'
-    )
+    # poster = models.OneToOneField(
+    #     'VerifiedUser', on_delete=models.CASCADE, to_field='username',
+    #     related_name='post_poster_id'
+    # )
 
     def get_poster(self):
         return self.poster
@@ -63,7 +63,7 @@ class Post(TextObject):
 
 class Comment(TextObject):
     class Meta:
-        db_table = 'snn_comments'
+        db_table = 'demo_snn_comments'
 
     def __init__(self, post):
         TextObject.__init__(self)
@@ -73,10 +73,10 @@ class Comment(TextObject):
         return self.parent_post
 
     comment_id = models.IntegerField(primary_key=True)
-    poster = models.OneToOneField(
-        'VerifiedUser', on_delete=models.CASCADE, to_field='username',
-        related_name='comment_poster_id'
-    )
+    # poster = models.OneToOneField(
+    #     'VerifiedUser', on_delete=models.CASCADE, to_field='username',
+    #     related_name='comment_poster_id'
+    # )
 
     def get_poster(self):
         return self.poster
@@ -84,7 +84,7 @@ class Comment(TextObject):
 
 class Page(models.Model):
     class Meta:
-        db_table = 'snn_pages'
+        db_table = 'demo_snn_pages'
 
     owners = models.CharField(max_length=500)
     members = models.CharField(max_length=500, blank=True, null=True)
@@ -197,101 +197,101 @@ class User(AbstractUser):
         return self.email
 
 
-class DisabledUser(models.Model):
-    class Meta:
-        db_table = 'disabled_users'
+# class DisabledUser(models.Model):
+#     class Meta:
+#         db_table = 'demo_disabled_users'
+#
+#     deletion_time = models.DateField(default=now, editable=False)
+#     secret_key = models.CharField(max_length=50)
+#     username = models.CharField(max_length=15, primary_key=True)
+#     email = models.EmailField(max_length=100)
+#
+#
+# class RegisteredUser(User):
+#     class Meta:
+#         db_table = 'demo_unverified_users'
+#
+#     permission_level = 4
+#
 
-    deletion_time = models.DateField(default=now, editable=False)
-    secret_key = models.CharField(max_length=50)
-    username = models.CharField(max_length=15, primary_key=True)
-    email = models.EmailField(max_length=100)
+# class VerifiedUser(RegisteredUser):
+#     class Meta:
+#         db_table = 'demo_verified_users'
+#
+#     permission_level = 3
+#     friends = []
+#
+#     # TODO: define what a profile will be
+#     def get_profile(self):
+#         pass
+#
+#     def add_friend(self, user):
+#         pass
+#
+#     def remove_friend(self, user):
+#         pass
+#
+#     def send_message(self, user):
+#         pass
+#
 
-
-class RegisteredUser(User):
-    class Meta:
-        db_table = 'unverified_users'
-
-    permission_level = 4
-
-
-class VerifiedUser(RegisteredUser):
-    class Meta:
-        db_table = 'verified_users'
-
-    permission_level = 3
-    friends = []
-
-    # TODO: define what a profile will be
-    def get_profile(self):
-        pass
-
-    def add_friend(self, user):
-        pass
-
-    def remove_friend(self, user):
-        pass
-
-    def send_message(self, user):
-        pass
-
-
-class Administrator(VerifiedUser):
-    class Meta:
-        db_table = "admins"
-
-    permission_level = 0
-    is_staff = True
-
-    # TODO
-    def accept_listing(self):
-        pass
-
-    def remove_listing(self, listing):
-        pass
-
-    def update_listing(self, listing):
-        pass
-
-    def remove_user(self, user):
-        pass
-
-
-class Landlord(VerifiedUser):
-    class Meta:
-        db_table = "landlords"
-
-    permission_level = 1
-    agency = models.CharField(max_length=50, blank=True, null=True)
-
-    def update_agency(self, agency):
-        self.agency = agency
-
-
-class StarTenant(VerifiedUser):
-    class Meta:
-        db_table = "star_tenants"
-
-    permission_level = 2
-
-
-class Student(VerifiedUser):
-    class Meta:
-        db_table = "students"
-
-    permission_level = 3
-    is_student = True
-    is_tenant = False
-
-    def update_tenant_status(self, status):
-        if status:
-            self.is_tenant = True
-        else:
-            self.is_tenant = False
+# class Administrator(VerifiedUser):
+#     class Meta:
+#         db_table = "demo_admins"
+#
+#     permission_level = 0
+#     is_staff = True
+#
+#     # TODO
+#     def accept_listing(self):
+#         pass
+#
+#     def remove_listing(self, listing):
+#         pass
+#
+#     def update_listing(self, listing):
+#         pass
+#
+#     def remove_user(self, user):
+#         pass
+#
+#
+# class Landlord(VerifiedUser):
+#     class Meta:
+#         db_table = "demo_landlords"
+#
+#     permission_level = 1
+#     agency = models.CharField(max_length=50, blank=True, null=True)
+#
+#     def update_agency(self, agency):
+#         self.agency = agency
+#
+#
+# class StarTenant(VerifiedUser):
+#     class Meta:
+#         db_table = "demo_star_tenants"
+#
+#     permission_level = 2
+#
+#
+# class Student(VerifiedUser):
+#     class Meta:
+#         db_table = "demo_students"
+#
+#     permission_level = 3
+#     is_student = True
+#     is_tenant = False
+#
+#     def update_tenant_status(self, status):
+#         if status:
+#             self.is_tenant = True
+#         else:
+#             self.is_tenant = False
 
 
 class Domicile(models.Model):
     class Meta:
-        db_table = 'residences'
+        db_table = 'demo_residences'
 
     residence_id = models.AutoField(primary_key=True)
     residence_options = [
@@ -346,7 +346,7 @@ class Domicile(models.Model):
 class Listing(models.Model):
     class Meta:
         abstract = True
-        db_table = 'all_listings'
+        db_table = 'demo_all_listings'
 
     creation_time = models.DateField(default=now, editable=False)
     residence = models.OneToOneField(
@@ -358,14 +358,14 @@ class Listing(models.Model):
 
 class ExpiredListing(Listing):
     class Meta:
-        db_table = 'expired_listings'
+        db_table = 'demo_expired_listings'
 
     expire_time = models.DateField(default=now, editable=False)
 
 
 class ValidListing(Listing):
     class Meta:
-        db_table = 'valid_listings'
+        db_table = 'demo_valid_listings'
 
     tenants = models.CharField(max_length=100)
     pet_friendly = models.BooleanField()

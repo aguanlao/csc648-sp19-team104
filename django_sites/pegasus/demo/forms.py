@@ -94,25 +94,25 @@ class EditListingForm(forms.ModelForm):
         }
 
 
-class CreateUserForm(forms.ModelForm):
-    confirm_password = forms.CharField(
-        label="Confirm password", max_length=20, widget=forms.PasswordInput)
-
-    class Meta:
-        model = RegisteredUser
-        fields = (
-            'first_name', 'last_name', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code', 'phone_number',
-            'is_student', 'email', 'username', 'password'
-        )
-        labels = {
-            'is_student': 'Are you a student? '
-        }
-        widgets = {
-            'first_name': forms.TextInput(attrs={'placeholder': 'First name'}),
-            'last_name': forms.TextInput(attrs={'placeholder': 'Last name'}),
-
-            'password': forms.PasswordInput
-        }
+# class CreateUserForm(forms.ModelForm):
+#     confirm_password = forms.CharField(
+#         label="Confirm password", max_length=20, widget=forms.PasswordInput)
+#
+#     class Meta:
+#         model = User
+#         fields = (
+#             'first_name', 'last_name', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code', 'phone_number',
+#             'is_student', 'email', 'username', 'password'
+#         )
+#         labels = {
+#             'is_student': 'Are you a student? '
+#         }
+#         widgets = {
+#             'first_name': forms.TextInput(attrs={'placeholder': 'First name'}),
+#             'last_name': forms.TextInput(attrs={'placeholder': 'Last name'}),
+#
+#             'password': forms.PasswordInput
+#         }
     # first_name = forms.CharField(widget=forms.TextInput
     #                              (attrs={'placeholder': 'First name'}))
     # last_name = forms.CharField(widget=forms.TextInput
@@ -137,18 +137,18 @@ class CreateUserForm(forms.ModelForm):
     #                            (attrs={'placeholder': 'Password'}))
     # confirm_password = forms.CharField(widget=forms.PasswordInput
     #                                    (attrs={'placeholder': 'Confirm password'}))
-
-
-class EditUserForm(forms.ModelForm):
-    class Meta:
-        model = RegisteredUser
-        fields = (
-            'first_name', 'last_name', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code', 'phone_number',
-            'bio', 'profile_picture', 'email', 'username'
-        )
-        widgets = {
-            'bio': forms.Textarea
-        }
+#
+#
+# class EditUserForm(forms.ModelForm):
+#     class Meta:
+#         model = RegisteredUser
+#         fields = (
+#             'first_name', 'last_name', 'date_of_birth', 'physical_address', 'city', 'state', 'zip_code', 'phone_number',
+#             'bio', 'profile_picture', 'email', 'username'
+#         )
+#         widgets = {
+#             'bio': forms.Textarea
+#         }
 
 
 class ForgotPasswordForm(forms.Form):
