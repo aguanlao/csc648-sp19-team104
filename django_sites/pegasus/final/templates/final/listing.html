@@ -342,7 +342,7 @@
                                 title: address_labels["{{forloop.counter0}}"]
                             });
                             google.maps.event.addListener(marker, 'click', function () {
-                                window.location.replace('/' + listing_ids["{{forloop.counter0}}"]);
+                                window.location.replace('/web/' + listing_ids["{{forloop.counter0}}"]);
                             });
 
                             {% endfor %}
