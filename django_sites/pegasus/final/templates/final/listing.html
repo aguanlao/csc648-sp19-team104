@@ -247,7 +247,7 @@
                         <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>
                         </div>
                         <a href={% url 'view_listing' listing_id=entry.pk %}>
-                            <img class="d-flex align-self-start" {% if entry.photo %} src="../{{ entry.photo.url }}"
+                            <img class="d-flex align-self-start" {% if entry.photo %} src="http://{{ context.domain }}/{{ entry.photo.url }}"
                                 {% endif %} alt="Generic placeholder image">
                         </a>
                         <div class="media-body pl-3">
