@@ -43,6 +43,26 @@ def test_user_authentication():
     assert user is not None
 
 
+@pytest.mark.django_db
+def test_user_promotion():
+    username = 'shakuntala'
+    user = models.RegisteredUser.objects.get(username=username)
+
+    user.promote_student()
+    assert user.permission_level == 3
+
+    user.promote_landlord()
+    assert user.permission_level == 1
+
+    user.promote_star_tenant()
+    assert user.permission_level == 2
+
+    user.promote_admin()
+    assert user.is_superuser == True
+    assert user.is_staff == True
+    assert user.permission_level == 0 
+
+
 # Verify listing page generates responses relatively quickly
 @pytest.mark.django_db
 def test_listing_response(rf):
