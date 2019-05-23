@@ -68,6 +68,7 @@ def test_user_promotion():
 def test_listing_response(rf):
     start = time()
     request = rf.post('/demo/listings', {'city': 'San Francisco'})
+    request.META['HTTP_HOST'] = 'localhost:8000/'
     response = views.listing(request)
     assert response.status_code == 200
     end = time()
