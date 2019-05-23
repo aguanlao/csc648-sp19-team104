@@ -16,9 +16,6 @@ Any and all IDE or text editors can be used, provided they allow you to maintain
 
 Though not required, it is suggested to align as closely with PEP8 suggestions as possible. Certain tools can be configured to allow this, such as the PyCharm IDE.
 
-### JavaScript Coding Requirements
-  - Placeholder text.
-
 ### Git Requirements
   - Pull requests can be submitted to any branch _except_ **master**. **Master** will be merged from **dev** during a separate process.
   - Branch names should describe the feature the branch is for, rather than who started the branch. Examples of good branch names: _google-maps-feature_, _side navbar_, etc.
