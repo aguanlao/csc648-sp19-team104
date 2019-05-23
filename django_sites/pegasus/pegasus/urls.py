@@ -25,7 +25,7 @@ urlpatterns = [
     path('demo/', include('demo.urls')),
     path('demo/', include('django.contrib.auth.urls')),
     path('demo/', include('postman.urls')),
-    path('demo/forums/', include('pybb.urls', namespace='pybb')),
+   
     
 
 ]
