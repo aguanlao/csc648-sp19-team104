@@ -16,6 +16,16 @@ import logging
 import json
 
 
+# For use to determine which URL to hit, based on where server sits
+def get_media_base_url(request):
+    domain = request.META['HTTP_HOST']
+    if 'localhost' in domain or '127.0.01' in domain:
+        media_base = domain
+    else:
+        media_base = domain + '/web'
+    return media_base
+
+
 def index(request):
     if request.method == 'POST':
         form = SearchForm(request.POST)
@@ -44,7 +54,7 @@ def index(request):
                 'search_results': results,
                 'search_count': len(results),
                 'lat_lng': searched_lat_lng,
-                'domain': request.META['HTTP_HOST']
+                'media_base': get_media_base_url(request)
             }
             return render(request, 'final/listing.html', {'context': context})
 
@@ -54,7 +64,7 @@ def index(request):
     context = {
         'form': form,
         'search_results': [],
-        'domain': request.META['HTTP_HOST']
+        'media_base': get_media_base_url(request)
     }
     return render(request, 'final/index.html', {'context': context})
 
@@ -88,20 +98,18 @@ def listing(request):
                 'search_results': results,
                 'search_count': len(results),
                 'lat_lng': searched_lat_lng,
-                'domain': request.META['HTTP_HOST']
+                'media_base': get_media_base_url(request)
             }
-
 
             return render(request, 'final/listing.html', {'context': context})
 
     else:
         form = SearchForm()
 
-    # Should have some default listings displayed (maybe most recent?)
     context = {
         'form': form,
         'search_results': [],
-        'domain': request.META['HTTP_HOST']
+        'media_base': get_media_base_url(request)
     }
 
     return render(request, 'final/listing.html', {'context': context})
