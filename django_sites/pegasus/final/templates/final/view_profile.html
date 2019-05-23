@@ -13,7 +13,7 @@
         <a href="#">
             <span class="profile-picture" style="width:100px; height:100px; border-radius: 50%;">
                 <img style="height:100%; width:100%; border-radius: 50%;" class="editable img-responsive" alt=" Avatar"
-                    id="avatar2" src="{{context.user.profile_picture}}">
+                    id="avatar2" src="http://{{context.domain}}/media/{{context.user.profile_picture}}">    
             </span>
         </a>
         <div class="space space-4"></div>
@@ -68,6 +68,14 @@
             </div>
             {% endif %} 
         </div>
+        {% if request.user.permission_level == 1 and request.user.username == context.user.username %}
+        <button class="ui basic button">
+            <i class="home icon"></i>
+            <a href="{% url 'add_new_property' %}">
+                Add New Listings +   
+            </a>
+        </button>
+        {% endif %}
     </div>
 </div>
 <div class="space-20"></div>
@@ -92,17 +100,8 @@
 
 {% block tab2_info %}
 <!--Listings-->
-<h1 class="text-center" style=>Listings</h1>
-{% if request.user.permission_level == 1 or request.user.permission_level == 3 and request.user.username == context.user.username %}
-<div style="padding-bottom: 1rem; padding-left: 1rem"> 
-    <button class="ui basic button">
-        <i class="home icon"></i>
-        <a href="{% url 'add_new_property' %}">
-            Add New Listings +   
-        </a>
-    </button>
-</div>
-{% endif %}
+<!-- <h1 class="text-center" style=>Listings</h1>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
@@ -182,7 +181,7 @@
             </div>
         </div>
     </div> 
-</div>
+</div> -->
 {% endblock %}
 
 {% block tab3_info %}

@@ -14,9 +14,9 @@ class SearchForm(forms.Form):
     size = forms.FloatField(label="Square Footage", min_value=0.0, required=False)
     min_price = forms.FloatField(label="Min Price", min_value=0.0, required=False)
     max_price = forms.FloatField(label="Max Price", min_value=0.0, required=False)
-    city = forms.CharField(label="City", max_length=20, required=False)
+    city = forms.CharField(label="City", max_length=40, required=False)
     zip_code = forms.IntegerField(label="Zip Code", required=False)
-    neighborhood = forms.CharField(label="Neighborhood", max_length=20, required=False)
+    neighborhood = forms.CharField(label="Neighborhood", max_length=40, required=False)
 
     def __init__(self, *args, **kwargs):
         super(SearchForm, self).__init__(*args, **kwargs)
