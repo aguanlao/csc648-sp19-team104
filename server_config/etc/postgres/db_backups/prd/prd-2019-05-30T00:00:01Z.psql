@@ -1,0 +1,3382 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 10.8 (Ubuntu 10.8-0ubuntu0.18.04.1)
+-- Dumped by pg_dump version 10.8 (Ubuntu 10.8-0ubuntu0.18.04.1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: DATABASE pegasus; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON DATABASE pegasus IS 'Database for pegasus web app.';
+
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.auth_group (
+    id integer NOT NULL,
+    name character varying(80) NOT NULL
+);
+
+
+ALTER TABLE public.auth_group OWNER TO admin;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.auth_group_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_id_seq OWNER TO admin;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.auth_group_id_seq OWNED BY public.auth_group.id;
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.auth_group_permissions (
+    id integer NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_group_permissions OWNER TO admin;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.auth_group_permissions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_permissions_id_seq OWNER TO admin;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.auth_group_permissions_id_seq OWNED BY public.auth_group_permissions.id;
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.auth_permission OWNER TO admin;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.auth_permission_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_permission_id_seq OWNER TO admin;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.auth_permission_id_seq OWNED BY public.auth_permission.id;
+
+
+--
+-- Name: demo_expired_listings; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.demo_expired_listings (
+    creation_time date NOT NULL,
+    residence_id integer NOT NULL,
+    owner character varying(15) NOT NULL,
+    price double precision NOT NULL,
+    expire_time date NOT NULL
+);
+
+
+ALTER TABLE public.demo_expired_listings OWNER TO admin;
+
+--
+-- Name: demo_residences; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.demo_residences (
+    residence_id integer NOT NULL,
+    residence_type character varying(50) NOT NULL,
+    bed_count integer NOT NULL,
+    bath_count integer NOT NULL,
+    address character varying(100) NOT NULL,
+    city character varying(100) NOT NULL,
+    state character varying(2) NOT NULL,
+    zip_code integer NOT NULL,
+    size integer NOT NULL,
+    creation_time date NOT NULL
+);
+
+
+ALTER TABLE public.demo_residences OWNER TO admin;
+
+--
+-- Name: demo_residences_residence_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.demo_residences_residence_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.demo_residences_residence_id_seq OWNER TO admin;
+
+--
+-- Name: demo_residences_residence_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.demo_residences_residence_id_seq OWNED BY public.demo_residences.residence_id;
+
+
+--
+-- Name: demo_snn_comments; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.demo_snn_comments (
+    creation_time date NOT NULL,
+    text character varying(500) NOT NULL,
+    comment_id integer NOT NULL
+);
+
+
+ALTER TABLE public.demo_snn_comments OWNER TO admin;
+
+--
+-- Name: demo_snn_messages; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.demo_snn_messages (
+    creation_time date NOT NULL,
+    text character varying(500) NOT NULL,
+    message_id integer NOT NULL
+);
+
+
+ALTER TABLE public.demo_snn_messages OWNER TO admin;
+
+--
+-- Name: demo_snn_pages; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.demo_snn_pages (
+    owners character varying(500) NOT NULL,
+    members character varying(500),
+    name character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.demo_snn_pages OWNER TO admin;
+
+--
+-- Name: demo_snn_posts; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.demo_snn_posts (
+    creation_time date NOT NULL,
+    text character varying(500) NOT NULL,
+    post_id integer NOT NULL
+);
+
+
+ALTER TABLE public.demo_snn_posts OWNER TO admin;
+
+--
+-- Name: demo_valid_listings; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.demo_valid_listings (
+    creation_time date NOT NULL,
+    residence_id integer NOT NULL,
+    owner character varying(15) NOT NULL,
+    price double precision NOT NULL,
+    tenants character varying(100) NOT NULL,
+    pet_friendly boolean NOT NULL,
+    pets_allowed character varying(100),
+    limit_tenant_count integer,
+    current_tenant_count integer,
+    amenities character varying(100),
+    utilities_included_rent boolean NOT NULL,
+    is_active boolean NOT NULL,
+    coordinates character varying(20),
+    description text NOT NULL,
+    photo character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.demo_valid_listings OWNER TO admin;
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    content_type_id integer,
+    user_id character varying(15) NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+ALTER TABLE public.django_admin_log OWNER TO admin;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.django_admin_log_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_admin_log_id_seq OWNER TO admin;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.django_admin_log_id_seq OWNED BY public.django_admin_log.id;
+
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.django_content_type (
+    id integer NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.django_content_type OWNER TO admin;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.django_content_type_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_content_type_id_seq OWNER TO admin;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.django_content_type_id_seq OWNED BY public.django_content_type.id;
+
+
+--
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.django_migrations (
+    id integer NOT NULL,
+    app character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_migrations OWNER TO admin;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.django_migrations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_migrations_id_seq OWNER TO admin;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.django_migrations_id_seq OWNED BY public.django_migrations.id;
+
+
+--
+-- Name: django_session; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_session OWNER TO admin;
+
+--
+-- Name: django_site; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.django_site (
+    id integer NOT NULL,
+    domain character varying(100) NOT NULL,
+    name character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.django_site OWNER TO admin;
+
+--
+-- Name: django_site_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.django_site_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_site_id_seq OWNER TO admin;
+
+--
+-- Name: django_site_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.django_site_id_seq OWNED BY public.django_site.id;
+
+
+--
+-- Name: final_all_registered_users; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.final_all_registered_users (
+    is_superuser boolean NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    date_joined timestamp with time zone NOT NULL,
+    first_name character varying(20),
+    last_name character varying(20),
+    date_of_birth date NOT NULL,
+    physical_address character varying(100),
+    city character varying(100),
+    state character varying(100),
+    zip_code character varying(100),
+    phone_number character varying(20),
+    bio character varying(500),
+    profile_picture character varying(100),
+    creation_time date NOT NULL,
+    is_student boolean NOT NULL,
+    email character varying(100) NOT NULL,
+    username character varying(15) NOT NULL,
+    password character varying(500) NOT NULL,
+    cleanliness integer,
+    socialness integer,
+    partiness integer,
+    last_login timestamp with time zone,
+    permission_level integer NOT NULL
+);
+
+
+ALTER TABLE public.final_all_registered_users OWNER TO admin;
+
+--
+-- Name: final_all_registered_users_groups; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.final_all_registered_users_groups (
+    id integer NOT NULL,
+    registereduser_id character varying(15) NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE public.final_all_registered_users_groups OWNER TO admin;
+
+--
+-- Name: final_all_registered_users_user_permissions; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.final_all_registered_users_user_permissions (
+    id integer NOT NULL,
+    registereduser_id character varying(15) NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.final_all_registered_users_user_permissions OWNER TO admin;
+
+--
+-- Name: final_residence_photos; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.final_residence_photos (
+    id integer NOT NULL,
+    photo_url character varying(100),
+    listing_id integer NOT NULL
+);
+
+
+ALTER TABLE public.final_residence_photos OWNER TO admin;
+
+--
+-- Name: final_residence_photos_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.final_residence_photos_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.final_residence_photos_id_seq OWNER TO admin;
+
+--
+-- Name: final_residence_photos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.final_residence_photos_id_seq OWNED BY public.final_residence_photos.id;
+
+
+--
+-- Name: final_residences; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.final_residences (
+    residence_id integer NOT NULL,
+    residence_type character varying(50) NOT NULL,
+    bed_count integer NOT NULL,
+    bath_count integer NOT NULL,
+    address character varying(100) NOT NULL,
+    city character varying(100) NOT NULL,
+    state character varying(2) NOT NULL,
+    zip_code integer NOT NULL,
+    size integer NOT NULL,
+    creation_time date NOT NULL,
+    owner character varying(15) NOT NULL,
+    price double precision NOT NULL,
+    tenants character varying(100),
+    pet_friendly boolean NOT NULL,
+    pets_allowed character varying(100),
+    limit_tenant_count integer,
+    current_tenant_count integer,
+    amenities character varying(100),
+    utilities_included_rent boolean NOT NULL,
+    is_active boolean NOT NULL,
+    coordinates character varying(20),
+    description text NOT NULL,
+    photo character varying(100) NOT NULL,
+    district character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.final_residences OWNER TO admin;
+
+--
+-- Name: final_residences_residence_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.final_residences_residence_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.final_residences_residence_id_seq OWNER TO admin;
+
+--
+-- Name: final_residences_residence_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.final_residences_residence_id_seq OWNED BY public.final_residences.residence_id;
+
+
+--
+-- Name: final_unverified_users_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.final_unverified_users_groups_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.final_unverified_users_groups_id_seq OWNER TO admin;
+
+--
+-- Name: final_unverified_users_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.final_unverified_users_groups_id_seq OWNED BY public.final_all_registered_users_groups.id;
+
+
+--
+-- Name: final_unverified_users_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.final_unverified_users_user_permissions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.final_unverified_users_user_permissions_id_seq OWNER TO admin;
+
+--
+-- Name: final_unverified_users_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.final_unverified_users_user_permissions_id_seq OWNED BY public.final_all_registered_users_user_permissions.id;
+
+
+--
+-- Name: postman_message; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.postman_message (
+    id integer NOT NULL,
+    subject character varying(120) NOT NULL,
+    body text NOT NULL,
+    email character varying(254) NOT NULL,
+    sent_at timestamp with time zone NOT NULL,
+    read_at timestamp with time zone,
+    replied_at timestamp with time zone,
+    sender_archived boolean NOT NULL,
+    recipient_archived boolean NOT NULL,
+    sender_deleted_at timestamp with time zone,
+    recipient_deleted_at timestamp with time zone,
+    moderation_status character varying(1) NOT NULL,
+    moderation_date timestamp with time zone,
+    moderation_reason character varying(120) NOT NULL,
+    moderation_by_id character varying(15),
+    parent_id integer,
+    recipient_id character varying(15),
+    sender_id character varying(15),
+    thread_id integer
+);
+
+
+ALTER TABLE public.postman_message OWNER TO admin;
+
+--
+-- Name: postman_message_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.postman_message_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.postman_message_id_seq OWNER TO admin;
+
+--
+-- Name: postman_message_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.postman_message_id_seq OWNED BY public.postman_message.id;
+
+
+--
+-- Name: pybb_attachment; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.pybb_attachment (
+    id integer NOT NULL,
+    size integer NOT NULL,
+    file character varying(100) NOT NULL,
+    post_id integer NOT NULL
+);
+
+
+ALTER TABLE public.pybb_attachment OWNER TO admin;
+
+--
+-- Name: pybb_attachment_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.pybb_attachment_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pybb_attachment_id_seq OWNER TO admin;
+
+--
+-- Name: pybb_attachment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.pybb_attachment_id_seq OWNED BY public.pybb_attachment.id;
+
+
+--
+-- Name: pybb_category; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.pybb_category (
+    id integer NOT NULL,
+    name character varying(80) NOT NULL,
+    "position" integer NOT NULL,
+    hidden boolean NOT NULL,
+    slug character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.pybb_category OWNER TO admin;
+
+--
+-- Name: pybb_category_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.pybb_category_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pybb_category_id_seq OWNER TO admin;
+
+--
+-- Name: pybb_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.pybb_category_id_seq OWNED BY public.pybb_category.id;
+
+
+--
+-- Name: pybb_forum; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.pybb_forum (
+    id integer NOT NULL,
+    name character varying(80) NOT NULL,
+    "position" integer NOT NULL,
+    description text NOT NULL,
+    updated timestamp with time zone,
+    post_count integer NOT NULL,
+    topic_count integer NOT NULL,
+    hidden boolean NOT NULL,
+    headline text,
+    slug character varying(255) NOT NULL,
+    category_id integer NOT NULL,
+    parent_id integer
+);
+
+
+ALTER TABLE public.pybb_forum OWNER TO admin;
+
+--
+-- Name: pybb_forum_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.pybb_forum_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pybb_forum_id_seq OWNER TO admin;
+
+--
+-- Name: pybb_forum_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.pybb_forum_id_seq OWNED BY public.pybb_forum.id;
+
+
+--
+-- Name: pybb_forum_moderators; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.pybb_forum_moderators (
+    id integer NOT NULL,
+    forum_id integer NOT NULL,
+    registereduser_id character varying(15) NOT NULL
+);
+
+
+ALTER TABLE public.pybb_forum_moderators OWNER TO admin;
+
+--
+-- Name: pybb_forum_moderators_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.pybb_forum_moderators_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pybb_forum_moderators_id_seq OWNER TO admin;
+
+--
+-- Name: pybb_forum_moderators_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.pybb_forum_moderators_id_seq OWNED BY public.pybb_forum_moderators.id;
+
+
+--
+-- Name: pybb_forumreadtracker; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.pybb_forumreadtracker (
+    id integer NOT NULL,
+    time_stamp timestamp with time zone NOT NULL,
+    forum_id integer,
+    user_id character varying(15) NOT NULL
+);
+
+
+ALTER TABLE public.pybb_forumreadtracker OWNER TO admin;
+
+--
+-- Name: pybb_forumreadtracker_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.pybb_forumreadtracker_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pybb_forumreadtracker_id_seq OWNER TO admin;
+
+--
+-- Name: pybb_forumreadtracker_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.pybb_forumreadtracker_id_seq OWNED BY public.pybb_forumreadtracker.id;
+
+
+--
+-- Name: pybb_forumsubscription; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.pybb_forumsubscription (
+    id integer NOT NULL,
+    type smallint NOT NULL,
+    forum_id integer NOT NULL,
+    user_id character varying(15) NOT NULL,
+    CONSTRAINT pybb_forumsubscription_type_check CHECK ((type >= 0))
+);
+
+
+ALTER TABLE public.pybb_forumsubscription OWNER TO admin;
+
+--
+-- Name: pybb_forumsubscription_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.pybb_forumsubscription_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pybb_forumsubscription_id_seq OWNER TO admin;
+
+--
+-- Name: pybb_forumsubscription_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.pybb_forumsubscription_id_seq OWNED BY public.pybb_forumsubscription.id;
+
+
+--
+-- Name: pybb_pollanswer; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.pybb_pollanswer (
+    id integer NOT NULL,
+    text character varying(255) NOT NULL,
+    topic_id integer NOT NULL
+);
+
+
+ALTER TABLE public.pybb_pollanswer OWNER TO admin;
+
+--
+-- Name: pybb_pollanswer_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.pybb_pollanswer_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pybb_pollanswer_id_seq OWNER TO admin;
+
+--
+-- Name: pybb_pollanswer_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.pybb_pollanswer_id_seq OWNED BY public.pybb_pollanswer.id;
+
+
+--
+-- Name: pybb_pollansweruser; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.pybb_pollansweruser (
+    id integer NOT NULL,
+    "timestamp" timestamp with time zone NOT NULL,
+    poll_answer_id integer NOT NULL,
+    user_id character varying(15) NOT NULL
+);
+
+
+ALTER TABLE public.pybb_pollansweruser OWNER TO admin;
+
+--
+-- Name: pybb_pollansweruser_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.pybb_pollansweruser_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pybb_pollansweruser_id_seq OWNER TO admin;
+
+--
+-- Name: pybb_pollansweruser_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.pybb_pollansweruser_id_seq OWNED BY public.pybb_pollansweruser.id;
+
+
+--
+-- Name: pybb_post; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.pybb_post (
+    id integer NOT NULL,
+    body text NOT NULL,
+    body_html text NOT NULL,
+    body_text text NOT NULL,
+    created timestamp with time zone NOT NULL,
+    updated timestamp with time zone,
+    user_ip inet,
+    on_moderation boolean NOT NULL,
+    topic_id integer NOT NULL,
+    user_id character varying(15) NOT NULL
+);
+
+
+ALTER TABLE public.pybb_post OWNER TO admin;
+
+--
+-- Name: pybb_post_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.pybb_post_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pybb_post_id_seq OWNER TO admin;
+
+--
+-- Name: pybb_post_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.pybb_post_id_seq OWNED BY public.pybb_post.id;
+
+
+--
+-- Name: pybb_profile; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.pybb_profile (
+    id integer NOT NULL,
+    signature text NOT NULL,
+    signature_html text NOT NULL,
+    time_zone double precision NOT NULL,
+    language character varying(10) NOT NULL,
+    show_signatures boolean NOT NULL,
+    post_count integer NOT NULL,
+    avatar character varying(100),
+    autosubscribe boolean NOT NULL,
+    user_id character varying(15) NOT NULL
+);
+
+
+ALTER TABLE public.pybb_profile OWNER TO admin;
+
+--
+-- Name: pybb_profile_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.pybb_profile_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pybb_profile_id_seq OWNER TO admin;
+
+--
+-- Name: pybb_profile_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.pybb_profile_id_seq OWNED BY public.pybb_profile.id;
+
+
+--
+-- Name: pybb_topic; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.pybb_topic (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    created timestamp with time zone,
+    updated timestamp with time zone,
+    views integer NOT NULL,
+    sticky boolean NOT NULL,
+    closed boolean NOT NULL,
+    post_count integer NOT NULL,
+    on_moderation boolean NOT NULL,
+    poll_type integer NOT NULL,
+    poll_question text,
+    slug character varying(255) NOT NULL,
+    forum_id integer NOT NULL,
+    user_id character varying(15) NOT NULL
+);
+
+
+ALTER TABLE public.pybb_topic OWNER TO admin;
+
+--
+-- Name: pybb_topic_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.pybb_topic_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pybb_topic_id_seq OWNER TO admin;
+
+--
+-- Name: pybb_topic_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.pybb_topic_id_seq OWNED BY public.pybb_topic.id;
+
+
+--
+-- Name: pybb_topic_subscribers; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.pybb_topic_subscribers (
+    id integer NOT NULL,
+    topic_id integer NOT NULL,
+    registereduser_id character varying(15) NOT NULL
+);
+
+
+ALTER TABLE public.pybb_topic_subscribers OWNER TO admin;
+
+--
+-- Name: pybb_topic_subscribers_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.pybb_topic_subscribers_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pybb_topic_subscribers_id_seq OWNER TO admin;
+
+--
+-- Name: pybb_topic_subscribers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.pybb_topic_subscribers_id_seq OWNED BY public.pybb_topic_subscribers.id;
+
+
+--
+-- Name: pybb_topicreadtracker; Type: TABLE; Schema: public; Owner: admin
+--
+
+CREATE TABLE public.pybb_topicreadtracker (
+    id integer NOT NULL,
+    time_stamp timestamp with time zone NOT NULL,
+    topic_id integer,
+    user_id character varying(15) NOT NULL
+);
+
+
+ALTER TABLE public.pybb_topicreadtracker OWNER TO admin;
+
+--
+-- Name: pybb_topicreadtracker_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.pybb_topicreadtracker_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pybb_topicreadtracker_id_seq OWNER TO admin;
+
+--
+-- Name: pybb_topicreadtracker_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.pybb_topicreadtracker_id_seq OWNED BY public.pybb_topicreadtracker.id;
+
+
+--
+-- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.auth_group ALTER COLUMN id SET DEFAULT nextval('public.auth_group_id_seq'::regclass);
+
+
+--
+-- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.auth_permission ALTER COLUMN id SET DEFAULT nextval('public.auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: demo_residences residence_id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.demo_residences ALTER COLUMN residence_id SET DEFAULT nextval('public.demo_residences_residence_id_seq'::regclass);
+
+
+--
+-- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.django_admin_log ALTER COLUMN id SET DEFAULT nextval('public.django_admin_log_id_seq'::regclass);
+
+
+--
+-- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval('public.django_content_type_id_seq'::regclass);
+
+
+--
+-- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
+
+
+--
+-- Name: django_site id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.django_site ALTER COLUMN id SET DEFAULT nextval('public.django_site_id_seq'::regclass);
+
+
+--
+-- Name: final_all_registered_users_groups id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.final_all_registered_users_groups ALTER COLUMN id SET DEFAULT nextval('public.final_unverified_users_groups_id_seq'::regclass);
+
+
+--
+-- Name: final_all_registered_users_user_permissions id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.final_all_registered_users_user_permissions ALTER COLUMN id SET DEFAULT nextval('public.final_unverified_users_user_permissions_id_seq'::regclass);
+
+
+--
+-- Name: final_residence_photos id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.final_residence_photos ALTER COLUMN id SET DEFAULT nextval('public.final_residence_photos_id_seq'::regclass);
+
+
+--
+-- Name: final_residences residence_id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.final_residences ALTER COLUMN residence_id SET DEFAULT nextval('public.final_residences_residence_id_seq'::regclass);
+
+
+--
+-- Name: postman_message id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.postman_message ALTER COLUMN id SET DEFAULT nextval('public.postman_message_id_seq'::regclass);
+
+
+--
+-- Name: pybb_attachment id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_attachment ALTER COLUMN id SET DEFAULT nextval('public.pybb_attachment_id_seq'::regclass);
+
+
+--
+-- Name: pybb_category id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_category ALTER COLUMN id SET DEFAULT nextval('public.pybb_category_id_seq'::regclass);
+
+
+--
+-- Name: pybb_forum id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forum ALTER COLUMN id SET DEFAULT nextval('public.pybb_forum_id_seq'::regclass);
+
+
+--
+-- Name: pybb_forum_moderators id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forum_moderators ALTER COLUMN id SET DEFAULT nextval('public.pybb_forum_moderators_id_seq'::regclass);
+
+
+--
+-- Name: pybb_forumreadtracker id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forumreadtracker ALTER COLUMN id SET DEFAULT nextval('public.pybb_forumreadtracker_id_seq'::regclass);
+
+
+--
+-- Name: pybb_forumsubscription id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forumsubscription ALTER COLUMN id SET DEFAULT nextval('public.pybb_forumsubscription_id_seq'::regclass);
+
+
+--
+-- Name: pybb_pollanswer id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_pollanswer ALTER COLUMN id SET DEFAULT nextval('public.pybb_pollanswer_id_seq'::regclass);
+
+
+--
+-- Name: pybb_pollansweruser id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_pollansweruser ALTER COLUMN id SET DEFAULT nextval('public.pybb_pollansweruser_id_seq'::regclass);
+
+
+--
+-- Name: pybb_post id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_post ALTER COLUMN id SET DEFAULT nextval('public.pybb_post_id_seq'::regclass);
+
+
+--
+-- Name: pybb_profile id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_profile ALTER COLUMN id SET DEFAULT nextval('public.pybb_profile_id_seq'::regclass);
+
+
+--
+-- Name: pybb_topic id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_topic ALTER COLUMN id SET DEFAULT nextval('public.pybb_topic_id_seq'::regclass);
+
+
+--
+-- Name: pybb_topic_subscribers id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_topic_subscribers ALTER COLUMN id SET DEFAULT nextval('public.pybb_topic_subscribers_id_seq'::regclass);
+
+
+--
+-- Name: pybb_topicreadtracker id; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_topicreadtracker ALTER COLUMN id SET DEFAULT nextval('public.pybb_topicreadtracker_id_seq'::regclass);
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add comment	1	add_comment
+2	Can change comment	1	change_comment
+3	Can delete comment	1	delete_comment
+4	Can view comment	1	view_comment
+5	Can add domicile	2	add_domicile
+6	Can change domicile	2	change_domicile
+7	Can delete domicile	2	delete_domicile
+8	Can view domicile	2	view_domicile
+9	Can add message	3	add_message
+10	Can change message	3	change_message
+11	Can delete message	3	delete_message
+12	Can view message	3	view_message
+13	Can add page	4	add_page
+14	Can change page	4	change_page
+15	Can delete page	4	delete_page
+16	Can view page	4	view_page
+17	Can add post	5	add_post
+18	Can change post	5	change_post
+19	Can delete post	5	delete_post
+20	Can view post	5	view_post
+21	Can add expired listing	6	add_expiredlisting
+22	Can change expired listing	6	change_expiredlisting
+23	Can delete expired listing	6	delete_expiredlisting
+24	Can view expired listing	6	view_expiredlisting
+25	Can add valid listing	7	add_validlisting
+26	Can change valid listing	7	change_validlisting
+27	Can delete valid listing	7	delete_validlisting
+28	Can view valid listing	7	view_validlisting
+29	Can add registered user	8	add_registereduser
+30	Can change registered user	8	change_registereduser
+31	Can delete registered user	8	delete_registereduser
+32	Can view registered user	8	view_registereduser
+33	Can add domicile	9	add_domicile
+34	Can change domicile	9	change_domicile
+35	Can delete domicile	9	delete_domicile
+36	Can view domicile	9	view_domicile
+37	Can add log entry	10	add_logentry
+38	Can change log entry	10	change_logentry
+39	Can delete log entry	10	delete_logentry
+40	Can view log entry	10	view_logentry
+41	Can add permission	11	add_permission
+42	Can change permission	11	change_permission
+43	Can delete permission	11	delete_permission
+44	Can view permission	11	view_permission
+45	Can add group	12	add_group
+46	Can change group	12	change_group
+47	Can delete group	12	delete_group
+48	Can view group	12	view_group
+49	Can add content type	13	add_contenttype
+50	Can change content type	13	change_contenttype
+51	Can delete content type	13	delete_contenttype
+52	Can view content type	13	view_contenttype
+53	Can add session	14	add_session
+54	Can change session	14	change_session
+55	Can delete session	14	delete_session
+56	Can view session	14	view_session
+57	Can add site	15	add_site
+58	Can change site	15	change_site
+59	Can delete site	15	delete_site
+60	Can view site	15	view_site
+61	Can add verified user	16	add_verifieduser
+62	Can change verified user	16	change_verifieduser
+63	Can delete verified user	16	delete_verifieduser
+64	Can view verified user	16	view_verifieduser
+65	Can add administrator	17	add_administrator
+66	Can change administrator	17	change_administrator
+67	Can delete administrator	17	delete_administrator
+68	Can view administrator	17	view_administrator
+69	Can add landlord	18	add_landlord
+70	Can change landlord	18	change_landlord
+71	Can delete landlord	18	delete_landlord
+72	Can view landlord	18	view_landlord
+73	Can add student	19	add_student
+74	Can change student	19	change_student
+75	Can delete student	19	delete_student
+76	Can view student	19	view_student
+77	Can add star tenant	20	add_startenant
+78	Can change star tenant	20	change_startenant
+79	Can delete star tenant	20	delete_startenant
+80	Can view star tenant	20	view_startenant
+81	Can add message	21	add_message
+82	Can change message	21	change_message
+83	Can delete message	21	delete_message
+84	Can view message	21	view_message
+85	Can add pending message	21	add_pendingmessage
+86	Can change pending message	21	change_pendingmessage
+87	Can delete pending message	21	delete_pendingmessage
+88	Can view pending message	21	view_pendingmessage
+89	Can add Attachment	23	add_attachment
+90	Can change Attachment	23	change_attachment
+91	Can delete Attachment	23	delete_attachment
+92	Can view Attachment	23	view_attachment
+93	Can add Category	24	add_category
+94	Can change Category	24	change_category
+95	Can delete Category	24	delete_category
+96	Can view Category	24	view_category
+97	Can add Forum	25	add_forum
+98	Can change Forum	25	change_forum
+99	Can delete Forum	25	delete_forum
+100	Can view Forum	25	view_forum
+101	Can add Forum read tracker	26	add_forumreadtracker
+102	Can change Forum read tracker	26	change_forumreadtracker
+103	Can delete Forum read tracker	26	delete_forumreadtracker
+104	Can view Forum read tracker	26	view_forumreadtracker
+105	Can add Subscription to forum	27	add_forumsubscription
+106	Can change Subscription to forum	27	change_forumsubscription
+107	Can delete Subscription to forum	27	delete_forumsubscription
+108	Can view Subscription to forum	27	view_forumsubscription
+109	Can add Poll answer	28	add_pollanswer
+110	Can change Poll answer	28	change_pollanswer
+111	Can delete Poll answer	28	delete_pollanswer
+112	Can view Poll answer	28	view_pollanswer
+113	Can add Poll answer user	29	add_pollansweruser
+114	Can change Poll answer user	29	change_pollansweruser
+115	Can delete Poll answer user	29	delete_pollansweruser
+116	Can view Poll answer user	29	view_pollansweruser
+117	Can add Post	30	add_post
+118	Can change Post	30	change_post
+119	Can delete Post	30	delete_post
+120	Can view Post	30	view_post
+121	Can add Profile	31	add_profile
+122	Can change Profile	31	change_profile
+123	Can delete Profile	31	delete_profile
+124	Can view Profile	31	view_profile
+125	Can add Topic	32	add_topic
+126	Can change Topic	32	change_topic
+127	Can delete Topic	32	delete_topic
+128	Can view Topic	32	view_topic
+129	Can add Topic read tracker	33	add_topicreadtracker
+130	Can change Topic read tracker	33	change_topicreadtracker
+131	Can delete Topic read tracker	33	delete_topicreadtracker
+132	Can view Topic read tracker	33	view_topicreadtracker
+133	Can add domicile photo	34	add_domicilephoto
+134	Can change domicile photo	34	change_domicilephoto
+135	Can delete domicile photo	34	delete_domicilephoto
+136	Can view domicile photo	34	view_domicilephoto
+\.
+
+
+--
+-- Data for Name: demo_expired_listings; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.demo_expired_listings (creation_time, residence_id, owner, price, expire_time) FROM stdin;
+\.
+
+
+--
+-- Data for Name: demo_residences; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.demo_residences (residence_id, residence_type, bed_count, bath_count, address, city, state, zip_code, size, creation_time) FROM stdin;
+\.
+
+
+--
+-- Data for Name: demo_snn_comments; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.demo_snn_comments (creation_time, text, comment_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: demo_snn_messages; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.demo_snn_messages (creation_time, text, message_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: demo_snn_pages; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.demo_snn_pages (owners, members, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: demo_snn_posts; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.demo_snn_posts (creation_time, text, post_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: demo_valid_listings; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.demo_valid_listings (creation_time, residence_id, owner, price, tenants, pet_friendly, pets_allowed, limit_tenant_count, current_tenant_count, amenities, utilities_included_rent, is_active, coordinates, description, photo) FROM stdin;
+\.
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+15	2019-05-13 04:14:21.484252+00	11	2134 Green St, San Francisco, CA 94014	3		9	velvet
+16	2019-05-13 04:14:37.725813+00	10	2134 Green St, San Francisco, CA 94014	3		9	velvet
+17	2019-05-13 04:14:37.958426+00	9	2134 Green St, San Francisco, CA 94014	3		9	velvet
+18	2019-05-13 04:14:38.188957+00	8	2134 Green St, San Francisco, CA 94014	3		9	velvet
+19	2019-05-13 04:14:38.419936+00	7	2134 Green St, San Francisco, CA 94014	3		9	velvet
+20	2019-05-13 04:15:32.869223+00	6	2134 Green St, San Francisco, CA 94014	2	[{"changed": {"fields": ["tenants", "is_active"]}}]	9	velvet
+21	2019-05-16 20:42:04.2053+00	13	500 clipper street, San Francisco, CA 94102	2	[{"changed": {"fields": ["owner", "tenants", "is_active"]}}]	9	velvet
+22	2019-05-23 07:28:52.93753+00	15	2356 Kirkham St, San Francisco, CA 94122	2	[{"changed": {"fields": ["is_active"]}}]	9	velvet
+23	2019-05-23 07:51:34.343415+00	16	854 40th St, Oakland, CA 94608	2	[{"changed": {"fields": ["is_active"]}}]	9	velvet
+24	2019-05-23 15:04:20.080019+00	3	1181 ocean ave, SAN FRANCISCO, CA 94112	2	[{"changed": {"fields": ["photo"]}}]	9	velvet
+25	2019-05-23 15:04:48.800313+00	17	4400 Cabrillo St, San Francisco, CA 94121	2	[{"changed": {"fields": ["photo"]}}]	9	velvet
+26	2019-05-23 15:05:16.533837+00	15	2356 Kirkham St, San Francisco, CA 94122	2	[{"changed": {"fields": ["photo"]}}]	9	velvet
+27	2019-05-23 15:05:43.345752+00	16	854 40th St, Oakland, CA 94608	2	[{"changed": {"fields": ["photo"]}}]	9	velvet
+28	2019-05-23 15:06:08.297611+00	14	Octavia St., San Francisco, CA 94014	2	[{"changed": {"fields": ["photo"]}}]	9	velvet
+29	2019-05-23 15:06:53.594654+00	13	500 clipper street, San Francisco, CA 94102	2	[{"changed": {"fields": ["photo"]}}]	9	velvet
+30	2019-05-23 15:07:19.272527+00	6	2134 Green St, San Francisco, CA 94014	2	[{"changed": {"fields": ["photo"]}}]	9	velvet
+31	2019-05-23 15:07:40.661867+00	3	1181 ocean ave, SAN FRANCISCO, CA 94112	2	[{"changed": {"fields": ["photo"]}}]	9	velvet
+32	2019-05-23 15:08:16.332113+00	2	2420 Folsom st, San francisco, Ca 94110	2	[{"changed": {"fields": ["photo", "is_active"]}}]	9	velvet
+33	2019-05-23 15:08:40.946204+00	1	1881 Pine St, San Francisco, CA 94109	2	[{"changed": {"fields": ["photo", "is_active"]}}]	9	velvet
+34	2019-05-23 15:09:11.226517+00	17	4400 Cabrillo St, San Francisco, CA 94121	2	[{"changed": {"fields": ["photo", "is_active"]}}]	9	velvet
+35	2019-05-23 15:09:59.298901+00	16	854 40th St, Oakland, CA 94608	2	[{"changed": {"fields": ["photo"]}}]	9	velvet
+36	2019-05-23 15:14:53.597202+00	17	4400 Cabrillo St, San Francisco, CA 94121	2	[{"changed": {"fields": ["photo"]}}]	9	velvet
+37	2019-05-23 18:07:02.549644+00	19	1503 Peralta St, Oakland, CA 94607	2	[{"changed": {"fields": ["is_active"]}}]	9	velvet
+38	2019-05-23 18:17:33.649266+00	12	Octavia St, San, CA 94015	2	[{"changed": {"fields": ["bed_count", "bath_count", "owner", "amenities", "description"]}}]	9	velvet
+39	2019-05-23 18:19:35.169095+00	12	1707 Octavia St, San Francisco, CA 94109	2	[{"changed": {"fields": ["address", "city", "zip_code"]}}]	9	velvet
+\.
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.django_content_type (id, app_label, model) FROM stdin;
+1	demo	comment
+2	demo	domicile
+3	demo	message
+4	demo	page
+5	demo	post
+6	demo	expiredlisting
+7	demo	validlisting
+8	final	registereduser
+9	final	domicile
+10	admin	logentry
+11	auth	permission
+12	auth	group
+13	contenttypes	contenttype
+14	sessions	session
+15	sites	site
+16	final	verifieduser
+17	final	administrator
+18	final	landlord
+19	final	student
+20	final	startenant
+21	postman	message
+22	postman	pendingmessage
+23	pybb	attachment
+24	pybb	category
+25	pybb	forum
+26	pybb	forumreadtracker
+27	pybb	forumsubscription
+28	pybb	pollanswer
+29	pybb	pollansweruser
+30	pybb	post
+31	pybb	profile
+32	pybb	topic
+33	pybb	topicreadtracker
+34	final	domicilephoto
+\.
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.django_migrations (id, app, name, applied) FROM stdin;
+1	contenttypes	0001_initial	2019-05-08 05:13:13.063394+00
+2	contenttypes	0002_remove_content_type_name	2019-05-08 05:13:13.722941+00
+3	auth	0001_initial	2019-05-08 05:13:15.212634+00
+4	auth	0002_alter_permission_name_max_length	2019-05-08 05:13:15.791721+00
+5	auth	0003_alter_user_email_max_length	2019-05-08 05:13:16.121477+00
+6	auth	0004_alter_user_username_opts	2019-05-08 05:13:16.459465+00
+7	auth	0005_alter_user_last_login_null	2019-05-08 05:13:21.458537+00
+8	auth	0006_require_contenttypes_0002	2019-05-08 05:13:21.81185+00
+9	auth	0007_alter_validators_add_error_messages	2019-05-08 05:13:22.152244+00
+10	auth	0008_alter_user_username_max_length	2019-05-08 05:13:22.494252+00
+11	auth	0009_alter_user_last_name_max_length	2019-05-08 05:13:22.869337+00
+12	final	0001_initial	2019-05-08 05:13:24.885866+00
+13	admin	0001_initial	2019-05-08 05:13:25.939918+00
+14	admin	0002_logentry_remove_auto_add	2019-05-08 05:13:26.293589+00
+15	admin	0003_logentry_add_action_flag_choices	2019-05-08 05:13:26.647621+00
+16	demo	0001_initial	2019-05-08 05:13:28.103762+00
+17	sessions	0001_initial	2019-05-08 05:13:28.861646+00
+18	sites	0001_initial	2019-05-08 05:13:29.416939+00
+19	sites	0002_alter_domain_unique	2019-05-08 05:13:30.058873+00
+20	final	0002_administrator_landlord_startenant_student_verifieduser	2019-05-08 05:14:56.08381+00
+21	postman	0001_initial	2019-05-08 05:16:24.487432+00
+22	pybb	0001_initial	2019-05-08 05:16:32.651311+00
+23	final	0003_auto_20190507_2334	2019-05-08 06:34:22.217847+00
+24	final	0004_auto_20190509_2014	2019-05-10 03:14:51.762807+00
+25	final	0005_auto_20190510_2225	2019-05-11 05:25:30.183465+00
+26	final	0006_auto_20190510_2226	2019-05-11 05:26:11.631157+00
+27	final	0007_registereduser_permission_level	2019-05-11 05:59:02.58337+00
+28	final	0008_auto_20190512_1234	2019-05-12 19:34:49.098211+00
+29	final	0009_auto_20190512_1700	2019-05-13 00:00:08.147858+00
+30	final	0010_auto_20190512_1701	2019-05-13 00:01:32.562656+00
+31	final	0011_auto_20190518_1150	2019-05-18 18:50:40.516552+00
+\.
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
+ofpiulomrvcfm8kcg3f333o7wm81d9z3	YzNkODA3NTAwMDllYjQzNjJlNzgzODNmYjc5MTUzZTgyNzJiZjk5Njp7Il9hdXRoX3VzZXJfaWQiOiJzaGFrdW50YWxhIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZmluYWwudXRpbHMuQXV0aEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJjYmExODEzZGYwODEwOTY3ZjUzNDlkNWJmMTZlZTg0YmRhMTMzZWRkIiwiZGphbmdvX2xhbmd1YWdlIjoiZW4ifQ==	2019-05-30 02:10:13.20353+00
+pu3ai0oy0r0kzxi4y2ixf4rnk0nfm4jq	MjNmNDQ1ZmE4MTk3ZDJjYmIwN2JkZGYxMDFmMzA1MTk2ODNhYWUyZTp7Il9hdXRoX3VzZXJfaWQiOiJyZW5hMiIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImZpbmFsLnV0aWxzLkF1dGhCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiZGY2MTlkZWZjMWZkODhhZTNiZTdhN2RiNzVlOGVhNTM5YTViMjYyZiIsImRqYW5nb19sYW5ndWFnZSI6ImVuIn0=	2019-06-06 15:21:24.957613+00
+e2kc9zsi71gnf7urqv9mmme0co5ccf04	YWNhYjhkMDExODlhOWJiOWUxZGRmYmYyYzlmNjZlNGJmODFiOGZjNzp7Il9hdXRoX3VzZXJfaWQiOiJqZXJyeSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImZpbmFsLnV0aWxzLkF1dGhCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiYWM3ZDNkYjQyODA4MmMyNWJmZDdkZDQ2ZDBkNmUzN2VjODEzMTkyYiIsImRqYW5nb19sYW5ndWFnZSI6ImVuIn0=	2019-05-29 08:00:22.902418+00
+umslly61kzb6r8z0ndnchmefaqm38kns	MDZiMjdlNTVhZjYyOGIxZDdhZWEzNDk4ZGQ1YzYwYTM0ZjAxNjY2NDp7Il9hdXRoX3VzZXJfaWQiOiJ2ZWx2ZXQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJmaW5hbC51dGlscy5BdXRoQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6IjE5NmU4YWNjOWY2ZTJjNDE1ZGU0NmMyZDNjNTNkYjI1YTc0ODcwMGEiLCJkamFuZ29fbGFuZ3VhZ2UiOiJlbiJ9	2019-06-06 03:41:29.981118+00
+0bsmo3oslkeu94hh5qyezh9zephnb49o	MDM4Yjg1NGMwNTFlYjk0OTNkZjZkOTY2ODEzZjE0NDYzZTE2ZjhkMzp7Il9hdXRoX3VzZXJfaWQiOiJ3YWZmbGVzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZmluYWwudXRpbHMuQXV0aEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJiNDdjMTU3OGQ3YWUyNjYxODg2MmQ4YWY5YWU3YjFjMWU0NmNlNTFiIiwiZGphbmdvX2xhbmd1YWdlIjoiZW4ifQ==	2019-06-06 18:43:49.9314+00
+78ddu4o9zqo4w4ynoeeux5mxgzhxn7kd	ZmNiNDIxYWYyMDJjNTdjODg2ZmE5MDcwZDQ4YjRiOGMxMGM5ZWNlMjp7Il9hdXRoX3VzZXJfaWQiOiJtaW9uc19sYW5kbG9yZCIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImZpbmFsLnV0aWxzLkF1dGhCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiZjgzYjFkYWVkMGIzYjdiODU0NTNmZDExNGY5ZTQ5YzJkN2I1NDllZSIsImRqYW5nb19sYW5ndWFnZSI6ImVuIn0=	2019-06-06 03:21:33.412654+00
+w88hw5jjjnmeoytjoy4l2h2lqkna6vv7	MjgwNDY0ZTdhOWEzZWJjNzBiMTZlMzNmOTU2NThjMjk0ZWEzMTdhZjp7Il9hdXRoX3VzZXJfaWQiOiJvbWFyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZmluYWwudXRpbHMuQXV0aEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI2NDBkY2ZmZmY2NDc5MTJkMTk0NTgxYjA2MGQxYTY2N2U5OWIyMGYyIn0=	2019-05-25 03:26:17.224502+00
+38v1hka9f9aksbmflrgy99j6xhkbizfo	MDZiMjdlNTVhZjYyOGIxZDdhZWEzNDk4ZGQ1YzYwYTM0ZjAxNjY2NDp7Il9hdXRoX3VzZXJfaWQiOiJ2ZWx2ZXQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJmaW5hbC51dGlscy5BdXRoQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6IjE5NmU4YWNjOWY2ZTJjNDE1ZGU0NmMyZDNjNTNkYjI1YTc0ODcwMGEiLCJkamFuZ29fbGFuZ3VhZ2UiOiJlbiJ9	2019-06-06 04:01:32.170444+00
+77heqh2a7nykle5c3qht2redp7auw4wh	ZmNiNDIxYWYyMDJjNTdjODg2ZmE5MDcwZDQ4YjRiOGMxMGM5ZWNlMjp7Il9hdXRoX3VzZXJfaWQiOiJtaW9uc19sYW5kbG9yZCIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImZpbmFsLnV0aWxzLkF1dGhCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiZjgzYjFkYWVkMGIzYjdiODU0NTNmZDExNGY5ZTQ5YzJkN2I1NDllZSIsImRqYW5nb19sYW5ndWFnZSI6ImVuIn0=	2019-06-06 09:07:37.280341+00
+roa9qrzqxd7vfz90tj1t8k0rolfsn4lj	MjgwNDY0ZTdhOWEzZWJjNzBiMTZlMzNmOTU2NThjMjk0ZWEzMTdhZjp7Il9hdXRoX3VzZXJfaWQiOiJvbWFyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZmluYWwudXRpbHMuQXV0aEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI2NDBkY2ZmZmY2NDc5MTJkMTk0NTgxYjA2MGQxYTY2N2U5OWIyMGYyIn0=	2019-05-25 01:44:18.657425+00
+u8qdomkh06f5kgq7ttgdc1cnuv2lk13l	NWNkNGQ0YjhlYTIzNTgwOGEwYzYzY2FkNTc2YmNmNjJhYTk1MzJiNjp7Il9hdXRoX3VzZXJfaWQiOiJ2ZWx2ZXQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJmaW5hbC51dGlscy5BdXRoQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6IjE5NmU4YWNjOWY2ZTJjNDE1ZGU0NmMyZDNjNTNkYjI1YTc0ODcwMGEifQ==	2019-05-30 20:07:32.948128+00
+vwalauaqcfkiadz8u46gt8ur4dp4xfna	MDZiMjdlNTVhZjYyOGIxZDdhZWEzNDk4ZGQ1YzYwYTM0ZjAxNjY2NDp7Il9hdXRoX3VzZXJfaWQiOiJ2ZWx2ZXQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJmaW5hbC51dGlscy5BdXRoQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6IjE5NmU4YWNjOWY2ZTJjNDE1ZGU0NmMyZDNjNTNkYjI1YTc0ODcwMGEiLCJkamFuZ29fbGFuZ3VhZ2UiOiJlbiJ9	2019-06-06 07:03:13.558059+00
+5zipmnngp2qmqsyou8693h39q3qptbsn	N2I3ODEyZTNiMzliNjQyMzgxYWZjMzdhZTEzMzFlOTQyMDVlMjYwZjp7Il9hdXRoX3VzZXJfaWQiOiJzaGlvbiIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImZpbmFsLnV0aWxzLkF1dGhCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiZTNmYmE2NTYyODJlY2FiNDEzNjk5ZTVlYmY4ZGM1NDVjZTQ2ZWE0NiIsImRqYW5nb19sYW5ndWFnZSI6ImVuIn0=	2019-05-24 06:23:11.386841+00
+9g20fm8pau6dk9yaoqrtjtucl6ca1b4q	ZTk2ZmExMWJmYTkxM2YyMDMxNTgzYjliNjc5NDViODcyMjE3NDMwZDp7Il9hdXRoX3VzZXJfaWQiOiJ3ZWxkYXkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJmaW5hbC51dGlscy5BdXRoQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6IjdhYzQzODNiM2ZkYTAxOWZkOGQwMGI4ODRjMzgwZDc3NGQ2MWE5NmQiLCJkamFuZ29fbGFuZ3VhZ2UiOiJlbiJ9	2019-06-07 03:48:00.176038+00
+pehs19nh4k1yi8oebppaykbgow8nma64	ZTk2ZmExMWJmYTkxM2YyMDMxNTgzYjliNjc5NDViODcyMjE3NDMwZDp7Il9hdXRoX3VzZXJfaWQiOiJ3ZWxkYXkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJmaW5hbC51dGlscy5BdXRoQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6IjdhYzQzODNiM2ZkYTAxOWZkOGQwMGI4ODRjMzgwZDc3NGQ2MWE5NmQiLCJkamFuZ29fbGFuZ3VhZ2UiOiJlbiJ9	2019-06-11 05:31:10.758243+00
+gfxwj2n84yjhw81os5wj4edwxbaxvcef	ZmNiNDIxYWYyMDJjNTdjODg2ZmE5MDcwZDQ4YjRiOGMxMGM5ZWNlMjp7Il9hdXRoX3VzZXJfaWQiOiJtaW9uc19sYW5kbG9yZCIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImZpbmFsLnV0aWxzLkF1dGhCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiZjgzYjFkYWVkMGIzYjdiODU0NTNmZDExNGY5ZTQ5YzJkN2I1NDllZSIsImRqYW5nb19sYW5ndWFnZSI6ImVuIn0=	2019-06-06 18:07:58.161237+00
+m8vbfowoc34mfl2ttobhv3kk4yh6d1z4	MjgwNDY0ZTdhOWEzZWJjNzBiMTZlMzNmOTU2NThjMjk0ZWEzMTdhZjp7Il9hdXRoX3VzZXJfaWQiOiJvbWFyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZmluYWwudXRpbHMuQXV0aEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI2NDBkY2ZmZmY2NDc5MTJkMTk0NTgxYjA2MGQxYTY2N2U5OWIyMGYyIn0=	2019-05-25 03:08:03.684631+00
+p5bbo981hwxjqgrymff72nad0k664tyz	ODEwMGQ4OTdhMGQ4OWYyYTc3NTAzNjc3NTg4NDE0NmU4MjEzOWFjNTp7Il9hdXRoX3VzZXJfaWQiOiJuZHJha2UiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJmaW5hbC51dGlscy5BdXRoQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6ImFkNTY5YjI4YTY0NmY3ZDdjOTA2MTZlZDRkMDZhY2IxOWU4YTkzNjEifQ==	2019-06-06 06:54:00.564498+00
+xjdcfsk698g7lf33yp1v3ubb6ezf1q96	MDZiMjdlNTVhZjYyOGIxZDdhZWEzNDk4ZGQ1YzYwYTM0ZjAxNjY2NDp7Il9hdXRoX3VzZXJfaWQiOiJ2ZWx2ZXQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJmaW5hbC51dGlscy5BdXRoQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6IjE5NmU4YWNjOWY2ZTJjNDE1ZGU0NmMyZDNjNTNkYjI1YTc0ODcwMGEiLCJkamFuZ29fbGFuZ3VhZ2UiOiJlbiJ9	2019-06-06 18:08:40.567907+00
+nqgh7uqamxu4oo363olxlkujkqeh4kg0	ZmNiNDIxYWYyMDJjNTdjODg2ZmE5MDcwZDQ4YjRiOGMxMGM5ZWNlMjp7Il9hdXRoX3VzZXJfaWQiOiJtaW9uc19sYW5kbG9yZCIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImZpbmFsLnV0aWxzLkF1dGhCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiZjgzYjFkYWVkMGIzYjdiODU0NTNmZDExNGY5ZTQ5YzJkN2I1NDllZSIsImRqYW5nb19sYW5ndWFnZSI6ImVuIn0=	2019-06-09 05:22:36.993249+00
+ysmutxk85jphlipe5dpvtad2atvmx8uo	OTg5NWNkMTJlNzZjMDliMjQ3ZjMyY2JiNGY2MGU2MjA4YThmYThhNDp7Il9hdXRoX3VzZXJfaWQiOiJzaGlvbl9zdHVkZW50IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZmluYWwudXRpbHMuQXV0aEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIyMzBkMGI4OGEyNGI5MWQ1OTBhZGRmOTczNjMzOWJkMjU2YTE3OWRmIiwiZGphbmdvX2xhbmd1YWdlIjoiZW4ifQ==	2019-06-06 07:07:56.223649+00
+zwpc6ytwo6gj6ryir11kpnhvuajakxcb	M2E1ZGEyYTBmNmM3OThiODc2YWQzN2FiMTg3NGNhNjRmODZmMmU1NDp7Il9hdXRoX3VzZXJfaWQiOiJ2ZWx2ZXQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6IjE5NmU4YWNjOWY2ZTJjNDE1ZGU0NmMyZDNjNTNkYjI1YTc0ODcwMGEiLCJkamFuZ29fbGFuZ3VhZ2UiOiJlbiJ9	2019-06-06 18:36:48.548263+00
+n175z2ya4ezisxm018p7pjmd1kyr5fv5	ZmNiNDIxYWYyMDJjNTdjODg2ZmE5MDcwZDQ4YjRiOGMxMGM5ZWNlMjp7Il9hdXRoX3VzZXJfaWQiOiJtaW9uc19sYW5kbG9yZCIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImZpbmFsLnV0aWxzLkF1dGhCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiZjgzYjFkYWVkMGIzYjdiODU0NTNmZDExNGY5ZTQ5YzJkN2I1NDllZSIsImRqYW5nb19sYW5ndWFnZSI6ImVuIn0=	2019-06-06 09:15:28.106936+00
+yztjwqu1cblv517ujaiqod4ctnl89gxa	MzVhNDkyMzdlODkzZGU1NDBhYTY1Mzc5NDIxYjEwZWZmZjhmNjJkZDp7Il9hdXRoX3VzZXJfaWQiOiJ3YWZmbGVzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZmluYWwudXRpbHMuQXV0aEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJiNDdjMTU3OGQ3YWUyNjYxODg2MmQ4YWY5YWU3YjFjMWU0NmNlNTFiIn0=	2019-06-06 18:02:37.854583+00
+sbvqx0bk8k2prcekzyto7qnw727z3os7	MzdmNmMxZTM2Y2FmZGNjZWVjZDlhNDZhNjEzZThjYzYzMzI0ODk1Zjp7Il9hdXRoX3VzZXJfaWQiOiJuYXRlZm9yZCIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImZpbmFsLnV0aWxzLkF1dGhCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiODExNzFlMWE1ZDVkNTAxZmRmOTg4Yzg1YzY1OTE5ZjJkYjM4NTBjOCIsImRqYW5nb19sYW5ndWFnZSI6ImVuIn0=	2019-06-06 15:00:22.84275+00
+w9vn4cehjeng1mnb3795540lm5fgiplk	YzdiNWRkMWM2YWU5MTAxNDA4OWRhOTIxNjE3ZDIwZWMzMGE5NzZmMDp7Il9hdXRoX3VzZXJfaWQiOiJzaGFrdW50YWxhMiIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImZpbmFsLnV0aWxzLkF1dGhCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiZWE3Y2Y3ZDE5OWUxZWExYzI5N2ZlNmQ2ODM0ZWEyMmFmMDFjOTg4NSIsImRqYW5nb19sYW5ndWFnZSI6ImVuIn0=	2019-06-07 11:10:32.107405+00
+b0jns9okqe0zg01gj6bkmpcrvcw1yurx	MDZiMjdlNTVhZjYyOGIxZDdhZWEzNDk4ZGQ1YzYwYTM0ZjAxNjY2NDp7Il9hdXRoX3VzZXJfaWQiOiJ2ZWx2ZXQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJmaW5hbC51dGlscy5BdXRoQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6IjE5NmU4YWNjOWY2ZTJjNDE1ZGU0NmMyZDNjNTNkYjI1YTc0ODcwMGEiLCJkamFuZ29fbGFuZ3VhZ2UiOiJlbiJ9	2019-06-06 17:28:38.019245+00
+yzvoacelxp5ja9ov7c0fxtob0meqnald	MjNmNDQ1ZmE4MTk3ZDJjYmIwN2JkZGYxMDFmMzA1MTk2ODNhYWUyZTp7Il9hdXRoX3VzZXJfaWQiOiJyZW5hMiIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImZpbmFsLnV0aWxzLkF1dGhCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiZGY2MTlkZWZjMWZkODhhZTNiZTdhN2RiNzVlOGVhNTM5YTViMjYyZiIsImRqYW5nb19sYW5ndWFnZSI6ImVuIn0=	2019-06-06 17:22:34.847753+00
+\.
+
+
+--
+-- Data for Name: django_site; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.django_site (id, domain, name) FROM stdin;
+1	http://ec2-18-224-150-8.us-east-2.compute.amazonaws.com	example.com
+\.
+
+
+--
+-- Data for Name: final_all_registered_users; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.final_all_registered_users (is_superuser, is_staff, is_active, date_joined, first_name, last_name, date_of_birth, physical_address, city, state, zip_code, phone_number, bio, profile_picture, creation_time, is_student, email, username, password, cleanliness, socialness, partiness, last_login, permission_level) FROM stdin;
+f	f	t	2019-05-16 02:08:05.354599+00	Fatma	Khan	1990-12-21	2864 camino segura	pleasanton	California	94566	9254814124	\N		2019-05-15	t	kfatma16@yahoo.com	shakuntala	pbkdf2_sha256$120000$ymWL7xCFqfxn$jhxHpCLXJ5EZfu8cs5y7FJF+sbQgXkMgiY3Puf0t1hU=	\N	\N	\N	2019-05-16 02:10:11.986257+00	3
+f	f	t	2019-05-21 00:58:22.038784+00	Rena	Ryuugu	1969-09-24	ADDR	CTY	ST	94015	6505844357	\N		2019-05-20	t	zprince@mail.sfsu.edu	rena1	pbkdf2_sha256$120000$ifJS2lpbaTUT$ObaCLKGEwqHwwY0CiACpOt9QC86gnkoJbD8s0WkSzi4=	\N	\N	\N	2019-05-21 00:59:12.851696+00	3
+f	f	t	2019-05-21 01:00:05.040272+00	Rena2	Ryuugu	1990-01-12	ADDR	CTY	ST	94015	6505844357	BIO3	final/profile_pictures/profile_pic_square.jpg	2019-05-20	f	zprince@mail.sfsu.edu	rena2	pbkdf2_sha256$120000$OM4eAST7cEki$ZvoHPC7NoCRcUScYWtwA4qnWN6OL38PjRQqWrzodL2g=	\N	\N	\N	2019-05-23 17:16:03.059915+00	1
+f	f	t	2019-05-11 06:06:40.869355+00	Rena	Ryuugu	1995-06-20	ADDR	CTY	ST	94015	6505844357	\N		2019-05-10	t	zprince@mail.sfsu.edu	rena_unverified	pbkdf2_sha256$120000$kKV71rAiUpfd$JBD1T42SzKRkpk2V/cezqjWIebXz0h/14vWuDplh2G4=	\N	\N	\N	\N	4
+f	f	t	2019-05-23 18:29:15.172139+00	Brenna	T	2001-01-01	8 10th st	san francisco	CA	94103	4155555555	\N		2019-05-23	t	brennag@mail.sfsu.edu	brenna2	pbkdf2_sha256$120000$bSDW7SgdtDGU$T6zt5pI+H4kR1BVOTvKMgH7NrPR47jhnQ2n6fAF/RWc=	\N	\N	\N	2019-05-23 18:29:31.080134+00	3
+f	f	t	2019-05-11 06:05:26.422361+00	Mion	Sonozaki	1997-03-13	ADDR	San Francisco	California	94015	6505844357	Hello! I am Mion Sonozaki, I am so excited to be using this awesome new website! Please contact me if you are interested in any of my listings! SO please do not hesitate if you have ANY questions, cheers!		2019-05-10	f	zprince@mail.sfsu.edu	mions_landlord	pbkdf2_sha256$120000$749aTAXH6VKC$lFOt2/2P/L4t1N3BGEjC8Ci4/Tcqvf6ZrYcwFzs2Org=	\N	\N	\N	2019-05-23 18:35:03.430006+00	1
+f	f	t	2019-05-23 06:52:25.168266+00	Nathan	Drake	1972-04-24	161 Hanh St.	San Francisco	CA	94134		The one and only world famous treasure hunter!	final/profile_pictures/NathanDrake-U4_WNSRMGF.png	2019-05-22	t	aguanlao@mail.sfsu.edu	ndrake	pbkdf2_sha256$120000$HvndN1ZViAJC$Bz5hgZaTvaxyL4BcTOsoFIjl6DQ22BX9ojLKAd/ek6c=	\N	\N	\N	2019-05-23 13:41:56.345529+00	3
+f	f	t	2019-05-23 18:02:03.035332+00	Wafi	Mohamed	1990-07-15	322 26th ave	San Francisco	Ca	94121	4152035071	Hi everybody. I’m a cool landlord. You will have a lot of fun knowing me.		2019-05-23	f	wmohamed@mail.sfsu.edu	waffles	pbkdf2_sha256$120000$Cw7di1WLmrM1$lXGld7CraTp6ZI/dPVZ3oLcmNg2KmAmNie0vjLoPN3E=	\N	\N	\N	2019-05-23 18:02:56.638643+00	1
+t	t	t	2019-05-11 05:56:07.669227+00	Velvet	Crowe	1997-03-13	ADDR	CTY	ST	94015	6505844357		final/profile_pictures/310345.jpg	2019-05-10	t	zprince@mail.sfsu.edu	velvet	pbkdf2_sha256$120000$K84l0H4ROpIo$TeO4VHcuU5jT0Xqatg4X8EBYc5shcjo8i3y43/2u5cQ=	\N	\N	\N	2019-05-23 18:36:34.739372+00	0
+f	f	t	2019-05-15 05:17:36.57672+00	waffless	moe	2000-12-12	545 10th ave	San Francisco	CA	94108	9254814124	\N		2019-05-14	t	wafi.mo716@gmail.com	jerry	pbkdf2_sha256$120000$tRQmSPkLD2fq$iI3rM0CQ/N4/rzrmgM3yDN0KyBcSN8qiTu4/zhfagLU=	\N	\N	\N	2019-05-15 08:00:15.698513+00	4
+f	f	t	2019-05-23 06:12:43.844116+00	Brenna	Gibson	1990-05-16	555 Clove St	Gary	IN	12345	4153240572	I am a student moving from out of town. I like bicycles.	final/profile_pictures/Screen_Shot_2019-05-23_at_10.32.31_AM.png	2019-05-22	t	brennag@mail.sfsu.edu	brenna	pbkdf2_sha256$120000$Ou9El9PbDLA4$v58j2rM+JtyBwIK5vWOstoYkBDtAOTA/newhurrUAhM=	\N	\N	\N	2019-05-23 17:30:17.362578+00	3
+f	f	t	2019-05-23 08:32:55.014717+00	Nathan	Ford	2057-02-18	3570 Pierce St	San Francisco	CA	94123	\N	\N		2019-05-23	f	x132443@nwytg.net	nateford	pbkdf2_sha256$120000$1yxAisnEkdVY$aZe0lFxj2Ntm97lbs0p3RK/Qf33p/BsxJyMDgt6sHwQ=	\N	\N	\N	2019-05-23 15:10:45.297783+00	1
+f	f	t	2019-05-16 02:11:57.168179+00	Fatma	Khan	1990-12-21	2864 camino segura	pleasanton	California	94566	9254814124	\N		2019-05-15	f	kfatmakhan16@gmail.com	shakuntala2	pbkdf2_sha256$120000$5CLqqm896FrC$Ff1DiryYrbftsOBdacNVDqpZI+UA+XljwxMp1cnkayc=	\N	\N	\N	2019-05-18 01:45:03.16818+00	1
+f	f	t	2019-05-11 06:03:20.423904+00	Shion	Sonozaki	1969-09-24	ADDR	CTY	ST	94015	6505844357	\N		2019-05-10	t	zprince@mail.sfsu.edu	shion_student	pbkdf2_sha256$120000$X7ufnHzgo2b0$2eRdnjbMYF8Ciy4wd+g1ll5VFZoJK56BjICPr8ru87c=	\N	\N	\N	2019-05-23 15:11:10.708042+00	3
+f	f	t	2019-05-21 01:00:05.040272+00			1990-01-12						BIO		2019-05-20	f			pbkdf2_sha256$120000$OM4eAST7cEki$ZvoHPC7NoCRcUScYWtwA4qnWN6OL38PjRQqWrzodL2g=	\N	\N	\N	2019-05-21 01:00:15.159139+00	1
+f	f	t	2019-05-23 07:40:18.126651+00	waffless	hahah	1990-12-21	545 10th ave	San Francisco	CA	94108	9254814124		final/profile_pictures/CCD9214D-DA53-4250-A13D-B121137E07DE.jpg	2019-05-23	f	wafi.mo716@mail.sfsu.edu	welday	pbkdf2_sha256$120000$kdZ9ulJIKIGD$9CYwxsEnVZz5M/G1FKeXFtJfUG1yWkbgqxFsHDH8iVo=	\N	\N	\N	2019-05-28 05:29:35.373539+00	4
+\.
+
+
+--
+-- Data for Name: final_all_registered_users_groups; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.final_all_registered_users_groups (id, registereduser_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: final_all_registered_users_user_permissions; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.final_all_registered_users_user_permissions (id, registereduser_id, permission_id) FROM stdin;
+21	velvet	125
+22	velvet	117
+23	shion_student	125
+24	shion_student	117
+25	mions_landlord	125
+26	mions_landlord	117
+27	rena_unverified	125
+28	rena_unverified	117
+29	jerry	125
+30	jerry	117
+31	shakuntala	125
+32	shakuntala	117
+33	shakuntala2	125
+34	shakuntala2	117
+35	rena1	125
+36	rena1	117
+37	rena2	125
+38	rena2	117
+39		125
+40		117
+41	brenna	125
+42	brenna	117
+43	ndrake	125
+44	ndrake	117
+45	welday	125
+46	welday	117
+47	nateford	125
+48	nateford	117
+49	waffles	125
+50	waffles	117
+51	brenna2	125
+52	brenna2	117
+\.
+
+
+--
+-- Data for Name: final_residence_photos; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.final_residence_photos (id, photo_url, listing_id) FROM stdin;
+19	final/residence_pictures/lafayette_DY42O1n.jpg	1
+36	final/residence_pictures/2134_green_st_oA1fGfr.png	1
+37	final/residence_pictures/room9.jpeg	2
+38	final/residence_pictures/apartment1_6TciZlk.jpeg	16
+39	final/residence_pictures/im-74501.jpeg	13
+40	final/residence_pictures/vector.jpg	13
+42	final/residence_pictures/5_-_Late_Afternoon.jpg	15
+43	final/residence_pictures/3_-_Late_Morning.jpg	15
+44	final/residence_pictures/room5_dXLMFYq.jpeg	19
+\.
+
+
+--
+-- Data for Name: final_residences; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.final_residences (residence_id, residence_type, bed_count, bath_count, address, city, state, zip_code, size, creation_time, owner, price, tenants, pet_friendly, pets_allowed, limit_tenant_count, current_tenant_count, amenities, utilities_included_rent, is_active, coordinates, description, photo, district) FROM stdin;
+18	room	1	0	1911 Carleton St	Berkeley	CA	94704	300	2019-05-23	nateford	850	\N	f	\N	1	\N	\N	t	f	\N	About Room :\r\n- Shady, quiet, near an exit. Carpeted\r\n- 1 windows, room size is 150 sq-ft.\r\n- Equipped with wardrobe, curtains, Desk, Full size bed, 3-Drawer Dresser,	final/residence_pictures/room1_urtvf41.jpeg	South Berkeley
+19	room	1	0	1503 Peralta St	Oakland	CA	94607	190	2019-05-23	nateford	900	\N	f	\N	1	\N	Washer & Dryer	f	t	\N	The "red door" bedroom has hardwood flooring. It is spacious at about 12' x 14', nice and quiet with a huge walk-in closet and a window looking out to the yard. The apartment itself has a large kitchen with gas range, hardwood floors throughout, several skylights and windows for plentiful natural light, and a bathroom with two showers (in case you feel like adding variety to your hygiene routine). Also, there's a washing machine and dryer downstairs in the basement- hooray!	final/residence_pictures/room5.jpeg	Prescott
+15	in_law_unit	1	1	2356 Kirkham St	San Francisco	CA	94122	600	2019-05-22	mions_landlord	2100	\N	f	\N	2	1	\N	f	t	\N	This is a great little place in the fog district (Outer Sunset). There is one bed and one bath, with one current resident. It's close to all the best dining and entertainment that this neighborhood has to offer. Looking for someone who is clean and pays the rent on time.	final/residence_pictures/apartment8.jpeg	Outer Sunset
+12	garage	1	0	1707 Octavia St	San Francisco	CA	94109	10	2019-05-12	mions_landlord	10	\N	f	\N	10	10	Pool	f	f	\N	LIVE HERE	final/residence_pictures/profile_pic_square_v1V3Acw.jpg	Park Merced
+14	apartment	1	1	Octavia St.	San Francisco	CA	94014	3	2019-05-18	mions_landlord	300	\N	t	\N	2	1	Pools	t	f	\N	DESC	final/residence_pictures/apartment5.jpeg	SOMA
+13	apartment	2	1	500 clipper street	San Francisco	CA	94102	600	2019-05-16	mions_landlord	3400	3	t	\N	2	\N	\N	f	t	\N	Description	final/residence_pictures/apartment4.jpeg	Park Merced
+6	house	3	2	2134 Green St	San Francisco	CA	94014	300	2019-05-12	velvet	800	2	t	\N	3	4	Pool	t	t	\N	DESC	final/residence_pictures/house9.jpeg	Park Merced
+3	apartment	2	1	1181 ocean ave	SAN FRANCISCO	CA	94112	700	2019-05-08	Martha	1500	\N	f	\N	2	0	\N	t	f	\N	THIS APARTMENT IS VERY NICE.	final/residence_pictures/house4.jpeg	Park Merced
+2	house	3	1	2420 Folsom st	San francisco	Ca	94110	1100	2019-05-08	bbarnes	1100	\N	t	\N	4	0	\N	t	t	\N	COME LIVE HERE! EVERYTHING IS FINE.	final/residence_pictures/house5.jpeg	Park Merced
+1	house	2	3	1881 Pine St	San Francisco	CA	94109	800	2019-05-07	OWNER	3400	TENANTS	t	\N	\N	\N	\N	t	t	\N	PLACEHOLDER DESCRIPTION.	final/residence_pictures/house7.jpeg	Park Merced
+16	apartment	2	1	854 40th St	Oakland	CA	94608	1250	2019-05-23	mions_landlord	700	\N	t	\N	2	\N	In Unit Washer/Dryer	f	t	\N	We are just completing a really beautiful remodel on this spacious 3BR apartment in the mission. This unit tastefully mixes original Victorian details such as pocket doors and ornate moldings with modern comforts like architect-designed brand new kitchen and baths. So many features!	final/residence_pictures/apartment2.jpeg	Longfellow
+17	room	1	1	4400 Cabrillo St	San Francisco	CA	94121	150	2019-05-23	mions_landlord	1900	\N	t	\N	1	0	\N	f	t	\N	Lovely little room in the Outer Richmond. Close to Ocean Beach and delicious seafood.	final/residence_pictures/room1.jpeg	Outer Richmond
+\.
+
+
+--
+-- Data for Name: postman_message; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.postman_message (id, subject, body, email, sent_at, read_at, replied_at, sender_archived, recipient_archived, sender_deleted_at, recipient_deleted_at, moderation_status, moderation_date, moderation_reason, moderation_by_id, parent_id, recipient_id, sender_id, thread_id) FROM stdin;
+3	Test	TEST		2019-05-23 06:53:18.907659+00	\N	\N	f	f	\N	\N	a	2019-05-23 06:53:18.995651+00		\N	\N	velvet	rena2	\N
+6	Hello!	Hey! Wanna go searching for treasure together?		2019-05-23 07:26:06.332283+00	2019-05-23 07:26:58.197139+00	\N	f	f	\N	2019-05-23 07:23:11.991609+00	a	2019-05-23 07:26:06.334347+00		\N	\N	ndrake	shion_student	\N
+1	hola	hey good stuff		2019-05-16 01:58:37.358393+00	2019-05-23 07:53:07.746083+00	\N	f	f	\N	\N	a	2019-05-16 01:58:37.421534+00		\N	\N	mions_landlord	mions_landlord	\N
+5	TST	TST		2019-05-23 07:02:16.637776+00	2019-05-23 17:24:04.60341+00	\N	f	f	\N	\N	a	2019-05-23 07:02:16.722044+00		\N	\N	velvet	rena2	\N
+2	House listing?	Hi Velvet, I want to live in this house.		2019-05-23 06:42:08.87932+00	2019-05-23 17:24:12.194997+00	\N	f	f	\N	\N	a	2019-05-23 06:42:08.960822+00		\N	\N	velvet	brenna	\N
+4	test	test		2019-05-23 06:55:30.527212+00	2019-05-23 17:24:22.568051+00	\N	f	f	\N	\N	a	2019-05-23 06:55:30.616438+00		\N	\N	velvet	rena2	\N
+\.
+
+
+--
+-- Data for Name: pybb_attachment; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.pybb_attachment (id, size, file, post_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: pybb_category; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.pybb_category (id, name, "position", hidden, slug) FROM stdin;
+1	Park Merced	0	f	park-merced
+2	Merced Heights	0	f	merced-heights
+3	Sunset	0	f	sunset
+4	SOMA	0	f	soma
+\.
+
+
+--
+-- Data for Name: pybb_forum; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.pybb_forum (id, name, "position", description, updated, post_count, topic_count, hidden, headline, slug, category_id, parent_id) FROM stdin;
+2	Sticky: Classifieds	0		\N	0	0	f		sticky-classifieds	3	\N
+3	Sticky: Classifieds	0		\N	0	0	f		sticky-classifieds	2	\N
+4	Sticky: Classifieds	0		\N	0	0	f		sticky-classifieds	4	\N
+5	Summer Internships	0		\N	0	0	f		summer-internships	4	\N
+1	Sticky: Classifieds	0		2019-05-11 06:21:56.016976+00	1	1	f		sticky-classifieds	1	\N
+6	Community Events	0		2019-05-23 18:33:48.025159+00	4	2	f		memorial-day-events	1	\N
+\.
+
+
+--
+-- Data for Name: pybb_forum_moderators; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.pybb_forum_moderators (id, forum_id, registereduser_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: pybb_forumreadtracker; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.pybb_forumreadtracker (id, time_stamp, forum_id, user_id) FROM stdin;
+1	2019-05-11 06:22:03.208086+00	1	mions_landlord
+2	2019-05-16 20:47:02.224119+00	1	shion_student
+3	2019-05-20 01:21:43.431663+00	1	velvet
+4	2019-05-22 23:22:56.401599+00	1	shakuntala2
+5	2019-05-23 06:30:38.947499+00	2	brenna
+6	2019-05-23 06:30:39.431167+00	3	brenna
+7	2019-05-23 06:30:39.9165+00	4	brenna
+8	2019-05-23 06:30:40.401906+00	5	brenna
+10	2019-05-23 06:30:41.373763+00	1	brenna
+9	2019-05-23 06:34:30.526179+00	6	brenna
+12	2019-05-23 06:35:37.61265+00	1	rena2
+13	2019-05-23 08:15:29.943098+00	6	ndrake
+\.
+
+
+--
+-- Data for Name: pybb_forumsubscription; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.pybb_forumsubscription (id, type, forum_id, user_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: pybb_pollanswer; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.pybb_pollanswer (id, text, topic_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: pybb_pollansweruser; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.pybb_pollansweruser (id, "timestamp", poll_answer_id, user_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: pybb_post; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.pybb_post (id, body, body_html, body_text, created, updated, user_ip, on_moderation, topic_id, user_id) FROM stdin;
+1	lets get lit!!	lets get lit!!	lets get lit!!	2019-05-11 06:21:56.016976+00	\N	127.0.0.1	f	1	mions_landlord
+2	Block party and limbo competition. Be there or be square! 8)	Block party and limbo competition. Be there or be square! <img src="/static/pybb/emoticons/glasses.png" alt="smile" />	Block party and limbo competition. Be there or be square! 	2019-05-23 06:34:23.449769+00	\N	127.0.0.1	f	2	brenna
+3	Come by around 6PM this weekend for a housewarming party~!	Come by around 6PM this weekend for a housewarming party~!	Come by around 6PM this weekend for a housewarming party~!	2019-05-23 08:13:37.305632+00	\N	73.202.244.163	f	3	ndrake
+4	It's gonna be awesome!	It&#39;s gonna be awesome!	It's gonna be awesome!	2019-05-23 08:15:28.410298+00	\N	73.202.244.163	f	2	ndrake
+5	Sounds great! 8)	Sounds great! <img src="/static/pybb/emoticons/glasses.png" alt="smile" />	Sounds great! 	2019-05-23 18:33:48.025159+00	\N	130.212.94.145	f	2	brenna2
+\.
+
+
+--
+-- Data for Name: pybb_profile; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.pybb_profile (id, signature, signature_html, time_zone, language, show_signatures, post_count, avatar, autosubscribe, user_id) FROM stdin;
+11			3	en	t	0		t	velvet
+12			3	en	t	0		t	shion_student
+14			3	en	t	0		t	rena_unverified
+13			3	en	t	1		t	mions_landlord
+15			3	en	t	0		t	jerry
+16			3	en	t	0		t	shakuntala
+17			3	en	t	0		t	shakuntala2
+18			3	en	t	0		t	rena1
+19			3	en	t	0		t	rena2
+20			3	en	t	0		t	
+21			3	en	t	1		t	brenna
+23			3	en	t	0		t	welday
+22			3	en	t	2		t	ndrake
+24			3	en	t	0		t	nateford
+25			3	en	t	0		t	waffles
+26			3	en	t	1		t	brenna2
+\.
+
+
+--
+-- Data for Name: pybb_topic; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.pybb_topic (id, name, created, updated, views, sticky, closed, post_count, on_moderation, poll_type, poll_question, slug, forum_id, user_id) FROM stdin;
+1	PARTY AT 4TH STREET	2019-05-11 06:21:55.60604+00	2019-05-11 06:21:56.016976+00	33	f	f	1	f	0	\N	party-at-4th-street	1	mions_landlord
+3	Housewarming Party	2019-05-23 08:13:37.29833+00	2019-05-23 08:13:37.305632+00	3	f	f	1	f	0	\N	housewarming-party	6	ndrake
+2	Block party	2019-05-23 06:34:22.917859+00	2019-05-23 18:33:48.025159+00	9	f	f	3	f	0	\N	block-party	6	brenna
+\.
+
+
+--
+-- Data for Name: pybb_topic_subscribers; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.pybb_topic_subscribers (id, topic_id, registereduser_id) FROM stdin;
+1	1	mions_landlord
+2	2	brenna
+3	3	ndrake
+4	2	ndrake
+5	2	brenna2
+\.
+
+
+--
+-- Data for Name: pybb_topicreadtracker; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY public.pybb_topicreadtracker (id, time_stamp, topic_id, user_id) FROM stdin;
+12	2019-05-23 18:33:26.990151+00	2	brenna2
+\.
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.auth_group_id_seq', 1, false);
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 136, true);
+
+
+--
+-- Name: demo_residences_residence_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.demo_residences_residence_id_seq', 1, false);
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 39, true);
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 34, true);
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 31, true);
+
+
+--
+-- Name: django_site_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.django_site_id_seq', 1, true);
+
+
+--
+-- Name: final_residence_photos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.final_residence_photos_id_seq', 45, true);
+
+
+--
+-- Name: final_residences_residence_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.final_residences_residence_id_seq', 19, true);
+
+
+--
+-- Name: final_unverified_users_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.final_unverified_users_groups_id_seq', 1, false);
+
+
+--
+-- Name: final_unverified_users_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.final_unverified_users_user_permissions_id_seq', 52, true);
+
+
+--
+-- Name: postman_message_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.postman_message_id_seq', 6, true);
+
+
+--
+-- Name: pybb_attachment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.pybb_attachment_id_seq', 1, false);
+
+
+--
+-- Name: pybb_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.pybb_category_id_seq', 4, true);
+
+
+--
+-- Name: pybb_forum_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.pybb_forum_id_seq', 6, true);
+
+
+--
+-- Name: pybb_forum_moderators_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.pybb_forum_moderators_id_seq', 1, false);
+
+
+--
+-- Name: pybb_forumreadtracker_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.pybb_forumreadtracker_id_seq', 14, true);
+
+
+--
+-- Name: pybb_forumsubscription_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.pybb_forumsubscription_id_seq', 1, false);
+
+
+--
+-- Name: pybb_pollanswer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.pybb_pollanswer_id_seq', 1, false);
+
+
+--
+-- Name: pybb_pollansweruser_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.pybb_pollansweruser_id_seq', 1, false);
+
+
+--
+-- Name: pybb_post_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.pybb_post_id_seq', 5, true);
+
+
+--
+-- Name: pybb_profile_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.pybb_profile_id_seq', 26, true);
+
+
+--
+-- Name: pybb_topic_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.pybb_topic_id_seq', 3, true);
+
+
+--
+-- Name: pybb_topic_subscribers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.pybb_topic_subscribers_id_seq', 5, true);
+
+
+--
+-- Name: pybb_topicreadtracker_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.pybb_topicreadtracker_id_seq', 14, true);
+
+
+--
+-- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: demo_expired_listings demo_expired_listings_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.demo_expired_listings
+    ADD CONSTRAINT demo_expired_listings_pkey PRIMARY KEY (residence_id);
+
+
+--
+-- Name: demo_residences demo_residences_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.demo_residences
+    ADD CONSTRAINT demo_residences_pkey PRIMARY KEY (residence_id);
+
+
+--
+-- Name: demo_snn_comments demo_snn_comments_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.demo_snn_comments
+    ADD CONSTRAINT demo_snn_comments_pkey PRIMARY KEY (comment_id);
+
+
+--
+-- Name: demo_snn_messages demo_snn_messages_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.demo_snn_messages
+    ADD CONSTRAINT demo_snn_messages_pkey PRIMARY KEY (message_id);
+
+
+--
+-- Name: demo_snn_pages demo_snn_pages_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.demo_snn_pages
+    ADD CONSTRAINT demo_snn_pages_pkey PRIMARY KEY (name);
+
+
+--
+-- Name: demo_snn_posts demo_snn_posts_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.demo_snn_posts
+    ADD CONSTRAINT demo_snn_posts_pkey PRIMARY KEY (post_id);
+
+
+--
+-- Name: demo_valid_listings demo_valid_listings_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.demo_valid_listings
+    ADD CONSTRAINT demo_valid_listings_pkey PRIMARY KEY (residence_id);
+
+
+--
+-- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (app_label, model);
+
+
+--
+-- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.django_migrations
+    ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- Name: django_site django_site_domain_a2e37b91_uniq; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.django_site
+    ADD CONSTRAINT django_site_domain_a2e37b91_uniq UNIQUE (domain);
+
+
+--
+-- Name: django_site django_site_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.django_site
+    ADD CONSTRAINT django_site_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: final_residence_photos final_residence_photos_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.final_residence_photos
+    ADD CONSTRAINT final_residence_photos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: final_residences final_residences_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.final_residences
+    ADD CONSTRAINT final_residences_pkey PRIMARY KEY (residence_id);
+
+
+--
+-- Name: final_all_registered_users_groups final_unverified_users_g_registereduser_id_group__a8467a8f_uniq; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.final_all_registered_users_groups
+    ADD CONSTRAINT final_unverified_users_g_registereduser_id_group__a8467a8f_uniq UNIQUE (registereduser_id, group_id);
+
+
+--
+-- Name: final_all_registered_users_groups final_unverified_users_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.final_all_registered_users_groups
+    ADD CONSTRAINT final_unverified_users_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: final_all_registered_users final_unverified_users_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.final_all_registered_users
+    ADD CONSTRAINT final_unverified_users_pkey PRIMARY KEY (username);
+
+
+--
+-- Name: final_all_registered_users_user_permissions final_unverified_users_u_registereduser_id_permis_036c355c_uniq; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.final_all_registered_users_user_permissions
+    ADD CONSTRAINT final_unverified_users_u_registereduser_id_permis_036c355c_uniq UNIQUE (registereduser_id, permission_id);
+
+
+--
+-- Name: final_all_registered_users_user_permissions final_unverified_users_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.final_all_registered_users_user_permissions
+    ADD CONSTRAINT final_unverified_users_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: postman_message postman_message_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.postman_message
+    ADD CONSTRAINT postman_message_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pybb_attachment pybb_attachment_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_attachment
+    ADD CONSTRAINT pybb_attachment_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pybb_category pybb_category_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_category
+    ADD CONSTRAINT pybb_category_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pybb_category pybb_category_slug_key; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_category
+    ADD CONSTRAINT pybb_category_slug_key UNIQUE (slug);
+
+
+--
+-- Name: pybb_forum pybb_forum_category_id_slug_e4e8c331_uniq; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forum
+    ADD CONSTRAINT pybb_forum_category_id_slug_e4e8c331_uniq UNIQUE (category_id, slug);
+
+
+--
+-- Name: pybb_forum_moderators pybb_forum_moderators_forum_id_registereduser_id_00f9299c_uniq; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forum_moderators
+    ADD CONSTRAINT pybb_forum_moderators_forum_id_registereduser_id_00f9299c_uniq UNIQUE (forum_id, registereduser_id);
+
+
+--
+-- Name: pybb_forum_moderators pybb_forum_moderators_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forum_moderators
+    ADD CONSTRAINT pybb_forum_moderators_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pybb_forum pybb_forum_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forum
+    ADD CONSTRAINT pybb_forum_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pybb_forumreadtracker pybb_forumreadtracker_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forumreadtracker
+    ADD CONSTRAINT pybb_forumreadtracker_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pybb_forumreadtracker pybb_forumreadtracker_user_id_forum_id_5383e2b9_uniq; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forumreadtracker
+    ADD CONSTRAINT pybb_forumreadtracker_user_id_forum_id_5383e2b9_uniq UNIQUE (user_id, forum_id);
+
+
+--
+-- Name: pybb_forumsubscription pybb_forumsubscription_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forumsubscription
+    ADD CONSTRAINT pybb_forumsubscription_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pybb_forumsubscription pybb_forumsubscription_user_id_forum_id_61767d2a_uniq; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forumsubscription
+    ADD CONSTRAINT pybb_forumsubscription_user_id_forum_id_61767d2a_uniq UNIQUE (user_id, forum_id);
+
+
+--
+-- Name: pybb_pollanswer pybb_pollanswer_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_pollanswer
+    ADD CONSTRAINT pybb_pollanswer_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pybb_pollansweruser pybb_pollansweruser_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_pollansweruser
+    ADD CONSTRAINT pybb_pollansweruser_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pybb_pollansweruser pybb_pollansweruser_poll_answer_id_user_id_b4406217_uniq; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_pollansweruser
+    ADD CONSTRAINT pybb_pollansweruser_poll_answer_id_user_id_b4406217_uniq UNIQUE (poll_answer_id, user_id);
+
+
+--
+-- Name: pybb_post pybb_post_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_post
+    ADD CONSTRAINT pybb_post_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pybb_profile pybb_profile_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_profile
+    ADD CONSTRAINT pybb_profile_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pybb_profile pybb_profile_user_id_key; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_profile
+    ADD CONSTRAINT pybb_profile_user_id_key UNIQUE (user_id);
+
+
+--
+-- Name: pybb_topic pybb_topic_forum_id_slug_63e159fb_uniq; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_topic
+    ADD CONSTRAINT pybb_topic_forum_id_slug_63e159fb_uniq UNIQUE (forum_id, slug);
+
+
+--
+-- Name: pybb_topic pybb_topic_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_topic
+    ADD CONSTRAINT pybb_topic_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pybb_topic_subscribers pybb_topic_subscribers_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_topic_subscribers
+    ADD CONSTRAINT pybb_topic_subscribers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pybb_topic_subscribers pybb_topic_subscribers_topic_id_registereduser_id_d5122e67_uniq; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_topic_subscribers
+    ADD CONSTRAINT pybb_topic_subscribers_topic_id_registereduser_id_d5122e67_uniq UNIQUE (topic_id, registereduser_id);
+
+
+--
+-- Name: pybb_topicreadtracker pybb_topicreadtracker_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_topicreadtracker
+    ADD CONSTRAINT pybb_topicreadtracker_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pybb_topicreadtracker pybb_topicreadtracker_user_id_topic_id_08cdccdf_uniq; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_topicreadtracker
+    ADD CONSTRAINT pybb_topicreadtracker_user_id_topic_id_08cdccdf_uniq UNIQUE (user_id, topic_id);
+
+
+--
+-- Name: final_all_registered_users unique_username; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.final_all_registered_users
+    ADD CONSTRAINT unique_username UNIQUE (username);
+
+
+--
+-- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX auth_group_name_a6ea08ec_like ON public.auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX auth_group_permissions_group_id_b120cbf9 ON public.auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX auth_group_permissions_permission_id_84c5c92e ON public.auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX auth_permission_content_type_id_2f476e4b ON public.auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: demo_snn_pages_name_c4ddbe8b_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX demo_snn_pages_name_c4ddbe8b_like ON public.demo_snn_pages USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX django_admin_log_content_type_id_c4bce8eb ON public.django_admin_log USING btree (content_type_id);
+
+
+--
+-- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX django_admin_log_user_id_c564eba6 ON public.django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_admin_log_user_id_c564eba6_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX django_admin_log_user_id_c564eba6_like ON public.django_admin_log USING btree (user_id varchar_pattern_ops);
+
+
+--
+-- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX django_session_expire_date_a5c62663 ON public.django_session USING btree (expire_date);
+
+
+--
+-- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- Name: django_site_domain_a2e37b91_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX django_site_domain_a2e37b91_like ON public.django_site USING btree (domain varchar_pattern_ops);
+
+
+--
+-- Name: final_residence_photos_listing_id_8f0cc106; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX final_residence_photos_listing_id_8f0cc106 ON public.final_residence_photos USING btree (listing_id);
+
+
+--
+-- Name: final_unverified_users_groups_group_id_d898e3b7; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX final_unverified_users_groups_group_id_d898e3b7 ON public.final_all_registered_users_groups USING btree (group_id);
+
+
+--
+-- Name: final_unverified_users_groups_registereduser_id_c2e6e8e5; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX final_unverified_users_groups_registereduser_id_c2e6e8e5 ON public.final_all_registered_users_groups USING btree (registereduser_id);
+
+
+--
+-- Name: final_unverified_users_groups_registereduser_id_c2e6e8e5_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX final_unverified_users_groups_registereduser_id_c2e6e8e5_like ON public.final_all_registered_users_groups USING btree (registereduser_id varchar_pattern_ops);
+
+
+--
+-- Name: final_unverified_users_u_registereduser_id_9a54055f_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX final_unverified_users_u_registereduser_id_9a54055f_like ON public.final_all_registered_users_user_permissions USING btree (registereduser_id varchar_pattern_ops);
+
+
+--
+-- Name: final_unverified_users_use_registereduser_id_9a54055f; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX final_unverified_users_use_registereduser_id_9a54055f ON public.final_all_registered_users_user_permissions USING btree (registereduser_id);
+
+
+--
+-- Name: final_unverified_users_user_permissions_permission_id_2a52093e; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX final_unverified_users_user_permissions_permission_id_2a52093e ON public.final_all_registered_users_user_permissions USING btree (permission_id);
+
+
+--
+-- Name: final_unverified_users_username_deb84f66_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX final_unverified_users_username_deb84f66_like ON public.final_all_registered_users USING btree (username varchar_pattern_ops);
+
+
+--
+-- Name: postman_message_moderation_by_id_f0d43d80; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX postman_message_moderation_by_id_f0d43d80 ON public.postman_message USING btree (moderation_by_id);
+
+
+--
+-- Name: postman_message_moderation_by_id_f0d43d80_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX postman_message_moderation_by_id_f0d43d80_like ON public.postman_message USING btree (moderation_by_id varchar_pattern_ops);
+
+
+--
+-- Name: postman_message_parent_id_4b6238da; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX postman_message_parent_id_4b6238da ON public.postman_message USING btree (parent_id);
+
+
+--
+-- Name: postman_message_recipient_id_5f2df2fc; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX postman_message_recipient_id_5f2df2fc ON public.postman_message USING btree (recipient_id);
+
+
+--
+-- Name: postman_message_recipient_id_5f2df2fc_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX postman_message_recipient_id_5f2df2fc_like ON public.postman_message USING btree (recipient_id varchar_pattern_ops);
+
+
+--
+-- Name: postman_message_sender_id_6d102a43; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX postman_message_sender_id_6d102a43 ON public.postman_message USING btree (sender_id);
+
+
+--
+-- Name: postman_message_sender_id_6d102a43_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX postman_message_sender_id_6d102a43_like ON public.postman_message USING btree (sender_id varchar_pattern_ops);
+
+
+--
+-- Name: postman_message_thread_id_cd603329; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX postman_message_thread_id_cd603329 ON public.postman_message USING btree (thread_id);
+
+
+--
+-- Name: pybb_attachment_post_id_37526767; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_attachment_post_id_37526767 ON public.pybb_attachment USING btree (post_id);
+
+
+--
+-- Name: pybb_category_slug_7344317c_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_category_slug_7344317c_like ON public.pybb_category USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: pybb_forum_category_id_2d9dc317; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_forum_category_id_2d9dc317 ON public.pybb_forum USING btree (category_id);
+
+
+--
+-- Name: pybb_forum_moderators_forum_id_76d6b7a9; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_forum_moderators_forum_id_76d6b7a9 ON public.pybb_forum_moderators USING btree (forum_id);
+
+
+--
+-- Name: pybb_forum_moderators_registereduser_id_c8a67fc9; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_forum_moderators_registereduser_id_c8a67fc9 ON public.pybb_forum_moderators USING btree (registereduser_id);
+
+
+--
+-- Name: pybb_forum_moderators_registereduser_id_c8a67fc9_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_forum_moderators_registereduser_id_c8a67fc9_like ON public.pybb_forum_moderators USING btree (registereduser_id varchar_pattern_ops);
+
+
+--
+-- Name: pybb_forum_parent_id_25a6912a; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_forum_parent_id_25a6912a ON public.pybb_forum USING btree (parent_id);
+
+
+--
+-- Name: pybb_forum_slug_29d20c51; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_forum_slug_29d20c51 ON public.pybb_forum USING btree (slug);
+
+
+--
+-- Name: pybb_forum_slug_29d20c51_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_forum_slug_29d20c51_like ON public.pybb_forum USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: pybb_forumreadtracker_forum_id_50982c37; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_forumreadtracker_forum_id_50982c37 ON public.pybb_forumreadtracker USING btree (forum_id);
+
+
+--
+-- Name: pybb_forumreadtracker_user_id_2bfa7297; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_forumreadtracker_user_id_2bfa7297 ON public.pybb_forumreadtracker USING btree (user_id);
+
+
+--
+-- Name: pybb_forumreadtracker_user_id_2bfa7297_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_forumreadtracker_user_id_2bfa7297_like ON public.pybb_forumreadtracker USING btree (user_id varchar_pattern_ops);
+
+
+--
+-- Name: pybb_forumsubscription_forum_id_5b4e4f43; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_forumsubscription_forum_id_5b4e4f43 ON public.pybb_forumsubscription USING btree (forum_id);
+
+
+--
+-- Name: pybb_forumsubscription_user_id_986c2844; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_forumsubscription_user_id_986c2844 ON public.pybb_forumsubscription USING btree (user_id);
+
+
+--
+-- Name: pybb_forumsubscription_user_id_986c2844_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_forumsubscription_user_id_986c2844_like ON public.pybb_forumsubscription USING btree (user_id varchar_pattern_ops);
+
+
+--
+-- Name: pybb_pollanswer_topic_id_deb37879; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_pollanswer_topic_id_deb37879 ON public.pybb_pollanswer USING btree (topic_id);
+
+
+--
+-- Name: pybb_pollansweruser_poll_answer_id_a0053fca; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_pollansweruser_poll_answer_id_a0053fca ON public.pybb_pollansweruser USING btree (poll_answer_id);
+
+
+--
+-- Name: pybb_pollansweruser_user_id_73f16ba3; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_pollansweruser_user_id_73f16ba3 ON public.pybb_pollansweruser USING btree (user_id);
+
+
+--
+-- Name: pybb_pollansweruser_user_id_73f16ba3_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_pollansweruser_user_id_73f16ba3_like ON public.pybb_pollansweruser USING btree (user_id varchar_pattern_ops);
+
+
+--
+-- Name: pybb_post_created_b4c81de6; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_post_created_b4c81de6 ON public.pybb_post USING btree (created);
+
+
+--
+-- Name: pybb_post_topic_id_46c19581; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_post_topic_id_46c19581 ON public.pybb_post USING btree (topic_id);
+
+
+--
+-- Name: pybb_post_updated_5cbca2c2; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_post_updated_5cbca2c2 ON public.pybb_post USING btree (updated);
+
+
+--
+-- Name: pybb_post_user_id_c2468b60; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_post_user_id_c2468b60 ON public.pybb_post USING btree (user_id);
+
+
+--
+-- Name: pybb_post_user_id_c2468b60_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_post_user_id_c2468b60_like ON public.pybb_post USING btree (user_id varchar_pattern_ops);
+
+
+--
+-- Name: pybb_profile_user_id_fe5d7eef_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_profile_user_id_fe5d7eef_like ON public.pybb_profile USING btree (user_id varchar_pattern_ops);
+
+
+--
+-- Name: pybb_topic_created_5277d67d; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_topic_created_5277d67d ON public.pybb_topic USING btree (created);
+
+
+--
+-- Name: pybb_topic_forum_id_17079721; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_topic_forum_id_17079721 ON public.pybb_topic USING btree (forum_id);
+
+
+--
+-- Name: pybb_topic_slug_ba792637; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_topic_slug_ba792637 ON public.pybb_topic USING btree (slug);
+
+
+--
+-- Name: pybb_topic_slug_ba792637_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_topic_slug_ba792637_like ON public.pybb_topic USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: pybb_topic_subscribers_registereduser_id_c862a9a1; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_topic_subscribers_registereduser_id_c862a9a1 ON public.pybb_topic_subscribers USING btree (registereduser_id);
+
+
+--
+-- Name: pybb_topic_subscribers_registereduser_id_c862a9a1_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_topic_subscribers_registereduser_id_c862a9a1_like ON public.pybb_topic_subscribers USING btree (registereduser_id varchar_pattern_ops);
+
+
+--
+-- Name: pybb_topic_subscribers_topic_id_1af43261; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_topic_subscribers_topic_id_1af43261 ON public.pybb_topic_subscribers USING btree (topic_id);
+
+
+--
+-- Name: pybb_topic_updated_8a7384de; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_topic_updated_8a7384de ON public.pybb_topic USING btree (updated);
+
+
+--
+-- Name: pybb_topic_user_id_203047b2; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_topic_user_id_203047b2 ON public.pybb_topic USING btree (user_id);
+
+
+--
+-- Name: pybb_topic_user_id_203047b2_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_topic_user_id_203047b2_like ON public.pybb_topic USING btree (user_id varchar_pattern_ops);
+
+
+--
+-- Name: pybb_topicreadtracker_topic_id_ff27d2bf; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_topicreadtracker_topic_id_ff27d2bf ON public.pybb_topicreadtracker USING btree (topic_id);
+
+
+--
+-- Name: pybb_topicreadtracker_user_id_9ca569ea; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_topicreadtracker_user_id_9ca569ea ON public.pybb_topicreadtracker USING btree (user_id);
+
+
+--
+-- Name: pybb_topicreadtracker_user_id_9ca569ea_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX pybb_topicreadtracker_user_id_9ca569ea_like ON public.pybb_topicreadtracker USING btree (user_id varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: demo_expired_listings demo_expired_listing_residence_id_4e197d7b_fk_demo_resi; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.demo_expired_listings
+    ADD CONSTRAINT demo_expired_listing_residence_id_4e197d7b_fk_demo_resi FOREIGN KEY (residence_id) REFERENCES public.demo_residences(residence_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: demo_valid_listings demo_valid_listings_residence_id_2736303e_fk_demo_resi; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.demo_valid_listings
+    ADD CONSTRAINT demo_valid_listings_residence_id_2736303e_fk_demo_resi FOREIGN KEY (residence_id) REFERENCES public.demo_residences(residence_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_final_unv; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_final_unv FOREIGN KEY (user_id) REFERENCES public.final_all_registered_users(username) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: final_residence_photos final_residence_phot_listing_id_8f0cc106_fk_final_res; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.final_residence_photos
+    ADD CONSTRAINT final_residence_phot_listing_id_8f0cc106_fk_final_res FOREIGN KEY (listing_id) REFERENCES public.final_residences(residence_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: final_all_registered_users_groups final_unverified_use_group_id_d898e3b7_fk_auth_grou; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.final_all_registered_users_groups
+    ADD CONSTRAINT final_unverified_use_group_id_d898e3b7_fk_auth_grou FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: final_all_registered_users_user_permissions final_unverified_use_permission_id_2a52093e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.final_all_registered_users_user_permissions
+    ADD CONSTRAINT final_unverified_use_permission_id_2a52093e_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: final_all_registered_users_user_permissions final_unverified_use_registereduser_id_9a54055f_fk_final_unv; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.final_all_registered_users_user_permissions
+    ADD CONSTRAINT final_unverified_use_registereduser_id_9a54055f_fk_final_unv FOREIGN KEY (registereduser_id) REFERENCES public.final_all_registered_users(username) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: final_all_registered_users_groups final_unverified_use_registereduser_id_c2e6e8e5_fk_final_unv; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.final_all_registered_users_groups
+    ADD CONSTRAINT final_unverified_use_registereduser_id_c2e6e8e5_fk_final_unv FOREIGN KEY (registereduser_id) REFERENCES public.final_all_registered_users(username) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: postman_message postman_message_moderation_by_id_f0d43d80_fk_final_unv; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.postman_message
+    ADD CONSTRAINT postman_message_moderation_by_id_f0d43d80_fk_final_unv FOREIGN KEY (moderation_by_id) REFERENCES public.final_all_registered_users(username) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: postman_message postman_message_parent_id_4b6238da_fk_postman_message_id; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.postman_message
+    ADD CONSTRAINT postman_message_parent_id_4b6238da_fk_postman_message_id FOREIGN KEY (parent_id) REFERENCES public.postman_message(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: postman_message postman_message_recipient_id_5f2df2fc_fk_final_unv; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.postman_message
+    ADD CONSTRAINT postman_message_recipient_id_5f2df2fc_fk_final_unv FOREIGN KEY (recipient_id) REFERENCES public.final_all_registered_users(username) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: postman_message postman_message_sender_id_6d102a43_fk_final_unv; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.postman_message
+    ADD CONSTRAINT postman_message_sender_id_6d102a43_fk_final_unv FOREIGN KEY (sender_id) REFERENCES public.final_all_registered_users(username) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: postman_message postman_message_thread_id_cd603329_fk_postman_message_id; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.postman_message
+    ADD CONSTRAINT postman_message_thread_id_cd603329_fk_postman_message_id FOREIGN KEY (thread_id) REFERENCES public.postman_message(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_attachment pybb_attachment_post_id_37526767_fk_pybb_post_id; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_attachment
+    ADD CONSTRAINT pybb_attachment_post_id_37526767_fk_pybb_post_id FOREIGN KEY (post_id) REFERENCES public.pybb_post(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_forum pybb_forum_category_id_2d9dc317_fk_pybb_category_id; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forum
+    ADD CONSTRAINT pybb_forum_category_id_2d9dc317_fk_pybb_category_id FOREIGN KEY (category_id) REFERENCES public.pybb_category(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_forum_moderators pybb_forum_moderator_registereduser_id_c8a67fc9_fk_final_unv; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forum_moderators
+    ADD CONSTRAINT pybb_forum_moderator_registereduser_id_c8a67fc9_fk_final_unv FOREIGN KEY (registereduser_id) REFERENCES public.final_all_registered_users(username) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_forum_moderators pybb_forum_moderators_forum_id_76d6b7a9_fk_pybb_forum_id; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forum_moderators
+    ADD CONSTRAINT pybb_forum_moderators_forum_id_76d6b7a9_fk_pybb_forum_id FOREIGN KEY (forum_id) REFERENCES public.pybb_forum(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_forum pybb_forum_parent_id_25a6912a_fk_pybb_forum_id; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forum
+    ADD CONSTRAINT pybb_forum_parent_id_25a6912a_fk_pybb_forum_id FOREIGN KEY (parent_id) REFERENCES public.pybb_forum(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_forumreadtracker pybb_forumreadtracke_user_id_2bfa7297_fk_final_unv; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forumreadtracker
+    ADD CONSTRAINT pybb_forumreadtracke_user_id_2bfa7297_fk_final_unv FOREIGN KEY (user_id) REFERENCES public.final_all_registered_users(username) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_forumreadtracker pybb_forumreadtracker_forum_id_50982c37_fk_pybb_forum_id; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forumreadtracker
+    ADD CONSTRAINT pybb_forumreadtracker_forum_id_50982c37_fk_pybb_forum_id FOREIGN KEY (forum_id) REFERENCES public.pybb_forum(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_forumsubscription pybb_forumsubscripti_user_id_986c2844_fk_final_unv; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forumsubscription
+    ADD CONSTRAINT pybb_forumsubscripti_user_id_986c2844_fk_final_unv FOREIGN KEY (user_id) REFERENCES public.final_all_registered_users(username) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_forumsubscription pybb_forumsubscription_forum_id_5b4e4f43_fk_pybb_forum_id; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_forumsubscription
+    ADD CONSTRAINT pybb_forumsubscription_forum_id_5b4e4f43_fk_pybb_forum_id FOREIGN KEY (forum_id) REFERENCES public.pybb_forum(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_pollanswer pybb_pollanswer_topic_id_deb37879_fk_pybb_topic_id; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_pollanswer
+    ADD CONSTRAINT pybb_pollanswer_topic_id_deb37879_fk_pybb_topic_id FOREIGN KEY (topic_id) REFERENCES public.pybb_topic(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_pollansweruser pybb_pollansweruser_poll_answer_id_a0053fca_fk_pybb_poll; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_pollansweruser
+    ADD CONSTRAINT pybb_pollansweruser_poll_answer_id_a0053fca_fk_pybb_poll FOREIGN KEY (poll_answer_id) REFERENCES public.pybb_pollanswer(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_pollansweruser pybb_pollansweruser_user_id_73f16ba3_fk_final_unv; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_pollansweruser
+    ADD CONSTRAINT pybb_pollansweruser_user_id_73f16ba3_fk_final_unv FOREIGN KEY (user_id) REFERENCES public.final_all_registered_users(username) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_post pybb_post_topic_id_46c19581_fk_pybb_topic_id; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_post
+    ADD CONSTRAINT pybb_post_topic_id_46c19581_fk_pybb_topic_id FOREIGN KEY (topic_id) REFERENCES public.pybb_topic(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_post pybb_post_user_id_c2468b60_fk_final_unverified_users_username; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_post
+    ADD CONSTRAINT pybb_post_user_id_c2468b60_fk_final_unverified_users_username FOREIGN KEY (user_id) REFERENCES public.final_all_registered_users(username) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_profile pybb_profile_user_id_fe5d7eef_fk_final_unv; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_profile
+    ADD CONSTRAINT pybb_profile_user_id_fe5d7eef_fk_final_unv FOREIGN KEY (user_id) REFERENCES public.final_all_registered_users(username) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_topic pybb_topic_forum_id_17079721_fk_pybb_forum_id; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_topic
+    ADD CONSTRAINT pybb_topic_forum_id_17079721_fk_pybb_forum_id FOREIGN KEY (forum_id) REFERENCES public.pybb_forum(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_topic_subscribers pybb_topic_subscribe_registereduser_id_c862a9a1_fk_final_unv; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_topic_subscribers
+    ADD CONSTRAINT pybb_topic_subscribe_registereduser_id_c862a9a1_fk_final_unv FOREIGN KEY (registereduser_id) REFERENCES public.final_all_registered_users(username) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_topic_subscribers pybb_topic_subscribers_topic_id_1af43261_fk_pybb_topic_id; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_topic_subscribers
+    ADD CONSTRAINT pybb_topic_subscribers_topic_id_1af43261_fk_pybb_topic_id FOREIGN KEY (topic_id) REFERENCES public.pybb_topic(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_topic pybb_topic_user_id_203047b2_fk_final_unverified_users_username; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_topic
+    ADD CONSTRAINT pybb_topic_user_id_203047b2_fk_final_unverified_users_username FOREIGN KEY (user_id) REFERENCES public.final_all_registered_users(username) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_topicreadtracker pybb_topicreadtracke_user_id_9ca569ea_fk_final_unv; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_topicreadtracker
+    ADD CONSTRAINT pybb_topicreadtracke_user_id_9ca569ea_fk_final_unv FOREIGN KEY (user_id) REFERENCES public.final_all_registered_users(username) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pybb_topicreadtracker pybb_topicreadtracker_topic_id_ff27d2bf_fk_pybb_topic_id; Type: FK CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.pybb_topicreadtracker
+    ADD CONSTRAINT pybb_topicreadtracker_topic_id_ff27d2bf_fk_pybb_topic_id FOREIGN KEY (topic_id) REFERENCES public.pybb_topic(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

@@ -24,11 +24,11 @@ SECRET_KEY = '1f6yz5-2)&ff+$plkw4fm5t=i7^3=_zuovfaez8kz#za2cjs58'
 
 # DEV SETUP
 # LOGIN_URL = '/login'
-# DEBUG = True
+DEBUG = True
 
 # PRD SETUP
 LOGIN_URL = '/web/login'
-DEBUG = False
+#DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
